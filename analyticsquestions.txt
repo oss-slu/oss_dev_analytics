@@ -1,0 +1,20 @@
+For Client:
+
+How satisfied are you with the project advancements this week? (1-5)
+Did the developers achieve all promised goals for this sprint? (y/n)
+Have you received any deliverables (mock product) in this sprint? (y/n)
+
+For developers:
+
+How satisfied are you with your team (1-5)
+How confident do you feel about this upcoming sprint? (1-5)
+Confidence in ability to complete tasks assigned
+Do you know your tasks for this upcoming sprint? (y/n)
+Did you complete all your tasks for this sprint (y/n)
+How well did you collaborate with your team members this sprint? (1-5)
+
+For tech leads:
+
+**answer all developer questions too**
+How do you feel about the contribution of all team members
+Either give a general score 1-5 or rank each team member 1-5
