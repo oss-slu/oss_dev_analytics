@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,4 +46,203 @@
     createChart('goalAchievement', 'Goal Achievement', [3.8, 3.0, 4.5, 4.2, 2.0], "lightgreen");
     </script>
 
+=======
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Metrics Dashboard </title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+          body { 
+            font-family: Georgia, 'Times New Roman', Times, serif, sans-serif; 
+            margin-left: 2rem;
+            margin-right: 2rem;
+          }
+          .tabs { display: flex; margin: 2rem 0 1rem 0; }
+          .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #f69b9b;
+            border: 1px solid #f79090;
+            border-bottom: none;
+            margin-right: 5px;
+          }
+          .tab.active { background: #ffe2e2; font-weight: bold; }
+          .tab-content { display: none; }
+          .tab-content.active { display: block; }
+
+          canvas {
+            max-width: 400px;
+            max-height: 300px;
+          }
+
+          .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem; 
+            margin-bottom: 2rem; 
+          }
+        </style>
+    </head>
+    <body>
+        <h1>Metrics Dashboard</h1>
+
+        <h2>Manual Metrics</h2>
+        <div class="chart-grid">
+          <canvas id="clientSatisfaction"></canvas>
+          <canvas id="teamSatisfaction"></canvas>
+          <canvas id="collaboration"></canvas>
+          <canvas id="sprintConfidence"></canvas>
+          <canvas id="goalAchievement"></canvas>
+        </div>
+
+        <div class="tabs">
+          <div class="tab active" onclick="showTab(event, 'tl')">Team Lead</div>
+          <div class="tab" onclick="showTab(event, 'dev-1')">Developer 1</div>
+          <div class="tab" onclick="showTab(event, 'dev-2')">Developer 2</div>
+        </div>
+
+        <div id="tl" class="tab-content active">
+          <h2>Team Lead Metrics</h2>
+          <div class="chart-grid">
+            <canvas id="leadTime-tl"></canvas>
+            <canvas id="cycleTime-tl"></canvas>
+            <canvas id="deliveryMetrics-tl"></canvas>
+            <canvas id="commitFrequency-tl"></canvas>
+            <canvas id="issuesOpened-tl"></canvas>
+            <canvas id="issuesClosed-tl"></canvas>
+            <canvas id="issueTimeResolved-tl"></canvas>
+            <canvas id="prTimeMerged-tl"></canvas>
+            <canvas id="wip-tl"></canvas>
+          </div>
+        </div>
+
+        <div id="dev-1" class="tab-content">
+          <h2>Developer 1 Metrics</h2>
+          <div class="chart-grid">
+            <canvas id="leadTime-1"></canvas>
+            <canvas id="cycleTime-1"></canvas>
+            <canvas id="deliveryMetrics-1"></canvas>
+            <canvas id="commitFrequency-1"></canvas>
+            <canvas id="issuesOpened-1"></canvas>
+            <canvas id="issuesClosed-1"></canvas>
+            <canvas id="issueTimeResolved-1"></canvas>
+            <canvas id="prTimeMerged-1"></canvas>
+            <canvas id="wip-1"></canvas>
+          </div>
+        </div>
+
+        <div id="dev-2" class="tab-content">
+          <h2>Developer 2 Metrics</h2>
+          <div class="chart-grid">
+            <canvas id="leadTime-2"></canvas>
+            <canvas id="cycleTime-2"></canvas>
+            <canvas id="deliveryMetrics-2"></canvas>
+            <canvas id="commitFrequency-2"></canvas>
+            <canvas id="issuesOpened-2"></canvas>
+            <canvas id="issuesClosed-2"></canvas>
+            <canvas id="issueTimeResolved-2"></canvas>
+            <canvas id="prTimeMerged-2"></canvas>
+            <canvas id="wip-2"></canvas>
+          </div>
+        </div>
+
+    </body>
+
+    <script>
+
+    function showTab(event, tabId) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function createChart(id, label, data, color) {
+      new Chart(document.getElementById(id), {
+        type: 'bar',
+        data: {
+          labels: ['Sprint 1', 'Sprint 2', 'Sprint 3', 'Sprint 4', 'Sprint 5', 'Sprint 6'],
+          datasets: [{
+            label: label,
+            data: data,
+            backgroundColor: color
+          }]
+        }
+      });
+    }
+    
+    fetch('manual_metrics.csv')
+      .then(response => response.text())
+      .then(csv => {
+        const rows = csv.trim().split("\n").slice(1);
+        const metrics = {
+          "client satisfaction": [],
+          "team satisfaction": [],
+          "collaboration": [],
+          "sprint confidence": [],
+          "goal achievement": []
+        };
+
+        const labels = ["Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4", "Sprint 5", "Sprint 6"];
+        rows.forEach(row => {
+          cols = row.split(",");
+          if (cols[1] == "client satisfaction") {
+            metrics["client satisfaction"].push(parseFloat(cols[2]))
+          } else if (cols[1] == "team satisfaction") {
+            metrics["team satisfaction"].push(parseFloat(cols[2]))
+          } else if (cols[1] == "collaboration") {
+            metrics["collaboration"].push(parseFloat(cols[2]))
+          } else if (cols[1] == "sprint confidence") {
+            metrics["sprint confidence"].push(parseFloat(cols[2]))
+          } else {
+            metrics["goal achievement"].push(parseFloat(cols[2]))
+          }
+        })
+
+      createChart("clientSatisfaction", "Client Satisfaction", metrics["client satisfaction"], "mediumorchid");
+      createChart("teamSatisfaction", "Team Satisfaction", metrics["team satisfaction"], "lightskyblue");
+      createChart("collaboration", "Collaboration", metrics["collaboration"], "lightgreen");
+      createChart("sprintConfidence", "Sprint Confidence", metrics["sprint confidence"], "lightpink");
+      createChart("goalAchievement", "Goal Achievement", metrics["goal achievement"], "moccasin");
+      })
+
+
+    fetch("metrics.json")
+      .then (response => response.json())
+      .then(jsonData => {
+        createChart('leadTime-tl', 'Lead Time', jsonData["leadTime-tl"], 'salmon');
+        createChart('cycleTime-tl', 'Cycle Time', jsonData["cycleTime-tl"], 'steelblue');
+        createChart('deliveryMetrics-tl', 'Delivery Metrics', jsonData["deliveryMetrics-tl"], 'darkseagreen');
+        createChart('commitFrequency-tl', 'Commit Frequency', jsonData["commitFrequency-tl"], 'plum');
+        createChart('issuesOpened-tl', 'Issues Opened', jsonData["issuesOpened-tl"], 'peachpuff');
+        createChart('issuesClosed-tl', 'Issues Closed', jsonData["issuesClosed-tl"], 'rosybrown');
+        createChart('issueTimeResolved-tl', 'Issue Time Resolved', jsonData["issueTimeResolved-tl"], 'palevioletred');
+        createChart('prTimeMerged-tl', 'PR Time Merged', jsonData["prTimeMerged-tl"], 'aquamarine');
+        createChart('wip-tl', 'Work In Progress', jsonData["wip-tl"], 'lightslategray');
+
+        createChart('leadTime-1', 'Lead Time', jsonData["leadTime-1"], 'salmon');
+        createChart('cycleTime-1', 'Cycle Time', jsonData["cycleTime-1"], 'steelblue');
+        createChart('deliveryMetrics-1', 'Delivery Metrics', jsonData["deliveryMetrics-1"], 'darkseagreen');
+        createChart('commitFrequency-1', 'Commit Frequency', jsonData["commitFrequency-1"], 'plum');
+        createChart('issuesOpened-1', 'Issues Opened', jsonData["issuesOpened-1"], 'peachpuff');
+        createChart('issuesClosed-1', 'Issues Closed', jsonData["issuesClosed-1"], 'rosybrown');
+        createChart('issueTimeResolved-1', 'Issue Time Resolved', jsonData["issueTimeResolved-1"], 'palevioletred');
+        createChart('prTimeMerged-1', 'PR Time Merged', jsonData["prTimeMerged-1"], 'aquamarine');
+        createChart('wip-1', 'Work In Progress', jsonData["wip-1"], 'lightslategray');
+
+        createChart('leadTime-2', 'Lead Time', jsonData["leadTime-2"], 'salmon');
+        createChart('cycleTime-2', 'Cycle Time', jsonData["cycleTime-2"], 'steelblue');
+        createChart('deliveryMetrics-2', 'Delivery Metrics', jsonData["deliveryMetrics-2"], 'darkseagreen');
+        createChart('commitFrequency-2', 'Commit Frequency', jsonData["commitFrequency-2"], 'plum');
+        createChart('issuesOpened-2', 'Issues Opened', jsonData["issuesOpened-2"], 'peachpuff');
+        createChart('issuesClosed-2', 'Issues Closed', jsonData["issuesClosed-2"], 'rosybrown');
+        createChart('issueTimeResolved-2', 'Issue Time Resolved', jsonData["issueTimeResolved-2"], 'palevioletred');
+        createChart('prTimeMerged-2', 'PR Time Merged', jsonData["prTimeMerged-2"], 'aquamarine');
+        createChart('wip-2', 'Work In Progress', jsonData["wip-2"], 'lightslategray');
+    })
+
+    </script>
+
+>>>>>>> master
 </html>
