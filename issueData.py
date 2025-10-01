@@ -10,16 +10,24 @@ def get_issues(state="all", labels=None):
     r.raise_for_status()
     return r.json()
 
-open_issues = get_issues("open")
-wip = len(open_issues) - len(blocked_issues)
+def is_pr(issue):
+    return "pull_request" in issue
 
-blocked_issues = get_issues("open", "blocked")
-blocked = len(blocked_issues)
+def has_label(issue, name):
+    name = name.lower().strip()
+    return any(lbl.get("name", "").lower().strip() == name for lbl in issue.get("labels", []))
 
-bug_issues = get_issues("all", "bug")
-bug_closed = sum(1 for i in bug_issues if i["state"] == "closed")
+open_issues = [i for i in get_issues("open") if not is_pr(i)]
+closed_issues = [i for i in get_issues("closed") if not is_pr(i)]
 
-closed_issues = get_issues("closed")
+blocked_list = [i for i in open_issues if has_label(i, "blocked")]
+wip_list = [i for i in open_issues if not has_label(i, "blocked")]
+
+bug_closed = sum(1 for i in closed_issues if has_label(i, "bug"))
+
+wip = len(wip_list)
+blocked = len(blocked_list)
+
 if (len(closed_issues) == 0):
     defect_rate = 0
 else: 
@@ -28,5 +36,5 @@ else:
 print("📊 Metrics")
 print("WIP Issues:", wip)
 print("Blocked Issues:", blocked)
-
 print("Defect Rate:", defect_rate)
+
