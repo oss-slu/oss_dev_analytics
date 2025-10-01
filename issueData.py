@@ -11,7 +11,7 @@ def get_issues(state="all", labels=None):
     return r.json()
 
 open_issues = get_issues("open")
-wip = len(open_issues)
+wip = len(open_issues) - len(blocked_issues)
 
 blocked_issues = get_issues("open", "blocked")
 blocked = len(blocked_issues)
@@ -28,4 +28,5 @@ else:
 print("📊 Metrics")
 print("WIP Issues:", wip)
 print("Blocked Issues:", blocked)
+
 print("Defect Rate:", defect_rate)
