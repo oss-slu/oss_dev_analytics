@@ -39,7 +39,7 @@ tags = [(tag.name, tag.commit.committed_datetime) for tag in repo.tags]
 tags_df = pd.DataFrame(tags, columns=['tag', 'date'])
 
 #checking format of all dataframes
-print("Commits DataFrame:", commits_df.head()) #having .head in case of a large df
+print("Commits DataFrame:", commits_df) #can use .head() incase of a large df
 print("\nContributors DataFrame: \n", contrib_counts)
 print(f"\nVelocity: {velocity:.2f} commits/day")
 print("\nTags DataFrame:\n", tags_df)
