@@ -1,6 +1,8 @@
 from datetime import datetime
 from git import Repo
 import pandas as pd
+
+#Change to API call to get repo info
 #finding the repo
 repo = Repo("C:/Users/hcaba/Desktop/Capstone/lrda_mobile")
 
