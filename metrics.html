@@ -1,48 +1,169 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html>
-    <head>
-        <title> Metrics Dashboard </title>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    </head>
-    <body>
-        <h1>Manual Metrics Dashboard</h1>
+  <head>
+    <title> Metrics Dashboard </title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body { 
+        font-family: Georgia, 'Times New Roman', Times, serif, sans-serif; 
+        margin-left: 2rem;
+        margin-right: 2rem;
+       }
 
-        <h2>Client Satisfaction</h2>
-        <canvas id="clientSatisfaction"></canvas>
+      canvas {
+        max-width: 275px;
+        max-height: 250px;
+      }
 
-        <h2>Team Satisfaction</h2>
-        <canvas id="teamSatisfaction"></canvas>
+      .chart-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1.5rem; 
+         margin-bottom: 2rem; 
+      }
 
-        <h2>Collaboration</h2>
-        <canvas id="collaboration"></canvas>
+      select {
+        margin: 0.5rem;
+        padding: 0.4rem;
+      }
 
-        <h2>Sprint Confidence</h2>
-        <canvas id="sprintConfidence"></canvas>
-    
-        <h2>Goal Achievement</h2>
-        <canvas id="goalAchievement"></canvas>
-    </body>
+      #metricsDisplay {
+        margin-top: 1rem;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background: #f9f9f9;
+      }
 
-    <script>
-    function createChart(id, label, data, color) {
-      new Chart(document.getElementById(id), {
-        type: 'bar',
-        data: {
-          labels: ['Sprint 1', 'Sprint 2', 'Sprint 3', 'Sprint 4', 'Sprint 5'],
-          datasets: [{
-            label: label,
-            data: data,
-            backgroundColor: color
-          }]
-        }
-      });
+      #metricsDisplay ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      #metricsDisplay li {
+        margin: 0.4rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Metrics Dashboard</h1>
+
+    <h2>Manual Metrics</h2>
+    <div class="chart-grid">
+      <canvas id="clientSatisfaction"></canvas>
+      <canvas id="teamSatisfaction"></canvas>
+      <canvas id="collaboration"></canvas>
+      <canvas id="sprintConfidence"></canvas>
+      <canvas id="goalAchievement"></canvas>
+    </div>
+
+    <h2>Select User & Sprint</h2>
+    <label for="userSelect">User:</label>
+    <select id="userSelect">
+      <option value="tl">Team Lead</option>
+      <option value="dev-1">Developer 1</option>
+      <option value="dev-2">Developer 2</option>
+    </select>
+
+    <label for="sprintSelect">Sprint:</label>
+    <select id="sprintSelect">
+      <option value="0">Sprint 1</option>
+      <option value="1">Sprint 2</option>
+      <option value="2">Sprint 3</option>
+      <option value="3">Sprint 4</option>
+      <option value="4">Sprint 5</option>
+      <option value="5">Sprint 6</option>
+    </select>
+
+    <div id="metricsDisplay"> </div>
+
+<script>
+
+function createChart(id, label, data, color) {
+  new Chart(document.getElementById(id), {
+    type: 'bar',
+    data: {
+      labels: ['Sprint 1', 'Sprint 2', 'Sprint 3', 'Sprint 4', 'Sprint 5', 'Sprint 6'],
+      datasets: [{
+        label: label,
+        data: data,
+        backgroundColor: color
+      }]
     }
+  });
+}
     
-    createChart('clientSatisfaction', 'Client Satisfaction', [4.0, 3.0, 2.0, 4.0, 5.0], "mediumorchid");
-    createChart('teamSatisfaction', 'Team Satisfaction', [3.5, 4.2, 4.8, 3.5, 3.5], "lightskyblue");
-    createChart('collaboration', 'Collaboration', [2.3, 2.7, 3.0, 3.0, 2.3], "moccasin");
-    createChart('sprintConfidence', 'Sprint Confidence', [4.5, 5.0, 2.0, 3.0, 1.5], "lightpink");
-    createChart('goalAchievement', 'Goal Achievement', [3.8, 3.0, 4.5, 4.2, 2.0], "lightgreen");
-    </script>
+fetch('manual_metrics.csv')
+  .then(response => response.text())
+  .then(csv => {
+    const rows = csv.trim().split("\n").slice(1);
+    const metrics = {
+      "client satisfaction": [],
+      "team satisfaction": [],
+      "collaboration": [],
+      "sprint confidence": [],
+      "goal achievement": []
+    };
 
-</html>
+    const labels = ["Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4", "Sprint 5", "Sprint 6"];
+    rows.forEach(row => {
+      cols = row.split(",");
+      if (cols[1] == "client satisfaction") {
+        metrics["client satisfaction"].push(parseFloat(cols[2]))
+      } else if (cols[1] == "team satisfaction") {
+        metrics["team satisfaction"].push(parseFloat(cols[2]))
+      } else if (cols[1] == "collaboration") {
+        metrics["collaboration"].push(parseFloat(cols[2]))
+      } else if (cols[1] == "sprint confidence") {
+        metrics["sprint confidence"].push(parseFloat(cols[2]))
+      } else {
+        metrics["goal achievement"].push(parseFloat(cols[2]))
+      }
+    })
+
+  createChart("clientSatisfaction", "Client Satisfaction", metrics["client satisfaction"], "mediumorchid");
+  createChart("teamSatisfaction", "Team Satisfaction", metrics["team satisfaction"], "lightskyblue");
+  createChart("collaboration", "Collaboration", metrics["collaboration"], "lightgreen");
+  createChart("sprintConfidence", "Sprint Confidence", metrics["sprint confidence"], "lightpink");
+  createChart("goalAchievement", "Goal Achievement", metrics["goal achievement"], "moccasin");
+  })
+
+  let metricsData = {};
+
+  function updateMetricsDisplay() {
+    const user = document.getElementById("userSelect").value;
+    const sprintIndex = parseInt(document.getElementById("sprintSelect").value);
+    const display = document.getElementById("metricsDisplay");
+
+    let html = `<h3>Metrics for ${user.toUpperCase()} - Sprint ${sprintIndex + 1}</h3><ul>`;
+
+    const autoMetrics = [
+      "leadTime", "cycleTime", "deliveryMetrics",
+      "commitFrequency", "issuesOpened", "issuesClosed",
+      "issueTimeResolved", "prTimeMerged", "wip"
+    ];
+
+    autoMetrics.forEach(key => {
+      const metricKey = user === "tl" ? `${key}-tl` : 
+                        user === "dev-1" ? `${key}-1` : `${key}-2`;
+      const value = metricsData[metricKey]?.[sprintIndex];
+      html += `<li><strong>${key}:</strong> ${value !== undefined ? value : "N/A"}</li>`;
+    });
+
+    html += "</ul>";
+    display.innerHTML = html;
+  }
+
+  fetch("metrics.json")
+    .then (response => response.json())
+    .then(jsonData => {
+      metricsData = jsonData;
+      updateMetricsDisplay();
+
+      document.getElementById("userSelect").addEventListener("change", updateMetricsDisplay);
+      document.getElementById("sprintSelect").addEventListener("change", updateMetricsDisplay);
+  });
+
+  </script>
+  </body>
+  </html>
