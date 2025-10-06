@@ -2,10 +2,10 @@ from datetime import datetime
 from git import Repo
 import pandas as pd
 
-#Change to API call to get repo info
-#finding the repo
-repo = Repo("C:/Users/hcaba/Desktop/Capstone/lrda_mobile")
-
+'''
+Code to get the token from the configuration management system inserted HERE, already have a .env file created. 
+Will update this file with the Configuration Management System issue
+'''
 #getting git commits
 commits = repo.iter_commits('main')
 commit_data = []
