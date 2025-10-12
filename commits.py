@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from git import Repo
 import pandas as pd
 from github import Github
@@ -7,8 +7,8 @@ from github import Github
 def get_commit_data(github_client, org_name: str, start_date: str, end_date: str, repo_name: str = None) -> pd.DataFrame:
     # Iterate over commits within time frame (sprint by sprint)
     org = github_client.get_organization(org_name)
-    start_dt = datetime.formisoformat(start_date)
-    end_dt = datetime.fromisoformat(end_date)
+    start_dt = datetime.fromisoformat(start_date).replace(tzinfo=timezone.utc)
+    end_dt = datetime.fromisoformat(end_date).replace(tzinfo=timezone.utc)
     commit_records = []
     repos = [org.get_repo(repo_name)] if repo_name else org.get_repos()
     for repo in repos:
@@ -20,8 +20,13 @@ def get_commit_data(github_client, org_name: str, start_date: str, end_date: str
             for c in commits:
                     author_name = getattr(c.author, "name", None)
                     author_email = getattr(c.author, "email", None)
-                    stats = c.stats.total if c.stats else{}
-          
+
+                    commit_date = c.commit.author.date
+                    if commit_date.tzinfo is None:
+                        commit_date = commit_date.replace(tzinfo=timezone.utc)
+
+                    if not (start_dt <= commit_date <= end_dt):
+                        continue
                     commit_records.append({
                         'repository': repo.name,
                         'sha': c.sha,
@@ -29,9 +34,9 @@ def get_commit_data(github_client, org_name: str, start_date: str, end_date: str
                         'email': author_email,
                         'date': c.commit.author.date,
                         'message': c.commit.message.strip(),
-                        'additions': stats.total('insertions', 0),
-                        'deletions': stats.total('deletions',0),
-                        'files_changed': stats.total('files',0)
+                        'additions': c.stats.additions if c.stats else 0,
+                        'deletions': c.stats.deletions if c.stats else 0,
+                        'files_changed': c.stats.total if c.stats else 0
                 })
         except Exception as e:
              print(f"Error processing {repo.name}: {e}") #maybe change to output into the file instead?

@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from github import Github
 import pandas as pd
 from config import configs
@@ -6,12 +6,13 @@ from config import configs
 
 def get_pr_data(github_client, org_name: str, start_date: str, end_date: str, repo_name: str = None) -> pd.DataFrame:
     org = github_client.get_organization(org_name)
-    start_dt = datetime.formisoformat(start_date)
-    end_dt = datetime.fromisoformat(end_date)
+    start_dt = datetime.fromisoformat(start_date).replace(tzinfo=timezone.utc)
+    end_dt = datetime.fromisoformat(end_date).replace(tzinfo=timezone.utc)
     pr_records = []
     repos = [org.get_repo(repo_name)] if repo_name else org.get_repos()
     for repo in org.get_repos():
         try:
+            print(f"Repository: {repo.name}")
             prs = repo.get_pulls(state = "all", sort = "created", direction = "desc")
     
             for pr in prs:
