@@ -43,10 +43,12 @@ def get_issue_data(github_client, org_name: str, start_date: str, end_date: str,
         
         df = pd.DataFrame(issue_records)
 
+        #ensuring df is not empty
         if df.empty:
             print("No issues found in given date range")
             return pd.DataFrame()
         
+        #Manual metrics computation
         open_issues = df[df["state"] == "open"]
         closed_issues = df[df["state"] == "closed"]
 

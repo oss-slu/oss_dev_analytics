@@ -4,14 +4,6 @@ import pandas as pd
 from config import configs
 
 
-github_token = configs.GIT_TOKEN
-g = Github(github_token)
-org_name = "oss-slu"
-org = g.get_organization(org_name)
-
-#Time frame to filter PRs (sprint by sprint)
-start_date = "2025-09-08"
-end_date = "2025-09-22"
 def get_pr_data(github_client, org_name: str, start_date: str, end_date: str, repo_name: str = None) -> pd.DataFrame:
     org = github_client.get_organization(org_name)
     start_dt = datetime.formisoformat(start_date)
