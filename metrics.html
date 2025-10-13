@@ -1,17 +1,60 @@
-!DOCTYPE html>
 <html>
   <head>
     <title> Metrics Dashboard </title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
       body { 
-        font-family: Georgia, 'Times New Roman', Times, serif, sans-serif; 
-        margin-left: 2rem;
-        margin-right: 2rem;
+        font-family: Georgia, 'Times New Roman', Times, serif; 
+        margin: 0;
+        display: flex;            
+        height: 100vh;
+        overflow: hidden;
        }
+      
+      .sidebar {
+        width: 150px;
+        background-color: #550C18;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 1rem;
+        flex-shrink: 0;
+      }
+
+      .sidebar h2 {
+        color: #ffffff;
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .sidebar button {
+        width: 90%;
+        background: none;
+        border: none;
+        color: #ffffff;
+        text-align: center;
+        padding: 0.7rem 0.2rem;
+        margin: 0.2rem 0;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 0.9rem;
+      }
+
+      .sidebar button:hover,
+      .sidebar button.active {
+        background-color: #2e1010;
+      }
+      
+      .content {
+        flex-grow: 1;
+        padding: 1.5rem 2rem;
+        overflow-y: auto;
+        background: #e2e8dd;
+      }
 
       canvas {
-        max-width: 275px;
+        max-width: 250px;
         max-height: 250px;
       }
 
@@ -19,7 +62,7 @@
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 1.5rem; 
-         margin-bottom: 2rem; 
+        margin-bottom: 2rem; 
       }
 
       select {
@@ -46,38 +89,69 @@
     </style>
   </head>
   <body>
-    <h1>Metrics Dashboard</h1>
 
-    <h2>Manual Metrics</h2>
-    <div class="chart-grid">
-      <canvas id="clientSatisfaction"></canvas>
-      <canvas id="teamSatisfaction"></canvas>
-      <canvas id="collaboration"></canvas>
-      <canvas id="sprintConfidence"></canvas>
-      <canvas id="goalAchievement"></canvas>
+    <div class="sidebar">
+      <h2>Dashboard</h2>
+      <button class="tab-button active" data-tab="home">Home</button>
+      <button class="tab-button" data-tab="team">Team</button>
+      <button class="tab-button" data-tab="metrics">Metrics</button>
     </div>
 
-    <h2>Select User & Sprint</h2>
-    <label for="userSelect">User:</label>
-    <select id="userSelect">
-      <option value="tl">Team Lead</option>
-      <option value="dev-1">Developer 1</option>
-      <option value="dev-2">Developer 2</option>
-    </select>
+    <div class="content">
+      <div id="home" class="tab-content" style="display: block;">
+        <h1>Home</h1>
+        <p>Add to later.</p>
+      </div>
 
-    <label for="sprintSelect">Sprint:</label>
-    <select id="sprintSelect">
-      <option value="0">Sprint 1</option>
-      <option value="1">Sprint 2</option>
-      <option value="2">Sprint 3</option>
-      <option value="3">Sprint 4</option>
-      <option value="4">Sprint 5</option>
-      <option value="5">Sprint 6</option>
-    </select>
+    <div id="team" class="tab-content" style="display: none;">
+        <h1>Team Metrics</h1>
+        <h2>Select User & Sprint</h2>
+        <label for="userSelect">User:</label>
+        <select id="userSelect">
+          <option value="tl">Team Lead</option>
+          <option value="dev-1">Developer 1</option>
+          <option value="dev-2">Developer 2</option>
+        </select>
 
-    <div id="metricsDisplay"> </div>
+        <label for="sprintSelect">Sprint:</label>
+        <select id="sprintSelect">
+          <option value="0">Sprint 1</option>
+          <option value="1">Sprint 2</option>
+          <option value="2">Sprint 3</option>
+          <option value="3">Sprint 4</option>
+          <option value="4">Sprint 5</option>
+          <option value="5">Sprint 6</option>
+        </select>
+
+        <div id="metricsDisplay"></div>
+      </div>
+
+      <div id="metrics" class="tab-content" style="display: none;">
+        <h1>Manual Metrics</h1>
+        <div class="chart-grid">
+          <canvas id="clientSatisfaction"></canvas>
+          <canvas id="teamSatisfaction"></canvas>
+          <canvas id="collaboration"></canvas>
+          <canvas id="sprintConfidence"></canvas>
+          <canvas id="goalAchievement"></canvas>
+        </div>
+      </div>
+    </div>
 
 <script>
+
+const buttons = document.querySelectorAll(".tab-button");
+      const tabs = document.querySelectorAll(".tab-content");
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          buttons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          tabs.forEach((tab) => (tab.style.display = "none"));
+          document.getElementById(btn.dataset.tab).style.display = "block";
+        });
+      });
 
 function createChart(id, label, data, color) {
   new Chart(document.getElementById(id), {
