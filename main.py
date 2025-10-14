@@ -19,9 +19,9 @@ def main():
 
     include, exclude = get_filtered_repositories('/config.ini') 
     #call the functions and get the data
-    commit_df = get_commit_data(g, org_name, start_date, end_date, include, exclude)
-    pr_df = get_pr_data(g, org_name, start_date, end_date, include, exclude)
-    issue_df = get_issue_data(g, org_name, start_date, end_date, include, exclude)
+    commit_df = get_commit_data(g, org_name, start_date, end_date)
+    pr_df = get_pr_data(g, org_name, start_date, end_date)
+    issue_df = get_issue_data(g, org_name, start_date, end_date)
 
 
     

@@ -3,12 +3,12 @@ import requests
 import pandas as pd
 
 
-def get_issue_data(github_client, org_name: str, start_date: str, end_date: str, include_list, exclude_list, repo_name: str = None) -> pd.DataFrame:
+def get_issue_data(github_client, org_name: str, start_date: str, end_date: str) -> pd.DataFrame:
     
     org = github_client.get_organization(org_name)
     
     issue_records = []
-    repos = [org.get_repo(repo_name)] if repo_name else org.get_repos()
+    repos = org.get_repos()
     for repo in repos:
         try:
             
@@ -24,7 +24,7 @@ def get_issue_data(github_client, org_name: str, start_date: str, end_date: str,
                 
                
                 if start_date <= created_at <= end_date:
-                    if repo.name in include_list and repo.name not in exclude_list:
+                    #if repo.name in include_list and repo.name not in exclude_list:
                         print(f"Collecting issues from repository: {repo.name}")
                         created_at = issue.created_at
                         closed_at = issue.closed_at
@@ -48,7 +48,7 @@ def get_issue_data(github_client, org_name: str, start_date: str, end_date: str,
                         })
         except Exception as e:
             print(f"Error processing {repo.name}: {e}")
-    if repo.name in include_list and repo.name not in exclude_list:
+    #if repo.name in include_list and repo.name not in exclude_list:
         df = pd.DataFrame(issue_records)
 
         #ensuring df is not empty

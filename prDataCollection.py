@@ -5,12 +5,12 @@ from config import configs
 
 
 
-def get_pr_data(github_client, org_name: str, start_date: str, end_date: str, include_list, exclude_list, repo_name: str = None) -> pd.DataFrame:
+def get_pr_data(github_client, org_name: str, start_date: str, end_date: str) -> pd.DataFrame:
     org = github_client.get_organization(org_name)
-    
+    #prob smth to do with grabbing the repositories, potentially have a check to see if it successfully grabs if not go ahead and rerun
     pr_records = []
-    repos = [org.get_repo(repo_name)] if repo_name else org.get_repos()
-    for repo in org.get_repos():
+    repos = org.get_repos()
+    for repo in repos:
         try:
             
             prs = repo.get_pulls(state = "all", sort = "created", direction = "desc")
@@ -22,7 +22,7 @@ def get_pr_data(github_client, org_name: str, start_date: str, end_date: str, in
                 pr_created = pr.created_at
                 
                 if(start_date <= pr_created <= end_date):
-                    if repo.name in include_list and repo.name not in exclude_list:
+                    #if repo.name in include_list:
                         print(f"PR Repository: {repo.name}")
                     #Time to merge calculation
                         if pr.merged_at:
@@ -46,7 +46,7 @@ def get_pr_data(github_client, org_name: str, start_date: str, end_date: str, in
                             })
         except Exception as e:
             print(f"Error processing {repo.name}: {e}") #maybe change to output into the file instead?
-    if repo.name in include_list and repo.name not in exclude_list:
+    #if repo.name in include_list and repo.name not in exclude_list:
         df = pd.DataFrame(pr_records)
         if df.empty:
             print("No commits found in given date range") #maybe change to output into the file instead?

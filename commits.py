@@ -4,15 +4,15 @@ import pandas as pd
 from github import Github
 
 
-def get_commit_data(github_client, org_name: str, start_date: str, end_date: str, include_list, exclude_list, repo_name: str = None) -> pd.DataFrame:
+def get_commit_data(github_client, org_name: str, start_date: str, end_date: str ) -> pd.DataFrame:
     # Iterate over commits within time frame (sprint by sprint)
     org = github_client.get_organization(org_name)
     
     commit_records = []
-    repos = [org.get_repo(repo_name)] if repo_name else org.get_repos()
+    repos = org.get_repos()
     for repo in repos:
         try:
-            if repo.name in include_list and repo.name not in exclude_list:
+            #if repo.name in include_list and repo.name not in exclude_list:
                 print(f"Commits Repository: {repo.name}")
                 
                 commits = repo.get_commits(since = start_date, until = end_date)
@@ -41,7 +41,7 @@ def get_commit_data(github_client, org_name: str, start_date: str, end_date: str
                     })
         except Exception as e:
              print(f"Error processing {repo.name}: {e}") #maybe change to output into the file instead?
-    if repo.name in include_list and repo.name not in exclude_list:
+    #if repo.name in include_list and repo.name not in exclude_list:
         df = pd.DataFrame(commit_records)
         if df.empty:
             print("No commits found in given date range") #maybe change to output into the file instead?
