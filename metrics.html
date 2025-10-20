@@ -141,17 +141,17 @@
 <script>
 
 const buttons = document.querySelectorAll(".tab-button");
-      const tabs = document.querySelectorAll(".tab-content");
+const tabs = document.querySelectorAll(".tab-content");
 
-      buttons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          buttons.forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
+buttons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    buttons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
 
-          tabs.forEach((tab) => (tab.style.display = "none"));
-          document.getElementById(btn.dataset.tab).style.display = "block";
-        });
-      });
+    tabs.forEach((tab) => (tab.style.display = "none"));
+    document.getElementById(btn.dataset.tab).style.display = "block";
+  });
+});
 
 function createChart(id, label, data, color) {
   new Chart(document.getElementById(id), {
@@ -204,12 +204,33 @@ fetch('manual_metrics.csv')
 
   let metricsData = {};
 
+  const metricDescriptions = {
+    leadTime: "Time from task creation to completion.",
+    cycleTime: "Time from when the task was started to task completion.",
+    deliveryMetrics: "???",
+    commitFrequency: "Number of commits made during the sprint.",
+    issuesOpened: "Number of issues open during the sprint.",
+    issuesClosed: "Number of issues resolved during the sprint.",
+    issueTimeResolved: "Average time taken to resolve issues.",
+    prTimeMerged: "Average time from pull request creation to merge.",
+    wip: "Number of work items currently in progress.",
+    velocity: "Number of commits per sprint.",
+    defectRate: "Proportion of closed issues with bugs.",
+    blockedIssues: "Number of issues that were blocked during the sprint."
+  };
+
   function updateMetricsDisplay() {
     const user = document.getElementById("userSelect").value;
     const sprintIndex = parseInt(document.getElementById("sprintSelect").value);
     const display = document.getElementById("metricsDisplay");
+    const sprintDates = [
+      "Sep 8 - Sep 22", "Sep 22 - Oct 6", "Oct 6 - Oct 20",
+      "Oct 20 - Nov 3", "Nov 3 - Nov 17", "Nov 17 - Nov 31"
+    ];
 
-    let html = `<h3>Metrics for ${user.toUpperCase()} - Sprint ${sprintIndex + 1}</h3><ul>`;
+    const orgName = metricsData.org || "unknownOrg";
+    const repoName = metricsData.repo || "unknownRepo";
+    let html = `<h3>Metrics for ${user.toUpperCase()} - Sprint ${sprintIndex + 1} (${sprintDates[sprintIndex]}) | Repo: ${repoName} | Org: ${orgName}</h3><ul>`;
 
     const autoMetrics = [
       "leadTime", "cycleTime", "deliveryMetrics",
@@ -218,10 +239,43 @@ fetch('manual_metrics.csv')
     ];
 
     autoMetrics.forEach(key => {
-      const metricKey = user === "tl" ? `${key}-tl` : 
-                        user === "dev-1" ? `${key}-1` : `${key}-2`;
+      const metricKey =
+        user === "tl" ? `${key}-tl` :
+        user === "dev-1" ? `${key}-1` : `${key}-2`;
+
       const value = metricsData[metricKey]?.[sprintIndex];
-      html += `<li><strong>${key}:</strong> ${value !== undefined ? value : "N/A"}</li>`;
+
+      if (value === undefined) {
+        html += `<li><strong>${key}:</strong> N/A</li>`;
+        return;
+      }
+
+      const teamKeys = [`${key}-tl`, `${key}-1`, `${key}-2`];
+      let teamTotal = 0;
+      teamKeys.forEach(k => {
+        if (metricsData[k]?.[sprintIndex] !== undefined) {
+          teamTotal += metricsData[k][sprintIndex];
+        }
+      });
+
+      let pct = teamTotal > 0 ? (value / teamTotal) * 100 : 0;
+
+      const description = metricDescriptions[key] || "No description available.";
+
+      const userColor = "#eabda8";
+      const teamColor = "#cccccc";
+
+      html += `
+        <li>
+          <strong title="${description}" style="cursor: help;">${key}:</strong> ${value}
+          <div style="width: 100%; max-width: 300px; height: 15px; border-radius: 8px; overflow: hidden; display: flex; margin-top: 5px;">
+            <div style="width: ${pct}%; background-color: ${userColor};"></div>
+            <div style="width: ${100 - pct}%; background-color: ${teamColor};"></div>
+          </div>
+          <small>${pct.toFixed(1)}% of team total</small>
+        </li>
+      `;
+
     });
 
     html += "</ul>";
