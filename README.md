@@ -32,7 +32,7 @@ The system consists of several key components:
 git clone https://github.com/oss-slu/oss_dev_analytics.git
 cd oss_dev_analytics
 pip install -r requirements.txt
-
+```
 ## Metrics
 * Git Logs
   * Lead Time
@@ -107,15 +107,3 @@ Contributor Metrics (Per User): Individual developer contributions across all re
     Repositories: 4
 
       
-
-
-## Useful Links:
-
-https://oss-augur.readthedocs.io/en/main/development-guide/installation.html
-- Local Augur installation, necessary in order to edit Augur so it does not require the database
-
-https://oss-augur.readthedocs.io/en/main/development-guide/create-a-metric/api-development.html
--  Goes over current CHAOSS metrics so we know what we have and what we need to develop
-
-https://oss-augur.readthedocs.io/en/main/development-guide/create-a-metric/metrics-steps.html
-- If we want to create our own metric rather than just use what CHAOSS has this will be important
