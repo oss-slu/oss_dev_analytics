@@ -1,0 +1,19 @@
+
+```mermaid
+flowchart TD;
+    A{HTML};
+    B{CSV};
+    C{JSON};
+    D{Google Form};
+    E{Main.py};
+    F{commits.py};
+    G{issueData.py};
+    H{prData.py};
+    F --> E;
+    G --> E;
+    H --> E;
+    E-->C;
+    C --> A;
+    B --> A;
+    D --> B;
+```
