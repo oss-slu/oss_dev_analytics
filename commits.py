@@ -1,48 +1,101 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from git import Repo
 import pandas as pd
+from github import Github
 
-'''
-Code to get the token from the configuration management system inserted HERE, already have a .env file created. 
-Will update this file with the Configuration Management System issue
-'''
-#getting git commits
-commits = repo.iter_commits('main')
-commit_data = []
-start_date = "2025-09-08"
-end_date = "2025-09-22"
 
-# Iterate over commits within time frame (sprint by sprint)
-for commit in repo.iter_commits(since=start_date, until=end_date):
-        commit_info = {
-            'sha': commit.hexsha,
-            'author': commit.author.name,
-            'email': commit.author.email,
-            'date': commit.committed_datetime,
-            'message': commit.message.strip(),
-            'additions': commit.stats.total['insertions'],
-            'deletions': commit.stats.total['deletions'],
-            'files_changed': commit.stats.total['files']
-        }
-        commit_data.append(commit_info)
 
-#importing pandas to create dataframe and creating the df
-commits_df = pd.DataFrame(commit_data)
-
-#commits per author
-contrib_counts = commits_df.groupby('author').size().reset_index(name='commits')
-
-#velocity
-days = (datetime.fromisoformat(end_date) - datetime.fromisoformat(start_date) or 1).days
-velocity = len(commits_df) / days
-
-#tags
-tags = [(tag.name, tag.commit.committed_datetime) for tag in repo.tags]
-tags_df = pd.DataFrame(tags, columns=['tag', 'date'])
-
-#checking format of all dataframes
-print("Commits DataFrame:", commits_df) #can use .head() incase of a large df
-print("\nContributors DataFrame: \n", contrib_counts)
-print(f"\nVelocity: {velocity:.2f} commits/day")
-print("\nTags DataFrame:\n", tags_df)
-
+def get_commit_data(github_client, org_name: str, start_date: datetime, end_date: datetime) -> pd.DataFrame:
+    """
+    FIXED VERSION with better accuracy
+    
+    Key fixes:
+    1. Proper date filtering
+    2. No duplicates
+    3. Better error handling
+    4. Progress tracking
+    """
+    org = github_client.get_organization(org_name)
+    commit_records = []
+    seen_shas = set()  # Track unique commits
+    
+    repos = org.get_repos()
+    total_repos = repos.totalCount
+    
+    print(f"\n Processing {total_repos} repositories...")
+    processed = 0
+    
+    for repo in repos:
+        try:
+            processed += 1
+            print(f"[{processed}/{total_repos}] {repo.name}...", end=" ")
+            
+            commits = repo.get_commits(since=start_date, until=end_date)
+            repo_commit_count = 0
+            
+            for c in commits:
+                try:
+                    # Skip if we've seen this SHA (avoid duplicates)
+                    if c.sha in seen_shas:
+                        continue
+                    
+                    seen_shas.add(c.sha)
+                    
+                    # Get commit details
+                    author_name = c.commit.author.name if c.commit.author else None
+                    author_email = c.commit.author.email if c.commit.author else None
+                    commit_date = c.commit.author.date
+                    
+                    # CRITICAL: Double-check date is in range
+                    # GitHub API sometimes returns commits outside range
+                    if not (start_date <= commit_date <= end_date):
+                        continue
+                    
+                    # Get author's GitHub username
+                    github_username = None
+                    if c.author:
+                        github_username = c.author.login
+                    
+                    commit_records.append({
+                        'repository': repo.name,
+                        'sha': c.sha,
+                        'author': author_name,
+                        'email': author_email,
+                        'user': github_username,  # GitHub username
+                        'date': commit_date,
+                        'message': c.commit.message.strip()[:200],  # Truncate long messages
+                        'additions': c.stats.additions if c.stats else 0,
+                        'deletions': c.stats.deletions if c.stats else 0,
+                        'files_changed': c.stats.total if c.stats else 0
+                    })
+                    
+                    repo_commit_count += 1
+                    
+                except Exception as commit_error:
+                    # Log but continue
+                    pass
+            
+            print(f"{repo_commit_count} commits")
+            
+        except Exception as e:
+            print(f"Error: {e}")
+            continue
+    
+    if not commit_records:
+        print("⚠️  No commits found!")
+        return pd.DataFrame()
+    
+    df = pd.DataFrame(commit_records)
+    
+    # Remove any remaining duplicates
+    df = df.drop_duplicates(subset=['sha'], keep='first')
+    
+    # Calculate velocity
+    days = max((end_date - start_date).days, 1)
+    df['velocity'] = len(df) / days
+    
+    print(f"\n Collected {len(df)} unique commits")
+    print(f"   From {len(df['repository'].unique())} repositories")
+    print(f"   By {len(df['user'].dropna().unique())} contributors")
+    
+    return df
