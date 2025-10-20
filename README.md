@@ -32,7 +32,7 @@ The system consists of several key components:
 git clone https://github.com/oss-slu/oss_dev_analytics.git
 cd oss_dev_analytics
 pip install -r requirements.txt
-
+```
 ## Metrics
 * Git Logs
   * Lead Time
