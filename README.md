@@ -17,16 +17,16 @@ The system consists of several key components:
 - GitHub API token (for accessing private repositories)
 - `pandas`, `requests`, and `matplotlib` installed
   # Core dependencies
-  pandas>=1.5.0
-  requests>=2.28.0
-  gitpython>=3.1.0
-  python-dotenv>=0.19.0
+  * pandas>=1.5.0
+  * requests>=2.28.0
+  * gitpython>=3.1.0
+  * python-dotenv>=0.19.0
 
   # Development dependencies
-  pytest>=7.0.0
-  pytest-cov>=4.0.0
-  black>=22.0.0
-  flake8>=5.0.0
+  * pytest>=7.0.0
+  * pytest-cov>=4.0.0
+  * black>=22.0.0
+  * flake8>=5.0.0
 ### Installation
 ```bash
 git clone https://github.com/oss-slu/oss_dev_analytics.git
