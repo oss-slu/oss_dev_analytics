@@ -1,5 +1,38 @@
 # oss_dev_analytics
 
+## Overview
+OSS Dev Analytics is a data aggregation and analytics platform designed to collect, process, and visualize development metrics across all OSS SLU repositories. The system integrates data from Git repositories, issue trackers, and team surveys to produce a unified dashboard showing project health, velocity, and team satisfaction.
+
+## System Architecture
+The system consists of several key components:
+- **Automated Data Collection**: Python scripts (`commits.py`, `issueData.py`, `prData.py`) extract raw data from GitHub APIs and store them as JSON/CSV.
+- **Manual Data Collection**: Google Forms responses are exported as CSV for merging with Git metrics.
+- **Processing Layer**: `main.py` aggregates data from all sources, calculates metrics, and formats results for visualization.
+- **Dashboard**: A web-based frontend (HTML) visualizes metrics through charts and tables.
+
+## Installation & Setup
+
+### Prerequisites
+- Python 3.10+
+- GitHub API token (for accessing private repositories)
+- `pandas`, `requests`, and `matplotlib` installed
+  # Core dependencies
+  pandas>=1.5.0
+  requests>=2.28.0
+  gitpython>=3.1.0
+  python-dotenv>=0.19.0
+
+  # Development dependencies
+  pytest>=7.0.0
+  pytest-cov>=4.0.0
+  black>=22.0.0
+  flake8>=5.0.0
+### Installation
+```bash
+git clone https://github.com/oss-slu/oss_dev_analytics.git
+cd oss_dev_analytics
+pip install -r requirements.txt
+
 ## Metrics
 * Git Logs
   * Lead Time
