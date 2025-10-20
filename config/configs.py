@@ -7,6 +7,9 @@ from dotenv import load_dotenv
 load_dotenv()
 GIT_TOKEN = os.getenv('GITHUB_TOKEN')
 
+if not GIT_TOKEN:
+    raise ValueError("GIT_TOKEN not found! Please set it in .env file")
+
 #creating a function to filter repositories
 #i did find this function online and the excluded repos doesn't completely make sense to me since its a list we have to enter anyway but i figure
 #it is better to include it now and remove it later if need be
