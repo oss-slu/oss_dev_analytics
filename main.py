@@ -6,6 +6,8 @@ from prDataCollection import get_pr_data
 from issueData import get_issue_data
 import pandas as pd
 from commits import get_commit_data
+from config.configs import get_github_users
+import json
 
 def main():
     """
@@ -22,7 +24,7 @@ def main():
     
     # Define date range
     start_date = datetime(2025, 8, 1, tzinfo=timezone.utc)
-    end_date = datetime(2025, 10, 13, tzinfo=timezone.utc)
+    end_date = datetime(2025, 10, 27, tzinfo=timezone.utc)
     
     print(f"Collecting data for {org_name} from {start_date.date()} to {end_date.date()}")
     print("=" * 80)
@@ -118,6 +120,86 @@ def main():
         # Display sample data
         print("\n Sample data (first 5 rows):")
         print(combined_df[['data_type', 'repository', 'user', 'created_at']].head())
+
+        # Save to JSON
+        repo_to_export = "oss_dev_analytics"
+        repo_df = combined_df[combined_df['repository'] == repo_to_export]
+
+        if repo_df.empty:
+            print(f"No data for repo {repo_to_export}")
+        else:
+            sprints = ["Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4", "Sprint 5", "Sprint 6"]
+            
+            contributors, tech_leads = get_github_users(g, org_name, repo_to_export)
+            
+            output_json = {
+                "org": org_name,
+                "repo": repo_to_export,
+                "sprints": sprints
+            }
+
+            def add_metrics(df, users, metric_name, prefix, sprint_dates, value_func):
+                for user in users:
+                    user_values = []
+                    for start, end in sprint_dates:
+                        sprint_df = df[(df['user'] == user) &
+                                    (df['created_at'] >= start) & 
+                                    (df['created_at'] <= end)]
+                        if sprint_df.empty:
+                            user_values.append(None)
+                        else:
+                            user_values.append(value_func(sprint_df))
+                    key = f"{metric_name}-{prefix}-{user}"
+                    output_json[key] = user_values
+
+            sprint_ranges = [
+                (datetime(2025, 9, 8, tzinfo=timezone.utc), datetime(2025, 9, 22, tzinfo=timezone.utc)),
+                (datetime(2025, 9, 23, tzinfo=timezone.utc), datetime(2025, 10, 6, tzinfo=timezone.utc)),
+                (datetime(2025, 10, 7, tzinfo=timezone.utc), datetime(2025, 10, 20, tzinfo=timezone.utc)),
+                (datetime(2025, 10, 21, tzinfo=timezone.utc),    datetime(2025, 11, 3, tzinfo=timezone.utc)),
+                (datetime(2025, 11, 4, tzinfo=timezone.utc), datetime(2025, 11, 17, tzinfo=timezone.utc)),
+                (datetime(2025, 11, 18, tzinfo=timezone.utc), datetime(2025, 12, 1, tzinfo=timezone.utc)),]
+
+            commits = repo_df[repo_df['data_type'] == 'commit']
+            add_metrics(commits, contributors, "commitFrequency", "1", sprint_ranges,
+                        lambda df: len(df))
+            add_metrics(commits, contributors, "velocity", "1", sprint_ranges,
+                        lambda df: float(df['velocity'].iloc[0]) if 'velocity' in df.columns else len(df)/max((end_date - start_date).days, 1))
+            prs = repo_df[repo_df['data_type'] == 'pull_request']
+            add_metrics(prs, contributors, "prTimeMerged", "1", sprint_ranges,
+                        lambda df: float(df['avg_merge_time_hours'].iloc[0]) if 'avg_merge_time_hours' in df.columns else None)
+            add_metrics(prs, contributors, "deliveryMetrics", "1", sprint_ranges, lambda df: len(df))
+            issues = repo_df[repo_df['data_type'] == 'issue']
+            add_metrics(issues, contributors, "leadTime", "1", sprint_ranges,
+                        lambda df: df['avg_lead_time'].iloc[0] if 'avg_lead_time' in df.columns else None)
+            add_metrics(issues, contributors, "cycleTime", "1", sprint_ranges,
+                        lambda df: df['avg_cycle_time'].iloc[0] if 'avg_cycle_time' in df.columns else None)
+            add_metrics(issues, contributors, "issuesOpened", "1", sprint_ranges, lambda df: len(df))
+            add_metrics(issues, contributors, "issuesClosed", "1", sprint_ranges, lambda df: len(df[df['state']=='closed']))
+            add_metrics(issues, contributors, "wip", "1", sprint_ranges, lambda df: len(df[(df['state']=='open') & (~df['is_blocked'])]))
+            add_metrics(issues, contributors, "blockedIssues", "1", sprint_ranges, lambda df: len(df[(df['state']=='open') & (df['is_blocked'])]))
+            add_metrics(issues, contributors, "defectRate", "1", sprint_ranges,
+                        lambda df: float(len(df[(df['state']=='closed') & (df['is_bug'])]) / max(1, len(df[df['state']=='closed']))))
+            add_metrics(issues, tech_leads, "leadTime", "tl", sprint_ranges,
+                        lambda df: df['avg_lead_time'].iloc[0] if 'avg_lead_time' in df.columns else None)
+            add_metrics(issues, tech_leads, "cycleTime", "tl", sprint_ranges,
+                        lambda df: df['avg_cycle_time'].iloc[0] if 'avg_cycle_time' in df.columns else None)
+            add_metrics(issues, tech_leads, "issuesOpened", "tl", sprint_ranges, lambda df: len(df))
+            add_metrics(issues, tech_leads, "issuesClosed", "tl", sprint_ranges, lambda df: len(df[df['state']=='closed']))
+            add_metrics(issues, tech_leads, "wip", "tl", sprint_ranges, lambda df: len(df[(df['state']=='open') & (~df['is_blocked'])]))
+            add_metrics(issues, tech_leads, "blockedIssues", "tl", sprint_ranges, lambda df: len(df[(df['state']=='open') & (df['is_blocked'])]))
+            add_metrics(issues, tech_leads, "defectRate", "tl", sprint_ranges,
+                        lambda df: float(len(df[(df['state']=='closed') & (df['is_bug'])]) / max(1, len(df[df['state']=='closed']))))
+
+            # Save JSON
+            output_file = f"metrics_{repo_to_export}.json"
+            with open(output_file, "w") as f:
+                json.dump(output_json, f, indent=2)
+
+            print(f"Per-user metrics JSON for {repo_to_export} saved to {output_file}")
+
+            
+
         
     else:
         print("\n No data to combine!")

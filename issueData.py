@@ -29,13 +29,27 @@ def get_issue_data(github_client, org_name: str, start_date: datetime, end_date:
                         continue
                     
                     created_at = issue.created_at
-                    
-                    # Check if issue is within date range
-                    if not (start_date <= created_at <= end_date):
-                        continue
-                    
                     closed_at = issue.closed_at
                     labels = [lbl.name for lbl in issue.labels]
+
+                    # Check if issue is within date range
+                    if closed_at:
+                        if closed_at < start_date:
+                            continue
+                    else:
+                        if created_at > end_date:
+                            continue
+                    
+                    # Get time that issue was first assigned
+                    try:
+                        for event in issue.get_events():
+                            if event.event == "assigned":
+                                assigned_time = event.created_at
+                                break
+                    except Exception:
+                        assigned_time = None
+                    
+                    closed_at = issue.closed_at
                     is_blocked = any(lbl.lower() == "blocked" for lbl in labels)
                     is_bug = any(lbl.lower() == "bug" for lbl in labels)
                     
@@ -50,7 +64,8 @@ def get_issue_data(github_client, org_name: str, start_date: datetime, end_date:
                         'created_at': created_at,
                         'closed_at': closed_at,
                         'is_blocked': is_blocked,
-                        'is_bug': is_bug
+                        'is_bug': is_bug,
+                        'assigned_time': assigned_time,
                     })
                 except Exception as issue_error:
                     print(f"  Error processing issue #{issue.number}: {issue_error}")
@@ -65,8 +80,8 @@ def get_issue_data(github_client, org_name: str, start_date: datetime, end_date:
         print("No issues found in given date range")
         return pd.DataFrame()
     
-    df = pd.DataFrame(issue_records)
-    
+    df = pd.DataFrame(issue_records).drop_duplicates(subset=['id'])
+
     # Calculate metrics
     open_issues = df[df["state"] == "open"]
     closed_issues = df[df["state"] == "closed"]
@@ -76,10 +91,18 @@ def get_issue_data(github_client, org_name: str, start_date: datetime, end_date:
     bug_closed = len(closed_issues[closed_issues["is_bug"]])
     defect_rate = bug_closed / len(closed_issues) if len(closed_issues) > 0 else 0
     
-    # Add metrics as columns (same value for all rows)
-    df["wip_issues"] = wip_count
-    df["blocked_issues"] = blocked_count
-    df["defect_rate"] = defect_rate
+    user_metrics = df.groupby('user', dropna=True).apply(lambda x: pd.Series({
+        'issues_opened': len(x),
+        'issues_closed': len(x[x['state']=='closed']),
+        'wip_issues': len(x[(x['state']=='open') & (~x['is_blocked'])]),
+        'blocked_issues': len(x[(x['state']=='open') & (x['is_blocked'])]),
+        'defect_rate': len(x[(x['state']=='closed') & (x['is_bug'])]) / max(1, len(x[x['state']=='closed'])),
+        'avg_lead_time': (x['closed_at'] - x['created_at']).dt.total_seconds().mean() / 3600 if x['closed_at'].notna().any() else None,
+        'avg_cycle_time': ((x['closed_at'] - x['assigned_time']).dt.total_seconds().mean() / 3600 
+                        if x['assigned_time'].notna().any() and x['closed_at'].notna().any() else None)
+    })).reset_index()
+
+    df = df.merge(user_metrics, on='user', how='left', suffixes=('', '_user'))
     
     print(f" Collected {len(df)} issues from {len(df['repository'].unique())} repositories")
     print(f"   WIP: {wip_count}, Blocked: {blocked_count}, Defect Rate: {defect_rate:.2%}")

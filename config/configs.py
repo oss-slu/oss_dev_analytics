@@ -24,3 +24,37 @@ def get_filtered_repositories(config_file_path):
         exclude_repos = [repo.strip() for repo in exclude_repos_str.split(',') if repo.strip()]
 
         return include_repos, exclude_repos
+
+def get_github_users(github_client, org_name: str, repo_name: str):
+ 
+    org = github_client.get_organization(org_name)
+    repo = org.get_repo(repo_name)
+
+    contributors = set()
+    tech_leads = set()
+
+    try:
+        for contributor in repo.get_contributors():
+            if contributor and contributor.login:
+                contributors.add(contributor.login)
+
+        for pr in repo.get_pulls(state="all"):
+            if pr.user and pr.user.login:
+                contributors.add(pr.user.login)
+
+        for issue in repo.get_issues(state="all"):
+            if issue.user and issue.user.login:
+                contributors.add(issue.user.login)
+
+        for collaborator in repo.get_collaborators(permission="admin"):
+            if collaborator and collaborator.login:
+                tech_leads.add(collaborator.login)
+
+        print(f"{repo_name}: Found {len(contributors)} contributors and {len(tech_leads)} tech leads")
+
+        return sorted(list(contributors)), sorted(list(tech_leads))
+
+    except Exception as e:
+        print(f"Error fetching users for {repo_name}: {e}")
+        return [], []
+    

@@ -2,6 +2,7 @@ from datetime import datetime, timezone
 from git import Repo
 import pandas as pd
 from github import Github
+from config.configs import get_github_users
 
 
 
@@ -92,8 +93,13 @@ def get_commit_data(github_client, org_name: str, start_date: datetime, end_date
     
     # Calculate velocity
     days = max((end_date - start_date).days, 1)
-    df['velocity'] = len(df) / days
     
+    user_metrics = df.groupby('user', dropna=True)['sha'].count().reset_index(name='total_commits')
+    user_metrics['velocity'] = user_metrics['total_commits'] / days
+    user_metrics['commit_frequency'] = user_metrics['velocity']
+
+    df = df.merge(user_metrics, on='user', how='left', suffixes=('', '_user'))
+
     print(f"\n Collected {len(df)} unique commits")
     print(f"   From {len(df['repository'].unique())} repositories")
     print(f"   By {len(df['user'].dropna().unique())} contributors")
