@@ -9,492 +9,220 @@
     "Sprint 5",
     "Sprint 6"
   ],
-  "commitFrequency-1-hcaballero2": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "commitFrequency-1-hollowtree11": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "commitFrequency-1-viswanathreddy1017": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "velocity-1-hcaballero2": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "velocity-1-hollowtree11": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "velocity-1-viswanathreddy1017": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "prTimeMerged-1-hcaballero2": [
-    109.34260976021615,
-    109.34260976021615,
-    null,
-    null,
-    null,
-    null
-  ],
-  "prTimeMerged-1-hollowtree11": [
-    109.34260976021615,
-    109.34260976021615,
-    109.34260976021615,
-    null,
-    null,
-    null
-  ],
-  "prTimeMerged-1-viswanathreddy1017": [
-    null,
-    109.34260976021615,
-    109.34260976021615,
-    109.34260976021615,
-    null,
-    null
-  ],
-  "deliveryMetrics-1-hcaballero2": [
-    1,
-    3,
-    null,
-    null,
-    null,
-    null
-  ],
-  "deliveryMetrics-1-hollowtree11": [
-    1,
-    2,
-    1,
-    null,
-    null,
-    null
-  ],
-  "deliveryMetrics-1-viswanathreddy1017": [
-    null,
-    2,
-    3,
-    2,
-    null,
-    null
-  ],
-  "leadTime-1-hcaballero2": [
-    63.04018518518518,
-    63.04018518518518,
-    null,
-    null,
-    null,
-    null
-  ],
-  "leadTime-1-hollowtree11": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "leadTime-1-viswanathreddy1017": [
-    272.52569444444447,
-    272.52569444444447,
-    null,
-    272.52569444444447,
-    null,
-    null
-  ],
-  "cycleTime-1-hcaballero2": [
-    -134.12740740740742,
-    -134.12740740740742,
-    null,
-    null,
-    null,
-    null
-  ],
-  "cycleTime-1-hollowtree11": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "cycleTime-1-viswanathreddy1017": [
-    78.53767857142857,
-    78.53767857142857,
-    null,
-    78.53767857142857,
-    null,
-    null
-  ],
-  "issuesOpened-1-hcaballero2": [
-    1,
-    1,
-    null,
-    null,
-    null,
-    null
-  ],
-  "issuesOpened-1-hollowtree11": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "issuesOpened-1-viswanathreddy1017": [
-    10,
-    9,
-    null,
-    2,
-    null,
-    null
-  ],
-  "issuesClosed-1-hcaballero2": [
-    1,
-    0,
-    null,
-    null,
-    null,
-    null
-  ],
-  "issuesClosed-1-hollowtree11": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "issuesClosed-1-viswanathreddy1017": [
-    10,
-    4,
-    null,
-    0,
-    null,
-    null
-  ],
-  "wip-1-hcaballero2": [
-    0,
-    1,
-    null,
-    null,
-    null,
-    null
-  ],
-  "wip-1-hollowtree11": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "wip-1-viswanathreddy1017": [
-    0,
-    5,
-    null,
-    2,
-    null,
-    null
-  ],
-  "blockedIssues-1-hcaballero2": [
-    0,
-    0,
-    null,
-    null,
-    null,
-    null
-  ],
-  "blockedIssues-1-hollowtree11": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "blockedIssues-1-viswanathreddy1017": [
-    0,
-    0,
-    null,
-    0,
-    null,
-    null
-  ],
-  "defectRate-1-hcaballero2": [
+  "commitFrequency_hcaballero2": [
+    0.2857142857142857,
+    0.23076923076923078,
+    0.38461538461538464,
     0.0,
     0.0,
-    null,
-    null,
-    null,
-    null
+    0.0
   ],
-  "defectRate-1-hollowtree11": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+  "issuesOpened_hcaballero2": [
+    4.0,
+    4.0,
+    3.0,
+    4.0,
+    0.0,
+    0.0
   ],
-  "defectRate-1-viswanathreddy1017": [
+  "issuesClosed_hcaballero2": [
+    4.0,
+    3.0,
+    3.0,
+    3.0,
+    0.0,
+    0.0
+  ],
+  "wip_hcaballero2": [
+    0.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.0
+  ],
+  "blockedIssues_hcaballero2": [
     0.0,
     0.0,
-    null,
-    0.0,
-    null,
-    null
-  ],
-  "leadTime-tl-kate-holdener": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "leadTime-tl-kungfuchicken": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "leadTime-tl-ruthvikm": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "leadTime-tl-viswanathreddy1017": [
-    272.52569444444447,
-    272.52569444444447,
-    null,
-    272.52569444444447,
-    null,
-    null
-  ],
-  "cycleTime-tl-kate-holdener": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "cycleTime-tl-kungfuchicken": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "cycleTime-tl-ruthvikm": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "cycleTime-tl-viswanathreddy1017": [
-    78.53767857142857,
-    78.53767857142857,
-    null,
-    78.53767857142857,
-    null,
-    null
-  ],
-  "issuesOpened-tl-kate-holdener": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "issuesOpened-tl-kungfuchicken": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "issuesOpened-tl-ruthvikm": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "issuesOpened-tl-viswanathreddy1017": [
-    10,
-    9,
-    null,
-    2,
-    null,
-    null
-  ],
-  "issuesClosed-tl-kate-holdener": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "issuesClosed-tl-kungfuchicken": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "issuesClosed-tl-ruthvikm": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "issuesClosed-tl-viswanathreddy1017": [
-    10,
-    4,
-    null,
-    0,
-    null,
-    null
-  ],
-  "wip-tl-kate-holdener": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "wip-tl-kungfuchicken": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "wip-tl-ruthvikm": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "wip-tl-viswanathreddy1017": [
-    0,
-    5,
-    null,
-    2,
-    null,
-    null
-  ],
-  "blockedIssues-tl-kate-holdener": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "blockedIssues-tl-kungfuchicken": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "blockedIssues-tl-ruthvikm": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "blockedIssues-tl-viswanathreddy1017": [
-    0,
-    0,
-    null,
-    0,
-    null,
-    null
-  ],
-  "defectRate-tl-kate-holdener": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "defectRate-tl-kungfuchicken": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "defectRate-tl-ruthvikm": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
-  ],
-  "defectRate-tl-viswanathreddy1017": [
     0.0,
     0.0,
-    null,
     0.0,
-    null,
-    null
+    0.0
+  ],
+  "defectRate_hcaballero2": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "leadTime_hcaballero2": [
+    42.29763888888889,
+    56.0974074074074,
+    56.0974074074074,
+    56.0974074074074,
+    0.0,
+    0.0
+  ],
+  "cycleTime_hcaballero2": [
+    -41.63236111111111,
+    56.09712962962963,
+    56.09712962962963,
+    56.09712962962963,
+    0.0,
+    0.0
+  ],
+  "prTimeMerged_hcaballero2": [
+    167.70666666666668,
+    157.15472222222223,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "commitFrequency_hollowtree11": [
+    0.07142857142857142,
+    0.46153846153846156,
+    0.07692307692307693,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "issuesOpened_hollowtree11": [
+    2.0,
+    2.0,
+    2.0,
+    1.0,
+    0.0,
+    0.0
+  ],
+  "issuesClosed_hollowtree11": [
+    2.0,
+    2.0,
+    2.0,
+    1.0,
+    0.0,
+    0.0
+  ],
+  "wip_hollowtree11": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "blockedIssues_hollowtree11": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "defectRate_hollowtree11": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "leadTime_hollowtree11": [
+    154.85819444444445,
+    154.85819444444445,
+    154.85819444444445,
+    166.75611111111112,
+    0.0,
+    0.0
+  ],
+  "cycleTime_hollowtree11": [
+    154.85597222222222,
+    154.85597222222222,
+    154.85597222222222,
+    166.7536111111111,
+    0.0,
+    0.0
+  ],
+  "prTimeMerged_hollowtree11": [
+    6.46,
+    106.28055555555555,
+    165.38611111111112,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "commitFrequency_viswanathreddy1017_tl": [
+    0.07142857142857142,
+    0.38461538461538464,
+    0.46153846153846156,
+    0.3076923076923077,
+    0.0,
+    0.0
+  ],
+  "issuesOpened_viswanathreddy1017_tl": [
+    15.0,
+    11.0,
+    7.0,
+    5.0,
+    0.0,
+    0.0
+  ],
+  "issuesClosed_viswanathreddy1017_tl": [
+    15.0,
+    7.0,
+    4.0,
+    2.0,
+    0.0,
+    0.0
+  ],
+  "wip_viswanathreddy1017_tl": [
+    0.0,
+    4.0,
+    3.0,
+    3.0,
+    0.0,
+    0.0
+  ],
+  "blockedIssues_viswanathreddy1017_tl": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "defectRate_viswanathreddy1017_tl": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "leadTime_viswanathreddy1017_tl": [
+    315.4400925925926,
+    485.04853174603176,
+    612.4651388888889,
+    833.9,
+    0.0,
+    0.0
+  ],
+  "cycleTime_viswanathreddy1017_tl": [
+    91.4307962962963,
+    296.4496825396825,
+    491.03680555555553,
+    503.4327777777778,
+    0.0,
+    0.0
+  ],
+  "prTimeMerged_viswanathreddy1017_tl": [
+    0.0,
+    0.6702777777777779,
+    0.029444444444444443,
+    0.003611111111111111,
+    0.0,
+    0.0
   ]
 }
