@@ -1,297 +1,853 @@
 <html>
-  <head>
+
+
+
+<head>
     <title> Metrics Dashboard </title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-      body { 
-        font-family: Georgia, 'Times New Roman', Times, serif; 
-        margin: 0;
-        display: flex;            
-        height: 100vh;
-        overflow: hidden;
-       }
-      
-      .sidebar {
-        width: 150px;
-        background-color: #550C18;
-        color: #ffffff;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 1rem;
-        flex-shrink: 0;
-      }
+      /* basic styling for body */
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden; /* only main content scrolls */
+        }
 
-      .sidebar h2 {
-        color: #ffffff;
-        text-align: center;
-        margin-bottom: 1.5rem;
-      }
+        /* page headers */
 
-      .sidebar button {
-        width: 90%;
-        background: none;
-        border: none;
-        color: #ffffff;
-        text-align: center;
-        padding: 0.7rem 0.2rem;
-        margin: 0.2rem 0;
-        cursor: pointer;
-        border-radius: 6px;
-        font-size: 0.9rem;
-      }
+        h1 {
+            background-color: #550C18;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
 
-      .sidebar button:hover,
-      .sidebar button.active {
-        background-color: #2e1010;
-      }
-      
-      .content {
-        flex-grow: 1;
-        padding: 1.5rem 2rem;
-        overflow-y: auto;
-        background: #e2e8dd;
-      }
+        h2 {
+            color: #550C18;
+            margin-top: 0;
+        }
 
-      canvas {
-        max-width: 250px;
-        max-height: 250px;
-      }
+        /* sidebar nav styling */
 
-      .chart-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 1.5rem; 
-        margin-bottom: 2rem; 
-      }
+        .sidebar {
+            width: 150px;
+            background-color: #550C18;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 1rem;
+            flex-shrink: 0; /* keeps sidebar the same size */
+        }
 
-      select {
-        margin: 0.5rem;
-        padding: 0.4rem;
-      }
+        .sidebar h2 {
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
 
-      #metricsDisplay {
-        margin-top: 1rem;
-        padding: 1rem;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        background: #f9f9f9;
-      }
+        .sidebar button {
+            width: 90%;
+            background: none;
+            border: none;
+            color: #ffffff;
+            text-align: center;
+            padding: 0.7rem 0.2rem;
+            margin: 0.2rem 0;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
 
-      #metricsDisplay ul {
-        list-style: none;
-        padding: 0;
-      }
+        .sidebar button:hover,
+        .sidebar button.active {
+            background-color: #2e1010;
+        }
+        /* main content styling */
+        .content {
+            flex-grow: 1; /* content takes up all available space */
+            padding: 1.5rem 2rem;
+            overflow-y: auto;
+            background: #e2e8dd;
 
-      #metricsDisplay li {
-        margin: 0.4rem 0;
-      }
+        }
+
+        /* team tab chart styling */
+        #team .chart-container {
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: stretch;
+            gap: 30px;
+            width: 100%;
+            height: calc(100vh - 250px); /* dynamic height calculation to ensure graphs look appropriately sized */
+            margin-top: 20px;
+
+        }
+
+        /* team tab individual chart styling */
+        #timeBasedMetrics,
+        #volumeBasedMetrics {
+
+            flex: 1 1 45%; /* sets flext-grow, flex-shrink and flex-basis, can both grow and shrink as needed and states ideal chart size */
+            min-width: 350px;
+            height: 100%;
+
+
+        }
+
+        /* manual metrics tab chart grid styling */
+        #metrics .chart-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        #metrics .chart-grid > div { /* for all of the metrics div elements set these stylings */
+            width: 300px; /* ideal width of each chart */
+            max-width: 100%;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #metrics .chart-grid canvas { /* graph specific stylings */
+            width: 100% !important;
+            height: 250px !important;
+        }
+
+        select {
+            margin: 0.5rem;
+            padding: 0.4rem;
+        }
+
+        #metricsDisplay {
+            margin-top: 1rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #f9f9f9;
+
+        }
+
+        #metricsDisplay ul {
+            list-style: none;
+            padding: 0;
+
+        }
+
+        #metricsDisplay li {
+            margin: 0.4rem 0;
+
+        }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
 
     <div class="sidebar">
-      <h2>Dashboard</h2>
-      <button class="tab-button active" data-tab="home">Home</button>
-      <button class="tab-button" data-tab="team">Team</button>
-      <button class="tab-button" data-tab="metrics">Metrics</button>
+
+        <button class="tab-button active" data-tab="home">Home</button>
+        <button class="tab-button" data-tab="team">Team</button>
+        <button class="tab-button" data-tab="metrics">Metrics</button>
     </div>
 
     <div class="content">
-      <div id="home" class="tab-content" style="display: block;">
-        <h1>Home</h1>
-        <p>Add to later.</p>
-      </div>
-
-    <div id="team" class="tab-content" style="display: none;">
-        <h1>Team Metrics</h1>
-        <h2>Select User & Sprint</h2>
-        <label for="userSelect">User:</label>
-        <select id="userSelect">
-          <option value="tl">Team Lead</option>
-          <option value="dev-1">Developer 1</option>
-          <option value="dev-2">Developer 2</option>
-        </select>
-
-        <label for="sprintSelect">Sprint:</label>
-        <select id="sprintSelect">
-          <option value="0">Sprint 1</option>
-          <option value="1">Sprint 2</option>
-          <option value="2">Sprint 3</option>
-          <option value="3">Sprint 4</option>
-          <option value="4">Sprint 5</option>
-          <option value="5">Sprint 6</option>
-        </select>
-
-        <div id="metricsDisplay"></div>
-      </div>
-
-      <div id="metrics" class="tab-content" style="display: none;">
-        <h1>Manual Metrics</h1>
-        <div class="chart-grid">
-          <canvas id="clientSatisfaction"></canvas>
-          <canvas id="teamSatisfaction"></canvas>
-          <canvas id="collaboration"></canvas>
-          <canvas id="sprintConfidence"></canvas>
-          <canvas id="goalAchievement"></canvas>
+        <div id="home" class="tab-content" style="display: block;">
+            <div class="header-row">
+                <span class="dashboard-tite"> Team Metrics Dashboard </span>
+            </div>
+            <h1>Home</h1>
+            <p>Add to later.</p>
         </div>
-      </div>
+
+        <div id="team" class="tab-content" style="display: none;">
+            <h1>Team Metrics</h1>
+            <h2>Select User & Sprint</h2>
+            <label for="teamUserSelect">User:</label>
+            <select id="teamUserSelect">
+                <option value="tm" selected>Overall Team</option>
+                <option value="tl">Team Lead</option>
+                <option value="dev-1">Developer 1</option>
+                <option value="dev-2">Developer 2</option>
+            </select>
+
+            <label for="teamSprintSelect">Sprint:</label>
+            <select id="teamSprintSelect">
+                <option value="0">Sprint 1</option>
+                <option value="1">Sprint 2</option>
+                <option value="2">Sprint 3</option>
+                <option value="3">Sprint 4</option>
+                <option value="4">Sprint 5</option>
+                <option value="5">Sprint 6</option>
+            </select>
+            <div class="chart-container">
+                <canvas id="timeBasedMetrics"></canvas>
+                <canvas id="volumeBasedMetrics"></canvas>
+            </div>
+            <div id="metricsDisplay"></div>
+        </div>
+
+        <div id="metrics" class="tab-content" style="display: none;">
+            <h1>Manual Metrics</h1>
+            <h2>Select User & Sprint</h2>
+            <label for="metricsUserSelect">User:</label>
+            <select id="metricsUserSelect">
+                <option value="tm" selected>Overall Team</option>
+                <option value="tl">Team Lead</option>
+                <option value="dev-1">Developer 1</option>
+                <option value="dev-2">Developer 2</option>
+            </select>
+
+            <label for="metricsSprintSelect">Sprint:</label>
+            <select id="metricsSprintSelect">
+                <option value="0" selected>Sprint 1</option>
+                <option value="1">Sprint 2</option>
+                <option value="2">Sprint 3</option>
+                <option value="3">Sprint 4</option>
+                <option value="4">Sprint 5</option>
+                <option value="5">Sprint 6</option>
+            </select>
+            <div class="chart-grid">
+                <div>
+                    <h3 id="clientSatisfactionTitle">Client Satisfaction</h3>
+                    <canvas id="clientSatisfaction"></canvas>
+                </div>
+                <div>
+                    <h3 id="teamSatisfactionTitle">Team Satisfaction</h3>
+                    <canvas id="teamSatisfaction"></canvas>
+                </div>
+                <div>
+                    <h3 id="collaborationTitle">Collaboration</h3>
+                    <canvas id="collaboration"></canvas>
+                </div>
+                <div>
+                    <h3 id="sprintConfidenceTitle">Sprint Confidence</h3>
+                    <canvas id="sprintConfidence"></canvas>
+                </div>
+                <div>
+                    <h3 id="goalAchievementTitle">Goal Achievement</h3>
+                    <canvas id="goalAchievement"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
 
-<script>
+    <script>
 
-const buttons = document.querySelectorAll(".tab-button");
-const tabs = document.querySelectorAll(".tab-content");
+      // all gloabal variables and event listeners
 
-buttons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    buttons.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
+        // switch tabs on nav button click
+        const buttons = document.querySelectorAll(".tab-button");
+        const tabs = document.querySelectorAll(".tab-content");
+        
+        
+        // store parsed manual metrics data from manual_metrics.csv
+        let parsedManualMetricsData = {};
+        // stores parsed data from metrics.json
+        let metricsData = {};
 
-    tabs.forEach((tab) => (tab.style.display = "none"));
-    document.getElementById(btn.dataset.tab).style.display = "block";
-  });
-});
+        // store manual chart instances for updates
+        let manualChartInstances = {};
+        // check if time and volume chart instances exist for updates
+        let timeChartInstance = null;
+        let volumeChartInstance = null;
 
-function createChart(id, label, data, color) {
-  new Chart(document.getElementById(id), {
-    type: 'bar',
-    data: {
-      labels: ['Sprint 1', 'Sprint 2', 'Sprint 3', 'Sprint 4', 'Sprint 5', 'Sprint 6'],
-      datasets: [{
-        label: label,
-        data: data,
-        backgroundColor: color
-      }]
-    }
-  });
-}
-    
-fetch('manual_metrics.csv')
-  .then(response => response.text())
-  .then(csv => {
-    const rows = csv.trim().split("\n").slice(1);
-    const metrics = {
-      "client satisfaction": [],
-      "team satisfaction": [],
-      "collaboration": [],
-      "sprint confidence": [],
-      "goal achievement": []
-    };
+        // descriptions for metrics, shown in tooltips
+        const metricDescriptions = {
+            leadTime: "Time from task creation to completion.",
+            cycleTime: "Time from when the task was started to task completion.",
+            deliveryMetrics: "Time from code commit to deployment.",
+            commitFrequency: "Number of commits made during the sprint.",
+            issuesOpened: "Number of issues open during the sprint.",
+            issuesClosed: "Number of issues resolved during the sprint.",
+            issueTimeResolved: "Average time taken to resolve issues.",
+            prTimeMerged: "Average time from pull request creation to merge.",
+            wip: "Number of work items currently in progress.",
+            velocity: "Number of commits per sprint.",
+            defectRate: "Proportion of closed issues with bugs.",
+            blockedIssues: "Number of issues that were blocked during the sprint."
+        };
 
-    const labels = ["Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4", "Sprint 5", "Sprint 6"];
-    rows.forEach(row => {
-      cols = row.split(",");
-      if (cols[1] == "client satisfaction") {
-        metrics["client satisfaction"].push(parseFloat(cols[2]))
-      } else if (cols[1] == "team satisfaction") {
-        metrics["team satisfaction"].push(parseFloat(cols[2]))
-      } else if (cols[1] == "collaboration") {
-        metrics["collaboration"].push(parseFloat(cols[2]))
-      } else if (cols[1] == "sprint confidence") {
-        metrics["sprint confidence"].push(parseFloat(cols[2]))
-      } else {
-        metrics["goal achievement"].push(parseFloat(cols[2]))
-      }
-    })
+        // tab button event listeners
+        buttons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                // set active button styling
+                buttons.forEach((b) => b.classList.remove("active"));
+                btn.classList.add("active");
 
-  createChart("clientSatisfaction", "Client Satisfaction", metrics["client satisfaction"], "mediumorchid");
-  createChart("teamSatisfaction", "Team Satisfaction", metrics["team satisfaction"], "lightskyblue");
-  createChart("collaboration", "Collaboration", metrics["collaboration"], "lightgreen");
-  createChart("sprintConfidence", "Sprint Confidence", metrics["sprint confidence"], "lightpink");
-  createChart("goalAchievement", "Goal Achievement", metrics["goal achievement"], "moccasin");
-  })
+                // show corresponding tab content
+                const tabId = btn.dataset.tab;
+                tabs.forEach((tab) => (tab.style.display = "none"));
+                document.getElementById(tabId).style.display = "block";
 
-  let metricsData = {};
+                // on tab switch, resize charts or update manual charts
+                if (tabId === "team") {
+                    setTimeout(() => {
+                        if (timeChartInstance) {
+                            timeChartInstance.resize();
+                        }
+                        if (volumeChartInstance) {
+                            volumeChartInstance.resize();
+                        }
+                    }, 0) // makes sure that resize happens after display change
+                }
+                // on metrics tab switch, update manual charts
+                if (tabId === "metrics") {
+                    updateManualCharts();
+                }
+            });
+        });
 
-  const metricDescriptions = {
-    leadTime: "Time from task creation to completion.",
-    cycleTime: "Time from when the task was started to task completion.",
-    deliveryMetrics: "???",
-    commitFrequency: "Number of commits made during the sprint.",
-    issuesOpened: "Number of issues open during the sprint.",
-    issuesClosed: "Number of issues resolved during the sprint.",
-    issueTimeResolved: "Average time taken to resolve issues.",
-    prTimeMerged: "Average time from pull request creation to merge.",
-    wip: "Number of work items currently in progress.",
-    velocity: "Number of commits per sprint.",
-    defectRate: "Proportion of closed issues with bugs.",
-    blockedIssues: "Number of issues that were blocked during the sprint."
-  };
+        
+        
+        // manual metrics tab
 
-  function updateMetricsDisplay() {
-    const user = document.getElementById("userSelect").value;
-    const sprintIndex = parseInt(document.getElementById("sprintSelect").value);
-    const display = document.getElementById("metricsDisplay");
-    const sprintDates = [
-      "Sep 8 - Sep 22", "Sep 22 - Oct 6", "Oct 6 - Oct 20",
-      "Oct 20 - Nov 3", "Nov 3 - Nov 17", "Nov 17 - Nov 31"
-    ];
+        /* 
+        > gets data from mnual_metrics.csv
+        > expects 4 columns: Sprint,User,Metric,Rating
+        > data collected from google form sent out each sprint
+        > parses data into an object for easy access
+        */
+        
+        function parseManualCsv(csv) {
+            const rows = csv.trim().split('\n');
+            const data = {};
 
-    const orgName = metricsData.org || "unknownOrg";
-    const repoName = metricsData.repo || "unknownRepo";
-    let html = `<h3>Metrics for ${user.toUpperCase()} - Sprint ${sprintIndex + 1} (${sprintDates[sprintIndex]}) | Repo: ${repoName} | Org: ${orgName}</h3><ul>`;
+            // skip header row
+            for (let i = 1; i < rows.length; i++) {
+                const parts = rows[i].split(',');
+               
+                // expecting Sprint, User, Metric , Rating
+                if (parts.length < 4) continue;
+                
+                const sprint = parseInt(parts[0].trim());
+                const user = parts[1].trim();
+                const metric = parts[1].trim();
+                const rating = parseFloat(parts[2].trim());
+                
+                // making sure data is valid
+                if (isNaN(sprint) || isNaN(rating) || !metric || !user) continue;
 
-    const autoMetrics = [
-      "leadTime", "cycleTime", "deliveryMetrics",
-      "commitFrequency", "issuesOpened", "issuesClosed",
-      "issueTimeResolved", "prTimeMerged", "wip"
-    ];
 
-    autoMetrics.forEach(key => {
-      const metricKey =
-        user === "tl" ? `${key}-tl` :
-        user === "dev-1" ? `${key}-1` : `${key}-2`;
-
-      const value = metricsData[metricKey]?.[sprintIndex];
-
-      if (value === undefined) {
-        html += `<li><strong>${key}:</strong> N/A</li>`;
-        return;
-      }
-
-      const teamKeys = [`${key}-tl`, `${key}-1`, `${key}-2`];
-      let teamTotal = 0;
-      teamKeys.forEach(k => {
-        if (metricsData[k]?.[sprintIndex] !== undefined) {
-          teamTotal += metricsData[k][sprintIndex];
+                // creates a user or metric object if it doesn't exist to ensure rating can be assigned
+                if(!data[user]){
+                  data[user] = {};
+                }
+                if (!data[metric]) {
+                    data[metric] = {};
+                }
+                
+                data[metric][sprint] = rating;
+            }
+            return data;
         }
-      });
 
-      let pct = teamTotal > 0 ? (value / teamTotal) * 100 : 0;
+        /* 
+        creates or updates a manual metric chart for the Metrics tab
+        > {string} id - the canvas element ID
+        > {string} label - the metric label (e.g., "Client Satisfaction")
+        > {number} value - the current rating value
+        > {number} max - the maximum rating value currently set to 5, update if google form is updated
+        > {string} color - the color for the filled portion of the chart
+        */
+        function createOrUpdateManualChart(id, label, value, max, color) {
+            const ctx = document.getElementById(id).getContext('2d');
 
-      const description = metricDescriptions[key] || "No description available.";
+            // if there was already an instance ofthe manual chart delete it before creating updated one to prevent memory leaks
+            if (manualChartInstances[id]) {
+                manualChartInstances[id].destroy();
+            }
 
-      const userColor = "#eabda8";
-      const teamColor = "#cccccc";
+            // update chart title with current value/max
+            document.getElementById(id + "Title").innerText = `${label} (${value}/${max})`;
 
-      html += `
-        <li>
-          <strong title="${description}" style="cursor: help;">${key}:</strong> ${value}
-          <div style="width: 100%; max-width: 300px; height: 15px; border-radius: 8px; overflow: hidden; display: flex; margin-top: 5px;">
-            <div style="width: ${pct}%; background-color: ${userColor};"></div>
-            <div style="width: ${100 - pct}%; background-color: ${teamColor};"></div>
-          </div>
-          <small>${pct.toFixed(1)}% of team total</small>
-        </li>
-      `;
+            manualChartInstances[id] = new Chart(ctx, {
+                type: 'doughnut', 
+                data: {
+                    labels: [label, 'Remaining'],
+                    datasets: [{
+                        label: 'Rating (Max ' + max + ')',
+                        data: [value, max - value], // data for filled and unfilled portions
+                        backgroundColor: [color, '#dddddd'], 
+                        hoverOffset: 4,
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    // currently semicircle (gauge)
+                    circumference: 180, // if we do 10 as max instead of 5 should change to 360
+                    rotation: 270,
+                    cutout: '70%', // thicknes of doughnut
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: false 
+                        },
+                        tooltip: {
+                            callbacks: {
+                                // custome tooltip to create hover feature that displays metric information and value
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label === label ? `${label}: ${tooltipItem.formattedValue}` : '';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
 
-    });
+        /* async functions used so that we can await fetching and parsing of manual_metrics.csv
+        ️ updates all manual metric charts based on selected user and sprint
+        */
 
-    html += "</ul>";
-    display.innerHTML = html;
-  }
+        async function updateManualCharts() {
+            
+            // if data is not already in memory, load it 
+            if (Object.keys(parsedManualMetricsData).length === 0) {
+                try{
+                  const response = await fetch('manual_metrics.csv');
+                  if(!response.ok){
+                    // if we are unable to fetch file, throw error to be caught
+                    throw new Error('Network response faulty');
+                  }
+                  const csvData = await response.text();
+                  parsedManualMetricsData = parseManualCsv(csvData); // parse and store data in memory
+                } catch(error){
+                  console.error('Error fetching or parsing manual metrics CSV:', error);
+                  document.getElementById('metrics').innerHTML = `<h2>Error loading manual_metrics.csv</h2><p>${error.message}</p>`;
+                  return;
+                }
+              }
+            // get selected sprint and user
+            const sprintIndex = parseInt(document.getElementById("metricsSprintSelect").value);
+            const sprint = sprintIndex + 1; // sprints are 1-indexed in manual_metrics.csv
+            const user = document.getElementById("metricsUserSelect").value; // get selected user
+            
+            // configurations for each metric chart to be sent to createOrUpdateManualChart
+            const metricConfigs = [
+                { id: "clientSatisfaction", label: "Client Satisfaction", color: "mediumorchid", key: "client satisfaction" },
+                { id: "teamSatisfaction", label: "Team Satisfaction", color: "lightskyblue", key: "team satisfaction" },
+                { id: "collaboration", label: "Collaboration", color: "lightgreen", key: "collaboration" },
+                { id: "sprintConfidence", label: "Sprint Confidence", color: "lightpink", key: "sprint confidence" },
+                { id: "goalAchievement", label: "Goal Achievement", color: "moccasin", key: "goal achievement" }
+            ];
 
-  fetch("metrics.json")
-    .then (response => response.json())
-    .then(jsonData => {
-      metricsData = jsonData;
-      updateMetricsDisplay();
+            const maxRating = 5.0; //change if we set max rating as 10 rather than 5
+            
+            // create/update each manual metric chart
+            metricConfigs.forEach(config => {
 
-      document.getElementById("userSelect").addEventListener("change", updateMetricsDisplay);
-      document.getElementById("sprintSelect").addEventListener("change", updateMetricsDisplay);
-  });
+                // access specified user and metric data for selected sprint, default to 0 if not found
+                let value = parsedManualMetricsData[user]?.[config.key]?.[sprint] ?? 0;
+                // make sure max rating is not exceeded
+                value = Math.min(value, maxRating); 
 
-  </script>
-  </body>
-  </html>
+                createOrUpdateManualChart(
+                    config.id,
+                    config.label,
+                    value,
+                    maxRating,
+                    config.color
+                );
+            });
+        }
+
+        // team tab
+
+        /*
+        > updates the metrics display section in the Team tab
+        > shows ONLY individual user metrics with progress bars compared to team totals
+        */
+        function updateMetricsDisplay() {
+            const user = document.getElementById("teamUserSelect").value;
+            const sprintIndex = parseInt(document.getElementById("teamSprintSelect").value);
+            const display = document.getElementById("metricsDisplay");
+
+            // make sure a specific user is selected
+            if (user == 'tm') {
+                display.innerHTML = "<h3>Please select an individual user to view metrics.</h3>";
+                return;
+            }
+            // sprint dates for display purposes
+            const sprintDates = [
+                "Sep 8 - Sep 22", "Sep 22 - Oct 6", "Oct 6 - Oct 20",
+                "Oct 20 - Nov 3", "Nov 3 - Nov 17", "Nov 17 - Nov 31"
+            ];
+
+
+            const selectedUserText = document.getElementById("teamUserSelect").options[document.getElementById("teamUserSelect").selectedIndex].text;
+            // get org and repo names from metricsData.json
+            const orgName = metricsData.org || "unknownOrg";
+            const repoName = metricsData.repo || "unknownRepo";
+            let html = `<h3>Metrics for ${selectedUserText} - Sprint ${sprintIndex + 1} (${sprintDates[sprintIndex]}) | Repo: ${repoName} | Org: ${orgName}</h3><ul>`;
+            // list of metrics to display
+            const autoMetrics = [
+                "leadTime", "cycleTime", "deliveryMetrics",
+                "commitFrequency", "issuesOpened", "issuesClosed",
+                "issueTimeResolved", "prTimeMerged", "wip"
+            ];
+
+            autoMetrics.forEach(key => {
+                // determine the correct key based on selected user
+                const metricKey =
+                    user === "tl" ? `${key}-tl` :
+                    user === "dev-1" ? `${key}-1` : `${key}-2`;
+
+                const value = metricsData[metricKey]?.[sprintIndex];
+
+                if (value === undefined) {
+                    html += `<li><strong>${key}:</strong> N/A</li>`;
+                    return;
+                }
+
+                // calculate users percent of team total
+                const teamKeys = [`${key}-tl`, `${key}-1`, `${key}-2`];
+                let teamTotal = 0;
+                teamKeys.forEach(k => {
+                    if (metricsData[k]?.[sprintIndex] !== undefined) {
+                        teamTotal += metricsData[k][sprintIndex];
+                    }
+                });
+
+                let pct = teamTotal > 0 ? (value / teamTotal) * 100 : 0;
+
+                const description = metricDescriptions[key] || "No description available.";
+
+                const userColor = "#eabda8";
+                const teamColor = "#cccccc";
+
+                // add metric with progress bar to html
+                html += `
+            <li>
+              <strong title="${description}" style="cursor: help;">${key}:</strong> ${value}
+              <div style="width: 100%; max-width: 300px; height: 15px; border-radius: 8px; overflow: hidden; display: flex; margin-top: 5px;">
+                <div style="width: ${pct}%; background-color: ${userColor};"></div>
+                <div style="width: ${100 - pct}%; background-color: ${teamColor};"></div>
+              </div>
+              <small>${pct.toFixed(1)}% of team total</small>
+            </li>
+          `;
+
+            });
+
+            html += "</ul>";
+            display.innerHTML = html;
+        }
+
+        /* creates or updates the time-based metrics chart in the Team tab
+        ️> {array} chartLabels - labels for the metric names (x-axis)
+        ️> {string} datasetLabels - label for the dataset (e.g "Team Lead - Sprint 1")
+        ️> {array} dataValues - data values for the bar chart (y-axis)
+        */
+        function createOrUpdateTimeChart(chartLabels, datasetLabels, dataValues) {
+            
+          // if chart already exists, destroy it before creating updated one
+          if (timeChartInstance) {
+                timeChartInstance.destroy();
+            }
+            const ctx = document.getElementById("timeBasedMetrics").getContext("2d");
+            timeChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        label: datasetLabels,
+                        data: dataValues,
+                        backgroundColor: 'rgba(85, 12, 24, 0.7)',
+                        borderColor: 'rgba(85, 12, 24, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    aspectRatio: 2,
+                    resizeDelay: 50,
+                    interaction: {
+                        mode: 'nearest',
+                        axis: 'x',
+                        intersect: false
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                                color: 'black',
+                                font: {
+                                    size: 15
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Time-Based Metrics'
+                            }
+                        },
+
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: 'black',
+                                font: {
+                                    size: 15
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Time (Days)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: true,
+                            callbacks: {
+                              // hover descriptions for metrics, currently not completely working
+                                afterBody: function(tooltipItem) {
+                                    const timeMetricKeyMap = {
+                                        "Lead Time": "leadTime",
+                                        "Cycle Time": "cycleTime",
+                                        "Delivery Metrics": "deliveryMetrics",
+                                        "Issue Time Resolved": "issueTimeResolved",
+                                        "PR Time Merged": "prTimeMerged"
+                                    };
+                                    const dataIndex = tooltipItem[0].dataIndex;
+                                    const chart = tooltipItem[0].chart;
+                                    const label = chart.data.labels[dataIndex];
+                                    const key = timeMetricKeyMap[label];
+                                    const description = metricDescriptions[key] || 'No description';
+                                    return [description];
+
+
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        /* creates or updates volume-based metrics bar chart
+        > {array} chartLabels - labels for the metric names (x-axis)
+        ️> {string} datasetLabels - label for the dataset (e.g "Team Lead - Sprint 1")
+        ️> {array} dataValues - data values for the bar chart (y-axis)
+        */
+        function createOrUpdateVolumeChart(chartLabels, datasetLabels, dataValues) {
+          
+          // if chart already exists, destroy it before creating updated one
+          if (volumeChartInstance) {
+                volumeChartInstance.destroy();
+            }
+            const ctx = document.getElementById("volumeBasedMetrics").getContext("2d");
+            volumeChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        label: datasetLabels,
+                        data: dataValues,
+                        backgroundColor: 'rgba(85, 12, 24, 0.7)',
+                        borderColor: 'rgba(85, 12, 24, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    aspectRatio: 2,
+                    resizeDelay: 50,
+                    interaction: {
+                        mode: 'nearest',
+                        axis: 'x',
+                        intersect: false
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                                color: 'black',
+                                font: {
+                                    size: 15
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Volume-Based Metrics'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: 'black',
+                                font: {
+                                    size: 15
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Count'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: true,
+                            callbacks: {
+                              // hover feature for metric information, currently not completely functional
+                                afterBody: function(tooltipItem) {
+                                    const volumeMetricKeyMap = {
+                                        "Delivery Metrics": "deliveryMetrics",
+                                        "Commit Frequency": "commitFrequency",
+                                        "Issues Opened": "issuesOpened",
+                                        "Issues Closed": "issuesClosed",
+                                        "WIP": "wip"
+                                    };
+                                    const dataIndex = tooltipItem[0].dataIndex;
+                                    const chart = tooltipItem[0].chart;
+                                    const label = chart.data.labels[dataIndex];
+                                    const key = volumeMetricKeyMap[label];
+                                    const description = metricDescriptions[key] || 'No description';
+                                    return [description];
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        /* team tab updator
+        > gather information based on filter and calls updators
+        */
+        function updateTeamTab() {
+            
+          
+          updateMetricsDisplay();
+
+          // what sprint and what user (or team), later will probably add repo as selection (so user would select repo then select the desired user)
+          const user = document.getElementById("teamUserSelect").value;
+          const sprintIndex = parseInt(document.getElementById("teamSprintSelect").value);
+          const selectedUserText = document.getElementById("teamUserSelect").options[document.getElementById("teamUserSelect").selectedIndex].text;
+
+          // what metrics are going on each chart
+          const timeBasedLabels = [
+              "Lead Time", "Cycle Time", "Delivery Metrics",
+              "Issue Time Resolved", "PR Time Merged"
+          ];
+          const metricKeys = [
+              "leadTime", "cycleTime", "deliveryMetrics",
+              "issueTimeResolved", "prTimeMerged"
+          ];
+          const volumeKeys = [
+              "deliveryMetrics", "commitFrequency", "issuesOpened", "issuesClosed", "wip"            ];
+            const volumeBasedLabels = [
+                "Delivery Metrics", "Commit Frequency", "Issues Opened", "Issues Closed", "WIP"
+          ];
+
+          let timeBasedData = [];
+          let volumeBasedData = [];
+          let chartLabel = '';
+
+          // if selected user is total team calculate total
+          if (user == 'tm') {
+
+              chartLabel = `Overall Team Average - Sprint ${sprintIndex + 1}`;
+              const users = ['tl', '1', '2'];
+               timeBasedData = metricKeys.map(key => {
+                  let total = 0;
+                  let count = 0;
+                  users.forEach(u_suffix => {
+                      const userKey = `${key}-${u_suffix}`;
+                      if (metricsData[userKey] && metricsData[userKey][sprintIndex] !== undefined) {
+                          total += metricsData[userKey][sprintIndex];
+                          count++;
+                      }
+                  });
+                  return count > 0 ? (total / count) : 0;
+               });
+              volumeBasedData = volumeKeys.map(key => {
+                  let total = 0;
+                  users.forEach(u_suffix => {
+                      const userKey = `${key}-${u_suffix}`;
+                      if (metricsData[userKey] && metricsData[userKey][sprintIndex] !== undefined) {
+                          total += metricsData[userKey][sprintIndex];                        }
+                    });
+                  return total;
+              });
+          } else { // if not the team then get the specified user
+              const dataSuffix = user === "tl" ? "tl" : (user === "dev-1") ? "1" : "2";
+              chartLabel = `${selectedUserText} - Sprint ${sprintIndex + 1}`;
+              timeBasedData = metricKeys.map(key => {
+                  const userKey = `${key}-${dataSuffix}`;
+                   return metricsData[userKey]?.[sprintIndex] ?? 0;
+              });
+              volumeBasedData = volumeKeys.map(key => {
+                  const userKey = `${key}-${dataSuffix}`;
+                  return metricsData[userKey]?.[sprintIndex] ?? 0;
+              });
+          }
+          // create the charts with the gathered data
+          createOrUpdateTimeChart(timeBasedLabels, chartLabel, timeBasedData);
+          createOrUpdateVolumeChart(volumeBasedLabels, chartLabel, volumeBasedData);
+        }
+    /* initialized dashboard, runs when page loads */
+    async function initializeDashboard() {
+        // check for metrics.json
+        try {
+            const response = await fetch('metrics.json');
+            if(!response.ok){
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            // if we get a response from metrics.json save it
+            metricsData = await response.json();
+
+            // update tabs/charts
+            updateTeamTab();
+            updateManualCharts();
+
+            // creates event listeners to metrics tab filters
+            document.getElementById("teamUserSelect").addEventListener("change", updateTeamTab);
+            document.getElementById("teamSprintSelect").addEventListener("change", updateTeamTab);
+            
+
+            // creates listen to resize chart on fullscreen (had a rendering bug and used this as a solution)
+            document.addEventListener('fullscreenchange', () => {
+              if (document.fullscreenElement) {
+                setTimeout(() => {
+                  if (timeChartInstance) {
+                      timeChartInstance.resize();
+                  }
+                  if (volumeChartInstance) {
+                      volumeChartInstance.resize();
+                  }
+                  Object.values(manualChartInstances).forEach(chart => chart.resize());
+                }, 200);
+              }
+            });
+        } catch (error) {
+           console.error('Failed to load initial metrics.json', error);
+          document.querySelector('.content').innerHTML = `<h1>Fatal Error: Could not load metrics.json</h1><p>Please ensure the file is in the same directory and you are running a local server.</p><p>${error.message}</p>`;
+        }
+    }
+    // start the dashboard yipppeeee
+    initializeDashboard();
+
+    </script>
+</body>
+
+</html>
