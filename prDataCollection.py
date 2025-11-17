@@ -73,3 +73,4 @@ def get_pr_data(github_client, repo_name: str, start_date: datetime, end_date: d
     print(f"   Average merge time: {prTimeMerged:.2f} hours" if prTimeMerged else "   No merged PRs")
     
     return df
+
