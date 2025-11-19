@@ -1,7 +1,6 @@
 from datetime import datetime, timezone
 from github import Github, Auth
-from config.configs import GIT_TOKEN, get_filtered_repositories
-'''from commits import get_commit_data'''
+from config.configs import GIT_TOKEN, get_filtered_repositories, get_github_users
 from prDataCollection import get_pr_data
 from issueData import get_issue_data
 import pandas as pd
@@ -34,7 +33,7 @@ def main():
     
     # Call the functions and get the data
     print("\n Collecting Commits...")
-    commit_df = get_commit_data(g, org_name, start_date, end_date)
+    df = get_commit_data(g, org_name, start_date, end_date)
     
     print("\n Collecting Pull Requests...")
     pr_df = get_pr_data(g, org_name, start_date, end_date)
@@ -204,10 +203,76 @@ def main():
     else:
         print("\n No data to combine!")
         
+        if not pr_data.empty:
+            pr_grouped = pr_data.groupby("user", dropna=True).agg({
+                "prTimeMerged": "max"
+            }).reset_index()
+            sprint_df = pd.merge(sprint_df, pr_grouped, on="user", how="outer")
+
+        if sprint_df.empty:
+            sprint_df = pd.DataFrame(columns=["user"] + all_metrics)
+
+        sprint_df = sprint_df.fillna(0)
+
+        for user in all_users:
+            user_row = sprint_df[sprint_df["user"] == user]
+            for m in all_metrics:
+                key = f"{m}_{user}" if user in contributors else f"{m}_{user}_tl"
+                if not user_row.empty and m in user_row.columns:
+                    val = float(user_row[m].values[0])
+                else:
+                    val = 0.0
+                metrics[key].append(val)
+    return metrics
+
+def export_repositories_and_users():
+    try:
+        g = Github(GIT_TOKEN)
+        repos = get_filtered_repositories("config/config.ini")
+
+        output = {}
+        for repo in repos:
+            contributors, tech_leads = ['hollowtree11', 'hcaballero2'], ['viswanathreddy1017'] #get_github_users(g, "oss-slu", repo)
+            tech_leads_formatted = [f"{u}_tl" for u in tech_leads]
+
+            output[repo] = {
+                "contributors": sorted(contributors),
+                "tech_leads": sorted(tech_leads_formatted)
+            }
+
+            print(f"{repo}: {len(contributors)} contributors, {len(tech_leads_formatted)} tech leads")
+
+        with open("oss_slu_repos.json", "w") as f:
+            json.dump(output, f, indent=2)
+
+        print("Exported repositories and users to oss_slu_repos.json")
+    except Exception as e:
+        print(f"Error exporting repositories and users: {e}")
 
 if __name__ == "__main__":
     try:
-        main()
+        g = Github(GIT_TOKEN)
+
+        sprints = ['Sprint 1', 'Sprint 2', 'Sprint 3', 'Sprint 4', 'Sprint 5', 'Sprint 6']
+
+        sprint_dates = [
+                (datetime(2025, 9, 8, tzinfo=timezone.utc), datetime(2025, 9, 22, tzinfo=timezone.utc)),
+                (datetime(2025, 9, 23, tzinfo=timezone.utc), datetime(2025, 10, 6, tzinfo=timezone.utc)),
+                (datetime(2025, 10, 7, tzinfo=timezone.utc), datetime(2025, 10, 20, tzinfo=timezone.utc)),
+                (datetime(2025, 10, 21, tzinfo=timezone.utc),    datetime(2025, 11, 3, tzinfo=timezone.utc)),
+                (datetime(2025, 11, 4, tzinfo=timezone.utc), datetime(2025, 11, 17, tzinfo=timezone.utc)),
+                (datetime(2025, 11, 18, tzinfo=timezone.utc), datetime(2025, 12, 1, tzinfo=timezone.utc)),]
+
+        repos = ['oss_dev_analytics']
+
+        for repo in repos:
+            json_data = collect_sprint_metrics(g, repo, sprints, sprint_dates)
+            output_file = f"metrics_{repo}.json"
+            with open(output_file, "w") as f:
+                json.dump(json_data, f, indent=2)
+
+        export_repositories_and_users()
+
     except Exception as e:
         print(f"\n Fatal error: {e}")
         import traceback

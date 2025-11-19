@@ -80,7 +80,7 @@ def get_commit_data(github_client, repo_name: str, start_date: datetime, end_dat
     days = max((end_date - start_date).days, 1)
     
     user_metrics = df.groupby('user', dropna=True)['sha'].count().reset_index(name='total_commits')
-    user_metrics['commit_frequency'] = user_metrics['total_commits'] / days
+    user_metrics['commitFrequency'] = user_metrics['total_commits'] / days
 
     df = df.merge(user_metrics, on='user', how='left', suffixes=('', '_user'))
 

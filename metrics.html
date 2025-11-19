@@ -1,8 +1,6 @@
 
 <html>
 
-
-
 <head>
     <title> Metrics Dashboard </title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -364,12 +362,10 @@ fetch('manual_metrics.csv')
             padding: 1.5rem 2rem;
             overflow-y: auto;
             background: #e2e8dd;
-
         }
 
         /* team tab chart styling */
         #team .chart-container {
-
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
@@ -378,18 +374,14 @@ fetch('manual_metrics.csv')
             width: 100%;
             height: calc(100vh - 250px); /* dynamic height calculation to ensure graphs look appropriately sized */
             margin-top: 20px;
-
         }
 
         /* team tab individual chart styling */
         #timeBasedMetrics,
         #volumeBasedMetrics {
-
             flex: 1 1 45%; /* sets flext-grow, flex-shrink and flex-basis, can both grow and shrink as needed and states ideal chart size */
             min-width: 350px;
             height: 100%;
-
-
         }
 
         /* manual metrics tab chart grid styling */
@@ -401,7 +393,6 @@ fetch('manual_metrics.csv')
             max-width: 1000px;
             margin-left: auto;
             margin-right: auto;
-
         }
 
         #metrics .chart-grid > div { /* for all of the metrics div elements set these stylings */
@@ -427,18 +418,15 @@ fetch('manual_metrics.csv')
             border: 1px solid #ddd;
             border-radius: 6px;
             background: #f9f9f9;
-
         }
 
         #metricsDisplay ul {
             list-style: none;
             padding: 0;
-
         }
 
         #metricsDisplay li {
             margin: 0.4rem 0;
-
         }
     </style>
 </head>
@@ -446,7 +434,6 @@ fetch('manual_metrics.csv')
 <body>
 
     <div class="sidebar">
-
         <button class="tab-button active" data-tab="home">Home</button>
         <button class="tab-button" data-tab="team">Team</button>
         <button class="tab-button" data-tab="metrics">Metrics</button>
@@ -463,13 +450,16 @@ fetch('manual_metrics.csv')
 
         <div id="team" class="tab-content" style="display: none;">
             <h1>Team Metrics</h1>
-            <h2>Select User & Sprint</h2>
+            <h2>Select Repository, User & Sprint</h2>
+
+            <label for="teamRepoSelect">Repository:</label>
+            <select id="teamRepoSelect">
+                <option value="" disabled selected>Select Repository</option>
+            </select>
+
             <label for="teamUserSelect">User:</label>
             <select id="teamUserSelect">
-                <option value="tm" selected>Overall Team</option>
-                <option value="tl">Team Lead</option>
-                <option value="dev-1">Developer 1</option>
-                <option value="dev-2">Developer 2</option>
+                <option value="" disabled selected>Select User</option>
             </select>
 
             <label for="teamSprintSelect">Sprint:</label>
@@ -490,7 +480,14 @@ fetch('manual_metrics.csv')
 
         <div id="metrics" class="tab-content" style="display: none;">
             <h1>Manual Metrics</h1>
-            <h2>Select User & Sprint</h2>
+            <h2>Select Repository, User & Sprint</h2>
+
+            <!-- inserted repo + user dropdowns for metrics tab (repo first, user second, sprint third) -->
+            <label for="metricsRepoSelect">Repository:</label>
+            <select id="metricsRepoSelect">
+                <option value="" disabled selected>Select Repository</option>
+            </select>
+
             <label for="metricsUserSelect">User:</label>
             <select id="metricsUserSelect">
                 <option value="tm" selected>Overall Team</option>
@@ -598,8 +595,6 @@ fetch('manual_metrics.csv')
                 }
             });
         });
-
-        
         
         // manual metrics tab
 
@@ -769,6 +764,11 @@ fetch('manual_metrics.csv')
             const display = document.getElementById("metricsDisplay");
 
             // make sure a specific user is selected
+            if (!metricsData || Object.keys(metricsData).length === 0) {
+                display.innerHTML = "<h3>No metrics data loaded. Please select a repository.</h3>";
+                return;
+            }
+
             if (user == 'tm') {
                 display.innerHTML = "<h3>Please select an individual user to view metrics.</h3>";
                 return;
@@ -794,25 +794,21 @@ fetch('manual_metrics.csv')
 
             autoMetrics.forEach(key => {
                 // determine the correct key based on selected user
-                const metricKey =
-                    user === "tl" ? `${key}-tl` :
-                    user === "dev-1" ? `${key}-1` : `${key}-2`;
-
-                const value = metricsData[metricKey]?.[sprintIndex];
+                const userMetricKey = Object.keys(metricsData).find(k => k.startsWith(key) && k.includes(user));
+                const value = userMetricKey ? metricsData[userMetricKey][sprintIndex] : undefined;
 
                 if (value === undefined) {
                     html += `<li><strong>${key}:</strong> N/A</li>`;
                     return;
                 }
 
-                // calculate users percent of team total
-                const teamKeys = [`${key}-tl`, `${key}-1`, `${key}-2`];
-                let teamTotal = 0;
-                teamKeys.forEach(k => {
-                    if (metricsData[k]?.[sprintIndex] !== undefined) {
-                        teamTotal += metricsData[k][sprintIndex];
-                    }
-                });
+                // calculate team total across all users for this metric
+                const teamTotal = Object.keys(metricsData)
+                    .filter(k => k.startsWith(key))
+                    .reduce((sum, k) => {
+                        const val = metricsData[k][sprintIndex];
+                        return sum + (typeof val === "number" ? val : 0);
+                    }, 0);
 
                 let pct = teamTotal > 0 ? (value / teamTotal) * 100 : 0;
 
@@ -1028,7 +1024,10 @@ fetch('manual_metrics.csv')
         > gather information based on filter and calls updators
         */
         function updateTeamTab() {
-            
+          if (!metricsData || Object.keys(metricsData).length === 0) {
+              console.warn("⚠️ No metrics data loaded yet.");
+              return;
+          }
           
           updateMetricsDisplay();
 
@@ -1058,87 +1057,269 @@ fetch('manual_metrics.csv')
 
           // if selected user is total team calculate total
           if (user == 'tm') {
-
               chartLabel = `Overall Team Average - Sprint ${sprintIndex + 1}`;
-              const users = ['tl', '1', '2'];
-               timeBasedData = metricKeys.map(key => {
+              const userKeys = Object.keys(metricsData).filter(k => k.includes("_"));
+              const users = [...new Set(userKeys.map(k => k.split("_")[1]))];
+              timeBasedData = metricKeys.map(key => {
                   let total = 0;
                   let count = 0;
-                  users.forEach(u_suffix => {
-                      const userKey = `${key}-${u_suffix}`;
-                      if (metricsData[userKey] && metricsData[userKey][sprintIndex] !== undefined) {
-                          total += metricsData[userKey][sprintIndex];
-                          count++;
+                  Object.keys(metricsData).forEach(k => {
+                      if (k.startsWith(key)) {
+                          const val = metricsData[k][sprintIndex];
+                          if (!isNaN(val)) {
+                              total += val;
+                              count++;
+                          }
                       }
                   });
                   return count > 0 ? (total / count) : 0;
-               });
+              });
               volumeBasedData = volumeKeys.map(key => {
                   let total = 0;
-                  users.forEach(u_suffix => {
-                      const userKey = `${key}-${u_suffix}`;
-                      if (metricsData[userKey] && metricsData[userKey][sprintIndex] !== undefined) {
-                          total += metricsData[userKey][sprintIndex];                        }
-                    });
+                  Object.keys(metricsData).forEach(k => {
+                      if (k.startsWith(key)) {
+                          const val = metricsData[k][sprintIndex];
+                          if (!isNaN(val)) total += val;
+                      }
+                  });
                   return total;
               });
           } else { // if not the team then get the specified user
-              const dataSuffix = user === "tl" ? "tl" : (user === "dev-1") ? "1" : "2";
               chartLabel = `${selectedUserText} - Sprint ${sprintIndex + 1}`;
               timeBasedData = metricKeys.map(key => {
-                  const userKey = `${key}-${dataSuffix}`;
-                   return metricsData[userKey]?.[sprintIndex] ?? 0;
+                  const metricKey = Object.keys(metricsData).find(k => k.startsWith(key) && k.includes(user));
+                  return metricKey ? metricsData[metricKey][sprintIndex] : 0;
               });
               volumeBasedData = volumeKeys.map(key => {
-                  const userKey = `${key}-${dataSuffix}`;
-                  return metricsData[userKey]?.[sprintIndex] ?? 0;
+                  const metricKey = Object.keys(metricsData).find(k => k.startsWith(key) && k.includes(user));
+                  return metricKey ? metricsData[metricKey][sprintIndex] : 0;
               });
           }
           // create the charts with the gathered data
           createOrUpdateTimeChart(timeBasedLabels, chartLabel, timeBasedData);
           createOrUpdateVolumeChart(volumeBasedLabels, chartLabel, volumeBasedData);
         }
-    /* initialized dashboard, runs when page loads */
-    async function initializeDashboard() {
-        // check for metrics.json
+
+    /* =====================
+       Repository & User Loader (Team)
+       Reads oss_slu_repos.json and populates Team dropdowns and loads corresponding metrics_<repo>.json
+       ===================== */
+    async function loadRepositoriesAndUsers() {
         try {
-            const response = await fetch('metrics.json');
-            if(!response.ok){
-              throw new Error(`HTTP error! status: ${response.status}`);
+            const response = await fetch('oss_slu_repos.json');
+            if (!response.ok) {
+                throw new Error(`Failed to load oss_slu_repos.json: ${response.status}`);
             }
-            // if we get a response from metrics.json save it
-            metricsData = await response.json();
 
-            // update tabs/charts
-            updateTeamTab();
-            updateManualCharts();
+            const reposData = await response.json();
+            const repoSelect = document.getElementById("teamRepoSelect");
+            const userSelect = document.getElementById("teamUserSelect");
 
-            // creates event listeners to metrics tab filters
-            document.getElementById("teamUserSelect").addEventListener("change", updateTeamTab);
-            document.getElementById("teamSprintSelect").addEventListener("change", updateTeamTab);
-            
+            // Clear old options
+            repoSelect.innerHTML = '<option value="" disabled selected>Select Repository</option>';
+            userSelect.innerHTML = '<option value="" disabled selected>Select User</option>';
 
-            // creates listen to resize chart on fullscreen (had a rendering bug and used this as a solution)
-            document.addEventListener('fullscreenchange', () => {
-              if (document.fullscreenElement) {
-                setTimeout(() => {
-                  if (timeChartInstance) {
-                      timeChartInstance.resize();
-                  }
-                  if (volumeChartInstance) {
-                      volumeChartInstance.resize();
-                  }
-                  Object.values(manualChartInstances).forEach(chart => chart.resize());
-                }, 200);
-              }
+            // Populate repositories
+            Object.keys(reposData).forEach(repo => {
+                const opt = document.createElement("option");
+                opt.value = repo;
+                opt.textContent = repo;
+                repoSelect.appendChild(opt);
             });
+
+            // Update users when a repository is selected
+            repoSelect.addEventListener("change", async () => {
+                const selectedRepo = repoSelect.value;
+                const repoInfo = reposData[selectedRepo];
+
+                // Load metrics for this repo into metricsData by fetching metrics_<repo>.json
+                await fetchMetricsForRepo(selectedRepo);
+
+                userSelect.innerHTML = '<option value="tm" selected>Overall Team</option>';
+
+                if (repoInfo) {
+                    // Add contributors
+                    repoInfo.contributors.forEach(user => {
+                        const opt = document.createElement("option");
+                        opt.value = user;
+                        opt.textContent = user;
+                        userSelect.appendChild(opt);
+                    });
+
+                    // Add tech leads (with _tl suffix)
+                    repoInfo.tech_leads.forEach(user => {
+                        const opt = document.createElement("option");
+                        opt.value = user;
+                        opt.textContent = user.replace("_tl", " (Tech Lead)");
+                        userSelect.appendChild(opt);
+                    });
+                }
+
+                // Trigger update after user list refresh
+                updateTeamTab();
+            });
+
+            // If there's at least one repo, select the first one automatically
+            const repoKeys = Object.keys(reposData);
+            if (repoKeys.length > 0) {
+                repoSelect.value = repoKeys[0];
+                // trigger change to populate users and load metrics
+                const event = new Event('change');
+                repoSelect.dispatchEvent(event);
+            }
+
+            // When user or sprint changes, update chart
+            userSelect.addEventListener("change", updateTeamTab);
+            document.getElementById("teamSprintSelect").addEventListener("change", updateTeamTab);
+
+            console.log("Loaded repositories and users from oss_slu_repos.json (Team)");
         } catch (error) {
-           console.error('Failed to load initial metrics.json', error);
-          document.querySelector('.content').innerHTML = `<h1>Fatal Error: Could not load metrics.json</h1><p>Please ensure the file is in the same directory and you are running a local server.</p><p>${error.message}</p>`;
+            console.error("Error loading repositories (Team):", error);
         }
     }
-    // start the dashboard yipppeeee
-    initializeDashboard();
+
+    /* =====================
+       Repository & User Loader (Metrics Tab)
+       Reads oss_slu_repos.json and populates Metrics dropdowns and loads corresponding metrics_<repo>.json
+       ===================== */
+    async function loadRepositoriesAndUsersForMetrics() {
+        try {
+            const response = await fetch('oss_slu_repos.json');
+            if (!response.ok) {
+                throw new Error(`Failed to load oss_slu_repos.json: ${response.status}`);
+            }
+
+            const reposData = await response.json();
+            const repoSelect = document.getElementById("metricsRepoSelect");
+            const userSelect = document.getElementById("metricsUserSelect");
+
+            // Clear old options
+            repoSelect.innerHTML = '<option value="" disabled selected>Select Repository</option>';
+            userSelect.innerHTML = '<option value="" disabled selected>Select User</option>';
+
+            // Populate repositories
+            Object.keys(reposData).forEach(repo => {
+                const opt = document.createElement("option");
+                opt.value = repo;
+                opt.textContent = repo;
+                repoSelect.appendChild(opt);
+            });
+
+            // Update users when a repository is selected
+            repoSelect.addEventListener("change", async () => {
+                const selectedRepo = repoSelect.value;
+                const repoInfo = reposData[selectedRepo];
+
+                // Load metrics for this repo into metricsData by fetching metrics_<repo>.json
+                await fetchMetricsForRepo(selectedRepo);
+
+                userSelect.innerHTML = '<option value="tm" selected>Overall Team</option>';
+
+                if (repoInfo) {
+                    // Add contributors
+                    repoInfo.contributors.forEach(user => {
+                        const opt = document.createElement("option");
+                        opt.value = user;
+                        opt.textContent = user;
+                        userSelect.appendChild(opt);
+                    });
+
+                    // Add tech leads (with _tl suffix)
+                    repoInfo.tech_leads.forEach(user => {
+                        const opt = document.createElement("option");
+                        opt.value = user;
+                        opt.textContent = user.replace("_tl", " (Tech Lead)");
+                        userSelect.appendChild(opt);
+                    });
+                }
+
+                // Trigger update after user list refresh
+                updateManualCharts();
+            });
+
+            // If there's at least one repo, select the first one automatically
+            const repoKeys = Object.keys(reposData);
+            if (repoKeys.length > 0) {
+                repoSelect.value = repoKeys[0];
+                // trigger change to populate users and load metrics
+                const event = new Event('change');
+                repoSelect.dispatchEvent(event);
+            }
+
+            // When user or sprint changes, update manual charts
+            userSelect.addEventListener("change", updateManualCharts);
+            document.getElementById("metricsSprintSelect").addEventListener("change", updateManualCharts);
+
+            console.log("✅ Loaded repositories and users from oss_slu_repos.json (Metrics)");
+        } catch (error) {
+            console.error("❌ Error loading repositories (Metrics):", error);
+        }
+    }
+
+    /* Fetch metrics_<repo>.json and store into metricsData, then update tabs */
+    async function fetchMetricsForRepo(repoName) {
+        if (!repoName) return;
+        const filename = `metrics_${repoName}.json`;
+        try {
+            const resp = await fetch(filename);
+            if (!resp.ok) {
+                console.warn(`Could not load ${filename} (status ${resp.status}), leaving metricsData as-is.`);
+                return;
+            }
+            const data = await resp.json();
+            // set metricsData to loaded file
+            metricsData = data;
+            console.log(`✅ Loaded metrics for repo: ${repoName}`);
+            // update displays
+            updateTeamTab();
+            updateManualCharts();
+        } catch (err) {
+            console.error(`Error fetching ${filename}:`, err);
+        }
+    }
+
+  /* initialized dashboard, runs when page loads */
+  async function initializeDashboard() {
+      // check for metrics.json
+      try {
+          // load repositories/users before updating tabs/charts
+          await loadRepositoriesAndUsers();
+          await loadRepositoriesAndUsersForMetrics();
+
+          // update tabs/charts
+          const teamRepoSelect = document.getElementById("teamRepoSelect");
+          const firstRepo = teamRepoSelect.value;
+          if (firstRepo) {
+              await fetchMetricsForRepo(firstRepo);
+          }
+
+          // creates event listeners to metrics tab filters
+          document.getElementById("teamUserSelect").addEventListener("change", updateTeamTab);
+          document.getElementById("teamSprintSelect").addEventListener("change", updateTeamTab);
+          document.getElementById("metricsUserSelect").addEventListener("change", updateManualCharts);
+          document.getElementById("metricsSprintSelect").addEventListener("change", updateManualCharts);
+
+          // creates listen to resize chart on fullscreen (had a rendering bug and used this as a solution)
+          document.addEventListener('fullscreenchange', () => {
+            if (document.fullscreenElement) {
+              setTimeout(() => {
+                if (timeChartInstance) {
+                    timeChartInstance.resize();
+                }
+                if (volumeChartInstance) {
+                    volumeChartInstance.resize();
+                }
+                Object.values(manualChartInstances).forEach(chart => chart.resize());
+              }, 200);
+            }
+          });
+      } catch (error) {
+         console.error('Failed to load initial metrics.json', error);
+        document.querySelector('.content').innerHTML = `<h1>Fatal Error: Could not load metrics.json</h1><p>Please ensure the file is in the same directory and you are running a local server.</p><p>${error.message}</p>`;
+      }
+  }
+  // start the dashboard yipppeeee
+  initializeDashboard();
 
     </script>
 </body>
