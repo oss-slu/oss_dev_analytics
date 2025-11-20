@@ -5,6 +5,298 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
     <style>
+      body { 
+        font-family: Georgia, 'Times New Roman', Times, serif; 
+        margin: 0;
+        display: flex;            
+        height: 100vh;
+        overflow: hidden;
+       }
+      
+      .sidebar {
+        width: 150px;
+        background-color: #550C18;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 1rem;
+        flex-shrink: 0;
+      }
+
+      .sidebar h2 {
+        color: #ffffff;
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .sidebar button {
+        width: 90%;
+        background: none;
+        border: none;
+        color: #ffffff;
+        text-align: center;
+        padding: 0.7rem 0.2rem;
+        margin: 0.2rem 0;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 0.9rem;
+      }
+
+      .sidebar button:hover,
+      .sidebar button.active {
+        background-color: #2e1010;
+      }
+      
+      .content {
+        flex-grow: 1;
+        padding: 1.5rem 2rem;
+        overflow-y: auto;
+        background: #e2e8dd;
+      }
+
+      canvas {
+        max-width: 250px;
+        max-height: 250px;
+      }
+
+      .chart-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1.5rem; 
+        margin-bottom: 2rem; 
+      }
+
+      select {
+        margin: 0.5rem;
+        padding: 0.4rem;
+      }
+
+      #metricsDisplay {
+        margin-top: 1rem;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background: #f9f9f9;
+      }
+
+      #metricsDisplay ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      #metricsDisplay li {
+        margin: 0.4rem 0;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="sidebar">
+      <h2>Dashboard</h2>
+      <button class="tab-button active" data-tab="home">Home</button>
+      <button class="tab-button" data-tab="team">Team</button>
+      <button class="tab-button" data-tab="metrics">Metrics</button>
+    </div>
+
+    <div class="content">
+      <div id="home" class="tab-content" style="display: block;">
+        <h1>Home</h1>
+        <p>Add to later.</p>
+      </div>
+
+    <div id="team" class="tab-content" style="display: none;">
+        <h1>Team Metrics</h1>
+        <h2>Select User & Sprint</h2>
+        <label for="userSelect">User:</label>
+        <select id="userSelect">
+          <option value="tl">Team Lead</option>
+          <option value="dev-1">Developer 1</option>
+          <option value="dev-2">Developer 2</option>
+        </select>
+
+        <label for="sprintSelect">Sprint:</label>
+        <select id="sprintSelect">
+          <option value="0">Sprint 1</option>
+          <option value="1">Sprint 2</option>
+          <option value="2">Sprint 3</option>
+          <option value="3">Sprint 4</option>
+          <option value="4">Sprint 5</option>
+          <option value="5">Sprint 6</option>
+        </select>
+
+        <div id="metricsDisplay"></div>
+      </div>
+
+      <div id="metrics" class="tab-content" style="display: none;">
+        <h1>Manual Metrics</h1>
+        <div class="chart-grid">
+          <canvas id="clientSatisfaction"></canvas>
+          <canvas id="teamSatisfaction"></canvas>
+          <canvas id="collaboration"></canvas>
+          <canvas id="sprintConfidence"></canvas>
+          <canvas id="goalAchievement"></canvas>
+        </div>
+      </div>
+    </div>
+
+<script>
+
+const buttons = document.querySelectorAll(".tab-button");
+const tabs = document.querySelectorAll(".tab-content");
+
+buttons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    buttons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    tabs.forEach((tab) => (tab.style.display = "none"));
+    document.getElementById(btn.dataset.tab).style.display = "block";
+  });
+});
+
+function createChart(id, label, data, color) {
+  new Chart(document.getElementById(id), {
+    type: 'bar',
+    data: {
+      labels: ['Sprint 1', 'Sprint 2', 'Sprint 3', 'Sprint 4', 'Sprint 5', 'Sprint 6'],
+      datasets: [{
+        label: label,
+        data: data,
+        backgroundColor: color
+      }]
+    }
+  });
+}
+    
+fetch('manual_metrics.csv')
+  .then(response => response.text())
+  .then(csv => {
+    const rows = csv.trim().split("\n").slice(1);
+    const metrics = {
+      "client satisfaction": [],
+      "team satisfaction": [],
+      "collaboration": [],
+      "sprint confidence": [],
+      "goal achievement": []
+    };
+
+    const labels = ["Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4", "Sprint 5", "Sprint 6"];
+    rows.forEach(row => {
+      cols = row.split(",");
+      if (cols[1] == "client satisfaction") {
+        metrics["client satisfaction"].push(parseFloat(cols[2]))
+      } else if (cols[1] == "team satisfaction") {
+        metrics["team satisfaction"].push(parseFloat(cols[2]))
+      } else if (cols[1] == "collaboration") {
+        metrics["collaboration"].push(parseFloat(cols[2]))
+      } else if (cols[1] == "sprint confidence") {
+        metrics["sprint confidence"].push(parseFloat(cols[2]))
+      } else {
+        metrics["goal achievement"].push(parseFloat(cols[2]))
+      }
+    })
+
+  createChart("clientSatisfaction", "Client Satisfaction", metrics["client satisfaction"], "mediumorchid");
+  createChart("teamSatisfaction", "Team Satisfaction", metrics["team satisfaction"], "lightskyblue");
+  createChart("collaboration", "Collaboration", metrics["collaboration"], "lightgreen");
+  createChart("sprintConfidence", "Sprint Confidence", metrics["sprint confidence"], "lightpink");
+  createChart("goalAchievement", "Goal Achievement", metrics["goal achievement"], "moccasin");
+  })
+
+  let metricsData = {};
+
+  const metricDescriptions = {
+    leadTime: "Time from task creation to completion.",
+    cycleTime: "Time from when the task was started to task completion.",
+    deliveryMetrics: "Time to code commit to deployment.",
+    commitFrequency: "Number of commits made during the sprint.",
+    issuesOpened: "Number of issues open during the sprint.",
+    issuesClosed: "Number of issues resolved during the sprint.",
+    issueTimeResolved: "Average time taken to resolve issues.",
+    prTimeMerged: "Average time from pull request creation to merge.",
+    wip: "Number of work items currently in progress.",
+    velocity: "Number of commits per sprint.",
+    defectRate: "Proportion of closed issues with bugs.",
+    blockedIssues: "Number of issues that were blocked during the sprint."
+  };
+
+  function updateMetricsDisplay() {
+    const user = document.getElementById("userSelect").value;
+    const sprintIndex = parseInt(document.getElementById("sprintSelect").value);
+    const display = document.getElementById("metricsDisplay");
+    const sprintDates = [
+      "Sep 8 - Sep 22", "Sep 22 - Oct 6", "Oct 6 - Oct 20",
+      "Oct 20 - Nov 3", "Nov 3 - Nov 17", "Nov 17 - Nov 31"
+    ];
+
+    const orgName = metricsData.org || "unknownOrg";
+    const repoName = metricsData.repo || "unknownRepo";
+    let html = `<h3>Metrics for ${user.toUpperCase()} - Sprint ${sprintIndex + 1} (${sprintDates[sprintIndex]}) | Repo: ${repoName} | Org: ${orgName}</h3><ul>`;
+
+    const autoMetrics = [
+      "leadTime", "cycleTime", "deliveryMetrics",
+      "commitFrequency", "issuesOpened", "issuesClosed",
+      "issueTimeResolved", "prTimeMerged", "wip"
+    ];
+
+    autoMetrics.forEach(key => {
+      const metricKey =
+        user === "tl" ? `${key}-tl` :
+        user === "dev-1" ? `${key}-1` : `${key}-2`;
+
+      const value = metricsData[metricKey]?.[sprintIndex];
+
+      if (value === undefined) {
+        html += `<li><strong>${key}:</strong> N/A</li>`;
+        return;
+      }
+
+      const teamKeys = [`${key}-tl`, `${key}-1`, `${key}-2`];
+      let teamTotal = 0;
+      teamKeys.forEach(k => {
+        if (metricsData[k]?.[sprintIndex] !== undefined) {
+          teamTotal += metricsData[k][sprintIndex];
+        }
+      });
+
+      let pct = teamTotal > 0 ? (value / teamTotal) * 100 : 0;
+
+      const description = metricDescriptions[key] || "No description available.";
+
+      const userColor = "#eabda8";
+      const teamColor = "#cccccc";
+
+      html += `
+        <li>
+          <strong title="${description}" style="cursor: help;">${key}:</strong> ${value}
+          <div style="width: 100%; max-width: 300px; height: 15px; border-radius: 8px; overflow: hidden; display: flex; margin-top: 5px;">
+            <div style="width: ${pct}%; background-color: ${userColor};"></div>
+            <div style="width: ${100 - pct}%; background-color: ${teamColor};"></div>
+          </div>
+          <small>${pct.toFixed(1)}% of team total</small>
+        </li>
+      `;
+
+    });
+
+    html += "</ul>";
+    display.innerHTML = html;
+  }
+
+  fetch("metrics.json")
+    .then (response => response.json())
+    .then(jsonData => {
+      metricsData = jsonData;
+      updateMetricsDisplay();
+
+      document.getElementById("userSelect").addEventListener("change", updateMetricsDisplay);
+      document.getElementById("sprintSelect").addEventListener("change", updateMetricsDisplay);
+  });
+
+  </script>
+  </body>
+  </html>
       /* basic styling for body */
         body {
             font-family: Georgia, 'Times New Roman', Times, serif;
@@ -70,12 +362,10 @@
             padding: 1.5rem 2rem;
             overflow-y: auto;
             background: #e2e8dd;
-
         }
 
         /* team tab chart styling */
         #team .chart-container {
-
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
@@ -84,7 +374,6 @@
             width: 100%;
             height: calc(100vh - 250px); /* dynamic height calculation */
             margin-top: 20px;
-
         }
 
         /* team tab individual chart styling */
@@ -94,8 +383,6 @@
             flex: 1 1 45%; /* flex-grow, flex-shrink, flex-basis */
             min-width: 350px;
             height: 100%;
-
-
         }
 
         /* manual metrics tab chart grid styling */
@@ -107,7 +394,6 @@
             max-width: 1000px;
             margin-left: auto;
             margin-right: auto;
-
         }
 
         #metrics .chart-grid > div { /* chart containers */
@@ -133,18 +419,15 @@
             border: 1px solid #ddd;
             border-radius: 6px;
             background: #f9f9f9;
-
         }
 
         #metricsDisplay ul {
             list-style: none;
             padding: 0;
-
         }
 
         #metricsDisplay li {
             margin: 0.4rem 0;
-
         }
     </style>
 </head>
@@ -152,7 +435,6 @@
 <body>
 
     <div class="sidebar">
-
         <button class="tab-button active" data-tab="home">Home</button>
         <button class="tab-button" data-tab="team">Team</button>
         <button class="tab-button" data-tab="metrics">Metrics</button>
@@ -169,7 +451,13 @@
 
         <div id="team" class="tab-content" style="display: none;">
             <h1>Team Metrics</h1>
-            <h2>Select User & Sprint</h2>
+            <h2>Select Repository, User & Sprint</h2>
+
+            <label for="teamRepoSelect">Repository:</label>
+            <select id="teamRepoSelect">
+                <option value="" disabled selected>Select Repository</option>
+            </select>
+
             <label for="teamUserSelect">User:</label>
             <select id="teamUserSelect">
                 <option value="tm" selected>Overall Team</option>
@@ -193,7 +481,14 @@
 
         <div id="metrics" class="tab-content" style="display: none;">
             <h1>Manual Metrics</h1>
-            <h2>Select User & Sprint</h2>
+            <h2>Select Repository, User & Sprint</h2>
+
+            <!-- inserted repo + user dropdowns for metrics tab (repo first, user second, sprint third) -->
+            <label for="metricsRepoSelect">Repository:</label>
+            <select id="metricsRepoSelect">
+                <option value="" disabled selected>Select Repository</option>
+            </select>
+
             <label for="metricsUserSelect">User:</label>
             <select id="metricsUserSelect">
                 <option value="tm" selected>Overall Team</option>
