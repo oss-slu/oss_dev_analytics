@@ -1,9 +1,9 @@
+
 <html>
+
 <head>
     <title> Metrics Dashboard </title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-
     <style>
       body { 
         font-family: Georgia, 'Times New Roman', Times, serif; 
@@ -372,15 +372,14 @@ fetch('manual_metrics.csv')
             align-items: stretch;
             gap: 30px;
             width: 100%;
-            height: calc(100vh - 250px); /* dynamic height calculation */
+            height: calc(100vh - 250px); /* dynamic height calculation to ensure graphs look appropriately sized */
             margin-top: 20px;
         }
 
         /* team tab individual chart styling */
         #timeBasedMetrics,
         #volumeBasedMetrics {
-
-            flex: 1 1 45%; /* flex-grow, flex-shrink, flex-basis */
+            flex: 1 1 45%; /* sets flext-grow, flex-shrink and flex-basis, can both grow and shrink as needed and states ideal chart size */
             min-width: 350px;
             height: 100%;
         }
@@ -396,7 +395,7 @@ fetch('manual_metrics.csv')
             margin-right: auto;
         }
 
-        #metrics .chart-grid > div { /* chart containers */
+        #metrics .chart-grid > div { /* for all of the metrics div elements set these stylings */
             width: 300px; /* ideal width of each chart */
             max-width: 100%;
             margin-bottom: 20px;
@@ -460,7 +459,7 @@ fetch('manual_metrics.csv')
 
             <label for="teamUserSelect">User:</label>
             <select id="teamUserSelect">
-                <option value="tm" selected>Overall Team</option>
+                <option value="" disabled selected>Select User</option>
             </select>
 
             <label for="teamSprintSelect">Sprint:</label>
@@ -492,6 +491,9 @@ fetch('manual_metrics.csv')
             <label for="metricsUserSelect">User:</label>
             <select id="metricsUserSelect">
                 <option value="tm" selected>Overall Team</option>
+                <option value="tl">Team Lead</option>
+                <option value="dev-1">Developer 1</option>
+                <option value="dev-2">Developer 2</option>
             </select>
 
             <label for="metricsSprintSelect">Sprint:</label>
@@ -530,30 +532,25 @@ fetch('manual_metrics.csv')
 
     <script>
 
-      // --- global Variables ---
+      // all gloabal variables and event listeners
 
+        // switch tabs on nav button click
         const buttons = document.querySelectorAll(".tab-button");
         const tabs = document.querySelectorAll(".tab-content");
         
-    
-        let parsedManualMetricsData = {}; // { user: { metric: { sprint: rating } } }
-        let metricsData = {};             // { metric_user: [sprint1, sprint2, ...] }
-        let repoData = {};                // Stores oss_slu_repos.json
-        let rawManualData = [];           // Stores raw Papa.parse data from CSV
         
-        /**
-         > @type {Array<string>}
-         * @description Dynamically built list of all unique usernames.
-         * e.g., ["hcaballero2", "hollowtree11", "viswanathreddy1017_tl"]
-         */
-        let allUsernames = [];
+        // store parsed manual metrics data from manual_metrics.csv
+        let parsedManualMetricsData = {};
+        // stores parsed data from metrics.json
+        let metricsData = {};
 
-        // chart instances
+        // store manual chart instances for updates
         let manualChartInstances = {};
+        // check if time and volume chart instances exist for updates
         let timeChartInstance = null;
         let volumeChartInstance = null;
 
-        // metric descriptions
+        // descriptions for metrics, shown in tooltips
         const metricDescriptions = {
             leadTime: "Time from task creation to completion.",
             cycleTime: "Time from when the task was started to task completion.",
@@ -563,172 +560,102 @@ fetch('manual_metrics.csv')
             issuesClosed: "Number of issues resolved during the sprint.",
             issueTimeResolved: "Average time taken to resolve issues.",
             prTimeMerged: "Average time from pull request creation to merge.",
-            wip: "Number of work items currently in progress."
+            wip: "Number of work items currently in progress.",
+            velocity: "Number of commits per sprint.",
+            defectRate: "Proportion of closed issues with bugs.",
+            blockedIssues: "Number of issues that were blocked during the sprint."
         };
 
-      // --- event Listeners ---
-
+        // tab button event listeners
         buttons.forEach((btn) => {
             btn.addEventListener("click", () => {
+                // set active button styling
                 buttons.forEach((b) => b.classList.remove("active"));
                 btn.classList.add("active");
 
+                // show corresponding tab content
                 const tabId = btn.dataset.tab;
                 tabs.forEach((tab) => (tab.style.display = "none"));
                 document.getElementById(tabId).style.display = "block";
 
+                // on tab switch, resize charts or update manual charts
                 if (tabId === "team") {
                     setTimeout(() => {
-                        if (timeChartInstance) timeChartInstance.resize();
-                        if (volumeChartInstance) volumeChartInstance.resize();
-                    }, 0);
+                        if (timeChartInstance) {
+                            timeChartInstance.resize();
+                        }
+                        if (volumeChartInstance) {
+                            volumeChartInstance.resize();
+                        }
+                    }, 0) // makes sure that resize happens after display change
                 }
+                // on metrics tab switch, update manual charts
                 if (tabId === "metrics") {
                     updateManualCharts();
                 }
             });
         });
-
         
-      // --- Manual Metrics Tab ("Metrics") ---
+        // manual metrics tab
 
-        /**
-         * converts a CSV timestamp into a Sprint index (0-5).
-         > @param {string} timestampStr - The timestamp string from the CSV.
-         * @returns {int|null} The sprint index (0-5) or null if not found.
-         */
-        function getSprintFromTimestamp(timestampStr) {
-            const date = new Date(timestampStr);
-            if (isNaN(date)) return null;
-
-            // hard coding sprints at least for now
-            const sprintRanges = [
-                { start: new Date(2025, 8, 8), end: new Date(2025, 8, 22) }, // Sprint 1 (index 0)
-                { start: new Date(2025, 8, 22), end: new Date(2025, 9, 6) },  // Sprint 2 (index 1)
-                { start: new Date(2025, 9, 6), end: new Date(2025, 9, 20) },  // Sprint 3 (index 2)
-                { start: new Date(2025, 9, 20), end: new Date(2025, 10, 3) }, // Sprint 4 (index 3)
-                { start: new Date(2025, 10, 3), end: new Date(2025, 10, 17) }, // Sprint 5 (index 4)
-                { start: new Date(2025, 10, 17), end: new Date(2025, 10, 30) } // Sprint 6 (index 5)
-            ];
-
-            for (let i = 0; i < sprintRanges.length; i++) {
-                if (date >= sprintRanges[i].start && date < sprintRanges[i].end) {
-                    return i; // Returns the sprint index (0, 1, 2, etc.)
-                }
-            }
-            if (date.getTime() === sprintRanges[5].end.getTime()) return 5;
-            return null;
-        }
-
-        /**
-         > @param {object} repoJson - The loaded oss_slu_repos.json content
-         */
-        function populateUserDropdowns(repoJson) {
-            const userSet = new Set(); // use a Set to avoid duplicate usernames
-
-            // loop through all repos to find all users
-            for (const repoName in repoJson) {
-                const repo = repoJson[repoName];
-
-                if (repo.tech_leads) {
-                    repo.tech_leads.forEach(username => userSet.add(username));
-                }
-                if (repo.contributors) {
-                    repo.contributors.forEach(username => userSet.add(username));
-                }
-            }
-            
-            allUsernames = Array.from(userSet); // store for later
-            allUsernames.sort(); // sort alphabetically
-            console.log("Found Users:", allUsernames);
-
-            // get both dropdown elements
-            const teamSelect = document.getElementById('teamUserSelect');
-            const metricsSelect = document.getElementById('metricsUserSelect');
-
-            // clear any existing options (except 'Overall Team')
-            teamSelect.options.length = 1;
-            metricsSelect.options.length = 1;
-
-            // add new options for each user
-            allUsernames.forEach(username => {
-                const option = new Option(username, username); // text = username, value = username
-                
-                teamSelect.add(option.cloneNode(true)); // add to team dropdown
-                metricsSelect.add(option.cloneNode(true));  // add to metrics dropdown
-            });
-        }
-
-
-        /**
-         * Parses the "wide" CSV data (from PapaParse) into the required nested object.
-         > @param {Array<object>} papaData - The array of row-objects from Papa.parse.
-         * @returns {object} Data structured as { username: { metric: { sprint: rating } } }
-         */
-        function parseManualCsv(papaData) {
+        /* 
+        > gets data from mnual_metrics.csv
+        > expects 4 columns: Sprint,User,Metric,Rating
+        > data collected from google form sent out each sprint
+        > parses data into an object for easy access
+        */
+        
+        function parseManualCsv(csv) {
+            const rows = csv.trim().split('\n');
             const data = {};
 
-            // map Chart IDs to the CSV Column Names, will need to update as we add more to the google form
-            const metricColumnMap = {
-                'clientSatisfaction': 'How satisfied are you with the project advancement this week?',
-                'teamSatisfaction': 'How confident do you feel in your team collaboration',
-                'collaboration': 'Do you feel all developers are contributing equally?',
-                'sprintConfidence': 'How confident are you in your issues for this sprint',
-                'goalAchievement': 'Did you complete your issues for this previous sprint?'
-            };
+            // skip header row
+            for (let i = 1; i < rows.length; i++) {
+                const parts = rows[i].split(',');
+               
+                // expecting Sprint, User, Metric , Rating
+                if (parts.length < 4) continue;
+                
+                const sprint = parseInt(parts[0].trim());
+                const user = parts[1].trim();
+                const metric = parts[1].trim();
+                const rating = parseFloat(parts[2].trim());
+                
+                // making sure data is valid
+                if (isNaN(sprint) || isNaN(rating) || !metric || !user) continue;
 
-            for (const row of papaData) {
-                // find the user's GitHub username from the csv
-                const username = row['Github Username']; 
 
-                const timestamp = row.Timestamp;
-                const sprintIndex = getSprintFromTimestamp(timestamp);
-                const sprintKey = (sprintIndex !== null) ? sprintIndex + 1 : null;
-
-                // skip if we can't identify the user or sprint
-                if (!username || sprintKey === null) {
-                    continue;
+                // creates a user or metric object if it doesn't exist to ensure rating can be assigned
+                if(!data[user]){
+                  data[user] = {};
                 }
-
-                if (!data[username]) data[username] = {};
-
-                // loop through the 5 metric mappings
-                for (const [metricKey, columnName] of Object.entries(metricColumnMap)) {
-                    const rating = parseFloat(row[columnName]);
-
-                    if (!isNaN(rating)) {
-                        if (!data[username][metricKey]) {
-                            data[username][metricKey] = {};
-                        }
-                        data[username][metricKey][sprintKey] = rating;
-                    }
+                if (!data[metric]) {
+                    data[metric] = {};
                 }
+                
+                data[metric][sprint] = rating;
             }
-            console.log("Parsed Manual Metrics (Wide):", data);
             return data;
         }
 
-
-        /**
-         * creates or updates a manual metric chart.
-         > @param {string} id - The canvas element ID for the chart.
-         > @param {string} label - The metric label (e.g., "Client Satisfaction").
-         > @param {number} value - The current rating value.
-         > @param {number} max - The maximum possible rating value.
-         > @param {string} color - The color for the filled portion of the chart.
-         * 
-         */
+        /* 
+        creates or updates a manual metric chart for the Metrics tab
+        > {string} id - the canvas element ID
+        > {string} label - the metric label (e.g., "Client Satisfaction")
+        > {number} value - the current rating value
+        > {number} max - the maximum rating value currently set to 5, update if google form is updated
+        > {string} color - the color for the filled portion of the chart
+        */
         function createOrUpdateManualChart(id, label, value, max, color) {
             const ctx = document.getElementById(id).getContext('2d');
 
+            // if there was already an instance ofthe manual chart delete it before creating updated one to prevent memory leaks
             if (manualChartInstances[id]) {
                 manualChartInstances[id].destroy();
             }
 
-            const titleEl = document.getElementById(id + "Title");
-            if (titleEl) {
-                titleEl.innerText = `${label} (${value.toFixed(1)}/${max})`;
-            }
+            // update chart title with current value/max
+            document.getElementById(id + "Title").innerText = `${label} (${value}/${max})`;
 
             manualChartInstances[id] = new Chart(ctx, {
                 type: 'doughnut', 
@@ -736,7 +663,7 @@ fetch('manual_metrics.csv')
                     labels: [label, 'Remaining'],
                     datasets: [{
                         label: 'Rating (Max ' + max + ')',
-                        data: [value, max - value],
+                        data: [value, max - value], // data for filled and unfilled portions
                         backgroundColor: [color, '#dddddd'], 
                         hoverOffset: 4,
                         borderWidth: 0
@@ -745,15 +672,21 @@ fetch('manual_metrics.csv')
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    circumference: 180, 
+                    // currently semicircle (gauge)
+                    circumference: 180, // if we do 10 as max instead of 5 should change to 360
                     rotation: 270,
-                    cutout: '70%',
+                    cutout: '70%', // thicknes of doughnut
                     plugins: {
-                        legend: { display: false },
-                        title: { display: false },
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: false 
+                        },
                         tooltip: {
                             callbacks: {
-                                label: (tooltipItem) => {
+                                // custome tooltip to create hover feature that displays metric information and value
+                                label: function(tooltipItem) {
                                     return tooltipItem.label === label ? `${label}: ${tooltipItem.formattedValue}` : '';
                                 }
                             }
@@ -763,50 +696,50 @@ fetch('manual_metrics.csv')
             });
         }
 
-        /**
-         * updates all manual charts based on selected user and sprint.
-         */
+        /* async functions used so that we can await fetching and parsing of manual_metrics.csv
+        ️ updates all manual metric charts based on selected user and sprint
+        */
+
         async function updateManualCharts() {
             
-            // check if data is parsed if not, this is the first run and need to parse
-            if (Object.keys(parsedManualMetricsData).length === 0 && rawManualData.length > 0) {
-                 parsedManualMetricsData = parseManualCsv(rawManualData);
-            }
-
+            // if data is not already in memory, load it 
+            if (Object.keys(parsedManualMetricsData).length === 0) {
+                try{
+                  const response = await fetch('manual_metrics.csv');
+                  if(!response.ok){
+                    // if we are unable to fetch file, throw error to be caught
+                    throw new Error('Network response faulty');
+                  }
+                  const csvData = await response.text();
+                  parsedManualMetricsData = parseManualCsv(csvData); // parse and store data in memory
+                } catch(error){
+                  console.error('Error fetching or parsing manual metrics CSV:', error);
+                  document.getElementById('metrics').innerHTML = `<h2>Error loading manual_metrics.csv</h2><p>${error.message}</p>`;
+                  return;
+                }
+              }
+            // get selected sprint and user
             const sprintIndex = parseInt(document.getElementById("metricsSprintSelect").value);
-            const sprint = sprintIndex + 1; // sprints are 1-indexed
-            const user = document.getElementById("metricsUserSelect").value; // 'tm' (team) or a real username
+            const sprint = sprintIndex + 1; // sprints are 1-indexed in manual_metrics.csv
+            const user = document.getElementById("metricsUserSelect").value; // get selected user
             
+            // configurations for each metric chart to be sent to createOrUpdateManualChart
             const metricConfigs = [
-                { id: "clientSatisfaction", label: "Client Satisfaction", color: "mediumorchid", key: "clientSatisfaction" },
-                { id: "teamSatisfaction", label: "Team Satisfaction", color: "lightskyblue", key: "teamSatisfaction" },
+                { id: "clientSatisfaction", label: "Client Satisfaction", color: "mediumorchid", key: "client satisfaction" },
+                { id: "teamSatisfaction", label: "Team Satisfaction", color: "lightskyblue", key: "team satisfaction" },
                 { id: "collaboration", label: "Collaboration", color: "lightgreen", key: "collaboration" },
-                { id: "sprintConfidence", label: "Sprint Confidence", color: "lightpink", key: "sprintConfidence" },
-                { id: "goalAchievement", label: "Goal Achievement", color: "moccasin", key: "goalAchievement" }
+                { id: "sprintConfidence", label: "Sprint Confidence", color: "lightpink", key: "sprint confidence" },
+                { id: "goalAchievement", label: "Goal Achievement", color: "moccasin", key: "goal achievement" }
             ];
 
-            const maxRating = 5.0;
+            const maxRating = 5.0; //change if we set max rating as 10 rather than 5
             
+            // create/update each manual metric chart
             metricConfigs.forEach(config => {
-                let value = 0;
-                
-                if (user === 'tm') {
-                    // "Overall Team" - average all users from our dynamic list
-                    let total = 0;
-                    let count = 0;
-                    allUsernames.forEach(username => { // loop over the user list
-                        const userVal = parsedManualMetricsData[username]?.[config.key]?.[sprint];
-                        if (userVal !== undefined) {
-                            total += userVal;
-                            count++;
-                        }
-                    });
-                    value = count > 0 ? (total / count) : 0;
-                } else {
-                    // individual user selected
-                    value = parsedManualMetricsData[user]?.[config.key]?.[sprint] ?? 0;
-                }
 
+                // access specified user and metric data for selected sprint, default to 0 if not found
+                let value = parsedManualMetricsData[user]?.[config.key]?.[sprint] ?? 0;
+                // make sure max rating is not exceeded
                 value = Math.min(value, maxRating); 
 
                 createOrUpdateManualChart(
@@ -819,31 +752,40 @@ fetch('manual_metrics.csv')
             });
         }
 
-      // --- Team Tab ---
-        /**
-         * updates the metrics display section based on selected user and sprint.
-         */
+        // team tab
 
+        /*
+        > updates the metrics display section in the Team tab
+        > shows ONLY individual user metrics with progress bars compared to team totals
+        */
         function updateMetricsDisplay() {
-            const user = document.getElementById("teamUserSelect").value; // 'tm' or a username
+            const user = document.getElementById("teamUserSelect").value;
             const sprintIndex = parseInt(document.getElementById("teamSprintSelect").value);
             const display = document.getElementById("metricsDisplay");
+
+            // make sure a specific user is selected
+            if (!metricsData || Object.keys(metricsData).length === 0) {
+                display.innerHTML = "<h3>No metrics data loaded. Please select a repository.</h3>";
+                return;
+            }
 
             if (user == 'tm') {
                 display.innerHTML = "<h3>Please select an individual user to view metrics.</h3>";
                 return;
             }
+            // sprint dates for display purposes
             const sprintDates = [
                 "Sep 8 - Sep 22", "Sep 22 - Oct 6", "Oct 6 - Oct 20",
-                "Oct 20 - Nov 3", "Nov 3 - Nov 17", "Nov 17 - Nov 30"
+                "Oct 20 - Nov 3", "Nov 3 - Nov 17", "Nov 17 - Nov 31"
             ];
 
-            // 'user' is the username, so we can display it directly
-            const selectedUserText = user; 
+
+            const selectedUserText = document.getElementById("teamUserSelect").options[document.getElementById("teamUserSelect").selectedIndex].text;
+            // get org and repo names from metricsData.json
             const orgName = metricsData.org || "unknownOrg";
             const repoName = metricsData.repo || "unknownRepo";
             let html = `<h3>Metrics for ${selectedUserText} - Sprint ${sprintIndex + 1} (${sprintDates[sprintIndex]}) | Repo: ${repoName} | Org: ${orgName}</h3><ul>`;
-            
+            // list of metrics to display
             const autoMetrics = [
                 "leadTime", "cycleTime", "deliveryMetrics",
                 "commitFrequency", "issuesOpened", "issuesClosed",
@@ -851,46 +793,57 @@ fetch('manual_metrics.csv')
             ];
 
             autoMetrics.forEach(key => {
-                // construct the key directly: 'metricName_username', maybe better way to do this? unsure
-                const metricKey = `${key}_${user}`; 
-                const value = metricsData[metricKey]?.[sprintIndex];
+                // determine the correct key based on selected user
+                const userMetricKey = Object.keys(metricsData).find(k => k.startsWith(key) && k.includes(user));
+                const value = userMetricKey ? metricsData[userMetricKey][sprintIndex] : undefined;
 
                 if (value === undefined) {
                     html += `<li><strong>${key}:</strong> N/A</li>`;
                     return;
                 }
 
-                // calculate team total by looping through all users
-                let teamTotal = 0;
-                allUsernames.forEach(username => {
-                    const userKey = `${key}_${username}`;
-                    if (metricsData[userKey]?.[sprintIndex] !== undefined) {
-                        teamTotal += metricsData[userKey][sprintIndex];
-                    }
-                });
+                // calculate team total across all users for this metric
+                const teamTotal = Object.keys(metricsData)
+                    .filter(k => k.startsWith(key))
+                    .reduce((sum, k) => {
+                        const val = metricsData[k][sprintIndex];
+                        return sum + (typeof val === "number" ? val : 0);
+                    }, 0);
 
                 let pct = teamTotal > 0 ? (value / teamTotal) * 100 : 0;
+
                 const description = metricDescriptions[key] || "No description available.";
+
                 const userColor = "#eabda8";
                 const teamColor = "#cccccc";
 
+                // add metric with progress bar to html
                 html += `
-                <li>
-                  <strong title="${description}" style="cursor: help;">${key}:</strong> ${value}
-                  <div style="width: 100%; max-width: 300px; height: 15px; border-radius: 8px; overflow: hidden; display: flex; margin-top: 5px;">
-                    <div style="width: ${pct}%; background-color: ${userColor};"></div>
-                    <div style="width: ${100 - pct}%; background-color: ${teamColor};"></div>
-                  </div>
-                  <small>${pct.toFixed(1)}% of team total</small>
-                </li>`;
+            <li>
+              <strong title="${description}" style="cursor: help;">${key}:</strong> ${value}
+              <div style="width: 100%; max-width: 300px; height: 15px; border-radius: 8px; overflow: hidden; display: flex; margin-top: 5px;">
+                <div style="width: ${pct}%; background-color: ${userColor};"></div>
+                <div style="width: ${100 - pct}%; background-color: ${teamColor};"></div>
+              </div>
+              <small>${pct.toFixed(1)}% of team total</small>
+            </li>
+          `;
+
             });
 
             html += "</ul>";
             display.innerHTML = html;
         }
 
+        /* creates or updates the time-based metrics chart in the Team tab
+        ️> {array} chartLabels - labels for the metric names (x-axis)
+        ️> {string} datasetLabels - label for the dataset (e.g "Team Lead - Sprint 1")
+        ️> {array} dataValues - data values for the bar chart (y-axis)
+        */
         function createOrUpdateTimeChart(chartLabels, datasetLabels, dataValues) {
-            if (timeChartInstance) {
+            
+          // if chart already exists, destroy it before creating updated one
+          if (timeChartInstance) {
                 timeChartInstance.destroy();
             }
             const ctx = document.getElementById("timeBasedMetrics").getContext("2d");
@@ -908,19 +861,67 @@ fetch('manual_metrics.csv')
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: 2,
+                    resizeDelay: 50,
+                    interaction: {
+                        mode: 'nearest',
+                        axis: 'x',
+                        intersect: false
+                    },
                     scales: {
-                        x: { title: { display: true, text: 'Time-Based Metrics' } },
-                        y: { beginAtZero: true, title: { display: true, text: 'Time (Days)' } }
+                        x: {
+                            ticks: {
+                                color: 'black',
+                                font: {
+                                    size: 15
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Time-Based Metrics'
+                            }
+                        },
+
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: 'black',
+                                font: {
+                                    size: 15
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Time (Days)'
+                            }
+                        }
                     },
                     plugins: {
+                        legend: {
+                            display: true
+                        },
                         tooltip: {
                             mode: 'index',
-                            intersect: false,
+                            intersect: true,
                             callbacks: {
-                                afterBody: (tooltipItems) => {
-                                    const keyMap = { "Lead Time": "leadTime", "Cycle Time": "cycleTime", "Delivery Metrics": "deliveryMetrics", "Issue Time Resolved": "issueTimeResolved", "PR Time Merged": "prTimeMerged" };
-                                    return metricDescriptions[keyMap[tooltipItems[0].label]] || '';
+                              // hover descriptions for metrics, currently not completely working
+                                afterBody: function(tooltipItem) {
+                                    const timeMetricKeyMap = {
+                                        "Lead Time": "leadTime",
+                                        "Cycle Time": "cycleTime",
+                                        "Delivery Metrics": "deliveryMetrics",
+                                        "Issue Time Resolved": "issueTimeResolved",
+                                        "PR Time Merged": "prTimeMerged"
+                                    };
+                                    const dataIndex = tooltipItem[0].dataIndex;
+                                    const chart = tooltipItem[0].chart;
+                                    const label = chart.data.labels[dataIndex];
+                                    const key = timeMetricKeyMap[label];
+                                    const description = metricDescriptions[key] || 'No description';
+                                    return [description];
+
+
                                 }
                             }
                         }
@@ -928,9 +929,15 @@ fetch('manual_metrics.csv')
                 }
             });
         }
-
+        /* creates or updates volume-based metrics bar chart
+        > {array} chartLabels - labels for the metric names (x-axis)
+        ️> {string} datasetLabels - label for the dataset (e.g "Team Lead - Sprint 1")
+        ️> {array} dataValues - data values for the bar chart (y-axis)
+        */
         function createOrUpdateVolumeChart(chartLabels, datasetLabels, dataValues) {
-            if (volumeChartInstance) {
+          
+          // if chart already exists, destroy it before creating updated one
+          if (volumeChartInstance) {
                 volumeChartInstance.destroy();
             }
             const ctx = document.getElementById("volumeBasedMetrics").getContext("2d");
@@ -948,19 +955,64 @@ fetch('manual_metrics.csv')
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: 2,
+                    resizeDelay: 50,
+                    interaction: {
+                        mode: 'nearest',
+                        axis: 'x',
+                        intersect: false
+                    },
                     scales: {
-                        x: { title: { display: true, text: 'Volume-Based Metrics' } },
-                        y: { beginAtZero: true, title: { display: true, text: 'Count' } }
+                        x: {
+                            ticks: {
+                                color: 'black',
+                                font: {
+                                    size: 15
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Volume-Based Metrics'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: 'black',
+                                font: {
+                                    size: 15
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Count'
+                            }
+                        }
                     },
                     plugins: {
+                        legend: {
+                            display: true
+                        },
                         tooltip: {
                             mode: 'index',
-                            intersect: false,
+                            intersect: true,
                             callbacks: {
-                                afterBody: (tooltipItems) => {
-                                    const keyMap = { "Delivery Metrics": "deliveryMetrics", "Commit Frequency": "commitFrequency", "Issues Opened": "issuesOpened", "Issues Closed": "issuesClosed", "WIP": "wip" };
-                                    return metricDescriptions[keyMap[tooltipItems[0].label]] || '';
+                              // hover feature for metric information, currently not completely functional
+                                afterBody: function(tooltipItem) {
+                                    const volumeMetricKeyMap = {
+                                        "Delivery Metrics": "deliveryMetrics",
+                                        "Commit Frequency": "commitFrequency",
+                                        "Issues Opened": "issuesOpened",
+                                        "Issues Closed": "issuesClosed",
+                                        "WIP": "wip"
+                                    };
+                                    const dataIndex = tooltipItem[0].dataIndex;
+                                    const chart = tooltipItem[0].chart;
+                                    const label = chart.data.labels[dataIndex];
+                                    const key = volumeMetricKeyMap[label];
+                                    const description = metricDescriptions[key] || 'No description';
+                                    return [description];
                                 }
                             }
                         }
@@ -968,143 +1020,306 @@ fetch('manual_metrics.csv')
                 }
             });
         }
-
+        /* team tab updator
+        > gather information based on filter and calls updators
+        */
         function updateTeamTab() {
-            updateMetricsDisplay();
+          if (!metricsData || Object.keys(metricsData).length === 0) {
+              console.warn("⚠️ No metrics data loaded yet.");
+              return;
+          }
+          
+          updateMetricsDisplay();
 
-            const user = document.getElementById("teamUserSelect").value; // 'tm' or username
-            const sprintIndex = parseInt(document.getElementById("teamSprintSelect").value);
-            
-            const timeBasedLabels = [ "Lead Time", "Cycle Time", "Delivery Metrics", "Issue Time Resolved", "PR Time Merged" ];
-            const metricKeys = [ "leadTime", "cycleTime", "deliveryMetrics", "issueTimeResolved", "prTimeMerged" ];
-            const volumeKeys = [ "deliveryMetrics", "commitFrequency", "issuesOpened", "issuesClosed", "wip" ];
-            const volumeBasedLabels = [ "Delivery Metrics", "Commit Frequency", "Issues Opened", "Issues Closed", "WIP" ];
+          // what sprint and what user (or team), later will probably add repo as selection (so user would select repo then select the desired user)
+          const user = document.getElementById("teamUserSelect").value;
+          const sprintIndex = parseInt(document.getElementById("teamSprintSelect").value);
+          const selectedUserText = document.getElementById("teamUserSelect").options[document.getElementById("teamUserSelect").selectedIndex].text;
 
-            let timeBasedData = [];
-            let volumeBasedData = [];
-            let chartLabel = '';
+          // what metrics are going on each chart
+          const timeBasedLabels = [
+              "Lead Time", "Cycle Time", "Delivery Metrics",
+              "Issue Time Resolved", "PR Time Merged"
+          ];
+          const metricKeys = [
+              "leadTime", "cycleTime", "deliveryMetrics",
+              "issueTimeResolved", "prTimeMerged"
+          ];
+          const volumeKeys = [
+              "deliveryMetrics", "commitFrequency", "issuesOpened", "issuesClosed", "wip"            ];
+            const volumeBasedLabels = [
+                "Delivery Metrics", "Commit Frequency", "Issues Opened", "Issues Closed", "WIP"
+          ];
 
-            if (user == 'tm') {
-                // --- "Overall Team" is selected ---
-                chartLabel = `Overall Team Average - Sprint ${sprintIndex + 1}`;
-                
-                // calculate avg for time-based metrics
-                timeBasedData = metricKeys.map(key => {
-                    let total = 0, count = 0;
-                    allUsernames.forEach(username => { // use user list
-                        const userKey = `${key}_${username}`;
-                        if (metricsData[userKey]?.[sprintIndex] !== undefined) {
-                            total += metricsData[userKey][sprintIndex];
-                            count++;
-                        }
-                    });
-                    return count > 0 ? (total / count) : 0;
-                });
-                
-                // calculate sum for volume-based metrics
-                volumeBasedData = volumeKeys.map(key => {
-                    let total = 0;
-                    allUsernames.forEach(username => { // use user list
-                        const userKey = `${key}_${username}`;
-                        if (metricsData[userKey]?.[sprintIndex] !== undefined) {
-                            total += metricsData[userKey][sprintIndex];
-                        }
-                    });
-                    return total;
-                });
-            } else {
-                // --- individual user is selected ---
-                chartLabel = `${user} - Sprint ${sprintIndex + 1}`;
-                
-                // get user's time data
-                timeBasedData = metricKeys.map(key => {
-                    const userKey = `${key}_${user}`; // e.g., "leadTime_hcaballero2"
-                    return metricsData[userKey]?.[sprintIndex] ?? 0;
-                });
-                
-                // get user's volume data
-                volumeBasedData = volumeKeys.map(key => {
-                    const userKey = `${key}_${user}`; // e.g., "commitFrequency_hcaballero2"
-                    return metricsData[userKey]?.[sprintIndex] ?? 0;
-                });
-            }
-            createOrUpdateTimeChart(timeBasedLabels, chartLabel, timeBasedData);
-            createOrUpdateVolumeChart(volumeBasedLabels, chartLabel, volumeBasedData);
+          let timeBasedData = [];
+          let volumeBasedData = [];
+          let chartLabel = '';
+
+          // if selected user is total team calculate total
+          if (user == 'tm') {
+              chartLabel = `Overall Team Average - Sprint ${sprintIndex + 1}`;
+              const userKeys = Object.keys(metricsData).filter(k => k.includes("_"));
+              const users = [...new Set(userKeys.map(k => k.split("_")[1]))];
+              timeBasedData = metricKeys.map(key => {
+                  let total = 0;
+                  let count = 0;
+                  Object.keys(metricsData).forEach(k => {
+                      if (k.startsWith(key)) {
+                          const val = metricsData[k][sprintIndex];
+                          if (!isNaN(val)) {
+                              total += val;
+                              count++;
+                          }
+                      }
+                  });
+                  return count > 0 ? (total / count) : 0;
+              });
+              volumeBasedData = volumeKeys.map(key => {
+                  let total = 0;
+                  Object.keys(metricsData).forEach(k => {
+                      if (k.startsWith(key)) {
+                          const val = metricsData[k][sprintIndex];
+                          if (!isNaN(val)) total += val;
+                      }
+                  });
+                  return total;
+              });
+          } else { // if not the team then get the specified user
+              chartLabel = `${selectedUserText} - Sprint ${sprintIndex + 1}`;
+              timeBasedData = metricKeys.map(key => {
+                  const metricKey = Object.keys(metricsData).find(k => k.startsWith(key) && k.includes(user));
+                  return metricKey ? metricsData[metricKey][sprintIndex] : 0;
+              });
+              volumeBasedData = volumeKeys.map(key => {
+                  const metricKey = Object.keys(metricsData).find(k => k.startsWith(key) && k.includes(user));
+                  return metricKey ? metricsData[metricKey][sprintIndex] : 0;
+              });
+          }
+          // create the charts with the gathered data
+          createOrUpdateTimeChart(timeBasedLabels, chartLabel, timeBasedData);
+          createOrUpdateVolumeChart(volumeBasedLabels, chartLabel, volumeBasedData);
         }
 
-      // --- Dashboard Initialization ---
+    /* =====================
+       Repository & User Loader (Team)
+       Reads oss_slu_repos.json and populates Team dropdowns and loads corresponding metrics_<repo>.json
+       ===================== */
+    async function loadRepositoriesAndUsers() {
+        try {
+            const response = await fetch('oss_slu_repos.json');
+            if (!response.ok) {
+                throw new Error(`Failed to load oss_slu_repos.json: ${response.status}`);
+            }
 
-        async function initializeDashboard() {
-            try {
-                // fetch all data sources in parallel, need to be updated in main or will not work
-                const [metricsResponse, manualCsvResponse, repoResponse] = await Promise.all([
-                    fetch('metrics.json'),
-                    fetch('manual_metrics.csv'),
-                    fetch('oss_slu_repos.json')
-                ]);
+            const reposData = await response.json();
+            const repoSelect = document.getElementById("teamRepoSelect");
+            const userSelect = document.getElementById("teamUserSelect");
 
-                // --- Process Team Metrics ---
-                if (!metricsResponse.ok) throw new Error(`HTTP error! status: ${metricsResponse.status}`);
-                metricsData = await metricsResponse.json();
-                console.log("Loaded metrics.json");
+            // Clear old options
+            repoSelect.innerHTML = '<option value="" disabled selected>Select Repository</option>';
+            userSelect.innerHTML = '<option value="" disabled selected>Select User</option>';
 
-                // --- Process Repo Data (for User Dropdowns) ---
-                if (!repoResponse.ok) throw new Error(`HTTP error! status: ${repoResponse.status}`);
-                repoData = await repoResponse.json();
-                console.log("Loaded oss_slu_repos.json");
-                
-                // --- Process Manual CSV (Raw Text) ---
-                if (!manualCsvResponse.ok) throw new Error(`HTTP error! status: ${manualCsvResponse.status}`);
-                const csvData = await manualCsvResponse.text();
-                
-                const parsed = Papa.parse(csvData, {
-                    header: true,
-                    skipEmptyLines: true
-                });
-                
-                if (parsed.errors.length) {
-                    console.error("PapaParse Errors:", parsed.errors);
-                    throw new Error("Failed to parse manual_metrics.csv.");
+            // Populate repositories
+            Object.keys(reposData).forEach(repo => {
+                const opt = document.createElement("option");
+                opt.value = repo;
+                opt.textContent = repo;
+                repoSelect.appendChild(opt);
+            });
+
+            // Update users when a repository is selected
+            repoSelect.addEventListener("change", async () => {
+                const selectedRepo = repoSelect.value;
+                const repoInfo = reposData[selectedRepo];
+
+                // Load metrics for this repo into metricsData by fetching metrics_<repo>.json
+                await fetchMetricsForRepo(selectedRepo);
+
+                userSelect.innerHTML = '<option value="tm" selected>Overall Team</option>';
+
+                if (repoInfo) {
+                    // Add contributors
+                    repoInfo.contributors.forEach(user => {
+                        const opt = document.createElement("option");
+                        opt.value = user;
+                        opt.textContent = user;
+                        userSelect.appendChild(opt);
+                    });
+
+                    // Add tech leads (with _tl suffix)
+                    repoInfo.tech_leads.forEach(user => {
+                        const opt = document.createElement("option");
+                        opt.value = user;
+                        opt.textContent = user.replace("_tl", " (Tech Lead)");
+                        userSelect.appendChild(opt);
+                    });
                 }
-                rawManualData = parsed.data; // store raw parsed data
-                console.log("Parsed manual_metrics.csv");
 
-                
-                // builds the user dropdowns from oss_slu_repos.json
-                populateUserDropdowns(repoData); 
-                
-                // now that dropdowns are built, parse the manual csv data
-                parsedManualMetricsData = parseManualCsv(rawManualData);
-
-                // initial update
+                // Trigger update after user list refresh
                 updateTeamTab();
-                updateManualCharts();
+            });
 
-                // add all event listeners
-                document.getElementById("teamUserSelect").addEventListener("change", updateTeamTab);
-                document.getElementById("teamSprintSelect").addEventListener("change", updateTeamTab);
-                document.getElementById("metricsUserSelect").addEventListener("change", updateManualCharts);
-                document.getElementById("metricsSprintSelect").addEventListener("change", updateManualCharts);
-
-                // fullscreen resize listener
-                document.addEventListener('fullscreenchange', () => {
-                    if (document.fullscreenElement) {
-                        setTimeout(() => {
-                            if (timeChartInstance) timeChartInstance.resize();
-                            if (volumeChartInstance) volumeChartInstance.resize();
-                            Object.values(manualChartInstances).forEach(chart => chart.resize());
-                        }, 200);
-                    }
-                });
-
-            } catch (error) {
-                console.error('Failed to initialize dashboard:', error);
-                document.querySelector('.content').innerHTML = `<h1>Fatal Error: Could not load initial data</h1><p>Please ensure metrics.json, manual_metrics.csv, and oss_slu_repos.json are in the same directory.</p><p>${error.message}</p>`;
+            // If there's at least one repo, select the first one automatically
+            const repoKeys = Object.keys(reposData);
+            if (repoKeys.length > 0) {
+                repoSelect.value = repoKeys[0];
+                // trigger change to populate users and load metrics
+                const event = new Event('change');
+                repoSelect.dispatchEvent(event);
             }
+
+            // When user or sprint changes, update chart
+            userSelect.addEventListener("change", updateTeamTab);
+            document.getElementById("teamSprintSelect").addEventListener("change", updateTeamTab);
+
+            console.log("Loaded repositories and users from oss_slu_repos.json (Team)");
+        } catch (error) {
+            console.error("Error loading repositories (Team):", error);
         }
-        
-        // start the dashboard yipppeeee
-        initializeDashboard();
+    }
+
+    /* =====================
+       Repository & User Loader (Metrics Tab)
+       Reads oss_slu_repos.json and populates Metrics dropdowns and loads corresponding metrics_<repo>.json
+       ===================== */
+    async function loadRepositoriesAndUsersForMetrics() {
+        try {
+            const response = await fetch('oss_slu_repos.json');
+            if (!response.ok) {
+                throw new Error(`Failed to load oss_slu_repos.json: ${response.status}`);
+            }
+
+            const reposData = await response.json();
+            const repoSelect = document.getElementById("metricsRepoSelect");
+            const userSelect = document.getElementById("metricsUserSelect");
+
+            // Clear old options
+            repoSelect.innerHTML = '<option value="" disabled selected>Select Repository</option>';
+            userSelect.innerHTML = '<option value="" disabled selected>Select User</option>';
+
+            // Populate repositories
+            Object.keys(reposData).forEach(repo => {
+                const opt = document.createElement("option");
+                opt.value = repo;
+                opt.textContent = repo;
+                repoSelect.appendChild(opt);
+            });
+
+            // Update users when a repository is selected
+            repoSelect.addEventListener("change", async () => {
+                const selectedRepo = repoSelect.value;
+                const repoInfo = reposData[selectedRepo];
+
+                // Load metrics for this repo into metricsData by fetching metrics_<repo>.json
+                await fetchMetricsForRepo(selectedRepo);
+
+                userSelect.innerHTML = '<option value="tm" selected>Overall Team</option>';
+
+                if (repoInfo) {
+                    // Add contributors
+                    repoInfo.contributors.forEach(user => {
+                        const opt = document.createElement("option");
+                        opt.value = user;
+                        opt.textContent = user;
+                        userSelect.appendChild(opt);
+                    });
+
+                    // Add tech leads (with _tl suffix)
+                    repoInfo.tech_leads.forEach(user => {
+                        const opt = document.createElement("option");
+                        opt.value = user;
+                        opt.textContent = user.replace("_tl", " (Tech Lead)");
+                        userSelect.appendChild(opt);
+                    });
+                }
+
+                // Trigger update after user list refresh
+                updateManualCharts();
+            });
+
+            // If there's at least one repo, select the first one automatically
+            const repoKeys = Object.keys(reposData);
+            if (repoKeys.length > 0) {
+                repoSelect.value = repoKeys[0];
+                // trigger change to populate users and load metrics
+                const event = new Event('change');
+                repoSelect.dispatchEvent(event);
+            }
+
+            // When user or sprint changes, update manual charts
+            userSelect.addEventListener("change", updateManualCharts);
+            document.getElementById("metricsSprintSelect").addEventListener("change", updateManualCharts);
+
+            console.log("✅ Loaded repositories and users from oss_slu_repos.json (Metrics)");
+        } catch (error) {
+            console.error("❌ Error loading repositories (Metrics):", error);
+        }
+    }
+
+    /* Fetch metrics_<repo>.json and store into metricsData, then update tabs */
+    async function fetchMetricsForRepo(repoName) {
+        if (!repoName) return;
+        const filename = `metrics_${repoName}.json`;
+        try {
+            const resp = await fetch(filename);
+            if (!resp.ok) {
+                console.warn(`Could not load ${filename} (status ${resp.status}), leaving metricsData as-is.`);
+                return;
+            }
+            const data = await resp.json();
+            // set metricsData to loaded file
+            metricsData = data;
+            console.log(`✅ Loaded metrics for repo: ${repoName}`);
+            // update displays
+            updateTeamTab();
+            updateManualCharts();
+        } catch (err) {
+            console.error(`Error fetching ${filename}:`, err);
+        }
+    }
+
+  /* initialized dashboard, runs when page loads */
+  async function initializeDashboard() {
+      // check for metrics.json
+      try {
+          // load repositories/users before updating tabs/charts
+          await loadRepositoriesAndUsers();
+          await loadRepositoriesAndUsersForMetrics();
+
+          // update tabs/charts
+          const teamRepoSelect = document.getElementById("teamRepoSelect");
+          const firstRepo = teamRepoSelect.value;
+          if (firstRepo) {
+              await fetchMetricsForRepo(firstRepo);
+          }
+
+          // creates event listeners to metrics tab filters
+          document.getElementById("teamUserSelect").addEventListener("change", updateTeamTab);
+          document.getElementById("teamSprintSelect").addEventListener("change", updateTeamTab);
+          document.getElementById("metricsUserSelect").addEventListener("change", updateManualCharts);
+          document.getElementById("metricsSprintSelect").addEventListener("change", updateManualCharts);
+
+          // creates listen to resize chart on fullscreen (had a rendering bug and used this as a solution)
+          document.addEventListener('fullscreenchange', () => {
+            if (document.fullscreenElement) {
+              setTimeout(() => {
+                if (timeChartInstance) {
+                    timeChartInstance.resize();
+                }
+                if (volumeChartInstance) {
+                    volumeChartInstance.resize();
+                }
+                Object.values(manualChartInstances).forEach(chart => chart.resize());
+              }, 200);
+            }
+          });
+      } catch (error) {
+         console.error('Failed to load initial metrics.json', error);
+        document.querySelector('.content').innerHTML = `<h1>Fatal Error: Could not load metrics.json</h1><p>Please ensure the file is in the same directory and you are running a local server.</p><p>${error.message}</p>`;
+      }
+  }
+  // start the dashboard yipppeeee
+  initializeDashboard();
 
     </script>
 </body>
