@@ -1,326 +1,33 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title> Metrics Dashboard </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Analytics Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
     <style>
-      body { 
-        font-family: Georgia, 'Times New Roman', Times, serif; 
-        margin: 0;
-        display: flex;            
-        height: 100vh;
-        overflow: hidden;
-       }
-      
-      .sidebar {
-        width: 150px;
-        background-color: #550C18;
-        color: #ffffff;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 1rem;
-        flex-shrink: 0;
-      }
-
-      .sidebar h2 {
-        color: #ffffff;
-        text-align: center;
-        margin-bottom: 1.5rem;
-      }
-
-      .sidebar button {
-        width: 90%;
-        background: none;
-        border: none;
-        color: #ffffff;
-        text-align: center;
-        padding: 0.7rem 0.2rem;
-        margin: 0.2rem 0;
-        cursor: pointer;
-        border-radius: 6px;
-        font-size: 0.9rem;
-      }
-
-      .sidebar button:hover,
-      .sidebar button.active {
-        background-color: #2e1010;
-      }
-      
-      .content {
-        flex-grow: 1;
-        padding: 1.5rem 2rem;
-        overflow-y: auto;
-        background: #e2e8dd;
-      }
-
-      canvas {
-        max-width: 250px;
-        max-height: 250px;
-      }
-
-      .chart-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 1.5rem; 
-        margin-bottom: 2rem; 
-      }
-
-      select {
-        margin: 0.5rem;
-        padding: 0.4rem;
-      }
-
-      #metricsDisplay {
-        margin-top: 1rem;
-        padding: 1rem;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        background: #f9f9f9;
-      }
-
-      #metricsDisplay ul {
-        list-style: none;
-        padding: 0;
-      }
-
-      #metricsDisplay li {
-        margin: 0.4rem 0;
-      }
-    </style>
-  </head>
-  <body>
-
-    <div class="sidebar">
-      <h2>Dashboard</h2>
-      <button class="tab-button active" data-tab="home">Home</button>
-      <button class="tab-button" data-tab="team">Team</button>
-      <button class="tab-button" data-tab="metrics">Metrics</button>
-    </div>
-
-    <div class="content">
-      <div id="home" class="tab-content" style="display: block;">
-        <h1>Home</h1>
-        <p>Add to later.</p>
-      </div>
-
-    <div id="team" class="tab-content" style="display: none;">
-        <h1>Team Metrics</h1>
-        <h2>Select User & Sprint</h2>
-        <label for="userSelect">User:</label>
-        <select id="userSelect">
-          <option value="tl">Team Lead</option>
-          <option value="dev-1">Developer 1</option>
-          <option value="dev-2">Developer 2</option>
-        </select>
-
-        <label for="sprintSelect">Sprint:</label>
-        <select id="sprintSelect">
-          <option value="0">Sprint 1</option>
-          <option value="1">Sprint 2</option>
-          <option value="2">Sprint 3</option>
-          <option value="3">Sprint 4</option>
-          <option value="4">Sprint 5</option>
-          <option value="5">Sprint 6</option>
-        </select>
-
-        <div id="metricsDisplay"></div>
-      </div>
-
-      <div id="metrics" class="tab-content" style="display: none;">
-        <h1>Manual Metrics</h1>
-        <div class="chart-grid">
-          <canvas id="clientSatisfaction"></canvas>
-          <canvas id="teamSatisfaction"></canvas>
-          <canvas id="collaboration"></canvas>
-          <canvas id="sprintConfidence"></canvas>
-          <canvas id="goalAchievement"></canvas>
-        </div>
-      </div>
-    </div>
-
-<script>
-
-const buttons = document.querySelectorAll(".tab-button");
-const tabs = document.querySelectorAll(".tab-content");
-
-buttons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    buttons.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-
-    tabs.forEach((tab) => (tab.style.display = "none"));
-    document.getElementById(btn.dataset.tab).style.display = "block";
-  });
-});
-
-function createChart(id, label, data, color) {
-  new Chart(document.getElementById(id), {
-    type: 'bar',
-    data: {
-      labels: ['Sprint 1', 'Sprint 2', 'Sprint 3', 'Sprint 4', 'Sprint 5', 'Sprint 6'],
-      datasets: [{
-        label: label,
-        data: data,
-        backgroundColor: color
-      }]
-    }
-  });
-}
-    
-fetch('manual_metrics.csv')
-  .then(response => response.text())
-  .then(csv => {
-    const rows = csv.trim().split("\n").slice(1);
-    const metrics = {
-      "client satisfaction": [],
-      "team satisfaction": [],
-      "collaboration": [],
-      "sprint confidence": [],
-      "goal achievement": []
-    };
-
-    const labels = ["Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4", "Sprint 5", "Sprint 6"];
-    rows.forEach(row => {
-      cols = row.split(",");
-      if (cols[1] == "client satisfaction") {
-        metrics["client satisfaction"].push(parseFloat(cols[2]))
-      } else if (cols[1] == "team satisfaction") {
-        metrics["team satisfaction"].push(parseFloat(cols[2]))
-      } else if (cols[1] == "collaboration") {
-        metrics["collaboration"].push(parseFloat(cols[2]))
-      } else if (cols[1] == "sprint confidence") {
-        metrics["sprint confidence"].push(parseFloat(cols[2]))
-      } else {
-        metrics["goal achievement"].push(parseFloat(cols[2]))
-      }
-    })
-
-  createChart("clientSatisfaction", "Client Satisfaction", metrics["client satisfaction"], "mediumorchid");
-  createChart("teamSatisfaction", "Team Satisfaction", metrics["team satisfaction"], "lightskyblue");
-  createChart("collaboration", "Collaboration", metrics["collaboration"], "lightgreen");
-  createChart("sprintConfidence", "Sprint Confidence", metrics["sprint confidence"], "lightpink");
-  createChart("goalAchievement", "Goal Achievement", metrics["goal achievement"], "moccasin");
-  })
-
-  let metricsData = {};
-
-  const metricDescriptions = {
-    leadTime: "Time from task creation to completion.",
-    cycleTime: "Time from when the task was started to task completion.",
-    deliveryMetrics: "Time to code commit to deployment.",
-    commitFrequency: "Number of commits made during the sprint.",
-    issuesOpened: "Number of issues open during the sprint.",
-    issuesClosed: "Number of issues resolved during the sprint.",
-    issueTimeResolved: "Average time taken to resolve issues.",
-    prTimeMerged: "Average time from pull request creation to merge.",
-    wip: "Number of work items currently in progress.",
-    velocity: "Number of commits per sprint.",
-    defectRate: "Proportion of closed issues with bugs.",
-    blockedIssues: "Number of issues that were blocked during the sprint."
-  };
-
-  function updateMetricsDisplay() {
-    const user = document.getElementById("userSelect").value;
-    const sprintIndex = parseInt(document.getElementById("sprintSelect").value);
-    const display = document.getElementById("metricsDisplay");
-    const sprintDates = [
-      "Sep 8 - Sep 22", "Sep 22 - Oct 6", "Oct 6 - Oct 20",
-      "Oct 20 - Nov 3", "Nov 3 - Nov 17", "Nov 17 - Nov 31"
-    ];
-
-    const orgName = metricsData.org || "unknownOrg";
-    const repoName = metricsData.repo || "unknownRepo";
-    let html = `<h3>Metrics for ${user.toUpperCase()} - Sprint ${sprintIndex + 1} (${sprintDates[sprintIndex]}) | Repo: ${repoName} | Org: ${orgName}</h3><ul>`;
-
-    const autoMetrics = [
-      "leadTime", "cycleTime", "deliveryMetrics",
-      "commitFrequency", "issuesOpened", "issuesClosed",
-      "issueTimeResolved", "prTimeMerged", "wip"
-    ];
-
-    autoMetrics.forEach(key => {
-      const metricKey =
-        user === "tl" ? `${key}-tl` :
-        user === "dev-1" ? `${key}-1` : `${key}-2`;
-
-      const value = metricsData[metricKey]?.[sprintIndex];
-
-      if (value === undefined) {
-        html += `<li><strong>${key}:</strong> N/A</li>`;
-        return;
-      }
-
-      const teamKeys = [`${key}-tl`, `${key}-1`, `${key}-2`];
-      let teamTotal = 0;
-      teamKeys.forEach(k => {
-        if (metricsData[k]?.[sprintIndex] !== undefined) {
-          teamTotal += metricsData[k][sprintIndex];
-        }
-      });
-
-      let pct = teamTotal > 0 ? (value / teamTotal) * 100 : 0;
-
-      const description = metricDescriptions[key] || "No description available.";
-
-      const userColor = "#eabda8";
-      const teamColor = "#cccccc";
-
-      html += `
-        <li>
-          <strong title="${description}" style="cursor: help;">${key}:</strong> ${value}
-          <div style="width: 100%; max-width: 300px; height: 15px; border-radius: 8px; overflow: hidden; display: flex; margin-top: 5px;">
-            <div style="width: ${pct}%; background-color: ${userColor};"></div>
-            <div style="width: ${100 - pct}%; background-color: ${teamColor};"></div>
-          </div>
-          <small>${pct.toFixed(1)}% of team total</small>
-        </li>
-      `;
-
-    });
-
-    html += "</ul>";
-    display.innerHTML = html;
-  }
-
-  fetch("metrics.json")
-    .then (response => response.json())
-    .then(jsonData => {
-      metricsData = jsonData;
-      updateMetricsDisplay();
-
-      document.getElementById("userSelect").addEventListener("change", updateMetricsDisplay);
-      document.getElementById("sprintSelect").addEventListener("change", updateMetricsDisplay);
-  });
-
-  </script>
-  </body>
-  </html>
-      /* basic styling for body */
         body {
             font-family: Georgia, 'Times New Roman', Times, serif;
             margin: 0;
             display: flex;
             height: 100vh;
-            overflow: hidden; /* only main content scrolls */
+            overflow: hidden;
         }
-
-        /* page headers */
 
         h1 {
             background-color: #550C18;
             color: white;
             padding: 20px;
             border-radius: 8px;
+            margin: 0 0 1rem 0;
         }
 
         h2 {
             color: #550C18;
             margin-top: 0;
         }
-
-        /* sidebar nav styling */
 
         .sidebar {
             width: 150px;
@@ -330,13 +37,14 @@ fetch('manual_metrics.csv')
             flex-direction: column;
             align-items: center;
             padding-top: 1rem;
-            flex-shrink: 0; /* keeps sidebar the same size */
+            flex-shrink: 0;
         }
 
         .sidebar h2 {
             color: #ffffff;
             text-align: center;
             margin-bottom: 1.5rem;
+            font-size: 1rem;
         }
 
         .sidebar button {
@@ -356,37 +64,38 @@ fetch('manual_metrics.csv')
         .sidebar button.active {
             background-color: #2e1010;
         }
-        /* main content styling */
+
         .content {
-            flex-grow: 1; /* content takes up all available space */
+            flex-grow: 1;
             padding: 1.5rem 2rem;
             overflow-y: auto;
             background: #e2e8dd;
         }
 
-        /* team tab chart styling */
-        #team .chart-container {
+        select {
+            margin: 0.5rem;
+            padding: 0.4rem;
+        }
+
+        .chart-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
             align-items: stretch;
             gap: 30px;
             width: 100%;
-            height: calc(100vh - 250px); /* dynamic height calculation */
+            height: calc(100vh - 250px);
             margin-top: 20px;
         }
 
-        /* team tab individual chart styling */
         #timeBasedMetrics,
         #volumeBasedMetrics {
-
-            flex: 1 1 45%; /* flex-grow, flex-shrink, flex-basis */
+            flex: 1 1 45%;
             min-width: 350px;
             height: 100%;
         }
 
-        /* manual metrics tab chart grid styling */
-        #metrics .chart-grid {
+        .chart-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
@@ -396,21 +105,16 @@ fetch('manual_metrics.csv')
             margin-right: auto;
         }
 
-        #metrics .chart-grid > div { /* chart containers */
-            width: 300px; /* ideal width of each chart */
+        .chart-grid > div {
+            width: 300px;
             max-width: 100%;
             margin-bottom: 20px;
             text-align: center;
         }
 
-        #metrics .chart-grid canvas { /* graph specific stylings */
+        .chart-grid canvas {
             width: 100% !important;
             height: 250px !important;
-        }
-
-        select {
-            margin: 0.5rem;
-            padding: 0.4rem;
         }
 
         #metricsDisplay {
@@ -433,22 +137,21 @@ fetch('manual_metrics.csv')
 </head>
 
 <body>
-
     <div class="sidebar">
+        <h2>Dashboard</h2>
         <button class="tab-button active" data-tab="home">Home</button>
         <button class="tab-button" data-tab="team">Team</button>
         <button class="tab-button" data-tab="metrics">Metrics</button>
     </div>
 
     <div class="content">
+        <!-- Home Tab -->
         <div id="home" class="tab-content" style="display: block;">
-            <div class="header-row">
-                <span class="dashboard-tite"> Team Metrics Dashboard </span>
-            </div>
-            <h1>Home</h1>
-            <p>Add to later.</p>
+            <h1>Team Metrics Dashboard</h1>
+            <p>Welcome to the Developer Analytics Dashboard. Use the tabs to navigate between views.</p>
         </div>
 
+        <!-- Team Tab -->
         <div id="team" class="tab-content" style="display: none;">
             <h1>Team Metrics</h1>
             <h2>Select Repository, User & Sprint</h2>
@@ -472,6 +175,7 @@ fetch('manual_metrics.csv')
                 <option value="4">Sprint 5</option>
                 <option value="5">Sprint 6</option>
             </select>
+
             <div class="chart-container">
                 <canvas id="timeBasedMetrics"></canvas>
                 <canvas id="volumeBasedMetrics"></canvas>
@@ -479,11 +183,11 @@ fetch('manual_metrics.csv')
             <div id="metricsDisplay"></div>
         </div>
 
+        <!-- Manual Metrics Tab -->
         <div id="metrics" class="tab-content" style="display: none;">
             <h1>Manual Metrics</h1>
             <h2>Select Repository, User & Sprint</h2>
 
-            <!-- inserted repo + user dropdowns for metrics tab (repo first, user second, sprint third) -->
             <label for="metricsRepoSelect">Repository:</label>
             <select id="metricsRepoSelect">
                 <option value="" disabled selected>Select Repository</option>
@@ -503,6 +207,7 @@ fetch('manual_metrics.csv')
                 <option value="4">Sprint 5</option>
                 <option value="5">Sprint 6</option>
             </select>
+
             <div class="chart-grid">
                 <div>
                     <h3 id="clientSatisfactionTitle">Client Satisfaction</h3>
@@ -529,31 +234,20 @@ fetch('manual_metrics.csv')
     </div>
 
     <script>
-
-      // --- global Variables ---
-
+        // --- Global Variables ---
         const buttons = document.querySelectorAll(".tab-button");
         const tabs = document.querySelectorAll(".tab-content");
-        
-    
-        let parsedManualMetricsData = {}; // { user: { metric: { sprint: rating } } }
-        let metricsData = {};             // { metric_user: [sprint1, sprint2, ...] }
-        let repoData = {};                // Stores oss_slu_repos.json
-        let rawManualData = [];           // Stores raw Papa.parse data from CSV
-        
-        /**
-         > @type {Array<string>}
-         * @description Dynamically built list of all unique usernames.
-         * e.g., ["hcaballero2", "hollowtree11", "viswanathreddy1017_tl"]
-         */
+
+        let parsedManualMetricsData = {};
+        let metricsData = {};
+        let repoData = {};
+        let rawManualData = [];
         let allUsernames = [];
 
-        // chart instances
         let manualChartInstances = {};
         let timeChartInstance = null;
         let volumeChartInstance = null;
 
-        // metric descriptions
         const metricDescriptions = {
             leadTime: "Time from task creation to completion.",
             cycleTime: "Time from when the task was started to task completion.",
@@ -566,8 +260,7 @@ fetch('manual_metrics.csv')
             wip: "Number of work items currently in progress."
         };
 
-      // --- event Listeners ---
-
+        // --- Event Listeners ---
         buttons.forEach((btn) => {
             btn.addEventListener("click", () => {
                 buttons.forEach((b) => b.classList.remove("active"));
@@ -589,47 +282,33 @@ fetch('manual_metrics.csv')
             });
         });
 
-        
-      // --- Manual Metrics Tab ("Metrics") ---
-
-        /**
-         * converts a CSV timestamp into a Sprint index (0-5).
-         > @param {string} timestampStr - The timestamp string from the CSV.
-         * @returns {int|null} The sprint index (0-5) or null if not found.
-         */
+        // --- Manual Metrics Tab Functions ---
         function getSprintFromTimestamp(timestampStr) {
             const date = new Date(timestampStr);
             if (isNaN(date)) return null;
 
-            // hard coding sprints at least for now
             const sprintRanges = [
-                { start: new Date(2025, 8, 8), end: new Date(2025, 8, 22) }, // Sprint 1 (index 0)
-                { start: new Date(2025, 8, 22), end: new Date(2025, 9, 6) },  // Sprint 2 (index 1)
-                { start: new Date(2025, 9, 6), end: new Date(2025, 9, 20) },  // Sprint 3 (index 2)
-                { start: new Date(2025, 9, 20), end: new Date(2025, 10, 3) }, // Sprint 4 (index 3)
-                { start: new Date(2025, 10, 3), end: new Date(2025, 10, 17) }, // Sprint 5 (index 4)
-                { start: new Date(2025, 10, 17), end: new Date(2025, 10, 30) } // Sprint 6 (index 5)
+                { start: new Date(2025, 8, 8), end: new Date(2025, 8, 22) },
+                { start: new Date(2025, 8, 22), end: new Date(2025, 9, 6) },
+                { start: new Date(2025, 9, 6), end: new Date(2025, 9, 20) },
+                { start: new Date(2025, 9, 20), end: new Date(2025, 10, 3) },
+                { start: new Date(2025, 10, 3), end: new Date(2025, 10, 17) },
+                { start: new Date(2025, 10, 17), end: new Date(2025, 10, 31) }
             ];
 
             for (let i = 0; i < sprintRanges.length; i++) {
-                if (date >= sprintRanges[i].start && date < sprintRanges[i].end) {
-                    return i; // Returns the sprint index (0, 1, 2, etc.)
+                if (date >= sprintRanges[i].start && date <= sprintRanges[i].end) {
+                    return i;
                 }
             }
-            if (date.getTime() === sprintRanges[5].end.getTime()) return 5;
             return null;
         }
 
-        /**
-         > @param {object} repoJson - The loaded oss_slu_repos.json content
-         */
         function populateUserDropdowns(repoJson) {
-            const userSet = new Set(); // use a Set to avoid duplicate usernames
+            const userSet = new Set();
 
-            // loop through all repos to find all users
             for (const repoName in repoJson) {
                 const repo = repoJson[repoName];
-
                 if (repo.tech_leads) {
                     repo.tech_leads.forEach(username => userSet.add(username));
                 }
@@ -637,38 +316,27 @@ fetch('manual_metrics.csv')
                     repo.contributors.forEach(username => userSet.add(username));
                 }
             }
-            
-            allUsernames = Array.from(userSet); // store for later
-            allUsernames.sort(); // sort alphabetically
+
+            allUsernames = Array.from(userSet).sort();
             console.log("Found Users:", allUsernames);
 
-            // get both dropdown elements
             const teamSelect = document.getElementById('teamUserSelect');
             const metricsSelect = document.getElementById('metricsUserSelect');
 
-            // clear any existing options (except 'Overall Team')
             teamSelect.options.length = 1;
             metricsSelect.options.length = 1;
 
-            // add new options for each user
             allUsernames.forEach(username => {
-                const option = new Option(username, username); // text = username, value = username
-                
-                teamSelect.add(option.cloneNode(true)); // add to team dropdown
-                metricsSelect.add(option.cloneNode(true));  // add to metrics dropdown
+                const option1 = new Option(username, username);
+                const option2 = new Option(username, username);
+                teamSelect.add(option1);
+                metricsSelect.add(option2);
             });
         }
 
-
-        /**
-         * Parses the "wide" CSV data (from PapaParse) into the required nested object.
-         > @param {Array<object>} papaData - The array of row-objects from Papa.parse.
-         * @returns {object} Data structured as { username: { metric: { sprint: rating } } }
-         */
         function parseManualCsv(papaData) {
             const data = {};
 
-            // map Chart IDs to the CSV Column Names, will need to update as we add more to the google form
             const metricColumnMap = {
                 'clientSatisfaction': 'How satisfied are you with the project advancement this week?',
                 'teamSatisfaction': 'How confident do you feel in your team collaboration',
@@ -678,21 +346,17 @@ fetch('manual_metrics.csv')
             };
 
             for (const row of papaData) {
-                // find the user's GitHub username from the csv
-                const username = row['Github Username']; 
-
+                const username = row['Github Username'];
                 const timestamp = row.Timestamp;
                 const sprintIndex = getSprintFromTimestamp(timestamp);
                 const sprintKey = (sprintIndex !== null) ? sprintIndex + 1 : null;
 
-                // skip if we can't identify the user or sprint
                 if (!username || sprintKey === null) {
                     continue;
                 }
 
                 if (!data[username]) data[username] = {};
 
-                // loop through the 5 metric mappings
                 for (const [metricKey, columnName] of Object.entries(metricColumnMap)) {
                     const rating = parseFloat(row[columnName]);
 
@@ -704,20 +368,10 @@ fetch('manual_metrics.csv')
                     }
                 }
             }
-            console.log("Parsed Manual Metrics (Wide):", data);
+            console.log("Parsed Manual Metrics:", data);
             return data;
         }
 
-
-        /**
-         * creates or updates a manual metric chart.
-         > @param {string} id - The canvas element ID for the chart.
-         > @param {string} label - The metric label (e.g., "Client Satisfaction").
-         > @param {number} value - The current rating value.
-         > @param {number} max - The maximum possible rating value.
-         > @param {string} color - The color for the filled portion of the chart.
-         * 
-         */
         function createOrUpdateManualChart(id, label, value, max, color) {
             const ctx = document.getElementById(id).getContext('2d');
 
@@ -731,13 +385,13 @@ fetch('manual_metrics.csv')
             }
 
             manualChartInstances[id] = new Chart(ctx, {
-                type: 'doughnut', 
+                type: 'doughnut',
                 data: {
                     labels: [label, 'Remaining'],
                     datasets: [{
                         label: 'Rating (Max ' + max + ')',
                         data: [value, max - value],
-                        backgroundColor: [color, '#dddddd'], 
+                        backgroundColor: [color, '#dddddd'],
                         hoverOffset: 4,
                         borderWidth: 0
                     }]
@@ -745,7 +399,7 @@ fetch('manual_metrics.csv')
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    circumference: 180, 
+                    circumference: 180,
                     rotation: 270,
                     cutout: '70%',
                     plugins: {
@@ -763,20 +417,15 @@ fetch('manual_metrics.csv')
             });
         }
 
-        /**
-         * updates all manual charts based on selected user and sprint.
-         */
-        async function updateManualCharts() {
-            
-            // check if data is parsed if not, this is the first run and need to parse
+        function updateManualCharts() {
             if (Object.keys(parsedManualMetricsData).length === 0 && rawManualData.length > 0) {
-                 parsedManualMetricsData = parseManualCsv(rawManualData);
+                parsedManualMetricsData = parseManualCsv(rawManualData);
             }
 
             const sprintIndex = parseInt(document.getElementById("metricsSprintSelect").value);
-            const sprint = sprintIndex + 1; // sprints are 1-indexed
-            const user = document.getElementById("metricsUserSelect").value; // 'tm' (team) or a real username
-            
+            const sprint = sprintIndex + 1;
+            const user = document.getElementById("metricsUserSelect").value;
+
             const metricConfigs = [
                 { id: "clientSatisfaction", label: "Client Satisfaction", color: "mediumorchid", key: "clientSatisfaction" },
                 { id: "teamSatisfaction", label: "Team Satisfaction", color: "lightskyblue", key: "teamSatisfaction" },
@@ -786,15 +435,14 @@ fetch('manual_metrics.csv')
             ];
 
             const maxRating = 5.0;
-            
+
             metricConfigs.forEach(config => {
                 let value = 0;
-                
+
                 if (user === 'tm') {
-                    // "Overall Team" - average all users from our dynamic list
                     let total = 0;
                     let count = 0;
-                    allUsernames.forEach(username => { // loop over the user list
+                    allUsernames.forEach(username => {
                         const userVal = parsedManualMetricsData[username]?.[config.key]?.[sprint];
                         if (userVal !== undefined) {
                             total += userVal;
@@ -803,47 +451,35 @@ fetch('manual_metrics.csv')
                     });
                     value = count > 0 ? (total / count) : 0;
                 } else {
-                    // individual user selected
                     value = parsedManualMetricsData[user]?.[config.key]?.[sprint] ?? 0;
                 }
 
-                value = Math.min(value, maxRating); 
+                value = Math.min(value, maxRating);
 
-                createOrUpdateManualChart(
-                    config.id,
-                    config.label,
-                    value,
-                    maxRating,
-                    config.color
-                );
+                createOrUpdateManualChart(config.id, config.label, value, maxRating, config.color);
             });
         }
 
-      // --- Team Tab ---
-        /**
-         * updates the metrics display section based on selected user and sprint.
-         */
-
+        // --- Team Tab Functions ---
         function updateMetricsDisplay() {
-            const user = document.getElementById("teamUserSelect").value; // 'tm' or a username
+            const user = document.getElementById("teamUserSelect").value;
             const sprintIndex = parseInt(document.getElementById("teamSprintSelect").value);
             const display = document.getElementById("metricsDisplay");
 
-            if (user == 'tm') {
+            if (user === 'tm') {
                 display.innerHTML = "<h3>Please select an individual user to view metrics.</h3>";
                 return;
             }
+
             const sprintDates = [
                 "Sep 8 - Sep 22", "Sep 22 - Oct 6", "Oct 6 - Oct 20",
                 "Oct 20 - Nov 3", "Nov 3 - Nov 17", "Nov 17 - Nov 30"
             ];
 
-            // 'user' is the username, so we can display it directly
-            const selectedUserText = user; 
             const orgName = metricsData.org || "unknownOrg";
             const repoName = metricsData.repo || "unknownRepo";
-            let html = `<h3>Metrics for ${selectedUserText} - Sprint ${sprintIndex + 1} (${sprintDates[sprintIndex]}) | Repo: ${repoName} | Org: ${orgName}</h3><ul>`;
-            
+            let html = `<h3>Metrics for ${user} - Sprint ${sprintIndex + 1} (${sprintDates[sprintIndex]}) | Repo: ${repoName} | Org: ${orgName}</h3><ul>`;
+
             const autoMetrics = [
                 "leadTime", "cycleTime", "deliveryMetrics",
                 "commitFrequency", "issuesOpened", "issuesClosed",
@@ -851,8 +487,7 @@ fetch('manual_metrics.csv')
             ];
 
             autoMetrics.forEach(key => {
-                // construct the key directly: 'metricName_username', maybe better way to do this? unsure
-                const metricKey = `${key}_${user}`; 
+                const metricKey = `${key}_${user}`;
                 const value = metricsData[metricKey]?.[sprintIndex];
 
                 if (value === undefined) {
@@ -860,7 +495,6 @@ fetch('manual_metrics.csv')
                     return;
                 }
 
-                // calculate team total by looping through all users
                 let teamTotal = 0;
                 allUsernames.forEach(username => {
                     const userKey = `${key}_${username}`;
@@ -869,20 +503,20 @@ fetch('manual_metrics.csv')
                     }
                 });
 
-                let pct = teamTotal > 0 ? (value / teamTotal) * 100 : 0;
+                const pct = teamTotal > 0 ? (value / teamTotal) * 100 : 0;
                 const description = metricDescriptions[key] || "No description available.";
                 const userColor = "#eabda8";
                 const teamColor = "#cccccc";
 
                 html += `
-                <li>
-                  <strong title="${description}" style="cursor: help;">${key}:</strong> ${value}
-                  <div style="width: 100%; max-width: 300px; height: 15px; border-radius: 8px; overflow: hidden; display: flex; margin-top: 5px;">
-                    <div style="width: ${pct}%; background-color: ${userColor};"></div>
-                    <div style="width: ${100 - pct}%; background-color: ${teamColor};"></div>
-                  </div>
-                  <small>${pct.toFixed(1)}% of team total</small>
-                </li>`;
+                    <li>
+                        <strong title="${description}" style="cursor: help;">${key}:</strong> ${value}
+                        <div style="width: 100%; max-width: 300px; height: 15px; border-radius: 8px; overflow: hidden; display: flex; margin-top: 5px;">
+                            <div style="width: ${pct}%; background-color: ${userColor};"></div>
+                            <div style="width: ${100 - pct}%; background-color: ${teamColor};"></div>
+                        </div>
+                        <small>${pct.toFixed(1)}% of team total</small>
+                    </li>`;
             });
 
             html += "</ul>";
@@ -910,20 +544,10 @@ fetch('manual_metrics.csv')
                     responsive: true,
                     maintainAspectRatio: false,
                     scales: {
-                        x: { title: { display: true, text: 'Time-Based Metrics' } },
-                        y: { beginAtZero: true, title: { display: true, text: 'Time (Days)' } }
+                        y: { beginAtZero: true }
                     },
                     plugins: {
-                        tooltip: {
-                            mode: 'index',
-                            intersect: false,
-                            callbacks: {
-                                afterBody: (tooltipItems) => {
-                                    const keyMap = { "Lead Time": "leadTime", "Cycle Time": "cycleTime", "Delivery Metrics": "deliveryMetrics", "Issue Time Resolved": "issueTimeResolved", "PR Time Merged": "prTimeMerged" };
-                                    return metricDescriptions[keyMap[tooltipItems[0].label]] || '';
-                                }
-                            }
-                        }
+                        legend: { display: true }
                     }
                 }
             });
@@ -950,20 +574,10 @@ fetch('manual_metrics.csv')
                     responsive: true,
                     maintainAspectRatio: false,
                     scales: {
-                        x: { title: { display: true, text: 'Volume-Based Metrics' } },
-                        y: { beginAtZero: true, title: { display: true, text: 'Count' } }
+                        y: { beginAtZero: true }
                     },
                     plugins: {
-                        tooltip: {
-                            mode: 'index',
-                            intersect: false,
-                            callbacks: {
-                                afterBody: (tooltipItems) => {
-                                    const keyMap = { "Delivery Metrics": "deliveryMetrics", "Commit Frequency": "commitFrequency", "Issues Opened": "issuesOpened", "Issues Closed": "issuesClosed", "WIP": "wip" };
-                                    return metricDescriptions[keyMap[tooltipItems[0].label]] || '';
-                                }
-                            }
-                        }
+                        legend: { display: true }
                     }
                 }
             });
@@ -972,26 +586,24 @@ fetch('manual_metrics.csv')
         function updateTeamTab() {
             updateMetricsDisplay();
 
-            const user = document.getElementById("teamUserSelect").value; // 'tm' or username
+            const user = document.getElementById("teamUserSelect").value;
             const sprintIndex = parseInt(document.getElementById("teamSprintSelect").value);
-            
-            const timeBasedLabels = [ "Lead Time", "Cycle Time", "Delivery Metrics", "Issue Time Resolved", "PR Time Merged" ];
-            const metricKeys = [ "leadTime", "cycleTime", "deliveryMetrics", "issueTimeResolved", "prTimeMerged" ];
-            const volumeKeys = [ "deliveryMetrics", "commitFrequency", "issuesOpened", "issuesClosed", "wip" ];
-            const volumeBasedLabels = [ "Delivery Metrics", "Commit Frequency", "Issues Opened", "Issues Closed", "WIP" ];
+
+            const timeBasedLabels = ["Lead Time", "Cycle Time", "Delivery Metrics", "Issue Time Resolved", "PR Time Merged"];
+            const metricKeys = ["leadTime", "cycleTime", "deliveryMetrics", "issueTimeResolved", "prTimeMerged"];
+            const volumeKeys = ["deliveryMetrics", "commitFrequency", "issuesOpened", "issuesClosed", "wip"];
+            const volumeBasedLabels = ["Delivery Metrics", "Commit Frequency", "Issues Opened", "Issues Closed", "WIP"];
 
             let timeBasedData = [];
             let volumeBasedData = [];
             let chartLabel = '';
 
-            if (user == 'tm') {
-                // --- "Overall Team" is selected ---
+            if (user === 'tm') {
                 chartLabel = `Overall Team Average - Sprint ${sprintIndex + 1}`;
-                
-                // calculate avg for time-based metrics
+
                 timeBasedData = metricKeys.map(key => {
                     let total = 0, count = 0;
-                    allUsernames.forEach(username => { // use user list
+                    allUsernames.forEach(username => {
                         const userKey = `${key}_${username}`;
                         if (metricsData[userKey]?.[sprintIndex] !== undefined) {
                             total += metricsData[userKey][sprintIndex];
@@ -1000,11 +612,10 @@ fetch('manual_metrics.csv')
                     });
                     return count > 0 ? (total / count) : 0;
                 });
-                
-                // calculate sum for volume-based metrics
+
                 volumeBasedData = volumeKeys.map(key => {
                     let total = 0;
-                    allUsernames.forEach(username => { // use user list
+                    allUsernames.forEach(username => {
                         const userKey = `${key}_${username}`;
                         if (metricsData[userKey]?.[sprintIndex] !== undefined) {
                             total += metricsData[userKey][sprintIndex];
@@ -1013,100 +624,75 @@ fetch('manual_metrics.csv')
                     return total;
                 });
             } else {
-                // --- individual user is selected ---
                 chartLabel = `${user} - Sprint ${sprintIndex + 1}`;
-                
-                // get user's time data
+
                 timeBasedData = metricKeys.map(key => {
-                    const userKey = `${key}_${user}`; // e.g., "leadTime_hcaballero2"
+                    const userKey = `${key}_${user}`;
                     return metricsData[userKey]?.[sprintIndex] ?? 0;
                 });
-                
-                // get user's volume data
+
                 volumeBasedData = volumeKeys.map(key => {
-                    const userKey = `${key}_${user}`; // e.g., "commitFrequency_hcaballero2"
+                    const userKey = `${key}_${user}`;
                     return metricsData[userKey]?.[sprintIndex] ?? 0;
                 });
             }
+
             createOrUpdateTimeChart(timeBasedLabels, chartLabel, timeBasedData);
             createOrUpdateVolumeChart(volumeBasedLabels, chartLabel, volumeBasedData);
         }
 
-      // --- Dashboard Initialization ---
-
+        // --- Dashboard Initialization ---
         async function initializeDashboard() {
             try {
-                // fetch all data sources in parallel, need to be updated in main or will not work
                 const [metricsResponse, manualCsvResponse, repoResponse] = await Promise.all([
                     fetch('metrics.json'),
                     fetch('manual_metrics.csv'),
                     fetch('oss_slu_repos.json')
                 ]);
 
-                // --- Process Team Metrics ---
-                if (!metricsResponse.ok) throw new Error(`HTTP error! status: ${metricsResponse.status}`);
+                if (!metricsResponse.ok) throw new Error(`metrics.json: HTTP ${metricsResponse.status}`);
                 metricsData = await metricsResponse.json();
                 console.log("Loaded metrics.json");
 
-                // --- Process Repo Data (for User Dropdowns) ---
-                if (!repoResponse.ok) throw new Error(`HTTP error! status: ${repoResponse.status}`);
+                if (!repoResponse.ok) throw new Error(`oss_slu_repos.json: HTTP ${repoResponse.status}`);
                 repoData = await repoResponse.json();
                 console.log("Loaded oss_slu_repos.json");
-                
-                // --- Process Manual CSV (Raw Text) ---
-                if (!manualCsvResponse.ok) throw new Error(`HTTP error! status: ${manualCsvResponse.status}`);
+
+                if (!manualCsvResponse.ok) throw new Error(`manual_metrics.csv: HTTP ${manualCsvResponse.status}`);
                 const csvData = await manualCsvResponse.text();
-                
+
                 const parsed = Papa.parse(csvData, {
                     header: true,
                     skipEmptyLines: true
                 });
-                
+
                 if (parsed.errors.length) {
                     console.error("PapaParse Errors:", parsed.errors);
-                    throw new Error("Failed to parse manual_metrics.csv.");
+                    throw new Error("Failed to parse manual_metrics.csv");
                 }
-                rawManualData = parsed.data; // store raw parsed data
+
+                rawManualData = parsed.data;
                 console.log("Parsed manual_metrics.csv");
 
-                
-                // builds the user dropdowns from oss_slu_repos.json
-                populateUserDropdowns(repoData); 
-                
-                // now that dropdowns are built, parse the manual csv data
+                populateUserDropdowns(repoData);
                 parsedManualMetricsData = parseManualCsv(rawManualData);
 
-                // initial update
                 updateTeamTab();
                 updateManualCharts();
 
-                // add all event listeners
                 document.getElementById("teamUserSelect").addEventListener("change", updateTeamTab);
                 document.getElementById("teamSprintSelect").addEventListener("change", updateTeamTab);
                 document.getElementById("metricsUserSelect").addEventListener("change", updateManualCharts);
                 document.getElementById("metricsSprintSelect").addEventListener("change", updateManualCharts);
 
-                // fullscreen resize listener
-                document.addEventListener('fullscreenchange', () => {
-                    if (document.fullscreenElement) {
-                        setTimeout(() => {
-                            if (timeChartInstance) timeChartInstance.resize();
-                            if (volumeChartInstance) volumeChartInstance.resize();
-                            Object.values(manualChartInstances).forEach(chart => chart.resize());
-                        }, 200);
-                    }
-                });
-
             } catch (error) {
                 console.error('Failed to initialize dashboard:', error);
-                document.querySelector('.content').innerHTML = `<h1>Fatal Error: Could not load initial data</h1><p>Please ensure metrics.json, manual_metrics.csv, and oss_slu_repos.json are in the same directory.</p><p>${error.message}</p>`;
+                document.querySelector('.content').innerHTML = `<h1>Fatal Error</h1><p>${error.message}</p><p>Ensure metrics.json, manual_metrics.csv, and oss_slu_repos.json exist.</p>`;
             }
         }
-        
-        // start the dashboard yipppeeee
-        initializeDashboard();
 
+        // Start dashboard
+        initializeDashboard();
     </script>
 </body>
-
 </html>
