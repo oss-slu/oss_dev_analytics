@@ -80,7 +80,10 @@ def get_commit_data(github_client, repo_name: str, start_date: datetime, end_dat
     days = max((end_date - start_date).days, 1)
     
     user_metrics = df.groupby('user', dropna=True)['sha'].count().reset_index(name='total_commits')
-    user_metrics['commitFrequency'] = user_metrics['total_commits'] / days
+# Just count total commits per user (this is what the dashboard expects)
+    user_metrics['commitFrequency'] = user_metrics['total_commits']
+
+    df = df.merge(user_metrics[['user', 'commitFrequency']], on='user', how='left')
 
     df = df.merge(user_metrics, on='user', how='left', suffixes=('', '_user'))
 

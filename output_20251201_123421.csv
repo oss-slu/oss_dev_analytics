@@ -1,0 +1,190 @@
+repository,sha,author,email,user,date,message,additions,deletions,files_changed,total_commits,commitFrequency,data_type,id,number,title,state,created_at,merged_at,closed_at,changed_files,time_to_merge_hours,prTimeMerged,labels,is_blocked,is_bug,assigned_time,issuesOpened,issuesClosed,wip,blockedIssues,defectRate,leadTime,cycleTime
+oss_dev_analytics,eccd3df83da9757baf8876b90219b52774b8a617,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-23 00:25:59+00:00,"Merge pull request #45 from oss-slu/feature/project-structure
+
+Contributing Details",295.0,0.0,295.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,879fa42232b3fc903afb4f93270299274a806c90,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-23 00:24:05+00:00,Contributing Details,295.0,0.0,295.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,7ad0087f1dcf206826bba01db12c3c8ff9079317,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-23 00:19:27+00:00,"Merge pull request #44 from oss-slu/feature/project-structure
+
+Added a contributing document",0.0,0.0,0.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,798f1ae601d66db04f96018f2b5944d7b88e9240,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-23 00:17:48+00:00,Added a contributing document allowing users to contribute to this open source project,0.0,0.0,0.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,c388e47dd4b40baffcaf533d4a37bb1f016771e2,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-20 21:40:34+00:00,"Merge pull request #38 from oss-slu/metric_dashboard
+
+Update metrics.html",180.0,40.0,220.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,1a43c4111085618477889669a813598659bf7d0f,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-20 21:40:20+00:00,"Merge pull request #42 from oss-slu/feature/project-structure
+
+changing the structure to resolve the merge conflicts",0.0,0.0,0.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,1c4a7caaa65a35762b172579a7c520041318aaf9,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-20 21:39:00+00:00,changing the structure to resolve the merge conflicts,0.0,0.0,0.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,e3a3a2f92edf9f20e38182900ee33f49a492fae8,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-20 21:29:07+00:00,"Merge pull request #39 from oss-slu/configSys
+
+Generated an Output CSV file to convert CSV into HTML Dashboard",10125.0,124.0,10249.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,6d61432a0fd1f841777db1bece317559c25786cb,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-20 21:07:21+00:00,Format README for better readability,30.0,30.0,60.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,8df89eb33223cf4e56ad18b3a99efa72a070de4c,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-20 21:03:45+00:00,Merge branch 'projectArchitecture' of https://github.com/oss-slu/oss_dev_analytics into projectArchitecture,0.0,0.0,0.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,b629ba3d2df2a2e05c68f1bb996f5fc6046b0e04,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-20 21:03:18+00:00,"continuing to reconfigure readme for best
+clarity",2.0,14.0,16.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,5fc4ba77a50d4a3683b225c3cf007fe4cc741c10,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-20 21:01:26+00:00,Fix formatting in README.md code block,1.0,1.0,2.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,5a0230c0f86a2412e4463babd68f9fc5d88ed046,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-20 21:00:01+00:00,"added bullets to make data more visible in
+README",8.0,8.0,16.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,ee426e3a33dc8b916affaf576d610204655ed843,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-20 20:57:36+00:00,"added more detail about the readme and
+Architecture for file structure",73.0,19.0,92.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,2892c43221523dd256dbef283c55590d5ddfd3b0,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-20 20:45:14+00:00,mermaid chart that works????,20.0,9.0,29.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,9e2d5d54ac1d31a1c4c98364ed69d8e561efe948,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-20 20:37:01+00:00,Updating mermaid to get it to display in github,6.0,16.0,22.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,fded88d138be55dd5f97bf35577852cd6fe32a5a,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-20 20:36:03+00:00,Update Mermaid syntax in overarchingArchitecture.mmd,18.0,16.0,34.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,b64b4e8c45ae80499ed44b9ef47122baaf2375bd,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-20 20:32:51+00:00,Add flowchart to overarchingArchitecture.mmd,17.0,0.0,17.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,35cf355c8fd0853160f085231ae1db7e6d6a3b20,hollowtree11,joli.muller@slu.edu,hollowtree11,2025-10-20 19:57:00+00:00,"Add organization and repository information to metrics.json
+
+To be able to use repo and org name on metrics dashboard.",14.0,2.0,16.0,15.0,0.1724137931034483,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,a23d1e8f463082a82865447012da2dd9287c7970,hollowtree11,joli.muller@slu.edu,hollowtree11,2025-10-20 19:53:27+00:00,"Update Team Tab in html
+
+Feature Requests:
+Tooltips for Metric Definitions
+When users hover over each metric name (e.g., leadTime, cycleTime), it would be great to show a brief tooltip explaining wh",67.0,13.0,80.0,15.0,0.1724137931034483,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,2b727530df6a896ebd3593f23e743206b7024599,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-20 04:58:52+00:00,Generated an output CSV file using main file,10043.0,180.0,10223.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,6e206e4259aa0a37dcc26587620eb277ee0eed47,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-14 23:55:36+00:00,"when going back through the code and trying to go
+back to basics to get the .csv file to populate
+again i commented out the lines where we filter
+the repos and also removed the repo_name parameter
+was",18.0,17.0,35.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,6f18c6fa69a73b04cee76da7e09d2cbb5927cebf,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-14 16:26:31+00:00,"some progress on repo filtering, having empty csv
+issue",160.0,914.0,1074.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,79bda88e821a742b85fe8d9d3205f334c5f84dd8,hollowtree11,joli.muller@slu.edu,hollowtree11,2025-10-13 20:39:02+00:00,"Update metrics.html
+
+Updated layout and sidebar.",108.0,34.0,142.0,15.0,0.1724137931034483,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,575c1dac110988a3b73451628a97a779814f5c60,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-12 21:06:30+00:00,"added main.py file that calls all data collection
+and stores into output.csv",879.0,28.0,907.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,6a3b9528c7131d685861ece44c802679b8903b47,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-12 18:53:33+00:00,"had unnecessary code at the top of
+prDataCollection",2.0,8.0,10.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,98e742ee2ba4f318fd32824fbae352a5d9ad50cd,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-12 18:51:21+00:00,"restructured commits.py, prDataCollection.py and
+issueData.py to follow the same architecture and to be callable by a central file that I will be creating soon",150.0,104.0,254.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,fc0d4207c637d2e5807696c656fb656b71e52f35,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-08 17:56:13+00:00,"Merge pull request #37 from oss-slu/feature/project-structure
+
+Updated Readme file for better documemtation",56.0,0.0,56.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,d112875c5e678b31c84f0882882956e3bf496d87,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-08 17:53:08+00:00,Updated Readme file for better documemtation,56.0,0.0,56.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,5c6d3227a7780c1aebba4c74ba13a00daa7a26a6,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-07 05:53:26+00:00,"Merge pull request #36 from oss-slu/conflict-resolution
+
+Adding metrics.json file to the dashboard folder",33.0,0.0,33.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,e10fcd54e933cf5a779060b2bdb889290959752f,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-07 05:44:27+00:00,Adding metrics.json file to the dashboard folder,33.0,0.0,33.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,8b0460cefe48d38c5d889446181bb5106ea4554e,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-07 05:42:30+00:00,"Merge pull request #35 from oss-slu/conflict-resolution
+
+Conflict resolution",0.0,33.0,33.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,880dc44efc01caea1985575bbd9744a2bdeaf3da,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-07 05:39:03+00:00,"Resolve conflict: metrics.json modified in main, deleted in feature branch",0.0,33.0,33.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,f12572b62faf1934d0d20990dc24bdff5bcc3400,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-06 21:43:21+00:00,Merge branch 'main' into feature/project-structure,40.0,0.0,40.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,79897a2928c766ab6877fad1f5e56e572acd43d3,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-06 21:39:01+00:00,created dashboard folder tokeep all the code changes of dashbaords in one place,0.0,0.0,0.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,94808979539ec2574ee0d0885fadb06b57f86676,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-06 21:28:32+00:00,"Merge pull request #29 from oss-slu/PullPRData
+
+PRDataCollection",49.0,2.0,51.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,8a1ecc77054b79e7bc832bbfe53021f06ff196e7,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-10-06 21:27:19+00:00,"Update commits.py
+
+removed hard coded path, added comment to say where we will be getting the API key from once complete",4.0,4.0,8.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,7a30e09d1c81b54f3b1c871d3916004ae2fbee0c,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-06 16:23:44+00:00,"Merge pull request #25 from oss-slu/metric_dashboard
+
+Metric dashboard Updates",226.0,67.0,293.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,683e28dad94dbf94a33a8a893fe2c9187ace3acd,hollowtree11,joli.muller@slu.edu,hollowtree11,2025-10-06 16:05:19+00:00,Merge branch 'main' into metric_dashboard,241.0,2.0,243.0,15.0,0.1724137931034483,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,7441cc7670abdeab708c547394d6816b0266a396,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-06 16:01:29+00:00,"Merge pull request #26 from oss-slu/GitExtract
+
+Commits",1.0,1.0,2.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,037abe74c84a8dfa9a8ce37f0d4b00cfb9fa0d31,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-06 15:52:52+00:00,"Merge pull request #32 from oss-slu/feature/project-structure
+
+changes made to folder structure",0.0,0.0,0.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,38b9a831c685c8c5fce0db70e86fe6bce073737d,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-06 15:51:00+00:00,changes made to folder structure,0.0,0.0,0.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,36692097ab926aaafe7a2fb14458c0152ba61171,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-01 20:19:42+00:00,"Merge pull request #28 from oss-slu/FetchGithubIssues
+
+Fetch Github Open issues represented as WIP
+Blocked issues that are open issues which has blocked tag
+Fetch Defect rate represented as (bugs clos",40.0,0.0,40.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,2fe649891b2eb44118022e0042ea2ac3e10726ce,hollowtree11,joli.muller@slu.edu,hollowtree11,2025-10-01 20:07:46+00:00,Update issueData.py,16.0,8.0,24.0,15.0,0.1724137931034483,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,bfc0f9dec6b7b8a0f874d617e333e3acaa9a2144,hollowtree11,joli.muller@slu.edu,hollowtree11,2025-10-01 19:51:36+00:00,Update issueData.py,3.0,2.0,5.0,15.0,0.1724137931034483,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,91baddfeca04e3c3d52b59e5b1a79f4f3b9cfb0a,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-01 19:04:12+00:00,"Merge pull request #31 from oss-slu/feature/project-structure
+
+changes of folder structure",0.0,0.0,0.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,20a264c10af100d6f3a84ece6ce8751d7f15928c,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-01 19:02:37+00:00,changes of folder structure,0.0,0.0,0.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,93f85a883a284473cbc7a63a53a5dc4346adce56,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-01 16:58:13+00:00,"Merge pull request #30 from oss-slu/feature/project-structure
+
+Restructure of project for team collaboration",187.0,72.0,259.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,2fe501f2d738b2d472a184e95bb7143c7cc8ed3a,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-10-01 15:36:42+00:00,Restructure of project for team collaboration,187.0,72.0,259.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,dbf0cf88951b9f9a7d75fed041622eb8425b4ab9,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-09-29 21:40:47+00:00,"Created file to collect PR data, just need API
+token",47.0,0.0,47.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,16b5a30cccfbff0b6f14816d713e81a0fffdb8c8,hollowtree11,joli.muller@slu.edu,hollowtree11,2025-09-29 20:50:12+00:00,"Upload issueData.py
+
+issueData.py takes a chosen github api url (I used ours for testing), and prints github issue data (WIP, Blocked Issues, Defect Rate).",31.0,0.0,31.0,15.0,0.1724137931034483,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,7764d44ec9b862b7034138238de6da99bc6d36a7,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-09-29 19:56:34+00:00,"removed .head() when printing the df
+this is for a test anyway to make sure its properly created so if needed can always add .head() again later",1.0,1.0,2.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,b0e81de872db0045bc418624898a3a51f936643e,hollowtree11,joli.muller@slu.edu,hollowtree11,2025-09-29 19:14:29+00:00,"Merge branch 'metric_dashboard' of https://github.com/oss-slu/oss_dev_analytics into metric_dashboard
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges ",0.0,0.0,0.0,15.0,0.1724137931034483,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,367675e29fe4eca4151bc04b1fed81aa64fbeb31,hollowtree11,joli.muller@slu.edu,hollowtree11,2025-09-29 19:08:17+00:00,Manual Metrics Updated with 6 Sprints,11.0,40.0,51.0,15.0,0.1724137931034483,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,ce37c7a427026ce908c95bb3b82916eabb14e9a8,hollowtree11,joli.muller@slu.edu,hollowtree11,2025-09-29 19:04:53+00:00,Updated Metrics Dashboard with Dropdown Functionality,163.0,191.0,354.0,15.0,0.1724137931034483,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,ef86edf46fcb739ac71ac0816e5d35885cf39f5f,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-09-28 16:43:11+00:00,"Extrac Git Data issue - created program that
+extracts git data (commits, authors, files changed) and uses this to calculate velocity, commits per author, and tags",46.0,0.0,46.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,9a496c5732fa0f5bcd9648561ccdf4695200182f,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-09-22 21:07:22+00:00,"Merge pull request #12 from oss-slu/analyticsQuestions
+
+Create analyticsquestions.txt",20.0,0.0,20.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,be9813411a12d8235aee4b603d542f6583548d89,hollowtree11,joli.muller@slu.edu,hollowtree11,2025-09-22 18:37:27+00:00,Update manual_metrics.csv,11.0,40.0,51.0,15.0,0.1724137931034483,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,86491328892f9751963c00ee01d0fcfc8e06ed6f,hollowtree11,joli.muller@slu.edu,hollowtree11,2025-09-22 18:34:23+00:00,Updated conflict resolution,1.0,52.0,53.0,15.0,0.1724137931034483,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,8de4ec639ccd2ac70bc4212e0b7ce0585009a626,hollowtree11,joli.muller@slu.edu,hollowtree11,2025-09-22 18:31:55+00:00,"Merge master into metric_dashboard, resolved conflicts",268.0,1.0,269.0,15.0,0.1724137931034483,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,af92a0f34321697d4b6bef9deceb04af57ddbc7e,hollowtree11,joli.muller@slu.edu,hollowtree11,2025-09-22 18:22:34+00:00,"Updated HTML code with added functionalities: Organized charts, tabs, added sample data.",262.0,0.0,262.0,15.0,0.1724137931034483,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,9c91fd74c542d2edcce707aaeacce77286f0ed51,Kasi Viswanath Reddy Chilakala,ch.kasiviswanathreddy@gmail.com,viswanathreddy1017,2025-09-16 03:17:54+00:00,"Merge pull request #11 from oss-slu/metric_dashboard
+
+Sample Metrics Dashboard Files with metrics tracked i.e. Team Satisfaction, Client Satisfaction, Collaboration, Sprint Confidence, Goal Achievemen",74.0,0.0,74.0,28.0,0.3218390804597701,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,df3d733f942a99bee60534e99ba389d78e29a42d,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-09-15 22:25:02+00:00,Update README.md,19.0,1.0,20.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,b177a1b2c659f8fca08d48a6718ddd173eaa727a,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-09-15 21:24:53+00:00,Create analyticsquestions.txt,20.0,0.0,20.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,a4bc3cccba35f94a7b3ba514588db889c0721568,hollowtree11,joli.muller@slu.edu,hollowtree11,2025-09-15 20:50:08+00:00,"Metrics Dashboard Files
+
+Includes Manual Metrics CSV, example Metrics HTML Dashboard, and example Metrics JSON file.",74.0,0.0,74.0,15.0,0.1724137931034483,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,61a16e6365fa94bbdc1d6565e0f6839aaaacf969,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-09-15 19:41:35+00:00,Update README.md,14.0,1.0,15.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,d2d19e786393d8432c3d2a7d9c0ee8c17e23fe92,hcaballero2,hcaballero0216@gmail.com,hcaballero2,2025-09-15 19:38:33+00:00,Initial commit,1.0,0.0,1.0,24.0,0.27586206896551724,commit,,,,,,,,,,,,,,,,,,,,,
+oss_dev_analytics,,,,viswanathreddy1017,,,295.0,0.0,,,,pull_request,2938821083.0,45.0,Contributing Details,closed,2025-10-23 00:25:48+00:00,2025-10-23 00:25:59+00:00,2025-10-23 00:25:59+00:00,1.0,0.0030555555555555557,2.342323232323232,,,,,,,,,,,
+oss_dev_analytics,,,,viswanathreddy1017,,,0.0,0.0,,,,pull_request,2938812832.0,44.0,Added a contributing document,closed,2025-10-23 00:19:12+00:00,2025-10-23 00:19:27+00:00,2025-10-23 00:19:27+00:00,1.0,0.004166666666666667,2.342323232323232,,,,,,,,,,,
+oss_dev_analytics,,,,viswanathreddy1017,,,0.0,0.0,,,,pull_request,2931268365.0,42.0,changing the structure to resolve the merge conflicts,closed,2025-10-20 21:40:08+00:00,2025-10-20 21:40:20+00:00,2025-10-20 21:40:21+00:00,2.0,0.0033333333333333335,2.342323232323232,,,,,,,,,,,
+oss_dev_analytics,,,,viswanathreddy1017,,,10125.0,124.0,,,,pull_request,2928623536.0,39.0,Generated an Output CSV file to convert CSV into HTML Dashboard,closed,2025-10-20 05:11:20+00:00,2025-10-20 21:29:07+00:00,2025-10-20 21:29:07+00:00,14.0,16.296388888888888,2.342323232323232,,,,,,,,,,,
+oss_dev_analytics,,,,hollowtree11,,,180.0,40.0,,,,pull_request,2911866173.0,38.0,Update metrics.html,closed,2025-10-14 00:17:24+00:00,2025-10-20 21:40:34+00:00,2025-10-20 21:40:34+00:00,2.0,165.38611111111112,96.10180555555556,,,,,,,,,,,
+oss_dev_analytics,,,,viswanathreddy1017,,,56.0,0.0,,,,pull_request,2898275839.0,37.0,Updated Readme file for better documemtation,closed,2025-10-08 17:55:10+00:00,2025-10-08 17:56:13+00:00,2025-10-08 17:56:13+00:00,1.0,0.0175,2.342323232323232,,,,,,,,,,,
+oss_dev_analytics,,,,viswanathreddy1017,,,33.0,0.0,,,,pull_request,2892718514.0,36.0,Adding metrics.json file to the dashboard folder,closed,2025-10-07 05:50:10+00:00,2025-10-07 05:53:26+00:00,2025-10-07 05:53:26+00:00,1.0,0.05444444444444444,2.342323232323232,,,,,,,,,,,
+oss_dev_analytics,,,,viswanathreddy1017,,,0.0,33.0,,,,pull_request,2892705639.0,35.0,Conflict resolution,closed,2025-10-07 05:41:31+00:00,2025-10-07 05:42:30+00:00,2025-10-07 05:42:30+00:00,3.0,0.01638888888888889,2.342323232323232,,,,,,,,,,,
+oss_dev_analytics,,,,viswanathreddy1017,,,0.0,0.0,,,,pull_request,2891998578.0,33.0,created dashboard folder tokeep all the code changes of dashbaords in…,closed,2025-10-06 21:40:56+00:00,2025-10-07 05:42:31+00:00,2025-10-07 05:42:31+00:00,3.0,8.026388888888889,2.342323232323232,,,,,,,,,,,
+oss_dev_analytics,,,,viswanathreddy1017,,,0.0,0.0,,,,pull_request,2890836884.0,32.0,changes made to folder structure,closed,2025-10-06 15:52:40+00:00,2025-10-06 15:52:52+00:00,2025-10-06 15:52:52+00:00,3.0,0.0033333333333333335,2.342323232323232,,,,,,,,,,,
+oss_dev_analytics,,,,viswanathreddy1017,,,0.0,0.0,,,,pull_request,2879318362.0,31.0,changes of folder structure,closed,2025-10-01 19:03:10+00:00,2025-10-01 19:04:13+00:00,2025-10-01 19:04:13+00:00,1.0,0.0175,2.342323232323232,,,,,,,,,,,
+oss_dev_analytics,,,,viswanathreddy1017,,,187.0,72.0,,,,pull_request,2878757823.0,30.0,Restructure of project for team collaboration,closed,2025-10-01 15:38:50+00:00,2025-10-01 16:58:13+00:00,2025-10-01 16:58:13+00:00,10.0,1.3230555555555557,2.342323232323232,,,,,,,,,,,
+oss_dev_analytics,,,,hcaballero2,,,49.0,2.0,,,,pull_request,2875021414.0,29.0,PRDataCollection,closed,2025-09-30 15:14:02+00:00,2025-10-06 21:28:32+00:00,2025-10-06 21:28:32+00:00,2.0,150.24166666666667,160.67203703703706,,,,,,,,,,,
+oss_dev_analytics,,,,hollowtree11,,,40.0,0.0,,,,pull_request,2872029430.0,28.0,Fetch Github Issues Code,closed,2025-09-29 20:51:30+00:00,2025-10-01 20:19:42+00:00,2025-10-01 20:19:42+00:00,1.0,47.47,96.10180555555556,,,,,,,,,,,
+oss_dev_analytics,,,,hcaballero2,,,0.0,46.0,,,,pull_request,2871885912.0,27.0,Delete commits.py,closed,2025-09-29 19:57:50+00:00,,2025-09-29 21:03:13+00:00,1.0,,160.67203703703706,,,,,,,,,,,
+oss_dev_analytics,,,,hcaballero2,,,1.0,1.0,,,,pull_request,2871884400.0,26.0,Commits,closed,2025-09-29 19:57:25+00:00,2025-10-06 16:01:29+00:00,2025-10-06 16:01:29+00:00,1.0,164.0677777777778,160.67203703703706,,,,,,,,,,,
+oss_dev_analytics,,,,hollowtree11,,,226.0,67.0,,,,pull_request,2871771606.0,25.0,Metric dashboard Updates,closed,2025-09-29 19:18:16+00:00,2025-10-06 16:23:44+00:00,2025-10-06 16:23:44+00:00,3.0,165.0911111111111,96.10180555555556,,,,,,,,,,,
+oss_dev_analytics,,,,hollowtree11,,,213.0,54.0,,,,pull_request,2850655346.0,14.0,Metric dashboard Updates,closed,2025-09-22 18:42:55+00:00,,2025-09-29 19:17:24+00:00,3.0,,96.10180555555556,,,,,,,,,,,
+oss_dev_analytics,,,,hcaballero2,,,20.0,0.0,,,,pull_request,2830697137.0,12.0,Create analyticsquestions.txt,closed,2025-09-15 21:24:58+00:00,2025-09-22 21:07:22+00:00,2025-09-22 21:07:22+00:00,1.0,167.70666666666668,160.67203703703706,,,,,,,,,,,
+oss_dev_analytics,,,,hollowtree11,,,74.0,0.0,,,,pull_request,2830614935.0,11.0,Metrics Dashboard Files,closed,2025-09-15 20:50:19+00:00,2025-09-16 03:17:55+00:00,2025-09-16 03:17:55+00:00,3.0,6.46,96.10180555555556,,,,,,,,,,,
+oss_dev_analytics,,,,hcaballero2,,,,,,,,issue,3635348629.0,70.0,Make sure the repo drop down works correctly with our other changes,closed,2025-11-17 22:42:36+00:00,,2025-11-24 22:54:24+00:00,,,,,False,False,2025-11-17 22:42:36+00:00,13.0,13.0,0.0,0.0,0.0,159.91367521367522,125.00311965811966
+oss_dev_analytics,,,,hcaballero2,,,,,,,,issue,3584050594.0,62.0,metrics.csv and metrics.html compatibility,closed,2025-11-03 22:59:32+00:00,,2025-11-17 22:21:40+00:00,,,,,False,False,2025-11-03 22:59:33+00:00,13.0,13.0,0.0,0.0,0.0,159.91367521367522,125.00311965811966
+oss_dev_analytics,,,,hcaballero2,,,,,,,,issue,3584033410.0,61.0,Fix github user filtering,closed,2025-11-03 22:51:00+00:00,,2025-11-03 22:53:09+00:00,,,,,False,False,2025-11-03 22:51:00+00:00,13.0,13.0,0.0,0.0,0.0,159.91367521367522,125.00311965811966
+oss_dev_analytics,,,,hcaballero2,,,,,,,,issue,3584032598.0,60.0,Test backend with repository filtering,closed,2025-11-03 22:50:27+00:00,,2025-11-10 21:42:56+00:00,,,,,False,False,2025-11-03 22:50:27+00:00,13.0,13.0,0.0,0.0,0.0,159.91367521367522,125.00311965811966
+oss_dev_analytics,,,,hcaballero2,,,,,,,,issue,3584031760.0,59.0,.JSON and .HTML Compatibility,closed,2025-11-03 22:49:54+00:00,,2025-11-10 21:43:04+00:00,,,,,False,False,2025-11-03 22:49:54+00:00,13.0,13.0,0.0,0.0,0.0,159.91367521367522,125.00311965811966
+oss_dev_analytics,,,,hcaballero2,,,,,,,,issue,3583189738.0,56.0,Google Form,closed,2025-11-03 18:15:24+00:00,,2025-11-04 22:13:39+00:00,,,,,False,False,2025-11-03 18:15:24+00:00,13.0,13.0,0.0,0.0,0.0,159.91367521367522,125.00311965811966
+oss_dev_analytics,,,,hcaballero2,,,,,,,,issue,3583184195.0,55.0,Home Page Update,closed,2025-11-03 18:13:29+00:00,,2025-11-03 22:56:00+00:00,,,,,False,False,2025-11-03 18:14:11+00:00,13.0,13.0,0.0,0.0,0.0,159.91367521367522,125.00311965811966
+oss_dev_analytics,,,,hcaballero2,,,,,,,,issue,3583178818.0,54.0,Time and Volume Metric Charts on Team Tab,closed,2025-11-03 18:11:36+00:00,,2025-11-03 18:12:18+00:00,,,,,False,False,2025-11-03 18:11:39+00:00,13.0,13.0,0.0,0.0,0.0,159.91367521367522,125.00311965811966
+oss_dev_analytics,,,,hcaballero2,,,,,,,,issue,3583065178.0,52.0,Add user and sprint Dropdown to Metrics Tab,closed,2025-11-03 17:34:49+00:00,,2025-11-03 17:35:14+00:00,,,,,False,False,2025-11-03 17:34:49+00:00,13.0,13.0,0.0,0.0,0.0,159.91367521367522,125.00311965811966
+oss_dev_analytics,,,,hcaballero2,,,,,,,,issue,3558722385.0,48.0,Change Architecture of Automated Data Collection,closed,2025-10-27 21:28:24+00:00,,2025-11-03 22:57:47+00:00,,,,,False,False,2025-10-27 21:28:24+00:00,13.0,13.0,0.0,0.0,0.0,159.91367521367522,125.00311965811966
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3543171389.0,46.0,Conversion of CSV file to JSON,closed,2025-10-23 05:06:47+00:00,,2025-11-03 22:48:44+00:00,,,,bug,False,True,2025-10-23 16:11:07+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3534869985.0,43.0,Adding Repo Dropdown for visualization,closed,2025-10-21 04:54:42+00:00,,2025-11-10 21:43:28+00:00,,,,enhancement,False,False,2025-10-27 21:34:13+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,hcaballero2,,,,,,,,issue,3533980856.0,41.0,Manual Metrics Tab on Dashboard,closed,2025-10-20 21:17:36+00:00,,2025-10-27 21:34:01+00:00,,,,,False,False,2025-10-20 21:17:36+00:00,13.0,13.0,0.0,0.0,0.0,159.91367521367522,125.00311965811966
+oss_dev_analytics,,,,hollowtree11,,,,,,,,issue,3533721920.0,40.0,Update Team Tab on Dashboard,closed,2025-10-20 19:50:26+00:00,,2025-10-27 18:35:48+00:00,,,,,False,False,2025-10-20 19:50:35+00:00,2.0,2.0,0.0,0.0,0.0,154.85819444444445,154.85597222222222
+oss_dev_analytics,,,,hollowtree11,,,,,,,,issue,3489297980.0,34.0,Increased Data Procurement Functionality,closed,2025-10-06 22:10:05+00:00,,2025-10-12 21:07:42+00:00,,,,,False,False,2025-10-06 22:10:12+00:00,2.0,2.0,0.0,0.0,0.0,154.85819444444445,154.85597222222222
+oss_dev_analytics,,,,hcaballero2,,,,,,,,issue,3462212802.0,24.0,Test Dashboard,closed,2025-09-28 16:48:50+00:00,,2025-11-03 22:58:11+00:00,,,,,False,False,2025-10-06 22:10:12+00:00,13.0,13.0,0.0,0.0,0.0,159.91367521367522,125.00311965811966
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3457841629.0,23.0,Data Processing and Metrics Calculation,closed,2025-09-26 14:07:01+00:00,,2025-11-03 18:21:31+00:00,,,,,False,False,2025-10-06 22:10:12+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3457835577.0,22.0,Manual Data Management System,closed,2025-09-26 14:05:15+00:00,,2025-11-17 22:37:36+00:00,,,,,False,False,2025-10-13 21:14:32+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3457832376.0,21.0,PR Data Collection,closed,2025-09-26 14:04:20+00:00,,2025-10-12 21:04:49+00:00,,,,,False,False,2025-09-29 21:17:06+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3457825289.0,20.0,GitHub Issues Data Collection,closed,2025-09-26 14:02:45+00:00,,2025-10-12 21:05:54+00:00,,,,,False,False,2025-09-29 21:17:06+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3457822150.0,19.0,Git Commits Data Collection,closed,2025-09-26 14:01:57+00:00,,2025-09-28 16:49:42+00:00,,,,,False,False,2025-09-29 21:17:06+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3457816784.0,18.0,Repository Discovery and Filtering,closed,2025-09-26 14:00:46+00:00,,2025-11-10 17:23:39+00:00,,,,,False,False,2025-10-06 21:17:16+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3457809711.0,17.0,Organization Member Discovery,open,2025-09-26 13:59:06+00:00,,,,,,,False,False,2025-10-06 21:17:02+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3457800268.0,16.0,Configuration Management System,closed,2025-09-26 13:56:53+00:00,,2025-10-27 21:30:23+00:00,,,,,False,False,2025-09-29 21:09:23+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3457789288.0,15.0,Project Foundation & Setup,closed,2025-09-26 13:54:19+00:00,,2025-11-03 22:59:51+00:00,,,,,False,False,2025-09-26 13:54:20+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,hcaballero2,,,,,,,,issue,3419579880.0,13.0,Finalize Metrics List,closed,2025-09-15 21:26:14+00:00,,2025-09-15 22:20:08+00:00,,,,,False,False,2025-09-26 13:54:20+00:00,13.0,13.0,0.0,0.0,0.0,159.91367521367522,125.00311965811966
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3403827830.0,10.0,Test dashboard with sample data,closed,2025-09-10 20:21:16+00:00,,2025-09-22 21:09:05+00:00,,,,,False,False,2025-09-26 13:54:20+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3403826849.0,9.0,Create CSV template,closed,2025-09-10 20:20:53+00:00,,2025-09-15 21:28:39+00:00,,,,,False,False,2025-09-26 13:54:20+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3403824993.0,8.0,Build first Chart.js char,closed,2025-09-10 20:20:09+00:00,,2025-09-22 21:09:19+00:00,,,,,False,False,2025-09-26 13:54:20+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3403819490.0,7.0,Fetch GitHub Issues,closed,2025-09-10 20:17:57+00:00,,2025-09-29 21:04:52+00:00,,,,,False,False,2025-09-26 13:54:20+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3403817081.0,6.0,Extract Git data,closed,2025-09-10 20:17:09+00:00,,2025-09-29 02:11:14+00:00,,,,,False,False,2025-09-26 13:54:20+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3403812547.0,5.0,Set up Python environment,closed,2025-09-10 20:15:26+00:00,,2025-09-15 21:34:09+00:00,,,,,False,False,2025-09-15 02:26:51+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3403811213.0,4.0,Draft survey questions,closed,2025-09-10 20:14:55+00:00,,2025-09-15 21:32:35+00:00,,,,,False,False,2025-09-15 02:26:51+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3403810173.0,3.0,Create HTML dashboard layout,closed,2025-09-10 20:14:31+00:00,,2025-09-15 21:28:57+00:00,,,,good first issue,False,False,2025-09-15 02:25:09+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3403808120.0,2.0,Map metrics to data sources,closed,2025-09-10 20:13:49+00:00,,2025-09-17 04:31:32+00:00,,,,"documentation,question",False,False,2025-09-15 02:24:27+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654
+oss_dev_analytics,,,,viswanathreddy1017,,,,,,,,issue,3403804188.0,1.0,Finalize the list of GitHub repos to analyze,closed,2025-09-10 20:12:21+00:00,,2025-09-15 21:34:46+00:00,,,,"documentation,good first issue",False,False,2025-09-15 02:28:38+00:00,21.0,20.0,1.0,0.0,0.05,438.5563055555555,248.654

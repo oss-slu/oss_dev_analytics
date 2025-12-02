@@ -1125,12 +1125,13 @@
       }
   }
   
-  async function loadHomeDashboard() {
+async function loadHomeDashboard() {
     console.log("Loading OSS-SLU dashboard…");
 
     let reposData;
     try {
         const resp = await fetch("oss_slu_repos.json");
+        if (!resp.ok) throw new Error("Failed to load oss_slu_repos.json");
         reposData = await resp.json();
     } catch (err) {
         console.error("Failed to load repos:", err);
@@ -1143,6 +1144,8 @@
     let allLeadTimes = [];
     let allCycleTimes = [];
     let allContributors = new Set();
+    const repoActivityMap = {};
+    const allMetricsByRepo = {};  // ← THIS IS THE KEY
 
     const repoActivityContainer = document.getElementById("repoActivity");
     repoActivityContainer.innerHTML = "";
@@ -1150,84 +1153,118 @@
     const tbody = document.querySelector("#contributorsTableHome tbody");
     tbody.innerHTML = "";
 
-    const repoActivityMap = {};
-
+    // Process each repo independently
     for (const repo of repoNames) {
         const metricsFile = `metrics_${repo}.json`;
+        let metrics = {};
 
-        let metrics;
         try {
             const r = await fetch(metricsFile);
-            if (!r.ok) continue; 
+            if (!r.ok) {
+                console.warn(`Skipping ${metricsFile} — not found or error ${r.status}`);
+                continue;
+            }
             metrics = await r.json();
-        } catch {
+        } catch (err) {
+            console.warn(`Failed to load ${metricsFile}`, err);
             continue;
         }
 
+        // Store for later use in contributor table
+        allMetricsByRepo[repo] = metrics;
+
+        // === Collect lead/cycle times ===
         Object.keys(metrics).forEach(key => {
-            if (key.startsWith("leadTime")) {
-                allLeadTimes.push(...metrics[key]);
+            if (key.startsWith("leadTime") && Array.isArray(metrics[key])) {
+                allLeadTimes.push(...metrics[key].filter(v => typeof v === "number" && v !== null));
             }
-            if (key.startsWith("cycleTime")) {
-                allCycleTimes.push(...metrics[key]);
+            if (key.startsWith("cycleTime") && Array.isArray(metrics[key])) {
+                allCycleTimes.push(...metrics[key].filter(v => typeof v === "number" && v !== null));
             }
         });
 
+        // === Collect contributors ===
         if (reposData[repo]?.contributors) {
             reposData[repo].contributors.forEach(c => allContributors.add(c));
         }
-
         if (reposData[repo]?.tech_leads) {
             reposData[repo].tech_leads.forEach(tl => allContributors.add(tl));
         }
-        
+
+        // === Count commits for this repo ===
         let repoTotalCommits = 0;
-        const commitKeys = Object.keys(metrics).filter(k => k.startsWith("commitFrequency_"));
+        const commitKeys = Object.keys(metrics).filter(k => k.startsWith("commitFrequency-"));
         commitKeys.forEach(key => {
             const arr = metrics[key];
             if (Array.isArray(arr)) {
-                arr.forEach(freq => {
-                    repoTotalCommits += freq * 14;
-                    totalCommitsNum += freq * 14;
+                arr.forEach(num => {
+                    if (typeof num === "number") {
+                        repoTotalCommits += num;
+                        totalCommitsNum += num;  // NOW ADDS FROM EVERY REPO
+                    }
                 });
             }
         });
-
         repoActivityMap[repo] = repoTotalCommits;
     }
 
-    allContributors.forEach(c => {
-        const label = c.endsWith("_tl") ? c.replace("_tl", " (Tech Lead)") : c;
+    // === Build contributor table from ALL repos ===
+    tbody.innerHTML = "";
+    allContributors.forEach(user => {
+        const cleanName = user.replace("_tl", "");
+        const isTL = user.endsWith("_tl");
+        const prefix = isTL ? "tl-" : "1-";
+
+        let totalCommits = 0;
+        let totalPRsMerged = 0;
+        let totalIssuesOpened = 0;
+
+        Object.values(allMetricsByRepo).forEach(metrics => {
+            const commitKey = `commitFrequency-${prefix}${cleanName}`;
+            const cycleKey = `cycleTime-${prefix}${cleanName}`;
+            const issuesKey = `issuesOpened-${prefix}${cleanName}`;
+
+            if (metrics[commitKey]) {
+                totalCommits += metrics[commitKey].reduce((a, b) => a + (b || 0), 0);
+            }
+            if (metrics[cycleKey]) {
+                totalPRsMerged += metrics[cycleKey].filter(v => v !== null).length;
+            }
+            if (metrics[issuesKey]) {
+                totalIssuesOpened += metrics[issuesKey].reduce((a, b) => a + (b || 0), 0);
+            }
+        });
+
         tbody.innerHTML += `
             <tr>
-                <td>${label}</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
+                <td>${cleanName}${isTL ? " (Tech Lead)" : ""}</td>
+                <td>${totalCommits}</td>
+                <td>${totalPRsMerged}</td>
+                <td>${totalIssuesOpened}</td>
             </tr>`;
     });
 
+    // === Update summary cards ===
     document.getElementById("reposCount").innerText = repoNames.length;
     document.getElementById("commitsCount").innerText = totalCommitsNum;
     document.getElementById("contributorsCount").innerText = allContributors.size;
 
     const avgLead = allLeadTimes.length > 0
-        ? allLeadTimes.reduce((a,b)=>a+b,0) / allLeadTimes.length
-        : 0;
-
+        ? (allLeadTimes.reduce((a, b) => a + b, 0) / allLeadTimes.length).toFixed(2)
+        : "0.00";
     const avgCycle = allCycleTimes.length > 0
-        ? allCycleTimes.reduce((a,b)=>a+b,0) / allCycleTimes.length
-        : 0;
+        ? (allCycleTimes.reduce((a, b) => a + b, 0) / allCycleTimes.length).toFixed(2)
+        : "0.00";
 
-    document.getElementById("leadTimeHome").innerText = avgLead.toFixed(2) + " days";
-    document.getElementById("cycleTimeHome").innerText = avgCycle.toFixed(2) + " days";
+    document.getElementById("leadTimeHome").innerText = avgLead + " days";
+    document.getElementById("cycleTimeHome").innerText = avgCycle + " days";
 
+    // === Repo activity bars ===
     const maxActivity = Math.max(...Object.values(repoActivityMap), 1);
-
     repoActivityContainer.innerHTML = "";
     for (const repo of repoNames) {
-        const commits = repoActivityMap[repo];
-        const percent = (commits / maxActivity) * 100;
+        const commits = repoActivityMap[repo] || 0;
+        const percent = maxActivity > 0 ? (commits / maxActivity) * 100 : 0;
 
         repoActivityContainer.innerHTML += `
             <div style="margin-bottom:10px;">
@@ -1238,13 +1275,13 @@
                 <div class="progress">
                     <div class="bar" style="width:${percent}%"></div>
                 </div>
+                <small>${commits} commits</small>
             </div>
         `;
     }
 
     renderHomeCharts();
 }
-
 function renderHomeCharts() {
     new Chart(document.getElementById("velocityChartHome"), {
         type: "line",

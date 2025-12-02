@@ -9,220 +9,452 @@
     "Sprint 5",
     "Sprint 6"
   ],
-  "commitFrequency_hcaballero2": [
-    0.2857142857142857,
-    0.23076923076923078,
-    0.38461538461538464,
-    0.0,
-    0.0,
-    0.0
+  "commitFrequency-1-SrinivasaVarmaP": [
+    0,
+    0,
+    0,
+    0,
+    1,
+    0
   ],
-  "issuesOpened_hcaballero2": [
-    4.0,
-    4.0,
-    3.0,
-    4.0,
-    0.0,
-    0.0
+  "leadTime-1-SrinivasaVarmaP": [
+    null,
+    null,
+    null,
+    null,
+    12.52,
+    null
   ],
-  "issuesClosed_hcaballero2": [
-    4.0,
-    3.0,
-    3.0,
-    3.0,
-    0.0,
-    0.0
+  "cycleTime-1-SrinivasaVarmaP": [
+    null,
+    null,
+    null,
+    null,
+    12.52,
+    null
   ],
-  "wip_hcaballero2": [
-    0.0,
-    1.0,
-    0.0,
-    1.0,
-    0.0,
-    0.0
+  "prTimeMerged-1-SrinivasaVarmaP": [
+    null,
+    null,
+    null,
+    null,
+    12.52,
+    null
   ],
-  "blockedIssues_hcaballero2": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
+  "issuesOpened-1-SrinivasaVarmaP": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
   ],
-  "defectRate_hcaballero2": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
+  "issuesClosed-1-SrinivasaVarmaP": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
   ],
-  "leadTime_hcaballero2": [
-    42.29763888888889,
-    56.0974074074074,
-    56.0974074074074,
-    56.0974074074074,
-    0.0,
-    0.0
+  "wip-1-SrinivasaVarmaP": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
   ],
-  "cycleTime_hcaballero2": [
-    -41.63236111111111,
-    56.09712962962963,
-    56.09712962962963,
-    56.09712962962963,
-    0.0,
-    0.0
+  "commitFrequency-1-codefair-io[bot]": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
   ],
-  "prTimeMerged_hcaballero2": [
-    167.70666666666668,
-    157.15472222222223,
-    0.0,
-    0.0,
-    0.0,
-    0.0
+  "leadTime-1-codefair-io[bot]": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
   ],
-  "commitFrequency_hollowtree11": [
-    0.07142857142857142,
-    0.46153846153846156,
-    0.07692307692307693,
-    0.0,
-    0.0,
-    0.0
+  "cycleTime-1-codefair-io[bot]": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
   ],
-  "issuesOpened_hollowtree11": [
-    2.0,
-    2.0,
-    2.0,
-    1.0,
-    0.0,
-    0.0
+  "prTimeMerged-1-codefair-io[bot]": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
   ],
-  "issuesClosed_hollowtree11": [
-    2.0,
-    2.0,
-    2.0,
-    1.0,
-    0.0,
-    0.0
+  "issuesOpened-1-codefair-io[bot]": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
   ],
-  "wip_hollowtree11": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
+  "issuesClosed-1-codefair-io[bot]": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
   ],
-  "blockedIssues_hollowtree11": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
+  "wip-1-codefair-io[bot]": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
   ],
-  "defectRate_hollowtree11": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
+  "commitFrequency-1-hcaballero2": [
+    4,
+    5,
+    15,
+    3,
+    5,
+    0
   ],
-  "leadTime_hollowtree11": [
-    154.85819444444445,
-    154.85819444444445,
-    154.85819444444445,
-    166.75611111111112,
-    0.0,
-    0.0
+  "leadTime-1-hcaballero2": [
+    3.51,
+    12.35,
+    7.01,
+    3.97,
+    2.41,
+    null
   ],
-  "cycleTime_hollowtree11": [
-    154.85597222222222,
-    154.85597222222222,
-    154.85597222222222,
-    166.7536111111111,
-    0.0,
-    0.0
+  "cycleTime-1-hcaballero2": [
+    6.99,
+    6.55,
+    null,
+    3.66,
+    1.26,
+    null
   ],
-  "prTimeMerged_hollowtree11": [
-    6.46,
-    106.28055555555555,
-    165.38611111111112,
-    0.0,
-    0.0,
-    0.0
+  "prTimeMerged-1-hcaballero2": [
+    6.99,
+    6.55,
+    null,
+    3.66,
+    1.26,
+    null
   ],
-  "commitFrequency_viswanathreddy1017_tl": [
-    0.07142857142857142,
-    0.38461538461538464,
-    0.46153846153846156,
-    0.3076923076923077,
-    0.0,
-    0.0
+  "issuesOpened-1-hcaballero2": [
+    1,
+    1,
+    1,
+    10,
+    1,
+    0
   ],
-  "issuesOpened_viswanathreddy1017_tl": [
-    15.0,
-    11.0,
-    7.0,
-    5.0,
-    0.0,
-    0.0
+  "issuesClosed-1-hcaballero2": [
+    1,
+    1,
+    1,
+    9,
+    1,
+    0
   ],
-  "issuesClosed_viswanathreddy1017_tl": [
-    15.0,
-    7.0,
-    4.0,
-    2.0,
-    0.0,
-    0.0
+  "wip-1-hcaballero2": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
   ],
-  "wip_viswanathreddy1017_tl": [
-    0.0,
-    4.0,
-    3.0,
-    3.0,
-    0.0,
-    0.0
+  "commitFrequency-1-hollowtree11": [
+    5,
+    7,
+    3,
+    6,
+    7,
+    0
   ],
-  "blockedIssues_viswanathreddy1017_tl": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
+  "leadTime-1-hollowtree11": [
+    3.65,
+    4.94,
+    6.92,
+    8.68,
+    8.93,
+    null
   ],
-  "defectRate_viswanathreddy1017_tl": [
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
+  "cycleTime-1-hollowtree11": [
+    0.27,
+    4.43,
+    6.89,
+    8.68,
+    8.93,
+    null
   ],
-  "leadTime_viswanathreddy1017_tl": [
-    315.4400925925926,
-    485.04853174603176,
-    612.4651388888889,
-    833.9,
-    0.0,
-    0.0
+  "prTimeMerged-1-hollowtree11": [
+    0.27,
+    4.43,
+    6.89,
+    8.68,
+    8.93,
+    null
   ],
-  "cycleTime_viswanathreddy1017_tl": [
-    91.4307962962963,
-    296.4496825396825,
-    491.03680555555553,
-    503.4327777777778,
-    0.0,
-    0.0
+  "issuesOpened-1-hollowtree11": [
+    0,
+    1,
+    1,
+    1,
+    1,
+    0
   ],
-  "prTimeMerged_viswanathreddy1017_tl": [
+  "issuesClosed-1-hollowtree11": [
+    0,
+    1,
+    1,
+    0,
+    0,
+    0
+  ],
+  "wip-1-hollowtree11": [
+    0,
+    0,
+    0,
+    1,
+    1,
+    0
+  ],
+  "commitFrequency-tl-kate-holdener": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "leadTime-tl-kate-holdener": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "cycleTime-tl-kate-holdener": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "prTimeMerged-tl-kate-holdener": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "issuesOpened-tl-kate-holdener": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "issuesClosed-tl-kate-holdener": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "wip-tl-kate-holdener": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "commitFrequency-tl-kungfuchicken": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "leadTime-tl-kungfuchicken": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "cycleTime-tl-kungfuchicken": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "prTimeMerged-tl-kungfuchicken": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "issuesOpened-tl-kungfuchicken": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "issuesClosed-tl-kungfuchicken": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "wip-tl-kungfuchicken": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "commitFrequency-tl-ruthvikm": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "leadTime-tl-ruthvikm": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "cycleTime-tl-ruthvikm": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "prTimeMerged-tl-ruthvikm": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "issuesOpened-tl-ruthvikm": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "issuesClosed-tl-ruthvikm": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "wip-tl-ruthvikm": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "commitFrequency-tl-viswanathreddy1017": [
+    2,
+    11,
+    11,
+    6,
+    6,
+    6
+  ],
+  "leadTime-tl-viswanathreddy1017": [
+    9.3,
+    20.04,
+    0.14,
+    8.11,
+    null,
+    0.03
+  ],
+  "cycleTime-tl-viswanathreddy1017": [
+    null,
+    0.1,
+    0.14,
     0.0,
-    0.6702777777777779,
-    0.029444444444444443,
-    0.003611111111111111,
+    null,
+    0.03
+  ],
+  "prTimeMerged-tl-viswanathreddy1017": [
+    null,
+    0.1,
+    0.14,
     0.0,
-    0.0
+    null,
+    0.03
+  ],
+  "issuesOpened-tl-viswanathreddy1017": [
+    10,
+    9,
+    0,
+    3,
+    0,
+    0
+  ],
+  "issuesClosed-tl-viswanathreddy1017": [
+    10,
+    8,
+    0,
+    2,
+    0,
+    0
+  ],
+  "wip-tl-viswanathreddy1017": [
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
   ]
 }
