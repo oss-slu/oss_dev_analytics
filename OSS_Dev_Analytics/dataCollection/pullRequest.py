@@ -60,11 +60,12 @@ def get_pr_data(g, repo_name, sprint = -1):
                 'time_to_merge': time_to_merge
             })
         #I removed the try and catch, add later if issues arise
-
     #Calculating average merge time
-    pull_requests_df = pd.DataFrame(pr_records)
-    merged_prs = pull_requests_df[pull_requests_df['merged_at'].notna()]
+    dataframe = pd.DataFrame(pr_records)
+    if dataframe.empty:
+        return dataframe
+    merged_prs = dataframe[dataframe['merged_at'].notna()]
     avg_merge_time = merged_prs['time_to_merge'].mean() if not merged_prs.empty else None
-    pull_requests_df['average_merge_time'] = avg_merge_time
+    dataframe['average_merge_time'] = avg_merge_time
 
-    return pull_requests_df
+    return dataframe

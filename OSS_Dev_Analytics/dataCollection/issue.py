@@ -72,7 +72,8 @@ def get_issue_data(g, repo_name, sprint = -1):
             print(f"  Error processing issue #{issue.number}: {issue_error}")
             continue
     dataframe = pd.DataFrame(issue_records)
-
+    if dataframe.empty or len(dataframe) == 0:
+        return dataframe
     #calculating manual stats and adding to df
     issues_opened = len(dataframe)
     issues_closed = len(dataframe[dataframe['state'] == 'closed'])

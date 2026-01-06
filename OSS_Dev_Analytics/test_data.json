@@ -1,60 +1,46 @@
 {
-    "sprint": -1,
+    "sprint": 7,
     "issues": {
         "hcaballero2": {
-            "average_time_to_close": 159.91367521367522,
-            "total_issues_opened": 14,
-            "total_issues_closed": "13"
+            "average_time_to_close": 168.2736111111111,
+            "total_issues_opened": 1,
+            "total_issues_closed": "1"
         },
         "hollowtree11": {
-            "average_time_to_close": 154.85819444444445,
-            "total_issues_opened": 4,
-            "total_issues_closed": "2"
+            "average_time_to_close": 166.75611111111112,
+            "total_issues_opened": 1,
+            "total_issues_closed": "1"
         },
         "viswanathreddy1017": {
-            "average_time_to_close": 438.55630555555547,
-            "total_issues_opened": 22,
-            "total_issues_closed": "20"
+            "average_time_to_close": 389.2559722222222,
+            "total_issues_opened": 2,
+            "total_issues_closed": "2"
         }
     },
     "pull_requests": {
-        "SrinivasaVarmaP": {
-            "average_time_to_merge": 300.45472222222224,
+        "hollowtree11": {
+            "average_time_to_merge": 165.38611111111112,
             "total_prs_opened": 1,
             "total_prs_merged": 0
         },
-        "hcaballero2": {
-            "average_time_to_merge": 86.48935185185185,
-            "total_prs_opened": 10,
-            "total_prs_merged": 0
-        },
-        "hollowtree11": {
-            "average_time_to_merge": 134.54055555555556,
-            "total_prs_opened": 7,
-            "total_prs_merged": 0
-        },
         "viswanathreddy1017": {
-            "average_time_to_merge": 2.205925925925926,
-            "total_prs_opened": 15,
+            "average_time_to_merge": 4.076736111111111,
+            "total_prs_opened": 4,
             "total_prs_merged": 0
         }
     },
     "commits": {
-        "SrinivasaVarmaP": {
-            "total_commits": 1,
-            "average_velocity": 4.12
-        },
         "hcaballero2": {
-            "total_commits": 32,
-            "average_velocity": 4.12
+            "total_commits": 12,
+            "average_velocity": 7.666666666666668
         },
         "hollowtree11": {
-            "total_commits": 28,
-            "average_velocity": 4.12
+            "total_commits": 2,
+            "average_velocity": 7.666666666666667
         },
         "viswanathreddy1017": {
-            "total_commits": 42,
-            "average_velocity": 4.12
+            "total_commits": 9,
+            "average_velocity": 7.666666666666667
         }
     }
 }

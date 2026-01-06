@@ -57,6 +57,8 @@ def get_commit_data(g, repo_name, sprint = -1):
             print(f"  Error processing commit {commit.sha}: {commit_error}")
     dataFrame = pd.DataFrame(commit_records) #dataframe to be returned
    #not for sure about this velocity calculation, thought is to count the number of commits per day and average it
+    if dataFrame.empty:
+        return dataFrame
     velocity = dataFrame.groupby(dataFrame['date'].dt.date).size().mean() if not dataFrame.empty else 0
     dataFrame['velocity'] = velocity
     return dataFrame
