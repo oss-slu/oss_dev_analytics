@@ -1,0 +1,8 @@
+# GitHub API Wrapper
+PyGithub
+
+# Data Processing and Analysis
+pandas
+
+# Environment Variable Management (Recommended for GIT_TOKEN)
+python-dotenv
