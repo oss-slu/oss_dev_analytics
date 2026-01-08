@@ -16,10 +16,11 @@ echo "📦 Installing Frontend dependencies (React + Vite)..."
 if [ -d "frontend" ]; then
     cd frontend
     npm install
+    npm install -D vitest @testing-library/react @testing-library/jest-dom jsdom
     echo "✅ Frontend dependencies installed."
     cd ..
 else
     echo "⚠️ Frontend directory not found. Skipping npm install."
 fi
 
-echo "🎉 Setup Complete! Remember to configure your GIT_TOKEN in config/configs.py."
+echo "🎉 Setup Complete! Remember to configure your GIT_TOKEN in config/.env"
