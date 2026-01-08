@@ -1,0 +1,11 @@
+# Python compilation files
+**/__pycache__/
+**/*.pyc
+
+# React/Node files
+**/node_modules/
+**/dist/
+
+# Environment variables
+.env
+Backend/config/.envex

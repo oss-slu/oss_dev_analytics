@@ -68,7 +68,3 @@ Tailwind CSS: Use utility classes directly in className rather than writing exte
     ```
     {/* Comments here */}
     ```
-
-
-
-
