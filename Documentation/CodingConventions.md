@@ -67,18 +67,4 @@ Tailwind CSS: Use utility classes directly in className rather than writing exte
     * Inside JSX
     ```
     {/* Comments here */}
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
     ```
-=======
->>>>>>> codeAudit
-    ```
-
-
-
-
-<<<<<<< HEAD
-=======
->>>>>>> main
->>>>>>> codeAudit
