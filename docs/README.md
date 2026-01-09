@@ -18,7 +18,7 @@ OSS_Dev_Analytics provides a centralized dashboard for the **Open Source with SL
 
 ## 🤝 Getting Started
 Are you interested in contributing to our organization-wide analytics?
-1. Check out our [Onboarding Document](./ONBOARDING.md).
+1. Check out our [Onboarding Document](./Onboarding.md).
 2. Join the conversation in the **#oss-dev-analytics** Slack channel.
 3. Look for "Good First Issues" in our repository!
 
