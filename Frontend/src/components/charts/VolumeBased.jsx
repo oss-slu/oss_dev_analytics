@@ -18,7 +18,12 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 export default function VolumeCharts({ data, repos = "All" }) {
     //If no data is available yet, return a loading state or null
     if (!data) return <div className="p-4 text-center">Loading Chart Data...</div>;
-
+    if (repos == "All"){
+        var title = "Organization Level Volume Data";
+    }
+    else {
+        var title = `Repository Level Volume Data: ${repos}`;
+    }
     const chartOptions = {
         responsive: true,
         plugins: {
@@ -29,10 +34,8 @@ export default function VolumeCharts({ data, repos = "All" }) {
             y: { beginAtZero: true }
         }
     };
-
-    //Constructing the chart data dynamically
     const chartData = {
-        labels: Object.keys(data), // e.g., ["Total Issues", "Total PRs", "Total Commits"]
+        labels: Object.keys(data), //e.g, ["Total Issues", "Total PRs", "Total Commits"]
         datasets: [
             {
                 label: 'Volume',
