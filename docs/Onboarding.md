@@ -45,11 +45,4 @@ To automatically download all necessary Python dependencies, run the following c
 chmod +x setup.sh
 ./setup.sh
 ```
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> main
->>>>>>> codeAudit
