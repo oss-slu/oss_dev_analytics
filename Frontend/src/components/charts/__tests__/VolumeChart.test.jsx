@@ -16,7 +16,7 @@ vi.mock('react-chartjs-2', () => ({
     ),
 }));
 
-describe("VolumeCharts Component", () => {
+describe("VolumeCharts Component", () => { //prints out if the test was successful in terminal
     test("displays correct data for Organization level", () => {
         const orgData = transformVolumeData(test_data, 'org', null, "All"); 
         render(<VolumeCharts data={orgData} repos="All" />);

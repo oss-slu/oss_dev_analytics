@@ -15,11 +15,15 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
  * @param {Object} data - The processed data for the specific view (User, Repo, or Org)
  * @param {string} repos - The repository name or "All" for all repositories (Default "All")
  */
-export default function VolumeCharts({ data, repos = "All" }) {
+export default function VolumeCharts({ data, repos = "All", user = null }) {
     //If no data is available yet, return a loading state or null
     if (!data) return <div className="p-4 text-center">Loading Chart Data...</div>;
+    
     if (repos == "All"){
         var title = "Organization Level Volume Data";
+    }
+    else if(user != null){
+        var title = `User Level Volume Data: ${repos} for ${user}`
     }
     else {
         var title = `Repository Level Volume Data: ${repos}`;

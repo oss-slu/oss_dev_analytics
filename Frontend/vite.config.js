@@ -7,5 +7,14 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
   },
+  server: {
+    fs: {
+      allow: [
+        '..', 
+        './'
+      ],
+    },
+  }
 });
+
 
