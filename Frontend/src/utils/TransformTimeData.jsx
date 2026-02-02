@@ -1,33 +1,42 @@
-// Utility function to shape time-based data for charts
-// Handles org-level, repo-level, user-level, and sprint filtering
+// Turns raw test_data.json into simple chart-ready data
+// Keeps all data logic out of the chart component
 
 export const transformTimeData = ({
   rawData,
+  repo,
+  category, // issues| pull_requests
   metric,
-  scope,
-  sprintId
+  scope = "org",
+  user = null
 }) => {
-  // Handle cases where rawData is not an array (e.g., JSON object)
-  const dataArray = Array.isArray(rawData)
-    ? rawData
-    : rawData?.data || [];
 
-  let filteredData = [...dataArray];
+  const repoData = rawData?.[repo]?.[category];
+  if (!repoData) return [];
 
-  if (scope === "repo") {
-    filteredData = filteredData.filter(d => d.repo);
+  // Org-wide average (used on Home page)
+  if (scope === "org") {
+    const values = Object.values(repoData)
+    .map(d => Number(d[metric]))
+    .filter(v => !isNaN(v));
+
+    if (!values.length) return [];
+
+    return [{
+      label: "Organization",
+      value: values.reduce((a, b) => a + b, 0) / values.length
+    }];
   }
 
+  // Per-user data (used on Team Stats page)
   if (scope === "user") {
-    filteredData = filteredData.filter(d => d.user);
+    return Object.entries(repoData)
+      .filter(([username]) => !user || username === user)
+      .map(([username, data]) => ({
+        label: username,
+        value: Number(data[metric])
+      }))
+      .filter(d => !isNaN(d.value));
   }
 
-  if (sprintId) {
-    filteredData = filteredData.filter(d => d.sprint === sprintId);
-  }
-
-  return filteredData.map(entry => ({
-    label: sprintId ? entry.sprint : entry.date,
-    value: entry.metrics?.[metric]
-  }));
+  return [];
 };
