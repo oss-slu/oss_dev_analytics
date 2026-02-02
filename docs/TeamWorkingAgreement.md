@@ -17,11 +17,11 @@
 
 ## Communication Standards
 * Primary Channel: All technical and logistical coordination will occur in the #oss-dev-analytics Slack channel.
-* Responsiveness: All memebers are expected to respond on Slack within **24 hours**, unless there is a scheduled break or other extenuating circumstances.
+* Responsiveness: All members are expected to respond on Slack within **24 hours**, unless there is a scheduled break or other extenuating circumstances.
 * Transparency: Team members are expected to keep the Kanban board up to date with active issues they are working on (Slack upades are also acceptable) to avoid duplication of effort.
 
 ### Signatures:
 
 Hazel Caballero: 
 Dev: Dhyana Patel
-Dev:
+Dev: Kiara Mathews
