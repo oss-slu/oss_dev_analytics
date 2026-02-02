@@ -24,4 +24,4 @@
 
 Hazel Caballero: 
 Dev: Dhyana Patel
-Dev:
+Dev: Kiara Mathews
