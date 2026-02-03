@@ -1,7 +1,7 @@
 // Component to show top contributors and top repositories
 // Based on volume of activity (commits, issues, etc.)
 
-import testData from "../../../Frontend/test_data.json";
+import testData from "../../../Backend/test_data.json";
 
 const TOP_N = 5;
 
