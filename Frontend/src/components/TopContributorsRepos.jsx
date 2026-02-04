@@ -1,12 +1,11 @@
 // Component to show top contributors and top repositories
 // Based on volume of activity (commits, issues, etc.)
 
-import testData from "../../../Backend/test_data.json";
+import testData from "../test_data.json";
 
 const TOP_N = 5;
 
 const TopContributorsRepos = () => {
-  // Using events from test_data.json
   // Each event represents some kind of activity
   const events = testData.events || [];
 

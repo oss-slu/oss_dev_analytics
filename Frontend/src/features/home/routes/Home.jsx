@@ -4,11 +4,10 @@
 import TopContributorsRepos from "../../../components/TopContributorsRepos";
 import VolumeChart from "../../../components/charts/VolumeBased";
 
-import test_data from '../../../Backend/test_data.json';
+import testData from "../../../test_data.json";
 import { transformVolumeData } from "../../../utils/TransformVolumeData";
 
 export const Home = () => {
-
   const volumeData = transformVolumeData(testData.events);
 
   return (
