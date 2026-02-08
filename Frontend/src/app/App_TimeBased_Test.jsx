@@ -7,7 +7,8 @@ import TimeBased from '../components/charts/TimeBased';
 // Temporary test file to verify visual output
 function AppTimeBasedTest() {
 
-  // Simple mock data for time-based chart
+  // Can you use the sprints rather than these mock values? It is great that you did mock values!! But the format of the json file will be repo_sprint_# for a specific repo data at a specific sprint or just labled repo for lifetime data
+  // Simple mock data for time-based chart 
   const timeTestData = [
     { time: '2026-01-01', value: 10 },
     { time: '2026-01-02', value: 18 },

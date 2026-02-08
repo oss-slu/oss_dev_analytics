@@ -4,7 +4,7 @@
 export const transformTimeData = ({
   rawData,
   repo,
-  category, // issues| pull_requests
+  category, // issues| pull_requests {want both issues and pull_requests, not or. May need to exclude or change value if the repos PR time is NaN}
   metric,
   scope = "org",
   user = null
@@ -27,7 +27,8 @@ export const transformTimeData = ({
     }];
   }
 
-  // Per-user data (used on Team Stats page)
+  // also need a filter by repo. idea is repo -> display avg team metrics then users can pick a user - > which will then display the specific user metrics either for all time or specific sprint
+  // Per-user data (used on Team Stats page) 
   if (scope === "user") {
     return Object.entries(repoData)
       .filter(([username]) => !user || username === user)
