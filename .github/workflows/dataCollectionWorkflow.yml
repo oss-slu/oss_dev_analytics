@@ -1,0 +1,22 @@
+name: Data Collection Workflow
+
+on:
+  schedule:
+    - cron: '0 0 1,15 * *' # Runs at midnight on the 1st and 15th of every month
+    # maybe also change to hardcode sprints but that would require by semester maintenance. This is more automated but less specific to sprints. We can also do both and have a workflow that runs on a schedule and another that runs when we push sprint data to the repo.
+
+jobs:
+  run-python-script:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5 
+        with:
+          python-version: '3.10'
+      
+      - name: Run Python script
+        run: python collectData.py
