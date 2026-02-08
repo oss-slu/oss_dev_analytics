@@ -1,43 +1,14 @@
 // Component to show top contributors and top repositories
-// Based on volume of activity (commits, issues, etc.)
+// Focuses mainly on rendering, while data logic lives in a helper
 
-import testData from "../test_data.json";
+import { getTopContributorsAndRepos } from "../utils/getTopContributorsAndRepos";
 
 const TOP_N = 5;
 
-const TopContributorsRepos = () => {
-  // Each event represents some kind of activity
-  const events = testData.events || [];
-
-  // Calculate contributor volume
-  const contributorStats = {};
-
-  events.forEach((event) => {
-    if (!event.author) return;
-
-    contributorStats[event.author] =
-      (contributorStats[event.author] || 0) + 1;
-  });
-
-  const topContributors = Object.entries(contributorStats)
-    .map(([name, count]) => ({ name, count }))
-    .sort((a, b) => b.count - a.count)
-    .slice(0, TOP_N);
-
-  // Calculate repository volume
-  const repoStats = {};
-
-  events.forEach((event) => {
-    if (!event.repo) return;
-
-    repoStats[event.repo] =
-      (repoStats[event.repo] || 0) + 1;
-  });
-
-  const topRepos = Object.entries(repoStats)
-    .map(([name, count]) => ({ name, count }))
-    .sort((a, b) => b.count - a.count)
-    .slice(0, TOP_N);
+const TopContributorsRepos = ({ events = [] }) => {
+  // Get pre-processed data from helper function
+  const { topContributors, topRepos } =
+    getTopContributorsAndRepos(events, TOP_N);
 
   return (
     <div style={{ display: "flex", gap: "30px" }}>
@@ -45,8 +16,8 @@ const TopContributorsRepos = () => {
       <div>
         <h3>Top Contributors</h3>
         <ul>
-          {topContributors.map((user, index) => (
-            <li key={index}>
+          {topContributors.map((user) => (
+            <li key={user.name}>
               {user.name} ({user.count})
             </li>
           ))}
@@ -57,8 +28,8 @@ const TopContributorsRepos = () => {
       <div>
         <h3>Top Repositories</h3>
         <ul>
-          {topRepos.map((repo, index) => (
-            <li key={index}>
+          {topRepos.map((repo) => (
+            <li key={repo.name}>
               {repo.name} ({repo.count})
             </li>
           ))}

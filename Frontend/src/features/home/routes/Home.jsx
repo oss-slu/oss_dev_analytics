@@ -22,7 +22,7 @@ export const Home = () => {
           marginBottom: "30px",
         }}
       >
-        <TopContributorsRepos />
+        <TopContributorsRepos events={testData.events || []} />
       </section>
 
       {/* Existing volume chart (already on main) */}
