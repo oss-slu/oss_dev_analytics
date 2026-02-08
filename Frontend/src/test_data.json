@@ -1,0 +1,283 @@
+{
+    "lrda_mobile": {
+        "issues": {
+            "AmarHadzic": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 1,
+                "total_issues_closed": 0
+            },
+            "AndchooChen": {
+                "average_time_to_close": 1117.6725980392157,
+                "total_issues_opened": 21,
+                "total_issues_closed": "17"
+            },
+            "InfinityBowman": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 1,
+                "total_issues_closed": 0
+            },
+            "SamSam9812": {
+                "average_time_to_close": 4203.242037037037,
+                "total_issues_opened": 3,
+                "total_issues_closed": "3"
+            },
+            "Stuartwastaken": {
+                "average_time_to_close": 1196.651717171717,
+                "total_issues_opened": 23,
+                "total_issues_closed": "22"
+            },
+            "ademDurakovic": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 2,
+                "total_issues_closed": 0
+            },
+            "irvinet20": {
+                "average_time_to_close": 3076.3651736111115,
+                "total_issues_opened": 10,
+                "total_issues_closed": "8"
+            },
+            "izakrobles": {
+                "average_time_to_close": 365.92055555555555,
+                "total_issues_opened": 6,
+                "total_issues_closed": "4"
+            },
+            "rcAsironman": {
+                "average_time_to_close": 1363.693484848485,
+                "total_issues_opened": 45,
+                "total_issues_closed": "33"
+            },
+            "teamomiamigo": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 1,
+                "total_issues_closed": 0
+            },
+            "yashcoded": {
+                "average_time_to_close": 514.4426825396826,
+                "total_issues_opened": 38,
+                "total_issues_closed": "35"
+            }
+        },
+        "pull_requests": {
+            "AmarHadzic": {
+                "average_time_to_merge": 422.4528787878789,
+                "total_prs_opened": 12,
+                "total_prs_merged": 0
+            },
+            "AndchooChen": {
+                "average_time_to_merge": 241.11543981481483,
+                "total_prs_opened": 18,
+                "total_prs_merged": 0
+            },
+            "InfinityBowman": {
+                "average_time_to_merge": 318.1827777777778,
+                "total_prs_opened": 2,
+                "total_prs_merged": 0
+            },
+            "SamSam9812": {
+                "average_time_to_merge": 184.49203703703702,
+                "total_prs_opened": 6,
+                "total_prs_merged": 0
+            },
+            "Stuartwastaken": {
+                "average_time_to_merge": 12.533506944444445,
+                "total_prs_opened": 9,
+                "total_prs_merged": 0
+            },
+            "ademDurakovic": {
+                "average_time_to_merge": 214.24269444444445,
+                "total_prs_opened": 12,
+                "total_prs_merged": 0
+            },
+            "irvinet20": {
+                "average_time_to_merge": 178.81123737373738,
+                "total_prs_opened": 12,
+                "total_prs_merged": 0
+            },
+            "izakrobles": {
+                "average_time_to_merge": 60.82115079365078,
+                "total_prs_opened": 10,
+                "total_prs_merged": 0
+            },
+            "mhashir03": {
+                "average_time_to_merge": 0,
+                "total_prs_opened": 2,
+                "total_prs_merged": 0
+            },
+            "rcAsironman": {
+                "average_time_to_merge": 609.5874206349207,
+                "total_prs_opened": 9,
+                "total_prs_merged": 0
+            },
+            "sophiabahru": {
+                "average_time_to_merge": 0,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            },
+            "teamomiamigo": {
+                "average_time_to_merge": 151.40518518518516,
+                "total_prs_opened": 15,
+                "total_prs_merged": 0
+            },
+            "yashcoded": {
+                "average_time_to_merge": 29.282916666666665,
+                "total_prs_opened": 6,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "AmarHadzic": {
+                "total_commits": 72,
+                "average_velocity": 3.427631578947369
+            },
+            "InfinityBowman": {
+                "total_commits": 3,
+                "average_velocity": 3.4276315789473686
+            },
+            "SamSam9812": {
+                "total_commits": 27,
+                "average_velocity": 3.427631578947369
+            },
+            "Stuartwastaken": {
+                "total_commits": 127,
+                "average_velocity": 3.4276315789473677
+            },
+            "ademDurakovic": {
+                "total_commits": 78,
+                "average_velocity": 3.4276315789473677
+            },
+            "irvinet20": {
+                "total_commits": 53,
+                "average_velocity": 3.427631578947369
+            },
+            "izakrobles": {
+                "total_commits": 182,
+                "average_velocity": 3.427631578947368
+            },
+            "kungfuchicken": {
+                "total_commits": 1,
+                "average_velocity": 3.4276315789473686
+            },
+            "rcAsironman": {
+                "total_commits": 47,
+                "average_velocity": 3.4276315789473686
+            },
+            "teamomiamigo": {
+                "total_commits": 10,
+                "average_velocity": 3.4276315789473686
+            },
+            "yashcoded": {
+                "total_commits": 354,
+                "average_velocity": 3.4276315789473695
+            }
+        }
+    },
+    "oss_dev_analytics": {
+        "issues": {
+            "hcaballero2": {
+                "average_time_to_close": 255.91946428571427,
+                "total_issues_opened": 14,
+                "total_issues_closed": "14"
+            },
+            "hollowtree11": {
+                "average_time_to_close": 746.7967361111112,
+                "total_issues_opened": 4,
+                "total_issues_closed": "4"
+            },
+            "viswanathreddy1017": {
+                "average_time_to_close": 584.8246338383838,
+                "total_issues_opened": 22,
+                "total_issues_closed": "22"
+            }
+        },
+        "pull_requests": {
+            "SrinivasaVarmaP": {
+                "average_time_to_merge": 300.45472222222224,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            },
+            "hcaballero2": {
+                "average_time_to_merge": 64.87432870370371,
+                "total_prs_opened": 14,
+                "total_prs_merged": 0
+            },
+            "hollowtree11": {
+                "average_time_to_merge": 134.54055555555556,
+                "total_prs_opened": 7,
+                "total_prs_merged": 0
+            },
+            "viswanathreddy1017": {
+                "average_time_to_merge": 2.205925925925926,
+                "total_prs_opened": 15,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "SrinivasaVarmaP": {
+                "total_commits": 1,
+                "average_velocity": 4.0
+            },
+            "hcaballero2": {
+                "total_commits": 39,
+                "average_velocity": 4.0
+            },
+            "hollowtree11": {
+                "total_commits": 28,
+                "average_velocity": 4.0
+            },
+            "viswanathreddy1017": {
+                "total_commits": 43,
+                "average_velocity": 4.0
+            }
+        }
+    },
+    "lrda_mobile_sprint_7": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "oss_dev_analytics_sprint_7": {
+        "issues": {
+            "hcaballero2": {
+                "average_time_to_close": 168.2736111111111,
+                "total_issues_opened": 1,
+                "total_issues_closed": "1"
+            },
+            "hollowtree11": {
+                "average_time_to_close": 166.75611111111112,
+                "total_issues_opened": 1,
+                "total_issues_closed": "1"
+            },
+            "viswanathreddy1017": {
+                "average_time_to_close": 389.2559722222222,
+                "total_issues_opened": 2,
+                "total_issues_closed": "2"
+            }
+        },
+        "pull_requests": {
+            "hollowtree11": {
+                "average_time_to_merge": 165.38611111111112,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            },
+            "viswanathreddy1017": {
+                "average_time_to_merge": 4.076736111111111,
+                "total_prs_opened": 4,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "hcaballero2": {
+                "total_commits": 12,
+                "average_velocity": 7.666666666666668
+            },
+            "hollowtree11": {
+                "total_commits": 2,
+                "average_velocity": 7.666666666666667
+            },
+            "viswanathreddy1017": {
+                "total_commits": 9,
+                "average_velocity": 7.666666666666667
+            }
+        }
+    }
+}
