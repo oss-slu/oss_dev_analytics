@@ -2,21 +2,34 @@ name: Data Collection Workflow
 
 on:
   schedule:
-    - cron: '0 0 1,15 * *' # Runs at midnight on the 1st and 15th of every month
-    # maybe also change to hardcode sprints but that would require by semester maintenance. This is more automated but less specific to sprints. We can also do both and have a workflow that runs on a schedule and another that runs when we push sprint data to the repo.
+    - cron: '0 0 1,15 * *' # Runs at midnight on the 1st and 15th
+  workflow_dispatch: # Allows to run manually for testing
 
 jobs:
   run-python-script:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5 
         with:
           python-version: '3.10'
-      
+
+      - name: Install dependencies
+        run: |
+          pip install PyGithub pandas
+
       - name: Run Python script
+        env:
+          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
         run: python collectData.py
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add test_data.json
+          git commit -m "Automated data collection: Update test_data.json" || echo "No changes to commit"
+          git push
