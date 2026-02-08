@@ -4,21 +4,44 @@
 export const transformTimeData = ({
   rawData,
   repo,
-  category, // issues| pull_requests {want both issues and pull_requests, not or. May need to exclude or change value if the repos PR time is NaN}
+  categories = ["issues", "pull_requests"],
   metric,
   scope = "org",
   user = null
 }) => {
 
-  const repoData = rawData?.[repo]?.[category];
-  if (!repoData) return [];
+  if (!rawData?.[repo]) return [];
 
-  // Org-wide average (used on Home page)
+  // Collect valid metric values across categories
+  const collectValues = (username = null) => {
+    const values = [];
+
+    categories.forEach(category => {
+      const categoryData = rawData[repo][category];
+      if (!categoryData) return;
+
+      // Org-level: all users
+      if (!username) {
+        Object.values(categoryData).forEach(d => {
+          const v = Number(d[metric]);
+          if (!isNaN(v)) values.push(v);
+        });
+      }
+      // User-level
+      else {
+        const v = Number(categoryData?.[username]?.[metric]);
+        if (!isNaN(v)) values.push(v);
+      }
+    });
+
+    return values;
+  };
+
+  // ─────────────────────────────
+  // Org-wide average
+  // ─────────────────────────────
   if (scope === "org") {
-    const values = Object.values(repoData)
-    .map(d => Number(d[metric]))
-    .filter(v => !isNaN(v));
-
+    const values = collectValues();
     if (!values.length) return [];
 
     return [{
@@ -27,16 +50,30 @@ export const transformTimeData = ({
     }];
   }
 
-  // also need a filter by repo. idea is repo -> display avg team metrics then users can pick a user - > which will then display the specific user metrics either for all time or specific sprint
-  // Per-user data (used on Team Stats page) 
+  // ─────────────────────────────
+  // Per-user metrics
+  // ─────────────────────────────
   if (scope === "user") {
-    return Object.entries(repoData)
-      .filter(([username]) => !user || username === user)
-      .map(([username, data]) => ({
-        label: username,
-        value: Number(data[metric])
-      }))
-      .filter(d => !isNaN(d.value));
+    const users = new Set();
+
+    categories.forEach(category => {
+      Object.keys(rawData[repo][category] || {}).forEach(u =>
+        users.add(u)
+      );
+    });
+
+    return Array.from(users)
+      .filter(u => !user || u === user)
+      .map(username => {
+        const values = collectValues(username);
+        if (!values.length) return null;
+
+        return {
+          label: username,
+          value: values.reduce((a, b) => a + b, 0) / values.length
+        };
+      })
+      .filter(Boolean);
   }
 
   return [];

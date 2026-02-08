@@ -2,18 +2,32 @@ import { AppProvider } from './Provider';
 import { Navbar } from '../components/NavBar';
 
 import TimeBased from '../components/charts/TimeBased';
+import testData from '../Backend/test_data.json';
 
 // Code used to test TimeBased chart.
-// Temporary test file to verify visual output
+// Uses repo-level and sprint-level data from test_data.json
 function AppTimeBasedTest() {
 
-  // Can you use the sprints rather than these mock values? It is great that you did mock values!! But the format of the json file will be repo_sprint_# for a specific repo data at a specific sprint or just labled repo for lifetime data
-  // Simple mock data for time-based chart 
+  const lifetimeRepo = testData.oss_dev_analytics;
+  const sprintRepo = testData.oss_dev_analytics_sprint_7;
+
+  // Helper to sum commits across contributors
+  const sumCommits = (commitsObj = {}) =>
+    Object.values(commitsObj).reduce(
+      (sum, user) => sum + (user.total_commits || 0),
+      0
+    );
+
+  // Convert repo + sprint into TimeBased-compatible data
   const timeTestData = [
-    { time: '2026-01-01', value: 10 },
-    { time: '2026-01-02', value: 18 },
-    { time: '2026-01-03', value: 7 },
-    { time: '2026-01-04', value: 22 }
+    {
+      time: 'Lifetime',
+      value: sumCommits(lifetimeRepo.commits),
+    },
+    {
+      time: 'Sprint 7',
+      value: sumCommits(sprintRepo.commits),
+    },
   ];
 
   return (
@@ -24,7 +38,7 @@ function AppTimeBasedTest() {
           data={timeTestData}
           xKey="time"
           yKey="value"
-          title="Time-Based Chart (Test Output)"
+          title="OSS Dev Analytics – Commits Over Time"
         />
       </main>
     </AppProvider>
