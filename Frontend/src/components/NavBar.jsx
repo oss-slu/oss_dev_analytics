@@ -4,7 +4,7 @@ export const Navbar = () => {
   return (
     <div style={styles.wrapper}>
       <nav style={styles.nav}>
-        <div style={styles.logoContainer}>
+        <div style={styles.logoContainer}> {/* OSS logo*/}
           <div style={styles.logoSmall}>
             Open
             <br />
@@ -15,7 +15,7 @@ export const Navbar = () => {
           <div style={styles.logoBig}>SLU</div>
         </div>
 
-        <ul style={styles.navLinks}>
+        <ul style={styles.navLinks}> {/*Navigation links to components*/}
           <li>
             <Link to="/" style={styles.link}>
               Home
@@ -36,8 +36,8 @@ export const Navbar = () => {
     </div>
   );
 };
-
-const styles = {
+/* Nav bar styling and customization*/
+const styles = { 
   wrapper: {
     width: "100%",
     display: "flex",
