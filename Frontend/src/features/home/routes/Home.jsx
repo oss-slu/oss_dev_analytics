@@ -8,7 +8,7 @@ import testData from "../../../test_data.json";
 import { transformVolumeData } from "../../../utils/TransformVolumeData";
 
 export const Home = () => {
-  const volumeData = transformVolumeData(testData.events);
+  const volumeData = transformVolumeData(testData);
 
   return (
     <div>
