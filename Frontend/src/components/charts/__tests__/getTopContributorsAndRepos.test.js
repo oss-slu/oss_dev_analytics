@@ -1,7 +1,12 @@
-import { getTopContributorsAndRepos } from "../../../utils/getTopContributorsAndRepos";
+/*
+    Unit tests for the getTopContributorsAndRepos helper function
 
-// Tests for ranking logic used by TopContributorsRepos component
-// Keeping these tests focused on counting and ordering only
+    These tests focus exclusively on verifying the correctness of
+    counting and ranking logic for contributors and repositories.
+    UI rendering is intentionally excluded to keep tests isolated 
+    and easy to maintain.
+*/ 
+import { getTopContributorsAndRepos } from "../../../utils/getTopContributorsAndRepos";
 
 describe("getTopContributorsAndRepos", () => {
   it("counts contributor activity and sorts correctly", () => {
@@ -14,7 +19,7 @@ describe("getTopContributorsAndRepos", () => {
     const { topContributors } =
       getTopContributorsAndRepos(events, 5);
 
-    // alice should come first since she appears twice
+    // alice should rank first since she appears twice
     expect(topContributors).toEqual([
       { name: "alice", count: 2 },
       { name: "bob", count: 1 },
@@ -31,7 +36,7 @@ describe("getTopContributorsAndRepos", () => {
     const { topRepos } =
       getTopContributorsAndRepos(events, 5);
 
-    // repo1 should be ranked higher since it appears more often
+    // repo1 should rank higher since it appears more frequently
     expect(topRepos).toEqual([
       { name: "repo1", count: 2 },
       { name: "repo2", count: 1 },
