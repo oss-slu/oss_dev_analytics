@@ -24,7 +24,9 @@ jobs:
       - name: Run Python script
         env:
           GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
-        run: python collectData.py
+        run: 
+          cd Backend
+          python dataCollection.collectData.py
 
       - name: Commit and Push changes
         run: |

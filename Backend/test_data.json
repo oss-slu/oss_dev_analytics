@@ -174,9 +174,9 @@
     "oss_dev_analytics": {
         "issues": {
             "hcaballero2": {
-                "average_time_to_close": 255.91946428571427,
-                "total_issues_opened": 14,
-                "total_issues_closed": "14"
+                "average_time_to_close": 264.5485802469136,
+                "total_issues_opened": 27,
+                "total_issues_closed": "18"
             },
             "hollowtree11": {
                 "average_time_to_close": 746.7967361111112,
@@ -195,14 +195,29 @@
                 "total_prs_opened": 1,
                 "total_prs_merged": 0
             },
+            "dhyana6466": {
+                "average_time_to_merge": 65.37194444444444,
+                "total_prs_opened": 5,
+                "total_prs_merged": 0
+            },
+            "ggondela1419": {
+                "average_time_to_merge": 39.9862037037037,
+                "total_prs_opened": 3,
+                "total_prs_merged": 0
+            },
             "hcaballero2": {
-                "average_time_to_merge": 64.87432870370371,
-                "total_prs_opened": 14,
+                "average_time_to_merge": 37.209880952380956,
+                "total_prs_opened": 23,
                 "total_prs_merged": 0
             },
             "hollowtree11": {
                 "average_time_to_merge": 134.54055555555556,
                 "total_prs_opened": 7,
+                "total_prs_merged": 0
+            },
+            "kiaramathews": {
+                "average_time_to_merge": 63.93805555555555,
+                "total_prs_opened": 2,
                 "total_prs_merged": 0
             },
             "viswanathreddy1017": {
@@ -216,12 +231,24 @@
                 "total_commits": 1,
                 "average_velocity": 4.0
             },
+            "dhyana6466": {
+                "total_commits": 2,
+                "average_velocity": 4.0
+            },
+            "ggondela1419": {
+                "total_commits": 3,
+                "average_velocity": 4.0
+            },
             "hcaballero2": {
-                "total_commits": 39,
+                "total_commits": 79,
                 "average_velocity": 4.0
             },
             "hollowtree11": {
                 "total_commits": 28,
+                "average_velocity": 4.0
+            },
+            "kiaramathews": {
+                "total_commits": 2,
                 "average_velocity": 4.0
             },
             "viswanathreddy1017": {
