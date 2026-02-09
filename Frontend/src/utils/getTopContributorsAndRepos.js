@@ -24,13 +24,16 @@ export function getTopContributorsAndRepos(events, topN) {
   // Sort contributors by activity count and take top N
   const topContributors = Object.entries(contributorStats)
     .map(([name, count]) => ({ name, count }))
-    .sort((a, b) => b.count - a.count)
+    .sort(
+      (a, b) => b.count - a.count || a.name.localeCompare(b.name)
+    )
     .slice(0, topN);
 
   // Sort repositories by activity count and take top N
   const topRepos = Object.entries(repoStats)
     .map(([name, count]) => ({ name, count }))
-    .sort((a, b) => b.count - a.count)
+    .sort(
+      (a, b) => b.count - a.count || a.name.localeCompare(b.name))
     .slice(0, topN);
 
   return { topContributors, topRepos };
