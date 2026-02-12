@@ -32,7 +32,11 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          # Path adjustment to ensure git finds the file inside Backend
-          git add Backend/test_data.json 
+          
+          # Create and switch to the data/Automated_Updates branch
+          git checkout -b data/Automated_Updates
+          
+          git add Backend/test_data.json
           git commit -m "Automated data collection: Update test_data.json" || echo "No changes to commit"
-          git push
+          
+          git push origin Data_Updates --force
