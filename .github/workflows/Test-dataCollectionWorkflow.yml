@@ -1,5 +1,5 @@
-name: Lifetime Data Collection
-
+name: Test Data Collection
+#use for formating for further workflows
 on:
   schedule:
     - cron: '0 0 1,15 * *' # Runs at midnight on the 1st and 15th
@@ -39,4 +39,4 @@ jobs:
           git add Backend/test_data.json
           git commit -m "Automated data collection: Update test_data.json" || echo "No changes to commit"
           
-          git push origin Data_Updates --force
+          git push origin data/Automated_Updates --force
