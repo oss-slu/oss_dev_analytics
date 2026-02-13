@@ -1,39 +1,52 @@
-// Home dashboard page
-// Shows org-level overview using existing components
+// Home page showing org-level averages
 
-import TopContributorsRepos from "../../../components/TopContributorsRepos";
-import VolumeChart from "../../../components/charts/VolumeBased";
-
-import testData from "../../../test_data.json";
-import { transformVolumeData } from "../../../utils/TransformVolumeData";
+import TimeBased from "../../../components/charts/TimeBased";
+import { transformTimeData } from "../../../utils/TransformTimeData";
+import testData from "../../../../../Backend/test_data.json";
 
 export const Home = () => {
-  const volumeData = transformVolumeData(testData);
+
+  // Org-wide average time to close issues
+  const orgAvgTimeToClose = transformTimeData({
+    rawData: testData,
+    repo: "oss_dev_analytics",
+    category: "issues",
+    metric: "average_time_to_close",
+    scope: "org"
+  });
+
+  // Org-wide average time to merge pull requests
+  const orgAvgTimeToMerge = transformTimeData({
+    rawData: testData,
+    repo: "oss_dev_analytics",
+    category: "pull_requests",
+    metric: "average_time_to_merge",
+    scope: "org"
+  });
 
   return (
-    <div>
-      <h1>Organization Overview</h1>
+    <div style={{ padding: "20px" }}>
+      <h1>OSS Dev Analytics - Home</h1>
+      <p>Welcome to the dashboard.</p>
 
-      {/* Top contributors & repositories */}
-      <section
+      {/* Time-based metrics displayed together */}
+      <div
         style={{
           display: "flex",
-          gap: "20px",
-          marginBottom: "30px",
+          gap: "30px",
+          marginTop: "30px",
         }}
       >
-        <TopContributorsRepos events={testData.events || []} />
-      </section>
+        <TimeBased
+          data={orgAvgTimeToClose}
+          title="Org Average Time to Close (Issues)"
+        />
 
-      {/* Existing volume chart (already on main) */}
-      <section
-        style={{
-          display: "flex",
-          gap: "20px",
-        }}
-      >
-        <VolumeChart data={volumeData} />
-      </section>
+        <TimeBased
+          data={orgAvgTimeToMerge}
+          title="Org Average Time to Merge (PRs)"
+        />
+      </div>
     </div>
   );
 };
