@@ -1,0 +1,44 @@
+# Runs twice a month to collect fill repository history
+# This updates the long-term health data used by the dashboard
+
+name: Lifetime Data Collection
+
+on:
+  schedule:
+    # Runs at midnight on the 1st and 15th of every month
+    - cron: "0 0 1,15 * *"
+  workflow_dispatch:
+
+jobs:
+  collect-lifetime-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the Data_Updates branch (never push to main)
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: Data_Updates
+        
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      # Install project dependencies
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      # Run data collection in lifetime mode
+      - name: Run lifetime data collection
+        run: python Backend/dataCollection/collectData.py --mode lifetime
+
+      # Commit and push updated JSON file
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/lifetime_data.json
+          git commit -m "Update lifetime repository data"
+          git push origin Data_Updates
