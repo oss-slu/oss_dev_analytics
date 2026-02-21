@@ -1,5 +1,5 @@
-name: Data Collection Workflow
-
+name: Test Data Collection
+#use for formating for further workflows
 on:
   schedule:
     - cron: '0 0 1,15 * *' # Runs at midnight on the 1st and 15th
@@ -19,19 +19,24 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install PyGithub pandas
+          pip install PyGithub pandas python-dotenv
 
       - name: Run Python script
         env:
           GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
         run: |
           cd Backend
-          python dataCollection.collectData.py
+          python -m dataCollection.collectData
 
       - name: Commit and Push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add test_data.json
+          
+          # Create and switch to the data/Automated_Updates branch
+          git checkout -b data/Automated_Updates
+          
+          git add Backend/test_data.json
           git commit -m "Automated data collection: Update test_data.json" || echo "No changes to commit"
-          git push
+          
+          git push origin data/Automated_Updates --force
