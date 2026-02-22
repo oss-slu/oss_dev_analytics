@@ -4,10 +4,7 @@ import argparse
 from datetime import datetime
 from github import Github, Auth
 from Backend.config.configs import GIT_TOKEN
-from Backend.dataCollection.formatJSON import format_json_data
-from Backend.dataCollection.pullRequest import get_pr_data
-from Backend.dataCollection.issue import get_issue_data
-from Backend.dataCollection.commit import get_commit_data
+from Backend.dataCollection.repositoryCollector import collect_repository_data
 
 
 # This function checks which sprint is currently active
@@ -48,20 +45,8 @@ def other_repo(repo, sprint=-1):
     repo_name = "oss-slu/" + repo
     g = Github(auth=Auth.Token(GIT_TOKEN))
 
-    # Get issue, PR, and commit data
-    issue_data = get_issue_data(g, repo_name, sprint)
-    pr_data = get_pr_data(g, repo_name, sprint)
-    commit_data = get_commit_data(g, repo_name, sprint)
-
-    # Converting DataFrame into dictionary format
-    out = {
-        "issues": issue_data.to_dict(orient="records"),
-        "pull_requests": pr_data.to_dict(orient="records"),
-        "commits": commit_data.to_dict(orient="records")
-    }
-
-    # Format data into the structure the dashboard expects
-    formatted = format_json_data(out, sprint)
+    # Delegating all repository-level collection to dataCollection layer
+    formatted = collect_repository_data(g, repo_name, sprint)
 
     # Deciding which file to write to
     # Lifetime data goes into lifetime_data.json
