@@ -6,7 +6,7 @@ import {
     BarElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
 } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -28,23 +28,48 @@ export default function VolumeCharts({ data, repos = "All", user = null }) {
     else {
         var title = `Repository Level Volume Data: ${repos}`;
     }
-    const chartOptions = {
-        responsive: true,
-        plugins: {
-            legend: { position: 'top' },
-            title: { display: true, text: title },
-        },
-        scales: {
-            y: { beginAtZero: true }
-        }
-    };
+   const chartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      position: "top",
+      labels: { color: "#ffffff" },
+    },
+    title: {
+      display: true,
+      text: title,
+      color: "#ffffff",
+      align: "start",
+      font: {
+        size: 18,
+        weight: "600"
+      },
+      padding: {
+        bottom: 16
+      }
+    },
+  },
+  scales: {
+    x: {
+      ticks: { color: "#ffffff" },
+      grid: { color: "rgba(255, 255, 255, 0.08)" },
+    },
+    y: {
+      beginAtZero: true,
+      ticks: { color: "#ffffff" },
+      grid: { color: "rgba(255, 255, 255, 0.08)" },
+    },
+  },
+};
+
     const chartData = {
         labels: Object.keys(data), //e.g, ["Total Issues", "Total PRs", "Total Commits"]
         datasets: [
             {
                 label: 'Volume',
                 data: Object.values(data),
-                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                backgroundColor: 'rgba(54, 162, 235, 0.85)',
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 1,
             },
@@ -52,8 +77,29 @@ export default function VolumeCharts({ data, repos = "All", user = null }) {
     };
 
     return (
-        <div className="chart-container bg-white p-4 rounded-lg shadow">
-            <Bar options={chartOptions} data={chartData} />
+    <div
+        className="chart-container"
+        style={{
+         height: "100%",
+         width: "100%",
+         display: "flex",
+         flexDirection: "column",
+         paddingTop: "16ps",
+         paddingLeft: "16px",
+         paddingRight: "16px",
+        }}
+    >
+        <div style={{ flex: 1, minHeight: 0, position: "relative" }}>
+         <Bar options={chartOptions} data={chartData} />
         </div>
-    );
+    </div>
+);
+    
+    /*return (
+    <div className="chart-container p-4 rounded-lg shadow h-full w-full flex flex-col">
+      <div style={{ flex: 1, minHeight: 0 }}>
+        <Bar options={chartOptions} data={chartData} />
+      </div>
+    </div>
+  );*/
 }
