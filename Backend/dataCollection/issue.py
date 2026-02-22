@@ -1,5 +1,5 @@
 import pandas as pd
-from dataCollection.sprintFiltering import filter_data_by_sprint
+from Backend.dataCollection.sprintFiltering import filter_data_by_sprint
 
 
 def get_issue_data(g, repo_name, sprint = -1):
@@ -34,7 +34,11 @@ def get_issue_data(g, repo_name, sprint = -1):
 
     print(f"Issue Repository: {repo.name}") #debugging only
     issues = repo.get_issues(state="all", sort="created", direction="desc")
-    issues_filtered = filter_data_by_sprint(issues, sprint)
+    #issues_filtered = filter_data_by_sprint(issues, sprint)
+    if sprint == -1:
+        issues_filtered = issues
+    else:
+        issues_filtered = filter_data_by_sprint(issues, sprint)
     for issue in issues_filtered:
         try:
             # Skip pull requests
@@ -49,11 +53,13 @@ def get_issue_data(g, repo_name, sprint = -1):
                 time_to_close = (closed_at - created_at).total_seconds() / 3600
             else:
                 time_to_close = None
+            assigned_time = None
+
             #Get info for Cycle time calculation
-            for event in issue.get_events():
-                if event.event == "assigned":
-                    assigned_time = event.created_at
-                    break
+            # for event in issue.get_events():
+                # if event.event == "assigned":
+                   #  assigned_time = event.created_at
+                    # break
 
             issue_records.append({
                 'repository': repo.name,
@@ -81,11 +87,12 @@ def get_issue_data(g, repo_name, sprint = -1):
     dataframe['issues_opened'] = issues_opened
     dataframe['issues_closed'] = issues_closed
     dataframe['wip_issues'] = wip_issues
-    dataframe['cycle_time'] = dataframe.apply(
-        lambda row: (row['closed_at'] - row['assigned_time']).total_seconds() / 3600
-        if pd.notnull(row['closed_at']) and pd.notnull(row['assigned_time']) else None,
-        axis=1
-    )
+    #dataframe['cycle_time'] = dataframe.apply(
+        #lambda row: (row['closed_at'] - row['assigned_time']).total_seconds() / 3600
+        #if pd.notnull(row['closed_at']) and pd.notnull(row['assigned_time']) else None,
+        #axis=1
+    #)
+    dataframe['cycle_time'] = None
     return dataframe
 
 

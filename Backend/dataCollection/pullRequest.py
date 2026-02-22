@@ -1,6 +1,6 @@
 from github import Github
 import pandas as pd
-from dataCollection.sprintFiltering import filter_data_by_sprint
+from Backend.dataCollection.sprintFiltering import filter_data_by_sprint
 
 def get_pr_data(g, repo_name, sprint = -1):
     """

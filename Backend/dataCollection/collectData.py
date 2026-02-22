@@ -1,83 +1,108 @@
 import os
-from github import Github, Auth
-from dataCollection.formatJSON import format_json_data
-from config.configs import GIT_TOKEN
-from dataCollection.pullRequest import get_pr_data
-from dataCollection.issue import get_issue_data
-from dataCollection.commit import get_commit_data
-import pandas as pd
 import json
+import argparse
+from datetime import datetime
+from github import Github, Auth
+from Backend.config.configs import GIT_TOKEN
+from Backend.dataCollection.repositoryCollector import collect_repository_data
 
-def test_pr_data():
-    repo_name = "oss-slu/oss_dev_analytics"
-    g = Github(auth=Auth.Token(GIT_TOKEN))
-    sprint = 7
-    pr_data = get_pr_data(g, repo_name, sprint)
-    print(pr_data.head())
-    return pr_data
-def test_issue_data():
-    repo_name = "oss-slu/oss_dev_analytics"
-    g = Github(auth=Auth.Token(GIT_TOKEN))
-    sprint = 7
-    issue_data = get_issue_data(g, repo_name, sprint)
-    with pd.option_context('display.max_rows', None, 'display.max_columns', None): #just want to make sure the df looks correct
-        print(issue_data)
-    return issue_data
-def test_commit_data():
-    repo_name = "oss-slu/oss_dev_analytics"
-    g = Github(auth=Auth.Token(GIT_TOKEN))
-    sprint = 7
-    commit_data = get_commit_data(g, repo_name, sprint)
-    with pd.option_context('display.max_rows', None, 'display.max_columns', None): #just want to make sure the df looks correct
-        print(commit_data)
-    return commit_data
 
-def dev_analytics_test():
-    repo_name = "oss-slu/oss_dev_analytics"
+# This function checks which sprint is currently active
+# It reads the sprint_schedule_json file and compares
+# today's date with the start and end dates
+def get_current_sprint():
+    try:
+        with open("data/sprint_schedule.json", "r") as file:
+            schedule = json.load(file)
+        
+        today = datetime.today().date()
+
+        for semester in schedule:
+            for sprint in schedule[semester]:
+                start = datetime.strptime(
+                    sprint["start"], "%Y-%m-%d"
+                ).date()
+                end = datetime.strptime(
+                    sprint["end"], "%Y-%m-%d"
+                ).date()
+
+                # If today is inside the sprint window,
+                # return that sprint number
+                if start <= today <= end:
+                    return sprint["sprint"]
+                
+        # If no sprint matches, return None
+        return None
+    
+    except Exception as e:
+        print(f"Error reading sprint schedule: {e}")
+        return None
+
+# Collect data for one repository
+# sprint = -1 means lifetime mode (full history)
+# Any other sprint number means sprint-only data
+def other_repo(repo, sprint=-1):
+    repo_name = "oss-slu/" + repo
     g = Github(auth=Auth.Token(GIT_TOKEN))
-    sprint = 7
-    issue_data = get_issue_data(g, repo_name, sprint)
-    pr_data = get_pr_data(g, repo_name, sprint)
-    commit_data = get_commit_data(g, repo_name, sprint)
-    out = { 
-        "issues": issue_data.to_dict(orient='records'),
-        "pull_requests": pr_data.to_dict(orient='records'),
-        "commits": commit_data.to_dict(orient='records')
-    }
-    #now send the temp .json to a function that puts it into the format we need to show analytics
-    formatted = format_json_data(out, sprint)
-    with open("test_data.json", "w") as outfile:
-        json.dump(formatted, outfile, indent=4, default=str)
-def other_repo(repo, sprint = -1):
-    repo_name = "oss-slu/"+repo
-    g = Github(auth=Auth.Token(GIT_TOKEN))
-    issue_data = get_issue_data(g, repo_name, sprint)
-    pr_data = get_pr_data(g, repo_name, sprint)
-    commit_data = get_commit_data(g, repo_name, sprint)
-    out = { 
-        "issues": issue_data.to_dict(orient='records'),
-        "pull_requests": pr_data.to_dict(orient='records'),
-        "commits": commit_data.to_dict(orient='records')
-    }
-    formatted = format_json_data(out, sprint)
-    path = "test_data.json"
-    #Using one org wide json file rather than a bunch of individual ones
-    #First need to check if it exists otherwise we are creating it for the first time
-    if (not os.path.exists(path)):
+
+    # Delegating all repository-level collection to dataCollection layer
+    formatted = collect_repository_data(g, repo_name, sprint)
+
+    # Deciding which file to write to
+    # Lifetime data goes into lifetime_data.json
+    # Sprint data goes into sprint_data.json
+    path = (
+        "data/lifetime_data.json"
+        if sprint == -1
+        else "data/sprint_data.json"
+    )
+
+    # Making sure the data folder exists
+    os.makedirs("data", exist_ok=True)
+
+    # If file does not exist yet, create it
+    if not os.path.exists(path):
         with open(path, "w") as outfile:
             json.dump({}, outfile)
-        data = {}
-    else:
-        with open(path, "r") as outfile:
-            data = json.load(outfile)
-    #now it is created or loaded, we can add new repo data. Keys are the repo (for lifetime data) or repo_sprint_X for specific sprint data
+
+    # Loading existing data
+    with open(path, "r") as outfile:
+        data = json.load(outfile)
+
+    # Using repo name as key for lifetime data
+    # For sprint mode, include sprint number in the key
     key = repo if sprint == -1 else f"{repo}_sprint_{sprint}"
     data[key] = formatted
+
+    # Writing updated data back to file
     with open(path, "w") as outfile:
         json.dump(data, outfile, indent=4, default=str)
+
+# This is the entry point when the workflow runs the script
+# The workflow passes either --mode lifetime or --mode sprint
 if __name__ == "__main__":
-    #dev_analytics_test()
-    other_repo("lrda_mobile", -1)
-    other_repo("oss_dev_analytics", -1)
-    other_repo("lrda_mobile", 7)
-    other_repo("oss_dev_analytics", 7)
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--mode",
+        choices=["lifetime", "sprint"],
+        required=True
+    )
+    args = parser.parse_args()
+
+    repos = ["lrda_mobile", "oss_dev_analytics"]
+    
+    if args.mode == "lifetime":
+        # Run fill history collection
+        for repo in repos:
+            other_repo(repo, -1)
+
+    elif args.mode == "sprint":
+        # First check which sprint is active
+        sprint = get_current_sprint()
+
+        if sprint is None:
+            # If we are outside sprint dates, do nothing
+            print("No active sprint found")
+        else:
+            for repo in repos:
+                other_repo(repo, sprint)
