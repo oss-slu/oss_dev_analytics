@@ -11,6 +11,8 @@ on:
 
 jobs:
   collect-lifetime-data:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
 
     steps:
