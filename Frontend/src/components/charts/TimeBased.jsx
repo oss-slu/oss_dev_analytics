@@ -41,8 +41,10 @@ export default function TimeBased({ data, repos = "All", user = null }) {
 
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data}>
-          <XAxis dataKey="label" />
-          <YAxis />
+          <XAxis dataKey="label" 
+          tick={{ fill: "#ffffff"}}/>
+          <YAxis 
+          tick={{ fill: "#ffffff"}}/>
           <Tooltip />
           <Bar dataKey="value" fill="#4F46E5" />
         </BarChart>

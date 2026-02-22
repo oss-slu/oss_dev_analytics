@@ -1,0 +1,111 @@
+.homePage {
+  padding: 32px;
+}
+
+.homeTitle {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 24px 0 8px;
+}
+
+.homeSubtitle {
+  margin-bottom: 24px;
+  opacity: 0.85;
+}
+
+.homeGrid {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1.6fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.card {
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.cardBlue {
+  background: rgba(120, 150, 210, 0.35);
+  border-radius: 20px;
+  padding: 24px;
+  height: 420px;
+  display: flex;
+  align-items: stretch; 
+}
+
+.cardTall {
+  min-height: 420px;
+}
+
+.cardPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 420px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
+}
+
+.bottomGrid {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 2.2fr 1.6fr; /* match top grid proportions */
+  gap: 28px;
+}
+
+.handbookRow {
+  display: flex;
+  gap: 18px;
+}
+
+.handbookCard {
+  flex: 1;
+  border-radius: 18px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  text-align: center;
+}
+
+.handbookTitle {
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+.chartWrapper .chart-container {
+  height: 100%;
+  width: 100%;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.contributorsCard {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  font-weight: 600;
+}
+
+.placeholderCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  padding: 24px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+.chartWrapper {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  display: flex;
+  align-items: stretch;
+}
