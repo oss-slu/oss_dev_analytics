@@ -1,0 +1,47 @@
+# Runs during active sprints
+# Collects sprint-level data for the Team Stats page
+
+name: Sprint Data Collection
+
+on:
+  schedule:
+    # Runs every Monday at midnight
+    # The script itself checks if a sprint is active
+    - cron: "0 0 * *. 1"
+  workflow_dispatch:
+
+jobs:
+  collect-sprint-data:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the Data_Updates branch (never push to main)
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: Data_Updates
+      
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      # Install project dependencies
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Run data collection in sprint mode
+      - name: Run sprint data collection
+        run: python Backend/dataCollection/collectData.py --mode lifetime
+      
+      # Commit and push updated JSOn file
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/sprint_data.json
+          git commit -m "Update sprint data"
+          git push origin Data_Updates
