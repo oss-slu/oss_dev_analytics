@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import TimeBased from "../../../components/charts/TimeBased";
 import VolumeCharts from "../../../components/charts/VolumeBased";
-import testData from "../../../../../Backend/test_data.json";
+import testData from "../../../../../Frontend/test_data.json";
 
 const USERS = ["all", ...Object.keys(testData.issues ?? {})];
 
