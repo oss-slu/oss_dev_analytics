@@ -7,7 +7,7 @@ on:
   schedule:
     # Runs every Monday at midnight
     # The script itself checks if a sprint is active
-    - cron: "0 0 * *. 1"
+    - cron: "0 0 * * 1"
   workflow_dispatch:
 
 jobs:
