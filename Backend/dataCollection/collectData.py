@@ -89,7 +89,12 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    repos = ["lrda_mobile", "oss_dev_analytics"]
+    # Creating GitHub connection
+    g = Github(auth=Auth.Token(GIT_TOKEN))
+    # Getting organization
+    org = g.get_organization("oss-slu")
+    # Getting all non-archived repositories in the organization
+    repos = [repo.name for repo in org.get_repos() if not repo.archived]
     
     if args.mode == "lifetime":
         # Run fill history collection
