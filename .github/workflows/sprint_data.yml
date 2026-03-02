@@ -35,7 +35,7 @@ jobs:
 
       # Run data collection in sprint mode
       - name: Run sprint data collection
-        run: python Backend/dataCollection/collectData.py --mode lifetime
+        run: python Backend/dataCollection/collectData.py --mode sprint
       
       # Commit and push updated JSOn file
       - name: Commit and push changes
