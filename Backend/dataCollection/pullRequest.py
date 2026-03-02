@@ -36,7 +36,10 @@ def get_pr_data(g, repo_name, sprint = -1):
 
         #Get all PR's for the repo
         prs = repo.get_pulls(state="all", sort="created", direction="desc")
-        pr_filtered = filter_data_by_sprint(prs, sprint)
+        if sprint == -1:
+            pr_filtered = prs
+        else:
+            pr_filtered = filter_data_by_sprint(prs, sprint)
 
         for pr in pr_filtered:
             try:
