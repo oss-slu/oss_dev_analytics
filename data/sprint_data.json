@@ -1,0 +1,838 @@
+{
+    "ml_code_generator_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "oss-slu.github.io_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "SBFSEM-tools_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "Mouser_sprint_3": {
+        "issues": {
+            "Jahnavidarisetti": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 1,
+                "total_issues_closed": 0
+            }
+        },
+        "pull_requests": {},
+        "commits": {}
+    },
+    "MeltShiny_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "Drones_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "SpeechTranscription_sprint_3": {
+        "issues": {
+            "Savikhya": {
+                "average_time_to_close": 335.0588888888889,
+                "total_issues_opened": 2,
+                "total_issues_closed": "1"
+            }
+        },
+        "pull_requests": {
+            "Ebruns4": {
+                "average_time_to_merge": 0,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            },
+            "bsaffouri": {
+                "average_time_to_merge": 154.1261111111111,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {}
+    },
+    "Seeing-is-Believing_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "Santiago_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "Congestion-control-emulator_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "Pi4Micronaut_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "esp_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "lrda_mobile_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "publiclab-kit_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "dads_sprint_3": {
+        "issues": {
+            "cheezyrock": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 6,
+                "total_issues_closed": 0
+            },
+            "hollowtree11": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 1,
+                "total_issues_closed": 0
+            }
+        },
+        "pull_requests": {
+            "DylAstralith": {
+                "average_time_to_merge": 0,
+                "total_prs_opened": 2,
+                "total_prs_merged": 0
+            },
+            "hollowtree11": {
+                "average_time_to_merge": 26.80472222222222,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "DylAstralith": {
+                "total_commits": 4,
+                "average_velocity": 4.333333333333333
+            },
+            "cheezyrock": {
+                "total_commits": 16,
+                "average_velocity": 4.333333333333333
+            },
+            "hollowtree11": {
+                "total_commits": 5,
+                "average_velocity": 4.333333333333333
+            }
+        }
+    },
+    "SLU_OSS_CheckIn_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "project_template_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "5930_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "tbe_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "lrda_website_sprint_3": {
+        "issues": {
+            "InfinityBowman": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 2,
+                "total_issues_closed": 0
+            }
+        },
+        "pull_requests": {},
+        "commits": {}
+    },
+    "DroneWorld_sprint_3": {
+        "issues": {
+            "CharlieWells13": {
+                "average_time_to_close": 264.33666666666664,
+                "total_issues_opened": 1,
+                "total_issues_closed": "1"
+            }
+        },
+        "pull_requests": {
+            "Hbarsanti": {
+                "average_time_to_merge": 46.22763888888889,
+                "total_prs_opened": 2,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "CharlieWells13": {
+                "total_commits": 2,
+                "average_velocity": 1.3333333333333333
+            },
+            "Hbarsanti": {
+                "total_commits": 2,
+                "average_velocity": 1.3333333333333333
+            }
+        }
+    },
+    "shelter_volunteers_sprint_3": {
+        "issues": {},
+        "pull_requests": {
+            "dKhurshid": {
+                "average_time_to_merge": 75.83472222222223,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            },
+            "orhankoylu": {
+                "average_time_to_merge": 65.56444444444445,
+                "total_prs_opened": 2,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "Supraja050202": {
+                "total_commits": 1,
+                "average_velocity": 1.5
+            },
+            "dKhurshid": {
+                "total_commits": 1,
+                "average_velocity": 1.5
+            },
+            "orhankoylu": {
+                "total_commits": 1,
+                "average_velocity": 1.5
+            }
+        }
+    },
+    "bubble_scan_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "moodle-docker-local_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "LRDA_Documentation_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "Step_Time_Biofeedback_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "TPEN-interfaces_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "TinyNode_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "rerum-playground_sprint_3": {
+        "issues": {
+            "thehabes": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 2,
+                "total_issues_closed": 0
+            }
+        },
+        "pull_requests": {
+            "teamomiamigo": {
+                "average_time_to_merge": 118.37638888888888,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {}
+    },
+    "gitjam_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "DigitalBonesBox_sprint_3": {
+        "issues": {
+            "leandrumartin": {
+                "average_time_to_close": 5.745357142857143,
+                "total_issues_opened": 21,
+                "total_issues_closed": "7"
+            }
+        },
+        "pull_requests": {
+            "Joishee05": {
+                "average_time_to_merge": 103.62902777777778,
+                "total_prs_opened": 4,
+                "total_prs_merged": 0
+            },
+            "leandrumartin": {
+                "average_time_to_merge": 0.16159722222222223,
+                "total_prs_opened": 9,
+                "total_prs_merged": 0
+            },
+            "priyadike-cyber": {
+                "average_time_to_merge": 0,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            },
+            "tschambonofive": {
+                "average_time_to_merge": 6.318888888888889,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "leandrumartin": {
+                "total_commits": 32,
+                "average_velocity": 5.428571428571429
+            }
+        }
+    },
+    "PilotDataSynchronization_sprint_3": {
+        "issues": {
+            "vbramhadevi": {
+                "average_time_to_close": 330.6388888888889,
+                "total_issues_opened": 2,
+                "total_issues_closed": "1"
+            }
+        },
+        "pull_requests": {
+            "jthomas39": {
+                "average_time_to_merge": 96.27694444444444,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "jthomas39": {
+                "total_commits": 3,
+                "average_velocity": 1.5
+            }
+        }
+    },
+    "baio_sprint_3": {
+        "issues": {
+            "mainuddinMains": {
+                "average_time_to_close": 206.75375,
+                "total_issues_opened": 3,
+                "total_issues_closed": "2"
+            }
+        },
+        "pull_requests": {
+            "TommySailami": {
+                "average_time_to_merge": 14.149722222222222,
+                "total_prs_opened": 4,
+                "total_prs_merged": 0
+            },
+            "mainuddinMains": {
+                "average_time_to_merge": 0.2688888888888889,
+                "total_prs_opened": 4,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "TommySailami": {
+                "total_commits": 2,
+                "average_velocity": 5.6
+            },
+            "mainuddinMains": {
+                "total_commits": 11,
+                "average_velocity": 5.6000000000000005
+            }
+        }
+    },
+    "OED_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "material-derailleur_sprint_3": {
+        "issues": {
+            "MATHEW-SHERENI": {
+                "average_time_to_close": 114.75179487179486,
+                "total_issues_opened": 18,
+                "total_issues_closed": "13"
+            }
+        },
+        "pull_requests": {
+            "colepatrick": {
+                "average_time_to_merge": 3.5984259259259264,
+                "total_prs_opened": 3,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "MATHEW-SHERENI": {
+                "total_commits": 6,
+                "average_velocity": 2.714285714285715
+            },
+            "colepatrick": {
+                "total_commits": 10,
+                "average_velocity": 2.7142857142857144
+            },
+            "twillis8": {
+                "total_commits": 3,
+                "average_velocity": 2.714285714285714
+            }
+        }
+    },
+    "home_automation_rpi_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "lab_automation_rpi_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "core_desk_sprint_3": {
+        "issues": {
+            "bellao314": {
+                "average_time_to_close": 283.91027777777776,
+                "total_issues_opened": 1,
+                "total_issues_closed": "1"
+            },
+            "jackcrane": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 1,
+                "total_issues_closed": 0
+            }
+        },
+        "pull_requests": {
+            "Muhammudy": {
+                "average_time_to_merge": 174.85166666666666,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            },
+            "bellao314": {
+                "average_time_to_merge": 232.57111111111112,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            },
+            "jackcrane": {
+                "average_time_to_merge": 0.05916666666666666,
+                "total_prs_opened": 2,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "jackcrane": {
+                "total_commits": 5,
+                "average_velocity": 5.0
+            }
+        }
+    },
+    "image-recognition-integration-system_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "Bioinformatics-LLM-Model_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "IRIS-AI-API_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "actions-learning-pathway_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "cybersecurity_activity_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "cv_zebrafish_sprint_3": {
+        "issues": {
+            "madhuritha22": {
+                "average_time_to_close": 176.39055555555555,
+                "total_issues_opened": 3,
+                "total_issues_closed": "2"
+            }
+        },
+        "pull_requests": {
+            "Omanhene20": {
+                "average_time_to_merge": 76.34611111111111,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "Omanhene20": {
+                "total_commits": 5,
+                "average_velocity": 3.0
+            },
+            "bruceamiller": {
+                "total_commits": 1,
+                "average_velocity": 3.0
+            }
+        }
+    },
+    "pao_surgery_simulator_sprint_3": {
+        "issues": {
+            "sriram1302": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 2,
+                "total_issues_closed": 0
+            }
+        },
+        "pull_requests": {},
+        "commits": {}
+    },
+    "p5_svg_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "earm_pipeline_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "stl_metro_data_api_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "mechatronics-vr_sprint_3": {
+        "issues": {
+            "AanthonyRusso": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 3,
+                "total_issues_closed": 0
+            }
+        },
+        "pull_requests": {
+            "bhayes04": {
+                "average_time_to_merge": 0,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {}
+    },
+    "hpc_rag_agent_chatbot_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "mithridatium_sprint_3": {
+        "issues": {
+            "pelumitegbe": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 4,
+                "total_issues_closed": 0
+            }
+        },
+        "pull_requests": {
+            "GustavoLucca": {
+                "average_time_to_merge": 0,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            },
+            "PGuffey": {
+                "average_time_to_merge": 0,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "pelumitegbe": {
+                "total_commits": 2,
+                "average_velocity": 2.0
+            }
+        }
+    },
+    "MORPH_sprint_3": {
+        "issues": {
+            "lockermanwxlf": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 1,
+                "total_issues_closed": 0
+            }
+        },
+        "pull_requests": {
+            "Paskul": {
+                "average_time_to_merge": 0,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {}
+    },
+    "oss_cybersecurity_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "oss_dev_analytics_sprint_3": {
+        "issues": {
+            "hcaballero2": {
+                "average_time_to_close": 241.0888888888889,
+                "total_issues_opened": 5,
+                "total_issues_closed": "2"
+            }
+        },
+        "pull_requests": {
+            "dhyana6466": {
+                "average_time_to_merge": 48.95388888888889,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            },
+            "ggondela1419": {
+                "average_time_to_merge": 24.91,
+                "total_prs_opened": 2,
+                "total_prs_merged": 0
+            },
+            "hcaballero2": {
+                "average_time_to_merge": 0.003703703703703704,
+                "total_prs_opened": 6,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "dhyana6466": {
+                "total_commits": 3,
+                "average_velocity": 5.0
+            },
+            "ggondela1419": {
+                "total_commits": 5,
+                "average_velocity": 5.0
+            },
+            "hcaballero2": {
+                "total_commits": 22,
+                "average_velocity": 5.0
+            }
+        }
+    },
+    "oss_cicd_automation_sprint_3": {
+        "issues": {
+            "ImJustHenry": {
+                "average_time_to_close": 189.89638888888888,
+                "total_issues_opened": 3,
+                "total_issues_closed": "3"
+            }
+        },
+        "pull_requests": {},
+        "commits": {
+            "ImJustHenry": {
+                "total_commits": 7,
+                "average_velocity": 4.0
+            },
+            "ThomasPautler952194": {
+                "total_commits": 1,
+                "average_velocity": 4.0
+            }
+        }
+    },
+    "oss_infra_ops_sprint_3": {
+        "issues": {
+            "AyoAwodeyi": {
+                "average_time_to_close": 241.41902777777779,
+                "total_issues_opened": 2,
+                "total_issues_closed": "2"
+            }
+        },
+        "pull_requests": {
+            "HuntC19": {
+                "average_time_to_merge": 121.69416666666666,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            },
+            "j-heitz": {
+                "average_time_to_merge": 122.18416666666667,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "HuntC19": {
+                "total_commits": 2,
+                "average_velocity": 3.0
+            },
+            "j-heitz": {
+                "total_commits": 1,
+                "average_velocity": 3.0
+            }
+        }
+    },
+    "TheHealthApp_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {
+            "smagen10": {
+                "total_commits": 2,
+                "average_velocity": 2.0
+            }
+        }
+    },
+    "rerum_server_nodejs_sprint_3": {
+        "issues": {
+            "allenbakki": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 8,
+                "total_issues_closed": 0
+            }
+        },
+        "pull_requests": {
+            "Mehulantony": {
+                "average_time_to_merge": 0,
+                "total_prs_opened": 2,
+                "total_prs_merged": 0
+            },
+            "allenbakki": {
+                "average_time_to_merge": 0,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "allenbakki": {
+                "total_commits": 1,
+                "average_velocity": 1.0
+            },
+            "thehabes": {
+                "total_commits": 1,
+                "average_velocity": 1.0
+            }
+        }
+    },
+    "montis_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "handbook_rerum_developer_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "open-source-leadership-portfolio_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "UEAssemblyPlugin_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "civickit_sprint_3": {
+        "issues": {
+            "bhuelsman": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 4,
+                "total_issues_closed": 0
+            }
+        },
+        "pull_requests": {
+            "ErinKelley17": {
+                "average_time_to_merge": 60.88166666666666,
+                "total_prs_opened": 2,
+                "total_prs_merged": 0
+            },
+            "LeahBragg": {
+                "average_time_to_merge": 113.54083333333334,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "LeahBragg": {
+                "total_commits": 33,
+                "average_velocity": 5.714285714285714
+            },
+            "bhuelsman": {
+                "total_commits": 2,
+                "average_velocity": 5.714285714285714
+            }
+        }
+    },
+    "handbook_developer_sprint_3": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {}
+    },
+    "iperf_sprint_3": {
+        "issues": {
+            "Mansi-SLU": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 4,
+                "total_issues_closed": 0
+            }
+        },
+        "pull_requests": {
+            "leandrumartin": {
+                "average_time_to_merge": 0,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {}
+    },
+    "GradEval360_sprint_3": {
+        "issues": {
+            "premkiran2": {
+                "average_time_to_close": 0.5994444444444444,
+                "total_issues_opened": 3,
+                "total_issues_closed": "1"
+            }
+        },
+        "pull_requests": {
+            "LilLizDog": {
+                "average_time_to_merge": 31.40388888888889,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            },
+            "dmupenda": {
+                "average_time_to_merge": 61.39861111111111,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            },
+            "premkiran2": {
+                "average_time_to_merge": 0.24972222222222223,
+                "total_prs_opened": 1,
+                "total_prs_merged": 0
+            }
+        },
+        "commits": {
+            "LilLizDog": {
+                "total_commits": 3,
+                "average_velocity": 4.2
+            },
+            "dmupenda": {
+                "total_commits": 1,
+                "average_velocity": 4.2
+            },
+            "premkiran2": {
+                "total_commits": 17,
+                "average_velocity": 4.2
+            }
+        }
+    }
+}
