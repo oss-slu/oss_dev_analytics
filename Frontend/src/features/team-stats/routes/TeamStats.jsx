@@ -4,7 +4,18 @@ import VolumeCharts from "../../../components/charts/VolumeBased";
 import testData from "../../../../../Frontend/test_data.json";
 import "../../home/routes/Home.css";
 
-const USERS = ["all", ...Object.keys(testData.issues ?? {})];
+const USERS = [
+  "all",
+  ...Array.from(
+    new Set(
+      Object.values(testData).flatMap((repo) => [
+        ...Object.keys(repo.issues ?? {}),
+        ...Object.keys(repo.pull_requests ?? {}),
+        ...Object.keys(repo.commits ?? {})
+      ])
+    )
+  )
+];
 // Placeholder lists (UI now, data wiring later)
 const TEAMS = ["All Teams", "Core Devs", "Docs"];
 const SPRINTS = [testData.sprint]; // only one sprint in test_data.json for now

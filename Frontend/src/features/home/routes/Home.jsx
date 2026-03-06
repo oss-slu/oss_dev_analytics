@@ -31,11 +31,6 @@ export const Home = () => {
     scope: "org",
   });
 
-  // Gather all repo events into a single array for the TopContributorsRepos component
-  const orgEvents = Object.values(testData).flatMap(
-    (repo) => repo.events || []
-  );
-
   const orgTimeBasedData = [
     {
       label: "Avg Time to Close (Issues)",
@@ -60,7 +55,7 @@ export const Home = () => {
         </div>
 
         <div className="card cardTall contributorsCard">
-          <TopContributorsRepos events={orgEvents} />
+          <TopContributorsRepos />
         </div>
       </div>
 
