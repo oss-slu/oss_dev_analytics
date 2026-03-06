@@ -53,7 +53,7 @@ export const Home = () => {
       <h1 className="homeTitle">OSS Dev Analytics - Home</h1>
       <p className="homeSubtitle">Welcome to the dashboard.</p>
 
-      {/* Top section: Volume chart + Top contributors/repos + placeholder (mockup layout) */}
+      {/* Top section: Volume chart + Top contributors/repos */}
       <div className="homeGrid">
         <div className="card cardBlue chartWrapper">
           <VolumeCharts data={orgVolumeData} repos="All" />
@@ -61,16 +61,6 @@ export const Home = () => {
 
         <div className="card cardTall contributorsCard">
           <TopContributorsRepos events={orgEvents} />
-        </div>
-
-        <div className="card cardTall placeholderCard">
-          <div>
-            TO BE <br />
-            DETERMINED: <br />
-            OTHER INTERNAL <br />
-            DEVELOPER <br />
-            GROUP INFO
-          </div>
         </div>
       </div>
 
@@ -86,8 +76,31 @@ export const Home = () => {
             <div className="handbookIcon">📄</div>
             <div className="handbookTitleText">TECH LEAD HANDBOOK</div>
           </div>
-        </div>
 
+          {/*
+          <a
+            className="handbookCard"
+            href="https://github.com/oss-slu/handbook_developer"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <div className="handbookIcon">📄</div>
+            <div className="handbookTitleText">DEVELOPER HANDBOOK</div>
+          </a>
+          */}
+
+          {/*
+          <a
+            className="handbookCard"
+            href="https://github.com/oss-slu/handbook_tech_lead"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <div className="handbookIcon">📄</div>
+            <div className="handbookTitleText">TECH LEAD HANDBOOK</div>
+          </a>
+          */}
+        </div>
         <div className="card cardBlue chartWrapper">
           <TimeBased data={orgTimeBasedData} repos="All" />
         </div>
