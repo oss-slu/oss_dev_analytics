@@ -61,67 +61,67 @@
             "AmarHadzic": {
                 "average_time_to_merge": 422.4528787878789,
                 "total_prs_opened": 12,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "AndchooChen": {
                 "average_time_to_merge": 241.11543981481483,
                 "total_prs_opened": 18,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "InfinityBowman": {
                 "average_time_to_merge": 318.1827777777778,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "SamSam9812": {
                 "average_time_to_merge": 184.49203703703702,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "Stuartwastaken": {
                 "average_time_to_merge": 12.533506944444445,
                 "total_prs_opened": 9,
-                "total_prs_merged": 0
+                "total_prs_merged": "8"
             },
             "ademDurakovic": {
                 "average_time_to_merge": 214.24269444444445,
                 "total_prs_opened": 12,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "irvinet20": {
                 "average_time_to_merge": 178.81123737373738,
                 "total_prs_opened": 12,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "izakrobles": {
                 "average_time_to_merge": 60.82115079365078,
                 "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "total_prs_merged": "7"
             },
             "mhashir03": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "rcAsironman": {
                 "average_time_to_merge": 609.5874206349207,
                 "total_prs_opened": 9,
-                "total_prs_merged": 0
+                "total_prs_merged": "7"
             },
             "sophiabahru": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "teamomiamigo": {
                 "average_time_to_merge": 151.40518518518516,
                 "total_prs_opened": 15,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "yashcoded": {
                 "average_time_to_merge": 29.282916666666665,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             }
         },
         "commits": {
@@ -174,9 +174,9 @@
     "oss_dev_analytics": {
         "issues": {
             "hcaballero2": {
-                "average_time_to_close": 336.56075396825406,
+                "average_time_to_close": 365.7805277777779,
                 "total_issues_opened": 39,
-                "total_issues_closed": "28"
+                "total_issues_closed": "30"
             },
             "hollowtree11": {
                 "average_time_to_close": 746.7967361111112,
@@ -193,67 +193,67 @@
             "SrinivasaVarmaP": {
                 "average_time_to_merge": 300.45472222222224,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "dhyana6466": {
-                "average_time_to_merge": 178.6372777777778,
-                "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "average_time_to_merge": 171.33949074074076,
+                "total_prs_opened": 8,
+                "total_prs_merged": "6"
             },
             "ggondela1419": {
                 "average_time_to_merge": 33.95572222222222,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "5"
             },
             "hcaballero2": {
                 "average_time_to_merge": 25.20810035842294,
                 "total_prs_opened": 33,
-                "total_prs_merged": 0
+                "total_prs_merged": "31"
             },
             "hollowtree11": {
                 "average_time_to_merge": 134.54055555555556,
-                "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "total_prcs_opened": 7,
+                "total_prs_merged": "6"
             },
             "kiaramathews": {
                 "average_time_to_merge": 46.06402777777778,
-                "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_opened": 6,
+                "total_prs_merged": "4"
             },
             "viswanathreddy1017": {
                 "average_time_to_merge": 2.205925925925926,
                 "total_prs_opened": 15,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             }
         },
         "commits": {
             "SrinivasaVarmaP": {
                 "total_commits": 1,
-                "average_velocity": 4.3076923076923075
+                "average_velocity": 4.181818181818182
             },
             "dhyana6466": {
-                "total_commits": 20,
-                "average_velocity": 4.3076923076923075
+                "total_commits": 21,
+                "average_velocity": 4.1818181818181825
             },
             "ggondela1419": {
                 "total_commits": 8,
-                "average_velocity": 4.3076923076923075
+                "average_velocity": 4.181818181818182
             },
             "hcaballero2": {
-                "total_commits": 114,
-                "average_velocity": 4.3076923076923075
+                "total_commits": 117,
+                "average_velocity": 4.181818181818181
             },
             "hollowtree11": {
                 "total_commits": 28,
-                "average_velocity": 4.3076923076923075
+                "average_velocity": 4.1818181818181825
             },
             "kiaramathews": {
                 "total_commits": 8,
-                "average_velocity": 4.3076923076923075
+                "average_velocity": 4.181818181818182
             },
             "viswanathreddy1017": {
                 "total_commits": 43,
-                "average_velocity": 4.307692307692308
+                "average_velocity": 4.181818181818182
             }
         }
     },
@@ -304,72 +304,72 @@
             "AmarHadzic": {
                 "average_time_to_merge": 16.958055555555557,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Fayhen": {
                 "average_time_to_merge": 5.930833333333333,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "KD335": {
                 "average_time_to_merge": 220.32669444444446,
                 "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "RishiTambe": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "ademakdogan": {
                 "average_time_to_merge": 0.13444444444444445,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "airakoze": {
                 "average_time_to_merge": 108.31,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "anik123": {
                 "average_time_to_merge": 12.860277777777778,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "dracpak": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "felipealencar": {
                 "average_time_to_merge": 7.613472222222223,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "harisalam": {
                 "average_time_to_merge": 15.9,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "john-coffman": {
                 "average_time_to_merge": 13.577962962962962,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "kate-holdener": {
                 "average_time_to_merge": 46.12020467836257,
                 "total_prs_opened": 21,
-                "total_prs_merged": 0
+                "total_prs_merged": "19"
             },
             "lpy23": {
                 "average_time_to_merge": 95.85805555555557,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "tyler-mcmahon": {
                 "average_time_to_merge": 206.11898148148148,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             }
         },
         "commits": {
@@ -520,287 +520,287 @@
             "9LogM": {
                 "average_time_to_merge": 128.38592592592593,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "AbhilashKotha": {
                 "average_time_to_merge": 148.43833333333333,
                 "total_prs_opened": 13,
-                "total_prs_merged": 0
+                "total_prs_merged": "13"
             },
             "AjithAkuthota23": {
                 "average_time_to_merge": 278.3603703703704,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "Anjali0407-git": {
                 "average_time_to_merge": 94.24166666666666,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "5"
             },
             "BaloneyBoy97": {
                 "average_time_to_merge": 324.2471296296296,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "BollepalliPranitha": {
                 "average_time_to_merge": 118.65472222222222,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Brijitha1609": {
                 "average_time_to_merge": 229.03972222222222,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "Chirag2x": {
                 "average_time_to_merge": 157.26416666666665,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "DaisyNBN": {
                 "average_time_to_merge": 283.36027777777775,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Devayani1612": {
                 "average_time_to_merge": 113.20916666666666,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "DeviPriya-Kolla": {
                 "average_time_to_merge": 808.9959722222222,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "InfinityBowman": {
                 "average_time_to_merge": 165.12444444444446,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "Jahnavidarisetti": {
                 "average_time_to_merge": 481.20694444444445,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "LikhitaPulijala": {
                 "average_time_to_merge": 382.00694444444446,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "Moshrefi": {
                 "average_time_to_merge": 1298.9711111111112,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "MutyaSowmya123": {
                 "average_time_to_merge": 68.815,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "Obssaa": {
                 "average_time_to_merge": 435.535,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Rakesh-Ranga-Buram": {
                 "average_time_to_merge": 921.1973611111111,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "Savikhya": {
                 "average_time_to_merge": 525.7208333333333,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Shahid1Malik": {
                 "average_time_to_merge": 481.34194444444444,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "SiriChandanaGarimella": {
                 "average_time_to_merge": 41.364444444444445,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "Supraja050202": {
                 "average_time_to_merge": 504.1648611111111,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "UcheWendy": {
                 "average_time_to_merge": 144.88638888888892,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "akurapati1": {
                 "average_time_to_merge": 0.03,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "alar12": {
                 "average_time_to_merge": 43.952638888888885,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "chintakjoshi": {
                 "average_time_to_merge": 89.93055555555556,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "cubap": {
                 "average_time_to_merge": 2809.931805555556,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "dracpak": {
                 "average_time_to_merge": 53.83694444444444,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "git-voo": {
                 "average_time_to_merge": 107.85263888888889,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "harshitha-thota": {
                 "average_time_to_merge": 152.66907407407408,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "jackbelyeu": {
                 "average_time_to_merge": 241.0823611111111,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "jackcrane": {
                 "average_time_to_merge": 625.5844444444444,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "jacksayshi": {
                 "average_time_to_merge": 863.6902777777779,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "kate-holdener": {
                 "average_time_to_merge": 961.6811805555556,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "kefortney": {
                 "average_time_to_merge": 142.4763888888889,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "kungfuchicken": {
                 "average_time_to_merge": 365.68727207977213,
                 "total_prs_opened": 41,
-                "total_prs_merged": 0
+                "total_prs_merged": "39"
             },
             "leandrumartin": {
                 "average_time_to_merge": 627.5405555555556,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "loganwyas": {
                 "average_time_to_merge": 178.74666666666667,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "madhuritha22": {
                 "average_time_to_merge": 216.38555555555556,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "pelumitegbe": {
                 "average_time_to_merge": 1.9455555555555555,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "prakhyatpandit": {
                 "average_time_to_merge": 15.076527777777777,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "premkiran2": {
                 "average_time_to_merge": 455.29527777777776,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "rcAsironman": {
                 "average_time_to_merge": 422.56875,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "rkarmuri": {
                 "average_time_to_merge": 744.868611111111,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "ruthvikm": {
                 "average_time_to_merge": 89.08715277777779,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "sagar3181": {
                 "average_time_to_merge": 176.96541666666667,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "smallrussian": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "sriram1302": {
                 "average_time_to_merge": 600.8463888888889,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "suprajamannava17": {
                 "average_time_to_merge": 156.54458333333335,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "thehabes": {
                 "average_time_to_merge": 1046.2780555555555,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "thomasmcg77": {
                 "average_time_to_merge": 98.35194444444444,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "vani-walvekar1494": {
                 "average_time_to_merge": 476.1822222222222,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "vbramhadevi": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "vinay-billa-slu": {
                 "average_time_to_merge": 639.8819444444445,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "yashaswini-slu": {
                 "average_time_to_merge": 298.50458333333336,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "yashcoded": {
                 "average_time_to_merge": 182.75595238095235,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "7"
             },
             "yrlmanoharreddy": {
                 "average_time_to_merge": 230.89680555555555,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             }
         },
         "commits": {
@@ -1127,122 +1127,122 @@
             "BollepalliPranitha": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Ebruns4": {
                 "average_time_to_merge": 265.4697222222222,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "Jahnavidarisetti": {
                 "average_time_to_merge": 188.26527777777778,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "Massi-Papi": {
                 "average_time_to_merge": 9.279444444444444,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Mathieu25900": {
                 "average_time_to_merge": 179.56583333333333,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "Mehulantony": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "NNewbauer": {
                 "average_time_to_merge": 144.59768518518516,
                 "total_prs_opened": 15,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "PanickerAnsel": {
                 "average_time_to_merge": 561.8683333333333,
                 "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "SiriChandanaGarimella": {
                 "average_time_to_merge": 327.9058333333333,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "TeresaZhang11": {
                 "average_time_to_merge": 43.99055555555555,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "amalladi017": {
                 "average_time_to_merge": 342.0453333333333,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "5"
             },
             "aobermiller": {
                 "average_time_to_merge": 182.07091880341883,
                 "total_prs_opened": 13,
-                "total_prs_merged": 0
+                "total_prs_merged": "13"
             },
             "coridiaz": {
                 "average_time_to_merge": 42.660170940170936,
                 "total_prs_opened": 26,
-                "total_prs_merged": 0
+                "total_prs_merged": "26"
             },
             "dennisshey": {
                 "average_time_to_merge": 471.7602777777778,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "dhruvprmr": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "ikardasevic": {
                 "average_time_to_merge": 176.83249999999998,
                 "total_prs_opened": 12,
-                "total_prs_merged": 0
+                "total_prs_merged": "9"
             },
             "jackbelyeu": {
                 "average_time_to_merge": 29.544888888888885,
                 "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "kungfuchicken": {
                 "average_time_to_merge": 2.116111111111111,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "loganwyas": {
                 "average_time_to_merge": 20.550416666666667,
                 "total_prs_opened": 14,
-                "total_prs_merged": 0
+                "total_prs_merged": "14"
             },
             "madhuritha22": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "moshernoah": {
                 "average_time_to_merge": 193.70225925925925,
                 "total_prs_opened": 19,
-                "total_prs_merged": 0
+                "total_prs_merged": "15"
             },
             "rc10283": {
                 "average_time_to_merge": 215.8792094017094,
                 "total_prs_opened": 18,
-                "total_prs_merged": 0
+                "total_prs_merged": "13"
             },
             "stanleyyang2001": {
                 "average_time_to_merge": 170.4956944444444,
                 "total_prs_opened": 14,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "tbush03": {
                 "average_time_to_merge": 30.19398148148148,
                 "total_prs_opened": 17,
-                "total_prs_merged": 0
+                "total_prs_merged": "15"
             }
         },
         "commits": {
@@ -1413,62 +1413,62 @@
             "BollepalliPranitha": {
                 "average_time_to_merge": 240.76847222222221,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "Canada101": {
                 "average_time_to_merge": 192.28455555555556,
                 "total_prs_opened": 12,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "Massi-Papi": {
                 "average_time_to_merge": 243.17353174603176,
                 "total_prs_opened": 19,
-                "total_prs_merged": 0
+                "total_prs_merged": "14"
             },
             "adhampton110": {
                 "average_time_to_merge": 175.76805555555555,
                 "total_prs_opened": 19,
-                "total_prs_merged": 0
+                "total_prs_merged": "18"
             },
             "akurapati1": {
                 "average_time_to_merge": 0.1436111111111111,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "avazzano7": {
                 "average_time_to_merge": 86.76543981481483,
                 "total_prs_opened": 14,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "cwade6": {
                 "average_time_to_merge": 30.345361111111117,
                 "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "ethan-gray-01": {
                 "average_time_to_merge": 164.74464646464648,
                 "total_prs_opened": 15,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "kate-holdener": {
                 "average_time_to_merge": 121.78027777777778,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "shlokpat6": {
                 "average_time_to_merge": 13.45976851851852,
                 "total_prs_opened": 19,
-                "total_prs_merged": 0
+                "total_prs_merged": "18"
             },
             "srepalli3": {
                 "average_time_to_merge": 120.10333333333334,
                 "total_prs_opened": 14,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "zohaib-a-ahmed": {
                 "average_time_to_merge": 207.70575757575762,
                 "total_prs_opened": 13,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             }
         },
         "commits": {
@@ -1645,132 +1645,132 @@
             "Ebruns4": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "ImJustHenry": {
                 "average_time_to_merge": 141.19805555555556,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "JackPifer": {
                 "average_time_to_merge": 208.7317824074074,
                 "total_prs_opened": 13,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "LeahBragg": {
                 "average_time_to_merge": 96.26075,
                 "total_prs_opened": 11,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "Massi-Papi": {
                 "average_time_to_merge": 859.9355555555555,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "MeghPatel6": {
                 "average_time_to_merge": 294.2837777777778,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "5"
             },
             "Mehulantony": {
                 "average_time_to_merge": 341.49805555555554,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "OmarAlAkkad": {
                 "average_time_to_merge": 0.04833333333333333,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Savikhya": {
                 "average_time_to_merge": 5.545,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "TravisHerrick7": {
                 "average_time_to_merge": 223.91755050505054,
                 "total_prs_opened": 12,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "ahediger": {
                 "average_time_to_merge": 1.652152777777778,
                 "total_prs_opened": 12,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "amalladi017": {
                 "average_time_to_merge": 184.44476851851854,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "bsaffouri": {
                 "average_time_to_merge": 154.1261111111111,
-                "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_opened": 3,
+                "total_prs_merged": "1"
             },
             "cbush201": {
                 "average_time_to_merge": 48.05261111111112,
                 "total_prs_opened": 11,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "dennisshey": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "disgruntledwombat": {
                 "average_time_to_merge": 102.99838235294119,
                 "total_prs_opened": 17,
-                "total_prs_merged": 0
+                "total_prs_merged": "17"
             },
             "emrameduseljac": {
                 "average_time_to_merge": 197.3386111111111,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "gertysr": {
                 "average_time_to_merge": 24.534652777777776,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "javAlborz": {
                 "average_time_to_merge": 7.759444444444444,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "kate-holdener": {
                 "average_time_to_merge": 117.17819444444444,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "kpothuganti": {
                 "average_time_to_merge": 255.4037121212121,
                 "total_prs_opened": 12,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "kungfuchicken": {
                 "average_time_to_merge": 1.6944444444444444,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "loganwyas": {
                 "average_time_to_merge": 109.86034722222222,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "mgaikwad129": {
                 "average_time_to_merge": 229.06421296296296,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "rbhosekar": {
                 "average_time_to_merge": 257.0215972222222,
                 "total_prs_opened": 18,
-                "total_prs_merged": 0
+                "total_prs_merged": "8"
             },
             "sagar3181": {
                 "average_time_to_merge": 165.83583333333334,
                 "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             }
         },
         "commits": {
@@ -1925,62 +1925,62 @@
             "HalimaMalik": {
                 "average_time_to_merge": 0.05361111111111111,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "LikhitaPulijala": {
                 "average_time_to_merge": 6.290944444444444,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "5"
             },
             "OwenAThomasson": {
                 "average_time_to_merge": 167.97825396825397,
                 "total_prs_opened": 23,
-                "total_prs_merged": 0
+                "total_prs_merged": "14"
             },
             "PoreddyAkshitha": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Yasshhhhh": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "akidSLU": {
                 "average_time_to_merge": 137.75477777777778,
                 "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "carlossalinas6": {
                 "average_time_to_merge": 47.15606481481481,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "danmao1": {
                 "average_time_to_merge": 84.44411111111111,
                 "total_prs_opened": 11,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "kungfuchicken": {
                 "average_time_to_merge": 71.81194444444445,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "mmonday0": {
                 "average_time_to_merge": 300.40077777777776,
                 "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "total_prs_merged": "5"
             },
             "sai-gif": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "sivaprasadvishnu18": {
                 "average_time_to_merge": 0.07722222222222222,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             }
         },
         "commits": {
@@ -2038,22 +2038,22 @@
             "GreihMurray": {
                 "average_time_to_merge": 89.91537037037035,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "dracpak": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "jglyshaw": {
                 "average_time_to_merge": 33.340158730158734,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "7"
             },
             "thomasmcg77": {
                 "average_time_to_merge": 28.28361111111111,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             }
         },
         "commits": {
@@ -2098,22 +2098,22 @@
             "HalimaMalik": {
                 "average_time_to_merge": 0.014722222222222222,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "a8nguyen": {
                 "average_time_to_merge": 72.73416666666667,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "andrewberryy": {
                 "average_time_to_merge": 2.3562037037037036,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "dracpak": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             }
         },
         "commits": {
@@ -2227,9 +2227,9 @@
                 "total_issues_closed": "3"
             },
             "leandrumartin": {
-                "average_time_to_close": 497.40726608187134,
+                "average_time_to_close": 555.5107122507123,
                 "total_issues_opened": 64,
-                "total_issues_closed": "38"
+                "total_issues_closed": "39"
             },
             "ruthvikm": {
                 "average_time_to_close": 898.449376876877,
@@ -2251,281 +2251,281 @@
             "AbnormalPilot": {
                 "average_time_to_merge": 59.45666666666666,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Ankita562": {
                 "average_time_to_merge": 48.63583333333334,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "DINES-04": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "GreihMurray": {
                 "average_time_to_merge": 332.15694444444443,
                 "total_prs_opened": 18,
-                "total_prs_merged": 0
+                "total_prs_merged": "16"
             },
             "RalphTan37": {
                 "average_time_to_merge": 168.20199074074074,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "Seyun-Jeong": {
                 "average_time_to_merge": 139.69143939393936,
                 "total_prs_opened": 20,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "ShravanAYG": {
                 "average_time_to_merge": 8.136388888888888,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "SwindleA": {
                 "average_time_to_merge": 128.18520833333332,
                 "total_prs_opened": 16,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "ThomasMacas": {
                 "average_time_to_merge": 163.1027777777778,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "ThomasPautler952194": {
                 "average_time_to_merge": 182.04296296296295,
                 "total_prs_opened": 9,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "adelgadoj3": {
                 "average_time_to_merge": 165.42482323232323,
                 "total_prs_opened": 16,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "austinjhoward": {
                 "average_time_to_merge": 62.765972222222224,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "bharatkedia": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "danielskatz": {
                 "average_time_to_merge": 3.870277777777778,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "dennisshey": {
                 "average_time_to_merge": 310.75694444444446,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "ghost": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "gurramkshethra-droid": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "j-heitz": {
                 "average_time_to_merge": 102.69678571428572,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "7"
             },
             "joefol": {
                 "average_time_to_merge": 149.95546296296297,
                 "total_prs_opened": 22,
-                "total_prs_merged": 0
+                "total_prs_merged": "15"
             },
             "jyanev": {
                 "average_time_to_merge": 279.77355555555556,
                 "total_prs_opened": 19,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "kate-holdener": {
                 "average_time_to_merge": 0.6311111111111111,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "leandrumartin": {
                 "average_time_to_merge": 44.97326984126985,
                 "total_prs_opened": 36,
-                "total_prs_merged": 0
+                "total_prs_merged": "35"
             },
             "liusinuo2000": {
                 "average_time_to_merge": 13.768055555555556,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "praveentiwari333": {
                 "average_time_to_merge": 529.8430555555556,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "rishabh8870": {
                 "average_time_to_merge": 1343.3963888888889,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "ruthvikm": {
                 "average_time_to_merge": 64.28138194444445,
                 "total_prs_opened": 51,
-                "total_prs_merged": 0
+                "total_prs_merged": "40"
             },
             "satyamyadav979": {
-                "average_time_to_merge": 0,
-                "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "average_time_to_merge": 134.70472222222222,
+                "total_prs_opened": 4,
+                "total_prs_merged": "1"
             },
             "sbera13": {
                 "average_time_to_merge": 837.0713888888889,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "sonata22": {
                 "average_time_to_merge": 28.008055555555558,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "sudoava": {
                 "average_time_to_merge": 160.2140740740741,
                 "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "traison-diedrich": {
                 "average_time_to_merge": 385.0901388888889,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "yrlmanoharreddy": {
                 "average_time_to_merge": 12.463958333333332,
                 "total_prs_opened": 11,
-                "total_prs_merged": 0
+                "total_prs_merged": "8"
             },
             "zka26": {
                 "average_time_to_merge": 19.27861111111111,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             }
         },
         "commits": {
             "AbnormalPilot": {
                 "total_commits": 3,
-                "average_velocity": 3.864864864864865
+                "average_velocity": 3.839285714285714
             },
             "Ankita562": {
                 "total_commits": 6,
-                "average_velocity": 3.8648648648648645
+                "average_velocity": 3.839285714285715
             },
             "GreihMurray": {
                 "total_commits": 244,
-                "average_velocity": 3.864864864864863
+                "average_velocity": 3.839285714285715
             },
             "RalphTan37": {
                 "total_commits": 5,
-                "average_velocity": 3.8648648648648645
+                "average_velocity": 3.8392857142857144
             },
             "Seyun-Jeong": {
                 "total_commits": 17,
-                "average_velocity": 3.8648648648648654
+                "average_velocity": 3.839285714285714
             },
             "ShravanAYG": {
                 "total_commits": 2,
-                "average_velocity": 3.864864864864865
+                "average_velocity": 3.8392857142857144
             },
             "SwindleA": {
                 "total_commits": 14,
-                "average_velocity": 3.864864864864864
+                "average_velocity": 3.839285714285715
             },
             "ThomasMacas": {
                 "total_commits": 22,
-                "average_velocity": 3.8648648648648662
+                "average_velocity": 3.8392857142857126
             },
             "ThomasPautler952194": {
                 "total_commits": 24,
-                "average_velocity": 3.864864864864865
+                "average_velocity": 3.839285714285714
             },
             "adelgadoj3": {
                 "total_commits": 12,
-                "average_velocity": 3.8648648648648645
+                "average_velocity": 3.839285714285715
             },
             "austinjhoward": {
                 "total_commits": 1,
-                "average_velocity": 3.864864864864865
+                "average_velocity": 3.8392857142857144
             },
             "dennisshey": {
                 "total_commits": 10,
-                "average_velocity": 3.8648648648648645
+                "average_velocity": 3.8392857142857144
             },
             "j-heitz": {
                 "total_commits": 34,
-                "average_velocity": 3.8648648648648654
+                "average_velocity": 3.839285714285714
             },
             "joefol": {
                 "total_commits": 30,
-                "average_velocity": 3.864864864864866
+                "average_velocity": 3.839285714285713
             },
             "jyanev": {
                 "total_commits": 20,
-                "average_velocity": 3.864864864864866
+                "average_velocity": 3.839285714285713
             },
             "kate-holdener": {
                 "total_commits": 2,
-                "average_velocity": 3.864864864864865
+                "average_velocity": 3.8392857142857144
             },
             "kungfuchicken": {
                 "total_commits": 1,
-                "average_velocity": 3.864864864864865
+                "average_velocity": 3.8392857142857144
             },
             "leandrumartin": {
-                "total_commits": 215,
-                "average_velocity": 3.864864864864863
+                "total_commits": 216,
+                "average_velocity": 3.839285714285715
             },
             "liusinuo2000": {
                 "total_commits": 5,
-                "average_velocity": 3.8648648648648645
+                "average_velocity": 3.8392857142857144
             },
             "praveentiwari333": {
                 "total_commits": 1,
-                "average_velocity": 3.864864864864865
+                "average_velocity": 3.8392857142857144
             },
             "rishabh8870": {
                 "total_commits": 1,
-                "average_velocity": 3.864864864864865
+                "average_velocity": 3.8392857142857144
             },
             "ruthvikm": {
                 "total_commits": 58,
-                "average_velocity": 3.8648648648648645
+                "average_velocity": 3.839285714285715
             },
             "sbera13": {
                 "total_commits": 8,
-                "average_velocity": 3.864864864864865
+                "average_velocity": 3.8392857142857144
             },
             "sonata22": {
                 "total_commits": 2,
-                "average_velocity": 3.864864864864865
+                "average_velocity": 3.8392857142857144
             },
             "sudoava": {
                 "total_commits": 8,
-                "average_velocity": 3.864864864864865
+                "average_velocity": 3.8392857142857144
             },
             "traison-diedrich": {
                 "total_commits": 25,
-                "average_velocity": 3.864864864864865
+                "average_velocity": 3.839285714285714
             },
             "yrlmanoharreddy": {
                 "total_commits": 80,
-                "average_velocity": 3.864864864864864
+                "average_velocity": 3.8392857142857144
             },
             "zka26": {
                 "total_commits": 1,
-                "average_velocity": 3.864864864864865
+                "average_velocity": 3.8392857142857144
             }
         }
     },
@@ -2596,97 +2596,97 @@
             "Angekarara": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "KrishnaTeja-2002": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "LikhitaPulijala": {
                 "average_time_to_merge": 0.018333333333333333,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Lyskawa-Aonyx": {
                 "average_time_to_merge": 136.24741666666668,
                 "total_prs_opened": 14,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "M-Ravali": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "MikeManzi": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Navreet20": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "SamSam9812": {
                 "average_time_to_merge": 28.644305555555558,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "SiriChandanaGarimella": {
                 "average_time_to_merge": 169.2965740740741,
                 "total_prs_opened": 13,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "bhumulanandinireddy": {
                 "average_time_to_merge": 0.24388888888888888,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "cohen-j": {
                 "average_time_to_merge": 0.0030555555555555557,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "haneenalsewari": {
                 "average_time_to_merge": 123.68638888888889,
                 "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "haydenkarl22": {
                 "average_time_to_merge": 254.8350925925926,
                 "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "hmunjampally": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "mkalal6": {
                 "average_time_to_merge": 483.8595299145299,
                 "total_prs_opened": 17,
-                "total_prs_merged": 0
+                "total_prs_merged": "13"
             },
             "oyetanishq": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "paulongkiko": {
                 "average_time_to_merge": 206.10611111111112,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "shafeeqsadiqslu": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "suprajamannava17": {
                 "average_time_to_merge": 53.48638888888888,
                 "total_prs_opened": 9,
-                "total_prs_merged": 0
+                "total_prs_merged": "5"
             }
         },
         "commits": {
@@ -2806,9 +2806,9 @@
                 "total_issues_closed": "11"
             },
             "cheezyrock": {
-                "average_time_to_close": 157.18555555555557,
+                "average_time_to_close": 279.59444444444443,
                 "total_issues_opened": 13,
-                "total_issues_closed": "2"
+                "total_issues_closed": "5"
             },
             "hollowtree11": {
                 "average_time_to_close": 0,
@@ -2840,204 +2840,204 @@
             "AJelliss": {
                 "average_time_to_merge": 247.48038194444445,
                 "total_prs_opened": 11,
-                "total_prs_merged": 0
+                "total_prs_merged": "8"
             },
             "AbhilashKotha": {
                 "average_time_to_merge": 111.3898148148148,
                 "total_prs_opened": 11,
-                "total_prs_merged": 0
+                "total_prs_merged": "9"
             },
             "BradleySheldon": {
                 "average_time_to_merge": 171.40101851851853,
                 "total_prs_opened": 13,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "DaisyNBN": {
                 "average_time_to_merge": 152.5712962962963,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "Devayani1612": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "DylAstralith": {
-                "average_time_to_merge": 50.52472222222222,
+                "average_time_to_merge": 96.84541666666667,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "Evan-Richmond": {
                 "average_time_to_merge": 524.7451515151515,
                 "total_prs_opened": 14,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "GreihMurray": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "LaxminarayanaV7416": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Mehulantony": {
                 "average_time_to_merge": 1709.7879166666667,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "ahmedbektic": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "cheezyrock": {
                 "average_time_to_merge": 0.08,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "dracpak": {
                 "average_time_to_merge": 369.42682539682534,
                 "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "total_prs_merged": "7"
             },
             "hollowtree11": {
-                "average_time_to_merge": 25.09722222222222,
+                "average_time_to_merge": 40.21666666666666,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "iamsyedomair": {
                 "average_time_to_merge": 300.04954545454547,
                 "total_prs_opened": 11,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "jglyshaw": {
                 "average_time_to_merge": 53.57791666666667,
                 "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "total_prs_merged": "8"
             },
             "johndoans": {
                 "average_time_to_merge": 108.77108024691358,
                 "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "total_prs_merged": "9"
             },
             "jqjp": {
                 "average_time_to_merge": 82.03972222222222,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "jwang-101": {
                 "average_time_to_merge": 116.10333333333334,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "lRolwes": {
                 "average_time_to_merge": 148.84283333333335,
                 "total_prs_opened": 20,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "prasanthiveerla3": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "sriram1302": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "suprajamannava17": {
                 "average_time_to_merge": 13.738611111111112,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "vbramhadevi": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             }
         },
         "commits": {
             "AJelliss": {
                 "total_commits": 54,
-                "average_velocity": 3.312169312169313
+                "average_velocity": 3.2849740932642497
             },
             "AbhilashKotha": {
                 "total_commits": 75,
-                "average_velocity": 3.312169312169313
+                "average_velocity": 3.2849740932642493
             },
             "BradleySheldon": {
                 "total_commits": 31,
-                "average_velocity": 3.3121693121693134
+                "average_velocity": 3.2849740932642497
             },
             "DaisyNBN": {
                 "total_commits": 28,
-                "average_velocity": 3.312169312169313
+                "average_velocity": 3.2849740932642493
             },
             "DylAstralith": {
-                "total_commits": 6,
-                "average_velocity": 3.312169312169312
+                "total_commits": 7,
+                "average_velocity": 3.2849740932642493
             },
             "Evan-Richmond": {
                 "total_commits": 76,
-                "average_velocity": 3.312169312169313
+                "average_velocity": 3.2849740932642497
             },
             "GreihMurray": {
                 "total_commits": 4,
-                "average_velocity": 3.312169312169312
+                "average_velocity": 3.284974093264249
             },
             "Mehulantony": {
                 "total_commits": 1,
-                "average_velocity": 3.312169312169312
+                "average_velocity": 3.284974093264249
             },
             "bhutz": {
                 "total_commits": 2,
-                "average_velocity": 3.312169312169312
+                "average_velocity": 3.284974093264249
             },
             "cheezyrock": {
-                "total_commits": 27,
-                "average_velocity": 3.312169312169313
+                "total_commits": 29,
+                "average_velocity": 3.2849740932642493
             },
             "dracpak": {
                 "total_commits": 35,
-                "average_velocity": 3.3121693121693125
+                "average_velocity": 3.2849740932642493
             },
             "hollowtree11": {
-                "total_commits": 6,
-                "average_velocity": 3.312169312169312
+                "total_commits": 11,
+                "average_velocity": 3.284974093264249
             },
             "iamsyedomair": {
                 "total_commits": 61,
-                "average_velocity": 3.312169312169313
+                "average_velocity": 3.2849740932642497
             },
             "jglyshaw": {
                 "total_commits": 22,
-                "average_velocity": 3.3121693121693125
+                "average_velocity": 3.284974093264249
             },
             "johndoans": {
                 "total_commits": 37,
-                "average_velocity": 3.3121693121693125
+                "average_velocity": 3.2849740932642493
             },
             "jqjp": {
                 "total_commits": 1,
-                "average_velocity": 3.312169312169312
+                "average_velocity": 3.284974093264249
             },
             "jwang-101": {
                 "total_commits": 1,
-                "average_velocity": 3.312169312169312
+                "average_velocity": 3.284974093264249
             },
             "lRolwes": {
                 "total_commits": 18,
-                "average_velocity": 3.3121693121693117
+                "average_velocity": 3.2849740932642484
             },
             "suprajamannava17": {
                 "total_commits": 52,
-                "average_velocity": 3.3121693121693125
+                "average_velocity": 3.2849740932642493
             },
             "thomasmcg77": {
                 "total_commits": 13,
-                "average_velocity": 3.3121693121693117
+                "average_velocity": 3.2849740932642484
             }
         }
     },
@@ -3053,7 +3053,7 @@
             "traison-diedrich": {
                 "average_time_to_merge": 0.0038888888888888888,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             }
         },
         "commits": {
@@ -3091,127 +3091,127 @@
             "AbhilashKotha": {
                 "average_time_to_merge": 118.28833333333333,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "DemonXslayer47": {
                 "average_time_to_merge": 120.24111111111111,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Gurrambhargav": {
                 "average_time_to_merge": 72.86583333333333,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "KNagaPrasad": {
                 "average_time_to_merge": 73.36416666666666,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Manaswini1208": {
                 "average_time_to_merge": 119.10694444444445,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "NavyaNelluri": {
                 "average_time_to_merge": 125.65472222222222,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "SBanavethy": {
                 "average_time_to_merge": 74.80722222222222,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Shirisha777": {
                 "average_time_to_merge": 125.68166666666667,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "TeenaReddy20": {
                 "average_time_to_merge": 9.377777777777778,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Vmuktineni": {
                 "average_time_to_merge": 73.25972222222222,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "anees1203": {
                 "average_time_to_merge": 75.56027777777778,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "beffiong1": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "chintakjoshi": {
                 "average_time_to_merge": 119.08666666666667,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "deepthireddy1029": {
                 "average_time_to_merge": 98.01194444444444,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "harjothkaur": {
                 "average_time_to_merge": 118.92333333333333,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "kungfuchicken": {
                 "average_time_to_merge": 220.63854166666667,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "pavan6135": {
                 "average_time_to_merge": 72.955,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "praneethreddy9": {
                 "average_time_to_merge": 73.57055555555556,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "rdonadula": {
                 "average_time_to_merge": 72.87444444444445,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "rushikesh-slu": {
                 "average_time_to_merge": 118.085,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "saichetanveeragandham": {
                 "average_time_to_merge": 125.67861111111111,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "schanduae4": {
                 "average_time_to_merge": 73.30805555555555,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "vakhil-98": {
                 "average_time_to_merge": 120.56083333333333,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "vivek50399": {
                 "average_time_to_merge": 73.94111111111111,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "vivekanandareddy-ponugoti": {
                 "average_time_to_merge": 76.75638888888889,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             }
         },
         "commits": {
@@ -3340,107 +3340,107 @@
             "9LogM": {
                 "average_time_to_merge": 3.347777777777778,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "AjithAkuthota23": {
                 "average_time_to_merge": 298.17,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Anjali0407-git": {
                 "average_time_to_merge": 170.02694444444444,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "BaloneyBoy97": {
                 "average_time_to_merge": 0.05416666666666667,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "BollepalliPranitha": {
                 "average_time_to_merge": 2.2197222222222224,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Brijitha1609": {
                 "average_time_to_merge": 4.341111111111111,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "DeviPriya-Kolla": {
                 "average_time_to_merge": 68.86,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "MutyaSowmya123": {
                 "average_time_to_merge": 207.93833333333333,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Rakesh-Ranga-Buram": {
                 "average_time_to_merge": 54.399166666666666,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "SiriChandanaGarimella": {
                 "average_time_to_merge": 71.01180555555555,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "Stuartwastaken": {
                 "average_time_to_merge": 46.44555555555556,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "alar12": {
                 "average_time_to_merge": 0.6788888888888889,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "git-voo": {
                 "average_time_to_merge": 47.98527777777778,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "harshitha-thota": {
                 "average_time_to_merge": 36.75513888888889,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "jackbelyeu": {
                 "average_time_to_merge": 102.27416666666667,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "jacksayshi": {
                 "average_time_to_merge": 0.4083333333333333,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "kungfuchicken": {
                 "average_time_to_merge": 717.2844444444445,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "rcAsironman": {
                 "average_time_to_merge": 0.38861111111111113,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "sagar3181": {
                 "average_time_to_merge": 115.79777777777778,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "suprajamannava17": {
                 "average_time_to_merge": 59.372083333333336,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "yrlmanoharreddy": {
                 "average_time_to_merge": 1.0119444444444443,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             }
         },
         "commits": {
@@ -3606,87 +3606,87 @@
             "BaloneyBoy97": {
                 "average_time_to_merge": 55.03208333333334,
                 "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "InfinityBowman": {
                 "average_time_to_merge": 25.992592592592594,
                 "total_prs_opened": 21,
-                "total_prs_merged": 0
+                "total_prs_merged": "18"
             },
             "Josh-Hogan-87": {
                 "average_time_to_merge": 274.6106565656565,
                 "total_prs_opened": 14,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "PunSon": {
-                "average_time_to_merge": 241.12534722222222,
-                "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "average_time_to_merge": 216.3455,
+                "total_prs_opened": 8,
+                "total_prs_merged": "5"
             },
             "Qiuyu-Liao": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "SiriChandanaGarimella": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Stuartwastaken": {
                 "average_time_to_merge": 170.25149691358024,
                 "total_prs_opened": 20,
-                "total_prs_merged": 0
+                "total_prs_merged": "18"
             },
             "VarsithReddyLegala": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Welding-Torch": {
                 "average_time_to_merge": 1080.966111111111,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "amychen108": {
                 "average_time_to_merge": 263.500462962963,
                 "total_prs_opened": 13,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "andycaste2004": {
                 "average_time_to_merge": 290.8467361111111,
-                "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_opened": 7,
+                "total_prs_merged": "4"
             },
             "esbeydalopez": {
                 "average_time_to_merge": 54.929259259259254,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "izakrobles": {
                 "average_time_to_merge": 132.53109126984128,
                 "total_prs_opened": 15,
-                "total_prs_merged": 0
+                "total_prs_merged": "14"
             },
             "jwang-101": {
                 "average_time_to_merge": 150.75085470085472,
                 "total_prs_opened": 14,
-                "total_prs_merged": 0
+                "total_prs_merged": "13"
             },
             "mhashir03": {
                 "average_time_to_merge": 168.3317361111111,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "sesheppard": {
                 "average_time_to_merge": 269.3810714285714,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "7"
             },
             "yashcoded": {
                 "average_time_to_merge": 1801.7730208333332,
                 "total_prs_opened": 9,
-                "total_prs_merged": 0
+                "total_prs_merged": "8"
             }
         },
         "commits": {
@@ -3761,9 +3761,9 @@
                 "total_issues_closed": "3"
             },
             "CharlieWells13": {
-                "average_time_to_close": 1113.2098333333333,
-                "total_issues_opened": 7,
-                "total_issues_closed": "5"
+                "average_time_to_close": 1067.9668981481482,
+                "total_issues_opened": 9,
+                "total_issues_closed": "6"
             },
             "Hoshi-Okami": {
                 "average_time_to_close": 6644.797222222222,
@@ -3801,9 +3801,9 @@
                 "total_issues_closed": "1"
             },
             "kungfuchicken": {
-                "average_time_to_close": 2970.053055555556,
+                "average_time_to_close": 2926.5681746031746,
                 "total_issues_opened": 11,
-                "total_issues_closed": "6"
+                "total_issues_closed": "7"
             },
             "nguzinski": {
                 "average_time_to_close": 6644.936111111111,
@@ -3830,144 +3830,144 @@
             "9LogM": {
                 "average_time_to_merge": 7.562436868686867,
                 "total_prs_opened": 23,
-                "total_prs_merged": 0
+                "total_prs_merged": "22"
             },
             "Alhajideen": {
                 "average_time_to_merge": 1556.8279166666666,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "CharlieWells13": {
                 "average_time_to_merge": 577.6894444444446,
                 "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "Damerson1": {
                 "average_time_to_merge": 109.66965277777776,
                 "total_prs_opened": 15,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "Hbarsanti": {
                 "average_time_to_merge": 373.33506944444446,
                 "total_prs_opened": 9,
-                "total_prs_merged": 0
+                "total_prs_merged": "8"
             },
             "Hoshi-Okami": {
                 "average_time_to_merge": 133.9125462962963,
                 "total_prs_opened": 14,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "ImJustHenry": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Rakesh-Ranga-Buram": {
                 "average_time_to_merge": 11.94537037037037,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "ahmedbektic": {
-                "average_time_to_merge": 336.1824537037037,
-                "total_prs_opened": 15,
-                "total_prs_merged": 0
+                "average_time_to_merge": 267.2779513888889,
+                "total_prs_opened": 16,
+                "total_prs_merged": "8"
             },
             "hebronh": {
                 "average_time_to_merge": 621.4733950617284,
                 "total_prs_opened": 14,
-                "total_prs_merged": 0
+                "total_prs_merged": "9"
             },
             "kalyus": {
                 "average_time_to_merge": 336.5388888888889,
                 "total_prs_opened": 16,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "kungfuchicken": {
                 "average_time_to_merge": 44.99472222222222,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "nguzinski": {
                 "average_time_to_merge": 112.59035353535354,
                 "total_prs_opened": 13,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "prakhyatpandit": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "sr259": {
                 "average_time_to_merge": 314.05492424242425,
                 "total_prs_opened": 11,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "yashaswini-slu": {
                 "average_time_to_merge": 5.549513888888889,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             }
         },
         "commits": {
             "9LogM": {
                 "total_commits": 66,
-                "average_velocity": 3.277511961722489
+                "average_velocity": 3.258215962441315
             },
             "Alhajideen": {
                 "total_commits": 5,
-                "average_velocity": 3.277511961722488
+                "average_velocity": 3.2582159624413145
             },
             "BohanZhang1": {
                 "total_commits": 6,
-                "average_velocity": 3.2775119617224884
+                "average_velocity": 3.2582159624413145
             },
             "CharlieWells13": {
-                "total_commits": 39,
-                "average_velocity": 3.2775119617224866
+                "total_commits": 44,
+                "average_velocity": 3.258215962441314
             },
             "Damerson1": {
                 "total_commits": 41,
-                "average_velocity": 3.2775119617224884
+                "average_velocity": 3.2582159624413145
             },
             "Hbarsanti": {
                 "total_commits": 19,
-                "average_velocity": 3.277511961722488
+                "average_velocity": 3.258215962441314
             },
             "Rakesh-Ranga-Buram": {
                 "total_commits": 40,
-                "average_velocity": 3.277511961722488
+                "average_velocity": 3.2582159624413145
             },
             "ahmedbektic": {
-                "total_commits": 9,
-                "average_velocity": 3.277511961722488
+                "total_commits": 12,
+                "average_velocity": 3.258215962441314
             },
             "ankyAgrawal": {
                 "total_commits": 5,
-                "average_velocity": 3.277511961722488
+                "average_velocity": 3.2582159624413145
             },
             "hebronh": {
                 "total_commits": 104,
-                "average_velocity": 3.2775119617224884
+                "average_velocity": 3.2582159624413145
             },
             "kungfuchicken": {
                 "total_commits": 25,
-                "average_velocity": 3.2775119617224875
+                "average_velocity": 3.2582159624413145
             },
             "nguzinski": {
                 "total_commits": 33,
-                "average_velocity": 3.277511961722488
+                "average_velocity": 3.2582159624413145
             },
             "prakhyatpandit": {
                 "total_commits": 4,
-                "average_velocity": 3.277511961722488
+                "average_velocity": 3.2582159624413145
             },
             "sr259": {
                 "total_commits": 87,
-                "average_velocity": 3.277511961722489
+                "average_velocity": 3.258215962441317
             },
             "yashaswini-slu": {
                 "total_commits": 80,
-                "average_velocity": 3.277511961722488
+                "average_velocity": 3.258215962441315
             }
         }
     },
@@ -3989,9 +3989,9 @@
                 "total_issues_closed": "19"
             },
             "Supraja050202": {
-                "average_time_to_close": 670.7001697530864,
-                "total_issues_opened": 21,
-                "total_issues_closed": "18"
+                "average_time_to_close": 672.7443859649123,
+                "total_issues_opened": 24,
+                "total_issues_closed": "19"
             },
             "Taktar": {
                 "average_time_to_close": 5549.826666666667,
@@ -4038,261 +4038,261 @@
             "AbhilashKotha": {
                 "average_time_to_merge": 115.33033333333333,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "5"
             },
             "BaloneyBoy97": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Gayatrinj": {
                 "average_time_to_merge": 12.0025,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Reva335": {
                 "average_time_to_merge": 231.43439814814815,
                 "total_prs_opened": 9,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "Sai9797": {
                 "average_time_to_merge": 225.3597685185185,
                 "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "SiriChandanaGarimella": {
                 "average_time_to_merge": 418.21625,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "Supraja050202": {
                 "average_time_to_merge": 21.955879629629624,
                 "total_prs_opened": 9,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "Taktar": {
                 "average_time_to_merge": 139.35077777777778,
                 "total_prs_opened": 11,
-                "total_prs_merged": 0
+                "total_prs_merged": "5"
             },
             "amalrzv": {
                 "average_time_to_merge": 253.65101010101014,
                 "total_prs_opened": 13,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "amychen108": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "avazzano7": {
                 "average_time_to_merge": 41.33611111111111,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "cbiddle3": {
                 "average_time_to_merge": 308.7431837606838,
                 "total_prs_opened": 16,
-                "total_prs_merged": 0
+                "total_prs_merged": "13"
             },
             "dKhurshid": {
                 "average_time_to_merge": 59.586527777777775,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "emrameduseljac": {
                 "average_time_to_merge": 225.25050925925925,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "jenniferlee20": {
                 "average_time_to_merge": 7.6275,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "kate-holdener": {
                 "average_time_to_merge": 34.098447712418306,
                 "total_prs_opened": 52,
-                "total_prs_merged": 0
+                "total_prs_merged": "51"
             },
             "lirieh": {
                 "average_time_to_merge": 0.9061111111111111,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "lockermanwxlf": {
                 "average_time_to_merge": 249.65118686868684,
                 "total_prs_opened": 13,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "loganwyas": {
                 "average_time_to_merge": 190.66833333333332,
                 "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "orhankoylu": {
-                "average_time_to_merge": 65.56444444444445,
-                "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "average_time_to_merge": 70.38361111111112,
+                "total_prs_opened": 3,
+                "total_prs_merged": "2"
             },
             "prasanthiveerla3": {
                 "average_time_to_merge": 10.090277777777779,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "rohitparapati": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "saidugyala": {
                 "average_time_to_merge": 26.268333333333334,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "smallrussian": {
                 "average_time_to_merge": 138.4661111111111,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "strejoarciles": {
                 "average_time_to_merge": 204.15694444444446,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "5"
             },
             "tanyachamala": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "tnhi26990": {
                 "average_time_to_merge": 282.81961111111116,
                 "total_prs_opened": 15,
-                "total_prs_merged": 0
+                "total_prs_merged": "15"
             },
             "vakhil-98": {
                 "average_time_to_merge": 360.2681944444444,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "vinay-billa-slu": {
                 "average_time_to_merge": 122.91027777777778,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             }
         },
         "commits": {
             "AbhilashKotha": {
                 "total_commits": 47,
-                "average_velocity": 4.281967213114752
+                "average_velocity": 4.273615635179151
             },
             "Brijitha1609": {
                 "total_commits": 25,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179153
             },
             "Gayatrinj": {
                 "total_commits": 1,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179153
             },
             "Reva335": {
                 "total_commits": 1,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179153
             },
             "Sai9797": {
                 "total_commits": 68,
-                "average_velocity": 4.281967213114753
+                "average_velocity": 4.273615635179155
             },
             "SiriChandanaGarimella": {
                 "total_commits": 35,
-                "average_velocity": 4.281967213114753
+                "average_velocity": 4.273615635179152
             },
             "Supraja050202": {
-                "total_commits": 38,
-                "average_velocity": 4.2819672131147515
+                "total_commits": 39,
+                "average_velocity": 4.2736156351791506
             },
             "Taktar": {
                 "total_commits": 47,
-                "average_velocity": 4.281967213114752
+                "average_velocity": 4.273615635179151
             },
             "amalrzv": {
                 "total_commits": 151,
-                "average_velocity": 4.281967213114753
+                "average_velocity": 4.273615635179154
             },
             "avazzano7": {
                 "total_commits": 1,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179153
             },
             "cbiddle3": {
                 "total_commits": 54,
-                "average_velocity": 4.281967213114752
+                "average_velocity": 4.273615635179152
             },
             "dKhurshid": {
                 "total_commits": 4,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179153
             },
             "durgaprasad144": {
                 "total_commits": 1,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179153
             },
             "emrameduseljac": {
                 "total_commits": 1,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179153
             },
             "jenniferlee20": {
                 "total_commits": 3,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179153
             },
             "kate-holdener": {
                 "total_commits": 164,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179155
             },
             "kungfuchicken": {
                 "total_commits": 2,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179153
             },
             "lirieh": {
                 "total_commits": 1,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179153
             },
             "lockermanwxlf": {
                 "total_commits": 69,
-                "average_velocity": 4.281967213114753
+                "average_velocity": 4.273615635179155
             },
             "loganwyas": {
                 "total_commits": 50,
-                "average_velocity": 4.281967213114753
+                "average_velocity": 4.273615635179153
             },
             "orhankoylu": {
-                "total_commits": 5,
-                "average_velocity": 4.281967213114754
+                "total_commits": 10,
+                "average_velocity": 4.273615635179153
             },
             "prasanthiveerla3": {
                 "total_commits": 1,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179153
             },
             "saidugyala": {
                 "total_commits": 1,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179153
             },
             "smallrussian": {
                 "total_commits": 6,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179154
             },
             "strejoarciles": {
                 "total_commits": 1,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179153
             },
             "tnhi26990": {
                 "total_commits": 57,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179154
             },
             "vakhil-98": {
                 "total_commits": 42,
-                "average_velocity": 4.281967213114753
+                "average_velocity": 4.273615635179153
             },
             "vinay-billa-slu": {
                 "total_commits": 1,
-                "average_velocity": 4.281967213114754
+                "average_velocity": 4.273615635179153
             }
         }
     },
@@ -4323,77 +4323,77 @@
             "Chirag2x": {
                 "average_time_to_merge": 57.63509259259259,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "DeeapakSarun": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Sowjichows": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "SowmyaKoneti": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Sreeeja9866": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "dracpak": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "kate-holdener": {
                 "average_time_to_merge": 243.84069444444447,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "mouli86": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "mylescorrea": {
                 "average_time_to_merge": 143.05564814814815,
                 "total_prs_opened": 18,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "nneni": {
                 "average_time_to_merge": 502.8541666666667,
                 "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "ramezmosad": {
                 "average_time_to_merge": 215.3225,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "5"
             },
             "rkarmuri": {
                 "average_time_to_merge": 6.139603174603175,
                 "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "total_prs_merged": "7"
             },
             "ruthvikm": {
                 "average_time_to_merge": 399.4216666666667,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "satyanagkumar": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "yildizahmetali": {
                 "average_time_to_merge": 80.13016203703704,
                 "total_prs_opened": 18,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             }
         },
         "commits": {
@@ -4472,37 +4472,37 @@
             "AmarHadzic": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "AndchooChen": {
                 "average_time_to_merge": 0.6558333333333334,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Josh-Hogan-87": {
                 "average_time_to_merge": 263.9266666666667,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Stuartwastaken": {
                 "average_time_to_merge": 8209.905833333334,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "irvinet20": {
                 "average_time_to_merge": 4.211944444444445,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "izakrobles": {
                 "average_time_to_merge": 211.76472222222222,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "sesheppard": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             }
         },
         "commits": {
@@ -4569,42 +4569,42 @@
             "JackMcPhillips1543": {
                 "average_time_to_merge": 229.2612268518519,
                 "total_prs_opened": 14,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "Jaywin2099": {
                 "average_time_to_merge": 204.55143518518517,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "Nissa9902": {
                 "average_time_to_merge": 196.1160648148148,
                 "total_prs_opened": 12,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "SharmaKabir": {
                 "average_time_to_merge": 353.5811111111111,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "colinseper": {
                 "average_time_to_merge": 168.47212962962962,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "git-voo": {
                 "average_time_to_merge": 0.07288194444444446,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "8"
             },
             "iAmNsengi": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "mmehta2669": {
                 "average_time_to_merge": 168.07560185185184,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             }
         },
         "commits": {
@@ -4674,32 +4674,32 @@
             "Matthew-Clendenning": {
                 "average_time_to_merge": 188.0824768518518,
                 "total_prs_opened": 12,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "MutyaSowmya123": {
                 "average_time_to_merge": 22.06527777777778,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "camilledaugherty": {
                 "average_time_to_merge": 139.35617521367521,
                 "total_prs_opened": 13,
-                "total_prs_merged": 0
+                "total_prs_merged": "13"
             },
             "cubap": {
                 "average_time_to_merge": 0.7044444444444444,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "git-voo": {
                 "average_time_to_merge": 12.815833333333334,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "sarah-fidahussain-SLU": {
                 "average_time_to_merge": 147.45296296296294,
                 "total_prs_opened": 12,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             }
         },
         "commits": {
@@ -4739,7 +4739,7 @@
             "dennisshey": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             }
         },
         "commits": {
@@ -4790,92 +4790,92 @@
             "Devayani1612": {
                 "average_time_to_merge": 171.54888888888888,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "LuisPalmejar21": {
                 "average_time_to_merge": 88.92680555555556,
                 "total_prs_opened": 9,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "Mehulantony": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Sreeeja9866": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "YashSharma64": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "akearney6": {
                 "average_time_to_merge": 0.8188888888888889,
-                "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_opened": 3,
+                "total_prs_merged": "1"
             },
             "alar12": {
                 "average_time_to_merge": 3.43625,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "dracpak": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "haneenalsewari": {
                 "average_time_to_merge": 215.5508888888889,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "5"
             },
             "haydenkarl22": {
                 "average_time_to_merge": 72.51657407407407,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "iz-Manik": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "jacksayshi": {
                 "average_time_to_merge": 0.09,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "joeljoby02": {
                 "average_time_to_merge": 181.49743055555552,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "mgaikwad129": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "nikkr008": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "sesheppard": {
                 "average_time_to_merge": 221.1261574074074,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "teamomiamigo": {
                 "average_time_to_merge": 96.03763888888889,
-                "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_opened": 3,
+                "total_prs_merged": "2"
             },
             "thehabes": {
                 "average_time_to_merge": 0.5413888888888889,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             }
         },
         "commits": {
@@ -5018,82 +5018,82 @@
             "9LogM": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "AjithAkuthota23": {
                 "average_time_to_merge": 22.575,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Anjali0407-git": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "BollepalliPranitha": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "DeviPriya-Kolla": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "MutyaSowmya123": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Rakesh-Ranga-Buram": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "SiriChandanaGarimella": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "alar12": {
                 "average_time_to_merge": 0.9755555555555555,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "git-voo": {
                 "average_time_to_merge": 0.5461111111111111,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "jackbelyeu": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "jacksayshi": {
                 "average_time_to_merge": 0.7572222222222222,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "rcAsironman": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "suprajamannava17": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "yashcoded": {
                 "average_time_to_merge": 0.20180555555555554,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "yrlmanoharreddy": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             }
         },
         "commits": {
@@ -5150,6 +5150,11 @@
                 "total_issues_opened": 30,
                 "total_issues_closed": "29"
             },
+            "johns70": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 1,
+                "total_issues_closed": 0
+            },
             "kate-holdener": {
                 "average_time_to_close": 11607.400555555556,
                 "total_issues_opened": 2,
@@ -5161,9 +5166,9 @@
                 "total_issues_closed": "4"
             },
             "leandrumartin": {
-                "average_time_to_close": 166.9168253968254,
-                "total_issues_opened": 54,
-                "total_issues_closed": "21"
+                "average_time_to_close": 192.6738888888889,
+                "total_issues_opened": 65,
+                "total_issues_closed": "25"
             },
             "tluke900": {
                 "average_time_to_close": 971.1697222222223,
@@ -5175,192 +5180,197 @@
             "Amanc77": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Balijah": {
                 "average_time_to_merge": 231.6953611111111,
                 "total_prs_opened": 11,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "Brehana-Naidu": {
                 "average_time_to_merge": 527.6127777777778,
-                "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_opened": 3,
+                "total_prs_merged": "1"
             },
             "Deadpool2000": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "DeviPriya-Kolla": {
                 "average_time_to_merge": 290.9938888888889,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Joishee05": {
-                "average_time_to_merge": 71.2519658119658,
-                "total_prs_opened": 19,
-                "total_prs_merged": 0
+                "average_time_to_merge": 72.76738095238095,
+                "total_prs_opened": 22,
+                "total_prs_merged": "14"
             },
             "JoshBudzynski": {
                 "average_time_to_merge": 203.56728395061728,
                 "total_prs_opened": 11,
-                "total_prs_merged": 0
+                "total_prs_merged": "9"
             },
             "Mehulantony": {
                 "average_time_to_merge": 260.77430555555554,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "Taktar": {
                 "average_time_to_merge": 68.43268518518519,
                 "total_prs_opened": 13,
-                "total_prs_merged": 0
+                "total_prs_merged": "9"
             },
             "UcheWendy": {
                 "average_time_to_merge": 1.0111309523809524,
                 "total_prs_opened": 16,
-                "total_prs_merged": 0
+                "total_prs_merged": "14"
             },
             "dracpak": {
                 "average_time_to_merge": 0.7752777777777777,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "jacksayshi": {
                 "average_time_to_merge": 0.4015972222222222,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
+            },
+            "johns70": {
+                "average_time_to_merge": 0,
+                "total_prs_opened": 1,
+                "total_prs_merged": "0"
             },
             "kate-holdener": {
                 "average_time_to_merge": 51.84444444444444,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "leandrumartin": {
-                "average_time_to_merge": 2.8023366013071893,
-                "total_prs_opened": 18,
-                "total_prs_merged": 0
+                "average_time_to_merge": 5.030063131313131,
+                "total_prs_opened": 23,
+                "total_prs_merged": "22"
             },
             "mhashm1": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "mvolkmann": {
                 "average_time_to_merge": 1.103888888888889,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "pelumitegbe": {
                 "average_time_to_merge": 651.5930555555556,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "priyadike-cyber": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "rdsingh120": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "snandakumar2912": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "strejoarciles": {
                 "average_time_to_merge": 128.7938425925926,
                 "total_prs_opened": 9,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "tluke900": {
                 "average_time_to_merge": 186.79027777777776,
                 "total_prs_opened": 14,
-                "total_prs_merged": 0
+                "total_prs_merged": "11"
             },
             "tschambonofive": {
                 "average_time_to_merge": 6.318888888888889,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "vnandala": {
                 "average_time_to_merge": 112.93638888888889,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             }
         },
         "commits": {
             "BreNaidu": {
                 "total_commits": 2,
-                "average_velocity": 3.875
+                "average_velocity": 4.03030303030303
             },
             "DeviPriya-Kolla": {
                 "total_commits": 3,
-                "average_velocity": 3.875
+                "average_velocity": 4.03030303030303
             },
             "JoshBudzynski": {
                 "total_commits": 30,
-                "average_velocity": 3.875
+                "average_velocity": 4.03030303030303
             },
             "Mehulantony": {
                 "total_commits": 9,
-                "average_velocity": 3.875
+                "average_velocity": 4.03030303030303
             },
             "Santosh-Iragavarapu": {
                 "total_commits": 5,
-                "average_velocity": 3.875
+                "average_velocity": 4.03030303030303
             },
             "Taktar": {
                 "total_commits": 55,
-                "average_velocity": 3.875
+                "average_velocity": 4.03030303030303
             },
             "UcheWendy": {
                 "total_commits": 75,
-                "average_velocity": 3.875
+                "average_velocity": 4.030303030303029
             },
             "dracpak": {
                 "total_commits": 1,
-                "average_velocity": 3.875
+                "average_velocity": 4.03030303030303
             },
             "jacksayshi": {
                 "total_commits": 73,
-                "average_velocity": 3.875
+                "average_velocity": 4.03030303030303
             },
             "kate-holdener": {
                 "total_commits": 7,
-                "average_velocity": 3.875
+                "average_velocity": 4.03030303030303
             },
             "kungfuchicken": {
                 "total_commits": 1,
-                "average_velocity": 3.875
+                "average_velocity": 4.03030303030303
             },
             "leandrumartin": {
-                "total_commits": 84,
-                "average_velocity": 3.875
+                "total_commits": 112,
+                "average_velocity": 4.03030303030303
             },
             "mvolkmann": {
                 "total_commits": 1,
-                "average_velocity": 3.875
+                "average_velocity": 4.03030303030303
             },
             "pelumitegbe": {
                 "total_commits": 1,
-                "average_velocity": 3.875
+                "average_velocity": 4.03030303030303
             },
             "strejoarciles": {
                 "total_commits": 1,
-                "average_velocity": 3.875
+                "average_velocity": 4.03030303030303
             },
             "tluke900": {
                 "total_commits": 33,
-                "average_velocity": 3.875
+                "average_velocity": 4.03030303030303
             },
             "vnandala": {
                 "total_commits": 4,
-                "average_velocity": 3.875
+                "average_velocity": 4.03030303030303
             }
         }
     },
@@ -5393,7 +5403,7 @@
             },
             "vbramhadevi": {
                 "average_time_to_close": 367.7651666666667,
-                "total_issues_opened": 9,
+                "total_issues_opened": 11,
                 "total_issues_closed": "5"
             }
         },
@@ -5401,92 +5411,92 @@
             "DeviPriya-Kolla": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Nyla-Hughes": {
                 "average_time_to_merge": 385.1041666666667,
-                "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_opened": 9,
+                "total_prs_merged": "5"
             },
             "aelnourSLU": {
                 "average_time_to_merge": 133.92593253968252,
                 "total_prs_opened": 16,
-                "total_prs_merged": 0
+                "total_prs_merged": "14"
             },
             "avazzano7": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "carlyrhoover": {
                 "average_time_to_merge": 194.51586111111112,
                 "total_prs_opened": 15,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "hrmeiners": {
                 "average_time_to_merge": 163.48185185185184,
                 "total_prs_opened": 16,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             },
             "jthomas39": {
-                "average_time_to_merge": 133.43939814814814,
-                "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "average_time_to_merge": 120.27230158730158,
+                "total_prs_opened": 8,
+                "total_prs_merged": "7"
             },
             "vbramhadevi": {
                 "average_time_to_merge": 0.16916666666666666,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             }
         },
         "commits": {
             "DeviPriya-Kolla": {
                 "total_commits": 51,
-                "average_velocity": 3.990825688073394
+                "average_velocity": 3.9549549549549554
             },
             "Nyla12": {
                 "total_commits": 2,
-                "average_velocity": 3.9908256880733943
+                "average_velocity": 3.954954954954955
             },
             "ScorpionSG": {
                 "total_commits": 34,
-                "average_velocity": 3.9908256880733943
+                "average_velocity": 3.954954954954955
             },
             "aelnourSLU": {
                 "total_commits": 46,
-                "average_velocity": 3.9908256880733934
+                "average_velocity": 3.9549549549549554
             },
             "bramhadevivamsi": {
                 "total_commits": 2,
-                "average_velocity": 3.9908256880733943
+                "average_velocity": 3.954954954954955
             },
             "carlyhoover": {
                 "total_commits": 15,
-                "average_velocity": 3.990825688073394
+                "average_velocity": 3.954954954954956
             },
             "carlyrhoover": {
                 "total_commits": 20,
-                "average_velocity": 3.990825688073395
+                "average_velocity": 3.9549549549549554
             },
             "harshitha-thota": {
                 "total_commits": 33,
-                "average_velocity": 3.9908256880733943
+                "average_velocity": 3.954954954954955
             },
             "hrmeiners": {
                 "total_commits": 161,
-                "average_velocity": 3.990825688073394
+                "average_velocity": 3.954954954954956
             },
             "jthomas39": {
-                "total_commits": 22,
-                "average_velocity": 3.9908256880733957
+                "total_commits": 25,
+                "average_velocity": 3.954954954954955
             },
             "kate-holdener": {
                 "total_commits": 1,
-                "average_velocity": 3.9908256880733943
+                "average_velocity": 3.954954954954955
             },
             "vbramhadevi": {
-                "total_commits": 13,
-                "average_velocity": 3.990825688073394
+                "total_commits": 14,
+                "average_velocity": 3.954954954954956
             }
         }
     },
@@ -5519,7 +5529,7 @@
             },
             "mainuddinMains": {
                 "average_time_to_close": 144.09305555555557,
-                "total_issues_opened": 8,
+                "total_issues_opened": 11,
                 "total_issues_closed": "4"
             },
             "mgaikwad129": {
@@ -5542,112 +5552,112 @@
             "AjithAkuthota23": {
                 "average_time_to_merge": 356.4038888888889,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "LuisPalmejar21": {
                 "average_time_to_merge": 269.74361111111114,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "MikeManzi": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Omp06": {
                 "average_time_to_merge": 137.3374074074074,
                 "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "PranaviKolouju": {
                 "average_time_to_merge": 123.48847222222223,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "TommySailami": {
                 "average_time_to_merge": 70.23037037037038,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "dracpak": {
                 "average_time_to_merge": 1596.3605555555555,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "mainuddinMains": {
-                "average_time_to_merge": 5.568194444444445,
-                "total_prs_opened": 12,
-                "total_prs_merged": 0
+                "average_time_to_merge": 8.448555555555556,
+                "total_prs_opened": 18,
+                "total_prs_merged": "10"
             },
             "mgaikwad129": {
                 "average_time_to_merge": 81.39666666666666,
                 "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "total_prs_merged": "7"
             },
             "mhashm1": {
                 "average_time_to_merge": 73.72231481481481,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "oam67": {
                 "average_time_to_merge": 137.00967592592593,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "sahanagujja": {
                 "average_time_to_merge": 40.77027777777778,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             }
         },
         "commits": {
             "AjithAkuthota23": {
                 "total_commits": 40,
-                "average_velocity": 3.6162790697674425
+                "average_velocity": 3.659340659340659
             },
             "LuisPalmejar21": {
                 "total_commits": 1,
-                "average_velocity": 3.616279069767442
+                "average_velocity": 3.659340659340659
             },
             "Omp06": {
                 "total_commits": 49,
-                "average_velocity": 3.6162790697674425
+                "average_velocity": 3.6593406593406597
             },
             "PranaviKolouju": {
                 "total_commits": 1,
-                "average_velocity": 3.616279069767442
+                "average_velocity": 3.659340659340659
             },
             "TommySailami": {
                 "total_commits": 2,
-                "average_velocity": 3.616279069767442
+                "average_velocity": 3.659340659340659
             },
             "dracpak": {
                 "total_commits": 1,
-                "average_velocity": 3.616279069767442
+                "average_velocity": 3.659340659340659
             },
             "mainuddinMains": {
-                "total_commits": 33,
-                "average_velocity": 3.616279069767442
+                "total_commits": 54,
+                "average_velocity": 3.6593406593406606
             },
             "mgaikwad129": {
                 "total_commits": 7,
-                "average_velocity": 3.616279069767443
+                "average_velocity": 3.6593406593406597
             },
             "mhashm1": {
                 "total_commits": 25,
-                "average_velocity": 3.616279069767442
+                "average_velocity": 3.659340659340659
             },
             "oam67": {
                 "total_commits": 2,
-                "average_velocity": 3.616279069767442
+                "average_velocity": 3.659340659340659
             },
             "sahanagujja": {
                 "total_commits": 1,
-                "average_velocity": 3.616279069767442
+                "average_velocity": 3.659340659340659
             },
             "tanzim10": {
                 "total_commits": 19,
-                "average_velocity": 3.6162790697674425
+                "average_velocity": 3.659340659340659
             }
         }
     },
@@ -5663,37 +5673,37 @@
             "AjithAkuthota23": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Rakesh-Ranga-Buram": {
                 "average_time_to_merge": 0.0033024691358024692,
                 "total_prs_opened": 18,
-                "total_prs_merged": 0
+                "total_prs_merged": "18"
             },
             "jackbelyeu": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "lawsj": {
                 "average_time_to_merge": 91.70055555555555,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "mmehta2669": {
                 "average_time_to_merge": 91.59597222222223,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "nneni": {
                 "average_time_to_merge": 116.3675,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "sagar3181": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             }
         },
         "commits": {
@@ -6564,9 +6574,9 @@
                 "total_issues_closed": "3"
             },
             "MATHEW-SHERENI": {
-                "average_time_to_close": 106.6855357142857,
-                "total_issues_opened": 19,
-                "total_issues_closed": "14"
+                "average_time_to_close": 124.6888888888889,
+                "total_issues_opened": 20,
+                "total_issues_closed": "15"
             },
             "Parth2684": {
                 "average_time_to_close": 0,
@@ -6618,260 +6628,260 @@
             "Anjali0407-git": {
                 "average_time_to_merge": 63.33224206349206,
                 "total_prs_opened": 14,
-                "total_prs_merged": 0
+                "total_prs_merged": "14"
             },
             "CodeAndCurry-sk": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Gayatrinj": {
                 "average_time_to_merge": 31.81869047619048,
                 "total_prs_opened": 17,
-                "total_prs_merged": 0
+                "total_prs_merged": "14"
             },
             "Jahnavidarisetti": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "LucioPalmucci": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "M-Ravali": {
                 "average_time_to_merge": 21.960694444444442,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "Parth2684": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Sarvesh-7777": {
                 "average_time_to_merge": 22.627444444444446,
                 "total_prs_opened": 11,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "Savikhya": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Sharath-Devadiga": {
                 "average_time_to_merge": 180.79833333333335,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Walking2hell": {
                 "average_time_to_merge": 180.24305555555554,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "aasghari01": {
                 "average_time_to_merge": 597.4931481481482,
                 "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "adhampton110": {
                 "average_time_to_merge": 107.7825,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "alar12": {
                 "average_time_to_merge": 0.06851851851851852,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "ayushranaut": {
                 "average_time_to_merge": 88.52166666666666,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "bhumulanandinireddy": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "colepatrick": {
-                "average_time_to_merge": 5.141597222222222,
-                "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "average_time_to_merge": 7.797166666666667,
+                "total_prs_opened": 5,
+                "total_prs_merged": "5"
             },
             "dracpak": {
                 "average_time_to_merge": 209.16958333333335,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "hardikkgupta": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "miabu-pashh": {
                 "average_time_to_merge": 135.32243055555557,
                 "total_prs_opened": 9,
-                "total_prs_merged": 0
+                "total_prs_merged": "8"
             },
             "michael-020": {
                 "average_time_to_merge": 41.67513888888889,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "prakhyatpandit": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "saidugyala": {
                 "average_time_to_merge": 148.50583333333333,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "saikiran0405": {
                 "average_time_to_merge": 105.50427777777777,
                 "total_prs_opened": 11,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "truffer11": {
                 "average_time_to_merge": 191.66021825396825,
                 "total_prs_opened": 14,
-                "total_prs_merged": 0
+                "total_prs_merged": "14"
             },
             "twillis8": {
                 "average_time_to_merge": 6.438055555555556,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "vinay-billa-slu": {
                 "average_time_to_merge": 0.012579365079365079,
                 "total_prs_opened": 9,
-                "total_prs_merged": 0
+                "total_prs_merged": "7"
             },
             "yashgurav": {
                 "average_time_to_merge": 61.108333333333334,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             }
         },
         "commits": {
             "Abhi-Stephen": {
                 "total_commits": 5,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "Anjali0407-git": {
                 "total_commits": 33,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "Brijitha1609": {
                 "total_commits": 2,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "Chirag2x": {
                 "total_commits": 2,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "Gayatrinj": {
                 "total_commits": 25,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "MATHEW-SHERENI": {
-                "total_commits": 12,
-                "average_velocity": 4.964497041420118
+                "total_commits": 13,
+                "average_velocity": 4.923976608187133
             },
             "Moshrefi": {
                 "total_commits": 5,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "Ravali-Maddela": {
                 "total_commits": 5,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "SaiKiran0407": {
                 "total_commits": 51,
-                "average_velocity": 4.964497041420118
+                "average_velocity": 4.923976608187133
             },
             "Sarvesh-7777": {
                 "total_commits": 16,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "Sharath-Devadiga": {
                 "total_commits": 4,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "SiriChandanaGarimella": {
                 "total_commits": 24,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "Walking2hell": {
                 "total_commits": 2,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "adhampton110": {
                 "total_commits": 22,
-                "average_velocity": 4.964497041420118
+                "average_velocity": 4.923976608187133
             },
             "alar12": {
                 "total_commits": 54,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "ayushranaut": {
                 "total_commits": 1,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "bkkanth": {
                 "total_commits": 5,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "colepatrick": {
-                "total_commits": 15,
-                "average_velocity": 4.964497041420118
+                "total_commits": 17,
+                "average_velocity": 4.923976608187134
             },
             "deepak-pvsn": {
                 "total_commits": 8,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "dracpak": {
                 "total_commits": 16,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "kungfuchicken": {
                 "total_commits": 6,
-                "average_velocity": 4.964497041420118
+                "average_velocity": 4.923976608187133
             },
             "miabu-pashh": {
                 "total_commits": 46,
-                "average_velocity": 4.964497041420118
+                "average_velocity": 4.923976608187133
             },
             "michael-020": {
                 "total_commits": 4,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "saidugyala": {
                 "total_commits": 33,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "truffer11": {
                 "total_commits": 139,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187133
             },
             "twillis8": {
                 "total_commits": 8,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "vinay-billa-slu": {
                 "total_commits": 134,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "yashgurav": {
                 "total_commits": 2,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             },
             "yrlmanoharreddy": {
                 "total_commits": 3,
-                "average_velocity": 4.964497041420119
+                "average_velocity": 4.923976608187134
             }
         }
     },
@@ -6995,9 +7005,9 @@
                 "total_issues_closed": "1"
             },
             "jackcrane": {
-                "average_time_to_close": 1117.1234885620916,
-                "total_issues_opened": 46,
-                "total_issues_closed": "34"
+                "average_time_to_close": 1242.9353205128207,
+                "total_issues_opened": 53,
+                "total_issues_closed": "39"
             },
             "lawsj": {
                 "average_time_to_close": 2197.0582407407405,
@@ -7012,77 +7022,77 @@
         },
         "pull_requests": {
             "Muhammudy": {
-                "average_time_to_merge": 172.82602777777777,
-                "total_prs_opened": 11,
-                "total_prs_merged": 0
+                "average_time_to_merge": 172.82602777777774,
+                "total_prs_opened": 12,
+                "total_prs_merged": "10"
             },
             "ThomasMacas": {
                 "average_time_to_merge": 242.29872222222224,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "5"
             },
             "bellao314": {
                 "average_time_to_merge": 202.27400000000003,
                 "total_prs_opened": 12,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "colinseper": {
                 "average_time_to_merge": 161.97472222222223,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "jackcrane": {
-                "average_time_to_merge": 56.09236842105264,
-                "total_prs_opened": 22,
-                "total_prs_merged": 0
+                "average_time_to_merge": 219.90416666666664,
+                "total_prs_opened": 24,
+                "total_prs_merged": "21"
             },
             "lawsj": {
                 "average_time_to_merge": 499.32006944444447,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "paulongkiko": {
                 "average_time_to_merge": 342.11888888888893,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             }
         },
         "commits": {
             "Muhammudy": {
                 "total_commits": 13,
-                "average_velocity": 4.299319727891158
+                "average_velocity": 4.308724832214765
             },
             "ThomasMacas": {
                 "total_commits": 26,
-                "average_velocity": 4.299319727891158
+                "average_velocity": 4.308724832214765
             },
             "bellao314": {
                 "total_commits": 67,
-                "average_velocity": 4.299319727891156
+                "average_velocity": 4.308724832214764
             },
             "colinseper": {
                 "total_commits": 38,
-                "average_velocity": 4.299319727891155
+                "average_velocity": 4.308724832214767
             },
             "dracpak": {
                 "total_commits": 1,
-                "average_velocity": 4.299319727891157
+                "average_velocity": 4.308724832214765
             },
             "jackcrane": {
-                "total_commits": 423,
-                "average_velocity": 4.299319727891157
+                "total_commits": 433,
+                "average_velocity": 4.308724832214764
             },
             "lawsj": {
                 "total_commits": 20,
-                "average_velocity": 4.299319727891158
+                "average_velocity": 4.308724832214765
             },
             "lmamillapalli786": {
                 "total_commits": 20,
-                "average_velocity": 4.299319727891158
+                "average_velocity": 4.308724832214765
             },
             "paulongkiko": {
                 "total_commits": 21,
-                "average_velocity": 4.299319727891158
+                "average_velocity": 4.308724832214765
             }
         }
     },
@@ -7123,57 +7133,57 @@
             "Brehana-Naidu": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "Chandana9700": {
                 "average_time_to_merge": 2238.5091666666667,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "MeghPatel6": {
                 "average_time_to_merge": 151.13541666666666,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "Obssaa": {
                 "average_time_to_merge": 0.19027777777777777,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "Supraja050202": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "dhyana6466": {
                 "average_time_to_merge": 237.68777777777777,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "mhashm1": {
                 "average_time_to_merge": 134.2242857142857,
                 "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "total_prs_merged": "7"
             },
             "ramezmosad": {
                 "average_time_to_merge": 188.78578703703704,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "rcAsironman": {
                 "average_time_to_merge": 169.3022222222222,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "smallrussian": {
                 "average_time_to_merge": 0.017638888888888888,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "syedabushra": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             }
         },
         "commits": {
@@ -7223,27 +7233,27 @@
             "Omp06": {
                 "average_time_to_merge": 106.02296296296298,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "PranaviKolouju": {
                 "average_time_to_merge": 90.08819444444445,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "dracpak": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "oam67": {
                 "average_time_to_merge": 107.04393518518519,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "r0me777": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             }
         },
         "commits": {
@@ -7283,7 +7293,7 @@
             "Dictor-div": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             }
         },
         "commits": {
@@ -7297,7 +7307,7 @@
         "issues": {
             "madhuritha22": {
                 "average_time_to_close": 363.22858888888885,
-                "total_issues_opened": 27,
+                "total_issues_opened": 29,
                 "total_issues_closed": "25"
             }
         },
@@ -7305,42 +7315,42 @@
             "Jaywin2099": {
                 "average_time_to_merge": 131.40604938271605,
                 "total_prs_opened": 9,
-                "total_prs_merged": 0
+                "total_prs_merged": "9"
             },
             "Jung0219": {
                 "average_time_to_merge": 146.46180555555557,
                 "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "Omanhene20": {
                 "average_time_to_merge": 38.17944444444444,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "Shahid1Malik": {
                 "average_time_to_merge": 0.01138888888888889,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "bruceamiller": {
                 "average_time_to_merge": 81.32083333333333,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "madhuritha22": {
-                "average_time_to_merge": 0.04777777777777778,
-                "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "average_time_to_merge": 0.02513888888888889,
+                "total_prs_opened": 3,
+                "total_prs_merged": "2"
             },
             "ngup1": {
                 "average_time_to_merge": 129.83796296296296,
                 "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "sahanagujja": {
                 "average_time_to_merge": 16.686666666666667,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             }
         },
         "commits": {
@@ -7389,50 +7399,50 @@
         "pull_requests": {
             "Zhihuiwu646": {
                 "average_time_to_merge": 113.89993055555556,
-                "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_opened": 6,
+                "total_prs_merged": "4"
             },
             "justinduong5": {
                 "average_time_to_merge": 71.09263888888889,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "rawana7912": {
                 "average_time_to_merge": 3.676111111111111,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "sriram1302": {
-                "average_time_to_merge": 11.411423611111111,
-                "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "average_time_to_merge": 10.237222222222222,
+                "total_prs_opened": 9,
+                "total_prs_merged": "9"
             },
             "tmp-cloud7": {
                 "average_time_to_merge": 3129.178888888889,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             }
         },
         "commits": {
             "Zhihuiwu646": {
                 "total_commits": 15,
-                "average_velocity": 3.0370370370370376
+                "average_velocity": 3.1071428571428563
             },
             "justinduong5": {
                 "total_commits": 19,
-                "average_velocity": 3.037037037037037
+                "average_velocity": 3.1071428571428568
             },
             "rawana7912": {
                 "total_commits": 1,
-                "average_velocity": 3.037037037037037
+                "average_velocity": 3.107142857142857
             },
             "sriram1302": {
-                "total_commits": 43,
-                "average_velocity": 3.0370370370370376
+                "total_commits": 48,
+                "average_velocity": 3.107142857142857
             },
             "tmp-cloud7": {
                 "total_commits": 1,
-                "average_velocity": 3.037037037037037
+                "average_velocity": 3.107142857142857
             }
         }
     },
@@ -7463,17 +7473,17 @@
             "RalphTan37": {
                 "average_time_to_merge": 120.51472222222219,
                 "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "aasghari01": {
                 "average_time_to_merge": 57.40105555555556,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "5"
             },
             "vani-walvekar1494": {
                 "average_time_to_merge": 0.07777777777777778,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             }
         },
         "commits": {
@@ -7508,27 +7518,27 @@
             "ErinKelley17": {
                 "average_time_to_merge": 459.6239285714286,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "7"
             },
             "LilLizDog": {
                 "average_time_to_merge": 258.5856111111111,
                 "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "total_prs_merged": "5"
             },
             "bhuelsman": {
                 "average_time_to_merge": 178.69873015873014,
                 "total_prs_opened": 9,
-                "total_prs_merged": 0
+                "total_prs_merged": "7"
             },
             "johndoans": {
                 "average_time_to_merge": 182.7465451388889,
                 "total_prs_opened": 16,
-                "total_prs_merged": 0
+                "total_prs_merged": "16"
             },
             "premkiran2": {
                 "average_time_to_merge": 1.904768518518518,
                 "total_prs_opened": 14,
-                "total_prs_merged": 0
+                "total_prs_merged": "12"
             }
         },
         "commits": {
@@ -7554,7 +7564,7 @@
         "issues": {
             "AanthonyRusso": {
                 "average_time_to_close": 399.30305555555555,
-                "total_issues_opened": 8,
+                "total_issues_opened": 12,
                 "total_issues_closed": "2"
             },
             "smallrussian": {
@@ -7567,40 +7577,40 @@
             "AanthonyRusso": {
                 "average_time_to_merge": 143.98277777777778,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "MatthewMurawski": {
-                "average_time_to_merge": 671.5947222222222,
-                "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "average_time_to_merge": 522.3810416666668,
+                "total_prs_opened": 4,
+                "total_prs_merged": "4"
             },
             "bhayes04": {
                 "average_time_to_merge": 678.963888888889,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "smallrussian": {
                 "average_time_to_merge": 0.11069444444444444,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             }
         },
         "commits": {
             "AanthonyRusso": {
-                "total_commits": 23,
-                "average_velocity": 2.5961538461538463
+                "total_commits": 25,
+                "average_velocity": 2.4821428571428568
             },
             "MatthewMurawski": {
-                "total_commits": 11,
-                "average_velocity": 2.5961538461538463
+                "total_commits": 13,
+                "average_velocity": 2.482142857142857
             },
             "bhayes04": {
                 "total_commits": 1,
-                "average_velocity": 2.5961538461538463
+                "average_velocity": 2.482142857142857
             },
             "smallrussian": {
                 "total_commits": 85,
-                "average_velocity": 2.596153846153846
+                "average_velocity": 2.4821428571428577
             }
         }
     },
@@ -7622,53 +7632,53 @@
                 "total_issues_closed": "1"
             },
             "pelumitegbe": {
-                "average_time_to_close": 265.21,
-                "total_issues_opened": 35,
-                "total_issues_closed": "27"
+                "average_time_to_close": 268.7521360153257,
+                "total_issues_opened": 39,
+                "total_issues_closed": "29"
             }
         },
         "pull_requests": {
             "GustavoLucca": {
-                "average_time_to_merge": 74.71159722222222,
-                "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "average_time_to_merge": 77.06098765432098,
+                "total_prs_opened": 11,
+                "total_prs_merged": "9"
             },
             "PGuffey": {
-                "average_time_to_merge": 61.90599206349207,
+                "average_time_to_merge": 69.4942361111111,
                 "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "total_prs_merged": "8"
             },
             "pelumitegbe": {
                 "average_time_to_merge": 0.04622222222222222,
                 "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "total_prs_merged": "5"
             },
             "williamphoenix": {
-                "average_time_to_merge": 109.32524305555556,
-                "total_prs_opened": 8,
-                "total_prs_merged": 0
+                "average_time_to_merge": 109.32524305555557,
+                "total_prs_opened": 9,
+                "total_prs_merged": "8"
             }
         },
         "commits": {
             "GustavoLucca": {
-                "total_commits": 14,
-                "average_velocity": 3.2571428571428576
+                "total_commits": 19,
+                "average_velocity": 3.1282051282051286
             },
             "PGuffey": {
-                "total_commits": 14,
-                "average_velocity": 3.2571428571428576
+                "total_commits": 15,
+                "average_velocity": 3.128205128205129
             },
             "oluwategbe": {
                 "total_commits": 34,
-                "average_velocity": 3.2571428571428567
+                "average_velocity": 3.1282051282051277
             },
             "pelumitegbe": {
-                "total_commits": 34,
-                "average_velocity": 3.2571428571428567
+                "total_commits": 36,
+                "average_velocity": 3.1282051282051277
             },
             "williamphoenix": {
                 "total_commits": 14,
-                "average_velocity": 3.2571428571428576
+                "average_velocity": 3.1282051282051286
             }
         }
     },
@@ -7699,22 +7709,22 @@
             "Copilot": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "DaisyNBN": {
                 "average_time_to_merge": 163.87421296296296,
                 "total_prs_opened": 7,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "Paskul": {
                 "average_time_to_merge": 103.00911111111111,
                 "total_prs_opened": 13,
-                "total_prs_merged": 0
+                "total_prs_merged": "10"
             },
             "lockermanwxlf": {
                 "average_time_to_merge": 89.17319444444445,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             }
         },
         "commits": {
@@ -7749,7 +7759,7 @@
             "dracpak": {
                 "average_time_to_merge": 670.5297222222222,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             }
         },
         "commits": {
@@ -7766,9 +7776,9 @@
     "oss_cicd_automation": {
         "issues": {
             "ImJustHenry": {
-                "average_time_to_close": 223.05439814814815,
+                "average_time_to_close": 212.05853174603175,
                 "total_issues_opened": 11,
-                "total_issues_closed": "6"
+                "total_issues_closed": "7"
             },
             "SrinivasaVarmaP": {
                 "average_time_to_close": 349.5800277777778,
@@ -7780,53 +7790,53 @@
             "ImJustHenry": {
                 "average_time_to_merge": 52.874375,
                 "total_prs_opened": 22,
-                "total_prs_merged": 0
+                "total_prs_merged": "20"
             },
             "Mehulantony": {
                 "average_time_to_merge": 46.81781481481482,
                 "total_prs_opened": 18,
-                "total_prs_merged": 0
+                "total_prs_merged": "15"
             },
             "SrinivasaVarmaP": {
                 "average_time_to_merge": 0.024814814814814814,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "ThomasPautler952194": {
-                "average_time_to_merge": 21.96342592592592,
-                "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "average_time_to_merge": 17.386319444444442,
+                "total_prs_opened": 4,
+                "total_prs_merged": "4"
             },
             "justinduong5": {
-                "average_time_to_merge": 21.64074074074074,
-                "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "average_time_to_merge": 22.897916666666667,
+                "total_prs_opened": 4,
+                "total_prs_merged": "4"
             }
         },
         "commits": {
             "ImJustHenry": {
-                "total_commits": 48,
-                "average_velocity": 3.9210526315789473
+                "total_commits": 52,
+                "average_velocity": 3.8095238095238084
             },
             "Mehulantony": {
                 "total_commits": 9,
-                "average_velocity": 3.9210526315789473
+                "average_velocity": 3.8095238095238093
             },
             "SrinivasaVarmaP": {
                 "total_commits": 63,
-                "average_velocity": 3.921052631578949
+                "average_velocity": 3.809523809523808
             },
             "ThomasPautler952194": {
-                "total_commits": 5,
-                "average_velocity": 3.9210526315789473
+                "total_commits": 7,
+                "average_velocity": 3.8095238095238098
             },
             "dracpak": {
                 "total_commits": 1,
-                "average_velocity": 3.9210526315789473
+                "average_velocity": 3.8095238095238093
             },
             "justinduong5": {
-                "total_commits": 5,
-                "average_velocity": 3.9210526315789473
+                "total_commits": 10,
+                "average_velocity": 3.8095238095238093
             }
         }
     },
@@ -7847,27 +7857,27 @@
             "AyoAwodeyi": {
                 "average_time_to_merge": 56.219598765432096,
                 "total_prs_opened": 10,
-                "total_prs_merged": 0
+                "total_prs_merged": "9"
             },
             "HuntC19": {
                 "average_time_to_merge": 61.04875,
-                "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_opened": 3,
+                "total_prs_merged": "2"
             },
             "j-heitz": {
                 "average_time_to_merge": 61.27055555555556,
-                "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_opened": 3,
+                "total_prs_merged": "2"
             },
             "kungfuchicken": {
                 "average_time_to_merge": 470.99916666666667,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "sudoava": {
                 "average_time_to_merge": 51.03672222222223,
                 "total_prs_opened": 18,
-                "total_prs_merged": 0
+                "total_prs_merged": "15"
             }
         },
         "commits": {
@@ -7901,63 +7911,67 @@
                 "total_issues_closed": "39"
             },
             "smagen12": {
-                "average_time_to_close": 427.85291666666666,
-                "total_issues_opened": 14,
-                "total_issues_closed": "4"
+                "average_time_to_close": 491.5004444444444,
+                "total_issues_opened": 18,
+                "total_issues_closed": "5"
             }
         },
         "pull_requests": {
             "Dream1ance": {
                 "average_time_to_merge": 35.48965277777778,
                 "total_prs_opened": 9,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             },
             "Prajeeth-12": {
                 "average_time_to_merge": 471.17703703703705,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             },
             "mhashir03": {
-                "average_time_to_merge": 0,
+                "average_time_to_merge": 74.13777777777777,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "naasir0": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "smagen12": {
                 "average_time_to_merge": 63.80652777777778,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             },
             "wastedddddd": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             }
         },
         "commits": {
             "Dream1ance": {
                 "total_commits": 5,
-                "average_velocity": 2.1578947368421053
+                "average_velocity": 2.1
             },
             "Munazzah-Rakhangi": {
                 "total_commits": 13,
-                "average_velocity": 2.1578947368421058
+                "average_velocity": 2.1000000000000005
             },
             "Prajeeth-12": {
                 "total_commits": 9,
-                "average_velocity": 2.1578947368421053
+                "average_velocity": 2.1
+            },
+            "mhashir03": {
+                "total_commits": 1,
+                "average_velocity": 2.1
             },
             "smagen10": {
                 "total_commits": 6,
-                "average_velocity": 2.1578947368421058
+                "average_velocity": 2.1
             },
             "smagen12": {
                 "total_commits": 7,
-                "average_velocity": 2.1578947368421058
+                "average_velocity": 2.1
             }
         }
     },
@@ -7969,9 +7983,9 @@
                 "total_issues_closed": "5"
             },
             "allenbakki": {
-                "average_time_to_close": 0,
-                "total_issues_opened": 10,
-                "total_issues_closed": 0
+                "average_time_to_close": 73.81511111111111,
+                "total_issues_opened": 17,
+                "total_issues_closed": "5"
             },
             "cubap": {
                 "average_time_to_close": 0,
@@ -7988,69 +8002,69 @@
             "Devayani1612": {
                 "average_time_to_merge": 1.7691666666666668,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "LuisPalmejar21": {
                 "average_time_to_merge": 16.659305555555555,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "Mehulantony": {
-                "average_time_to_merge": 0,
-                "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "average_time_to_merge": 97.12722222222222,
+                "total_prs_opened": 4,
+                "total_prs_merged": "1"
             },
             "allenbakki": {
                 "average_time_to_merge": 0,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "0"
             },
             "joeljoby02": {
-                "average_time_to_merge": 78.16340277777779,
+                "average_time_to_merge": 108.88532407407406,
                 "total_prs_opened": 6,
-                "total_prs_merged": 0
+                "total_prs_merged": "6"
             }
         },
         "commits": {
             "Copilot": {
                 "total_commits": 3,
-                "average_velocity": 4.08411214953271
+                "average_velocity": 4.026785714285714
             },
             "Devayani1612": {
                 "total_commits": 9,
-                "average_velocity": 4.08411214953271
+                "average_velocity": 4.026785714285714
             },
             "LuisPalmejar21": {
                 "total_commits": 5,
-                "average_velocity": 4.08411214953271
+                "average_velocity": 4.026785714285714
             },
             "Mehulantony": {
-                "total_commits": 1,
-                "average_velocity": 4.08411214953271
+                "total_commits": 2,
+                "average_velocity": 4.026785714285714
             },
             "allenbakki": {
-                "total_commits": 1,
-                "average_velocity": 4.08411214953271
+                "total_commits": 4,
+                "average_velocity": 4.026785714285714
             },
             "claude": {
                 "total_commits": 3,
-                "average_velocity": 4.08411214953271
+                "average_velocity": 4.026785714285714
             },
             "cubap": {
                 "total_commits": 68,
-                "average_velocity": 4.084112149532709
+                "average_velocity": 4.026785714285715
             },
             "joeljoby02": {
-                "total_commits": 7,
-                "average_velocity": 4.08411214953271
+                "total_commits": 17,
+                "average_velocity": 4.026785714285714
             },
             "leandrumartin": {
                 "total_commits": 1,
-                "average_velocity": 4.08411214953271
+                "average_velocity": 4.026785714285714
             },
             "thehabes": {
                 "total_commits": 338,
-                "average_velocity": 4.084112149532709
+                "average_velocity": 4.026785714285714
             }
         }
     },
@@ -8060,7 +8074,7 @@
             "Shahid1Malik": {
                 "average_time_to_merge": 0.06541666666666666,
                 "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "total_prs_merged": "4"
             }
         },
         "commits": {
@@ -8103,36 +8117,45 @@
     "civickit": {
         "issues": {
             "bhuelsman": {
-                "average_time_to_close": 484.1894722222222,
-                "total_issues_opened": 18,
-                "total_issues_closed": "10"
+                "average_time_to_close": 436.6944444444444,
+                "total_issues_opened": 20,
+                "total_issues_closed": "12"
             }
         },
         "pull_requests": {
             "ErinKelley17": {
-                "average_time_to_merge": 66.11243055555555,
-                "total_prs_opened": 4,
-                "total_prs_merged": 0
+                "average_time_to_merge": 54.318388888888876,
+                "total_prs_opened": 5,
+                "total_prs_merged": "5"
+            },
+            "InfinityBowman": {
+                "average_time_to_merge": 4.032222222222222,
+                "total_prs_opened": 1,
+                "total_prs_merged": "1"
             },
             "LeahBragg": {
-                "average_time_to_merge": 50.754444444444445,
-                "total_prs_opened": 5,
-                "total_prs_merged": 0
+                "average_time_to_merge": 42.66291666666667,
+                "total_prs_opened": 6,
+                "total_prs_merged": "6"
             },
             "bhuelsman": {
-                "average_time_to_merge": 45.444722222222225,
-                "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "average_time_to_merge": 19.366296296296298,
+                "total_prs_opened": 3,
+                "total_prs_merged": "3"
             }
         },
         "commits": {
+            "InfinityBowman": {
+                "total_commits": 1,
+                "average_velocity": 5.513513513513513
+            },
             "LeahBragg": {
-                "total_commits": 53,
-                "average_velocity": 3.875
+                "total_commits": 107,
+                "average_velocity": 5.513513513513516
             },
             "bhuelsman": {
-                "total_commits": 46,
-                "average_velocity": 3.875
+                "total_commits": 61,
+                "average_velocity": 5.513513513513511
             }
         }
     },
@@ -8149,16 +8172,16 @@
     "iperf": {
         "issues": {
             "Mansi-SLU": {
-                "average_time_to_close": 410.8000694444445,
-                "total_issues_opened": 8,
+                "average_time_to_close": 410.80006944444443,
+                "total_issues_opened": 10,
                 "total_issues_closed": "4"
             }
         },
         "pull_requests": {
             "leandrumartin": {
                 "average_time_to_merge": 523.8838888888889,
-                "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_opened": 3,
+                "total_prs_merged": "1"
             }
         },
         "commits": {
@@ -8756,22 +8779,22 @@
             "Jahnavidarisetti": {
                 "average_time_to_merge": 0.030555555555555555,
                 "total_prs_opened": 1,
-                "total_prs_merged": 0
+                "total_prs_merged": "1"
             },
             "LilLizDog": {
                 "average_time_to_merge": 38.93333333333334,
-                "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_opened": 3,
+                "total_prs_merged": "2"
             },
             "dmupenda": {
                 "average_time_to_merge": 32.73777777777778,
                 "total_prs_opened": 2,
-                "total_prs_merged": 0
+                "total_prs_merged": "2"
             },
             "premkiran2": {
                 "average_time_to_merge": 0.22527777777777777,
                 "total_prs_opened": 3,
-                "total_prs_merged": 0
+                "total_prs_merged": "3"
             }
         },
         "commits": {
@@ -8790,6 +8813,16 @@
             "premkiran2": {
                 "total_commits": 30,
                 "average_velocity": 3.636363636363637
+            }
+        }
+    },
+    "slu-cluster-mgmt": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {
+            "AyoAwodeyi": {
+                "total_commits": 6,
+                "average_velocity": 6.0
             }
         }
     }

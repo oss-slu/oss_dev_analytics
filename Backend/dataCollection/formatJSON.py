@@ -60,7 +60,7 @@ def format_json_data(raw_data, sprint = -1):
                 continue  #Skip bot users
             avg_time_to_merge = group['time_to_merge'].mean()
             total_prs_opened = len(group)
-            total_prs_merged = group['state'].value_counts().get('merged', 0)
+            total_prs_merged = group['merged_at'].notna().sum()
 
             formatted_data['pull_requests'][user] = {
                 "average_time_to_merge": avg_time_to_merge if not np.isnan(avg_time_to_merge) else 0,
