@@ -7,7 +7,6 @@ def collect_repository_data(g, repo_name, sprint=-1):
     """
     Collects and formats all repository data for a given sprint or lifetime mode
     """
-
     issue_data = get_issue_data(g, repo_name, sprint)
     pr_data = get_pr_data(g, repo_name, sprint)
     commit_data = get_commit_data(g, repo_name, sprint)

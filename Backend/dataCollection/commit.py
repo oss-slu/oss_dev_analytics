@@ -22,13 +22,16 @@ def get_commit_data(g, repo_name, sprint = -1):
     """
     try:
         repo = g.get_repo(repo_name)
-        print(f"Commit Repository: {repo.name}") #debugging only
+        # print(f"Commit Repository: {repo.name}") #debugging only
 
         commit_records = []
         seen_shas = set() #Track unique commits
 
         commits = repo.get_commits()
-        commits_filtered = filter_data_by_sprint(commits, sprint)
+        if(sprint == -1):
+            commits_filtered = commits
+        else:
+            commits_filtered = filter_data_by_sprint(commits, sprint)
 
         for commit in commits_filtered:
             try:
