@@ -2,8 +2,23 @@ import { useState, useMemo } from "react";
 import TimeBased from "../../../components/charts/TimeBased";
 import VolumeCharts from "../../../components/charts/VolumeBased";
 import testData from "../../../../../Frontend/test_data.json";
+import "../../home/routes/Home.css";
 
-const USERS = ["all", ...Object.keys(testData.issues ?? {})];
+const USERS = [
+  "all",
+  ...Array.from(
+    new Set(
+      Object.values(testData).flatMap((repo) => [
+        ...Object.keys(repo.issues ?? {}),
+        ...Object.keys(repo.pull_requests ?? {}),
+        ...Object.keys(repo.commits ?? {})
+      ])
+    )
+  )
+];
+// Placeholder lists (UI now, data wiring later)
+const TEAMS = ["All Teams", "Core Devs", "Docs"];
+const SPRINTS = [testData.sprint]; // only one sprint in test_data.json for now
 
 //styling
 const C = {
@@ -75,16 +90,17 @@ function buildVolumeData(user) {
 const S = {
   page: {
     minHeight: "100vh",
-    background: C.bg,
-    fontFamily: '"Times New Roman", Times, serif',
+    background: "#242424",
+    fontFamily: "inherit",
     padding: "0 20px 40px",
   },
   layout: {
     display: "grid",
     gridTemplateColumns: "200px 1fr",
     gap: "32px",
-    maxWidth: "1300px",
-    margin: "32px auto 0",
+    /*maxWidth: "1300px",*/
+    width: "100%",
+    margin: "32px 0 0",
     minWidth: 0,
   },
   sidebar: {
@@ -106,12 +122,12 @@ const S = {
     padding: "9px 32px 9px 12px",
     border: "none",
     borderRadius: "8px",
-    fontFamily: '"Times New Roman", Times, serif',
+    fontFamily: "inherit",
     fontSize: "0.95rem",
     cursor: disabled ? "not-allowed" : "pointer",
   }),
   sectionHeading: {
-    fontFamily: '"Times New Roman", Times, serif',
+    fontFamily: "inherit",
     fontSize: "1.25rem",
     fontWeight: "700",
     borderBottom: `2px solid ${C.lightBg}`,
@@ -130,7 +146,7 @@ const S = {
     border: `2px solid ${C.navy}`,
     background: active ? C.navy : "transparent",
     color: active ? C.white : C.navy,
-    fontFamily: '"Times New Roman", Times, serif',
+    fontFamily: "inherit",
     fontSize: "0.95rem",
     fontWeight: "700",
     cursor: "pointer",
@@ -159,9 +175,9 @@ const S = {
     flex: "1 1 300px",
     minWidth: 0, 
     maxWidth: "100%", 
-    background: C.lightBg,
-    borderRadius: "12px",
-    padding: "16px",
+    background: "rgba(120,150,210,0.35)"/*C.lightBg,*/,
+    borderRadius: "20px",
+    padding: "24px",
     overflow: "hidden",
   },
   chartSubLabel: {
@@ -180,6 +196,8 @@ const S = {
 export const TeamStats = () => {
   const [view, setView] = useState("team"); // "team" | "user"
   const [selectedUser, setSelectedUser] = useState("all");
+  const [selectedTeam, setSelectedTeam] = useState("All Teams");
+  const [selectedSprint, setSelectedSprint] = useState(testData.sprint);
 
   const activeUser = view === "team" ? "all" : selectedUser;
 
@@ -204,16 +222,49 @@ export const TeamStats = () => {
 
   const viewLabel =
     view === "team"
-      ? "Whole Team"
+      ? `Whole Team (${selectedTeam})`
       : selectedUser === "all"
-      ? "All Users"
-      : selectedUser;
+      ? `All Users (${selectedTeam})`
+      : `${selectedUser} (${selectedTeam})`;
 
   return (
     <div style={S.page}>
       <div style={S.layout}>
         {/*  Sidebar customization  */}
         <aside style={S.sidebar}>
+        {/*  Team selector  */}
+          <div>
+          <label style={S.filterLabel}>Team</label>
+          <select
+            value={selectedTeam}
+            onChange={(e) => setSelectedTeam(e.target.value)}
+            style={S.select(false)}
+          >
+            {TEAMS.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Sprint selector */}
+        <div>
+          <label style={S.filterLabel}>Sprint</label>
+          <select
+            value={selectedSprint}
+            onChange={(e) => setSelectedSprint(Number(e.target.value))}
+            style={S.select(false)}
+          >
+            {SPRINTS.map((s) => (
+              <option key={s} value={s}>
+                Sprint {s}
+              </option>
+            ))}
+          </select>
+        </div>
+
+          {/* User selector */}
           <div>
             <label style={S.filterLabel}>User</label>
             <select
@@ -235,7 +286,7 @@ export const TeamStats = () => {
 
           <div style={{ marginTop: "8px" }}>
             <p style={{ fontWeight: "700", marginBottom: "6px" }}>
-              Sprint {testData.sprint}
+              Sprint {selectedSprint}
             </p>
             <p
               style={{ fontSize: "0.85rem", color: C.muted, lineHeight: "1.5" }}
@@ -249,7 +300,7 @@ export const TeamStats = () => {
         <main style={{ minWidth: 0, overflow: "hidden" }}>
           <h1
             style={{
-              fontFamily: '"Times New Roman", Times, serif',
+              fontFamily: "inherit",
               fontSize: "1.8rem",
               marginBottom: "16px",
             }}
@@ -284,7 +335,7 @@ export const TeamStats = () => {
           >
             Showing: <strong style={{ color: C.navy }}>{viewLabel}</strong>
             {" · "}Sprint{" "}
-            <strong style={{ color: C.navy }}>{testData.sprint}</strong>
+            <strong style={{ color: C.navy }}>{selectedSprint}</strong>
           </p>
 
           {/* Summary of stats */}

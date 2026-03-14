@@ -19,24 +19,32 @@ export default function VolumeCharts({ data, repos = "All", user = null }) {
     //If no data is available yet, return a loading state or null
     if (!data) return <div className="p-4 text-center">Loading Chart Data...</div>;
     
-    if (repos == "All"){
-        var title = "Organization Level Volume Data";
+    let title;
+
+    if (repos === "All"){
+        /*var*/ title = "Volume-Based Data";
     }
     else if(user != null){
-        var title = `User Level Volume Data: ${repos} for ${user}`
+        /*var*/ title = `User Level Volume Data: ${repos} for ${user}`
     }
     else {
-        var title = `Repository Level Volume Data: ${repos}`;
+        /*var*/ title = `Repository Level Volume Data: ${repos}`;
     }
    const chartOptions = {
   responsive: true,
   maintainAspectRatio: false,
+  layout: {
+    padding: { left: 12, right: 12, bottom: 8, top: 4 },
+  },
   plugins: {
     legend: {
       position: "top",
       labels: { color: "#ffffff" },
     },
     title: {
+      display: false,
+    },
+    /*title: {
       display: true,
       text: title,
       color: "#ffffff",
@@ -48,7 +56,7 @@ export default function VolumeCharts({ data, repos = "All", user = null }) {
       padding: {
         bottom: 16
       }
-    },
+    },*/
   },
   scales: {
     x: {
@@ -77,7 +85,14 @@ export default function VolumeCharts({ data, repos = "All", user = null }) {
     };
 
     return (
-    <div
+      <div className="chart-container" style={{ height: "100%", display: "flex", flexDirection: "column"}}>
+        {<h3 className="text-center font-semibold mb-4">{title}</h3>}
+        <div style={{ position: "relative", flex: 1, minHeight: 0 }}>
+          <Bar options={chartOptions} data={chartData} />
+        </div>
+      </div>
+    );
+   /* <div
         className="chart-container"
         style={{
          height: "100%",
@@ -92,8 +107,8 @@ export default function VolumeCharts({ data, repos = "All", user = null }) {
         <div style={{ flex: 1, minHeight: 0, position: "relative" }}>
          <Bar options={chartOptions} data={chartData} />
         </div>
-    </div>
-);
+    </div>*/
+}
     
     /*return (
     <div className="chart-container p-4 rounded-lg shadow h-full w-full flex flex-col">
@@ -102,4 +117,3 @@ export default function VolumeCharts({ data, repos = "All", user = null }) {
       </div>
     </div>
   );*/
-}

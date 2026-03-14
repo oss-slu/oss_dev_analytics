@@ -28,7 +28,7 @@ export default function TimeBased({ data, repos = "All", user = null }) {
   let title;
 
   if (repos === "All") {
-    title = "Organization Level Time-Based Data";
+    title = "Time-Based Data";
   } else if (user) {
     title = `User Level Time-Based Data: ${repos} for ${user}`;
   } else {
@@ -36,7 +36,7 @@ export default function TimeBased({ data, repos = "All", user = null }) {
   }
 
   return (
-    <div className="chart-container bg-white p-4 rounded-lg shadow">
+    <div className="chart-container"/*className="chart-container bg-white p-4 rounded-lg shadow"*/>
       <h3 className="text-center font-semibold mb-4">{title}</h3>
 
       <ResponsiveContainer width="100%" height={300}>
