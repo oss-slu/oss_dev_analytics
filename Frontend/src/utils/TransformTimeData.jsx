@@ -78,3 +78,24 @@ export const transformTimeData = ({
 
   return [];
 };
+/*
+    Helper function to calculate true org-wide averages across all repositories.
+*/
+export const calculateOrgAverage = (data, category, metricKey) => {
+  let totalMetric = 0;
+  let count = 0;
+
+  Object.values(data).forEach(repo => {
+    if (repo[category]) {
+      Object.values(repo[category]).forEach(user => {
+        const val = parseFloat(user[metricKey]);
+        if (val > 0) {
+          totalMetric += val;
+          count++;
+        }
+      });
+    }
+  });
+
+  return count === 0 ? 0 : Number((totalMetric / count).toFixed(2));
+};

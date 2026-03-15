@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "test": "vitest --environment jsdom"
+    "test": "vitest --environment jsdom",
+    "build": "vite build"
   },
   "vitest": {
     "globals": true,
