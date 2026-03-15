@@ -1,31 +1,29 @@
-// Home page showing org-level averages
-
 import VolumeCharts from "../../../components/charts/VolumeBased";
 import { transformVolumeData } from "../../../utils/TransformVolumeData";
 import TimeBased from "../../../components/charts/TimeBased";
 import { transformTimeData } from "../../../utils/TransformTimeData";
-import testData from "../../../../../Backend/test_data.json";
 import TopContributorsRepos from "../../../components/TopContributorsRepos";
-import "./Home.css"; // Import CSS for Home page styling
-
+import lifetimeData from "../../../../../data/lifetime_data.json";
+import "./Home.css";
+/*
+    Main Home dashboard view displaying high-level organization metrics.
+    Returns:
+        JSX.Element: The Home dashboard component.
+*/
 export const Home = () => {
+  const orgVolumeData = transformVolumeData(lifetimeData, 'org', null, "All");
 
-  // Transforms raw test data into format suitable for VolumeCharts at org level
-  const orgVolumeData = transformVolumeData(testData, 'org', null, "All");
-
-  // Org-wide average time to close issues
   const orgAvgTimeToClose = transformTimeData({
-    rawData: testData,
-    repo: "oss_dev_analytics",
+    rawData: lifetimeData, 
+    repo: "All", 
     category: "issues",
     metric: "average_time_to_close",
     scope: "org",
   });
 
-  // Org-wide average time to merge pull requests
   const orgAvgTimeToMerge = transformTimeData({
-    rawData: testData,
-    repo: "oss_dev_analytics",
+    rawData: lifetimeData, 
+    repo: "All", 
     category: "pull_requests",
     metric: "average_time_to_merge",
     scope: "org",
@@ -42,64 +40,62 @@ export const Home = () => {
     },
   ];
 
-
   return (
-    <div className="homePage">
-      <h1 className="homeTitle">OSS Dev Analytics - Home</h1>
-      <p className="homeSubtitle">Welcome to the dashboard.</p>
+    <div className="home-container">
+      
+      <header className="home-header">
+        <h1 className="home-title">OSS Analytics Dashboard</h1>
+      </header>
 
       {/* Top section: Volume chart + Top contributors/repos */}
-      <div className="homeGrid">
-        <div className="card cardBlue chartWrapper">
-          <VolumeCharts data={orgVolumeData} repos="All" />
-        </div>
+      <div className="home-grid">
+        <section className="card-blue">
+          <h2 className="card-title">Organization Volume</h2>
+          <div className="chart-wrapper">
+            <VolumeCharts data={orgVolumeData} repos="All" />
+          </div>
+        </section>
 
-        <div className="card cardTall contributorsCard">
-          <TopContributorsRepos />
-        </div>
+        <section className="card-blue" style={{ height: "100%" }}>
+          <h2 className="card-title">Top Contributors</h2>
+          <div className="contributors-wrapper">
+            <TopContributorsRepos data={orgVolumeData} />
+          </div>
+        </section>
       </div>
 
-      {/* Bottom section: Handbook buttons + ONE combined time-based chart */}
-      <div className="bottomGrid">
-        <div className="handbookRow">
-          <div className="handbookCard">
-            <div className="handbookIcon">📄</div>
-            <div className="handbookTitleText">DEVELOPER HANDBOOK</div>
-          </div>
-
-          <div className="handbookCard">
-            <div className="handbookIcon">📄</div>
-            <div className="handbookTitleText">TECH LEAD HANDBOOK</div>
-          </div>
-
-          {/*
+      {/* Bottom section: Handbook buttons + Time-based chart */}
+      <div className="home-grid">
+        <div className="handbook-column">
           <a
-            className="handbookCard"
             href="https://github.com/oss-slu/handbook_developer"
             target="_blank"
             rel="noreferrer"
+            className="handbook-card"
           >
-            <div className="handbookIcon">📄</div>
-            <div className="handbookTitleText">DEVELOPER HANDBOOK</div>
+            <div className="handbook-icon">📄</div>
+            <div className="handbook-text">DEVELOPER HANDBOOK</div>
           </a>
-          */}
 
-          {/*
           <a
-            className="handbookCard"
             href="https://github.com/oss-slu/handbook_tech_lead"
             target="_blank"
             rel="noreferrer"
+            className="handbook-card"
           >
-            <div className="handbookIcon">📄</div>
-            <div className="handbookTitleText">TECH LEAD HANDBOOK</div>
+            <div className="handbook-icon">📄</div>
+            <div className="handbook-text">TECH LEAD HANDBOOK</div>
           </a>
-          */}
         </div>
-        <div className="card cardBlue chartWrapper">
-          <TimeBased data={orgTimeBasedData} repos="All" />
-        </div>
+
+        <section className="card-blue">
+          <h2 className="card-title">Time-based Metrics</h2>
+          <div className="chart-wrapper">
+            <TimeBased data={orgTimeBasedData} repos="All" />
+          </div>
+        </section>
       </div>
+
     </div>
   );
 };

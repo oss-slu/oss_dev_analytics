@@ -1,422 +1,104 @@
 import { useState, useMemo } from "react";
 import TimeBased from "../../../components/charts/TimeBased";
 import VolumeCharts from "../../../components/charts/VolumeBased";
-import testData from "../../../../../Frontend/test_data.json";
-import "../../home/routes/Home.css";
+import lifetime from "../../../../../data/lifetime_data.json";
+import sprint from "../../../../../data/sprint_data.json";
 
-const USERS = [
-  "all",
-  ...Array.from(
-    new Set(
-      Object.values(testData).flatMap((repo) => [
-        ...Object.keys(repo.issues ?? {}),
-        ...Object.keys(repo.pull_requests ?? {}),
-        ...Object.keys(repo.commits ?? {})
-      ])
-    )
-  )
-];
-// Placeholder lists (UI now, data wiring later)
-const TEAMS = ["All Teams", "Core Devs", "Docs"];
-const SPRINTS = [testData.sprint]; // only one sprint in test_data.json for now
+import { getUniqueUsers, getUniqueTeams, getUsersByRepo, buildTimeData, buildVolumeData } from "../utils/teamStatsHelper.js";
+import TeamStatsSidebar from "../components/teamStatsSidebar";
+import StatSummaryGrid from "../components/statSummaryGrid";
+import "./TeamStats.css";
 
-//styling
-const C = {
-  navy: "#123f8b",
-  lightBg: "#cdd5e8",
-  cardBg: "#dde3ef",
-  bg: "#f4f6fb",
-  muted: "#4b5563",
-  white: "#ffffff",
-};
+/* 
+Constants initialized outside the component to prevent re-creation on render 
+*/
+const USERS = getUniqueUsers(lifetime);
+const TEAMS = getUniqueTeams(lifetime);
+const SPRINTS = [sprint.sprint]; 
 
-/**
- * TimeBased-compatible array: [{ label, value }]
- * When user all is selected then it displays one bar per user
- * When user all is selected then it displays one single bar for that user
- */
-function buildTimeData(category, metric, user) {
-  const section = testData[category] ?? {};
-
-  if (user === "all") {
-    return Object.entries(section)
-      .filter(([, v]) => v[metric] != null)
-      .map(([username, v]) => ({
-        label: username,
-        value: parseFloat(v[metric].toFixed(2)),
-      }));
-  }
-
-  const entry = section[user];
-  if (!entry || entry[metric] == null) return [];
-  return [{ label: user, value: parseFloat(entry[metric].toFixed(2)) }];
-}
-
-/**
- * VolumeCharts-compatible plain object: { "Label": number }
- * When the user is selected as all it sums across all users
- * When the user is selected as username it is only that user's values only
- */
-function buildVolumeData(user) {
-  const issues = testData.issues ?? {};
-  const prs = testData.pull_requests ?? {};
-  const commits = testData.commits ?? {};
-
-  const sum = (section, key) =>
-    Object.values(section).reduce((s, v) => s + (Number(v[key]) || 0), 0);
-
-  const pick = (section, key, u) => Number(section[u]?.[key]) || 0;
-
-  if (user === "all") {
-    return {
-      "Issues Opened": sum(issues, "total_issues_opened"),
-      "Issues Closed": sum(issues, "total_issues_closed"),
-      "PRs Opened": sum(prs, "total_prs_opened"),
-      "PRs Merged": sum(prs, "total_prs_merged"),
-      Commits: sum(commits, "total_commits"),
-    };
-  }
-
-  return {
-    "Issues Opened": pick(issues, "total_issues_opened", user),
-    "Issues Closed": pick(issues, "total_issues_closed", user),
-    "PRs Opened": pick(prs, "total_prs_opened", user),
-    "PRs Merged": pick(prs, "total_prs_merged", user),
-    Commits: pick(commits, "total_commits", user),
-  };
-}
-
-// styling
-const S = {
-  page: {
-    minHeight: "100vh",
-    background: "#242424",
-    fontFamily: "inherit",
-    padding: "0 20px 40px",
-  },
-  layout: {
-    display: "grid",
-    gridTemplateColumns: "200px 1fr",
-    gap: "32px",
-    /*maxWidth: "1300px",*/
-    width: "100%",
-    margin: "32px 0 0",
-    minWidth: 0,
-  },
-  sidebar: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "14px",
-  },
-  filterLabel: {
-    display: "block",
-    fontWeight: "700",
-    fontSize: "0.78rem",
-    textTransform: "uppercase",
-    letterSpacing: "0.06em",
-    color: C.muted,
-    marginBottom: "4px",
-  },
-  select: (disabled) => ({
-    width: "100%",
-    padding: "9px 32px 9px 12px",
-    border: "none",
-    borderRadius: "8px",
-    fontFamily: "inherit",
-    fontSize: "0.95rem",
-    cursor: disabled ? "not-allowed" : "pointer",
-  }),
-  sectionHeading: {
-    fontFamily: "inherit",
-    fontSize: "1.25rem",
-    fontWeight: "700",
-    borderBottom: `2px solid ${C.lightBg}`,
-    paddingBottom: "6px",
-    marginBottom: "16px",
-    marginTop: "32px",
-  },
-  toggleRow: {
-    display: "flex",
-    gap: "10px",
-    marginBottom: "20px",
-  },
-  toggleBtn: (active) => ({
-    padding: "8px 20px",
-    borderRadius: "8px",
-    border: `2px solid ${C.navy}`,
-    background: active ? C.navy : "transparent",
-    color: active ? C.white : C.navy,
-    fontFamily: "inherit",
-    fontSize: "0.95rem",
-    fontWeight: "700",
-    cursor: "pointer",
-  }),
-  statGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
-    gap: "12px",
-    marginBottom: "8px",
-  },
-  statCard: {
-    background: C.navy,
-    color: C.white,
-    borderRadius: "10px",
-    padding: "14px 10px",
-    textAlign: "center",
-  },
-  statValue: { fontSize: "1.5rem", fontWeight: "700" },
-  statLabel: { fontSize: "0.75rem", opacity: 0.85, marginTop: "4px" },
-  chartRow: {
-    display: "flex",
-    gap: "24px",
-    flexWrap: "wrap",
-  },
-  chartCard: {
-    flex: "1 1 300px",
-    minWidth: 0, 
-    maxWidth: "100%", 
-    background: "rgba(120,150,210,0.35)"/*C.lightBg,*/,
-    borderRadius: "20px",
-    padding: "24px",
-    overflow: "hidden",
-  },
-  chartSubLabel: {
-    textAlign: "center",
-    fontWeight: "700",
-    marginTop: "8px",
-    fontSize: "0.9rem",
-  },
-  hint: {
-    fontSize: "0.78rem",
-    color: C.muted,
-    marginTop: "4px",
-  },
-};
-// team stats from user and team
+/*
+    Main dashboard view for Team and User statistics.
+    Returns:
+        JSX.Element: The assembled TeamStats dashboard.
+*/
 export const TeamStats = () => {
-  const [view, setView] = useState("team"); // "team" | "user"
+  const [view, setView] = useState("team"); 
+  const [selectedTeam, setSelectedTeam] = useState(TEAMS[0]);
+  const [selectedUserRepo, setSelectedUserRepo] = useState(TEAMS[0]);
+  const [selectedSprint, setSelectedSprint] = useState(SPRINTS[0] || "1");
   const [selectedUser, setSelectedUser] = useState("all");
-  const [selectedTeam, setSelectedTeam] = useState("All Teams");
-  const [selectedSprint, setSelectedSprint] = useState(testData.sprint);
 
-  const activeUser = view === "team" ? "all" : selectedUser;
+  const availableUsers = useMemo(() => getUsersByRepo(lifetime, selectedUserRepo), [selectedUserRepo]);
+  const effectiveUser = view === "team" ? "all" : selectedUser;
 
-  // TimeBased data
-  const closeData = useMemo(
-    () => buildTimeData("issues", "average_time_to_close", activeUser),
-    [activeUser]
-  );
-  const mergeData = useMemo(
-    () => buildTimeData("pull_requests", "average_time_to_merge", activeUser),
-    [activeUser]
-  );
+  const effectiveData = useMemo(() => {
+    const repoFilter = view === "team" ? selectedTeam : selectedUserRepo;
+    if (repoFilter === "All Teams") return lifetime;
+    return { [repoFilter]: lifetime[repoFilter] || {} };
+  }, [view, selectedTeam, selectedUserRepo]);
 
-  // VolumeCharts data
-  const volumeData = useMemo(() => buildVolumeData(activeUser), [activeUser]);
-
-  // Summary numbers
-  const avgOf = (arr) =>
-    arr.length
-      ? (arr.reduce((s, d) => s + d.value, 0) / arr.length).toFixed(1)
-      : "–";
-
-  const viewLabel =
-    view === "team"
-      ? `Whole Team (${selectedTeam})`
-      : selectedUser === "all"
-      ? `All Users (${selectedTeam})`
-      : `${selectedUser} (${selectedTeam})`;
+  const closeData = useMemo(() => buildTimeData(effectiveData, "issues", "average_time_to_close", effectiveUser), [effectiveData, effectiveUser]);
+  const mergeData = useMemo(() => buildTimeData(effectiveData, "pull_requests", "average_time_to_merge", effectiveUser), [effectiveData, effectiveUser]);
+  const volumeData = useMemo(() => buildVolumeData(effectiveData, effectiveUser), [effectiveData, effectiveUser]);
 
   return (
-    <div style={S.page}>
-      <div style={S.layout}>
-        {/*  Sidebar customization  */}
-        <aside style={S.sidebar}>
-        {/*  Team selector  */}
-          <div>
-          <label style={S.filterLabel}>Team</label>
-          <select
-            value={selectedTeam}
-            onChange={(e) => setSelectedTeam(e.target.value)}
-            style={S.select(false)}
-          >
-            {TEAMS.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
-        </div>
+    <div className="team-stats-container">
+      <TeamStatsSidebar 
+        view={view} setView={setView}
+        selectedTeam={selectedTeam} setSelectedTeam={setSelectedTeam} TEAMS={TEAMS}
+        selectedSprint={selectedSprint} setSelectedSprint={setSelectedSprint} SPRINTS={SPRINTS}
+        selectedUserRepo={selectedUserRepo} setSelectedUserRepo={setSelectedUserRepo} 
+        selectedUser={selectedUser} setSelectedUser={setSelectedUser} USERS={availableUsers}
+      />
 
-        {/* Sprint selector */}
-        <div>
-          <label style={S.filterLabel}>Sprint</label>
-          <select
-            value={selectedSprint}
-            onChange={(e) => setSelectedSprint(Number(e.target.value))}
-            style={S.select(false)}
-          >
-            {SPRINTS.map((s) => (
-              <option key={s} value={s}>
-                Sprint {s}
-              </option>
-            ))}
-          </select>
-        </div>
-
-          {/* User selector */}
-          <div>
-            <label style={S.filterLabel}>User</label>
-            <select
-              value={selectedUser}
-              onChange={(e) => setSelectedUser(e.target.value)}
-              style={S.select(view === "team")}
-              disabled={view === "team"}
-            >
-              {USERS.map((u) => (
-                <option key={u} value={u}>
-                  {u}
-                </option>
-              ))}
-            </select>
-            {view === "team" && (
-              <p style={S.hint}>Switch to User View to filter by user.</p>
-            )}
-          </div>
-
-          <div style={{ marginTop: "8px" }}>
-            <p style={{ fontWeight: "700", marginBottom: "6px" }}>
-              Sprint {selectedSprint}
-            </p>
-            <p
-              style={{ fontSize: "0.85rem", color: C.muted, lineHeight: "1.5" }}
-            >
-              Data reflects the current sprint snapshot from test_data.json.
-            </p>
-          </div>
-        </aside>
-
-        {/*  Main heading  */}
-        <main style={{ minWidth: 0, overflow: "hidden" }}>
-          <h1
-            style={{
-              fontFamily: "inherit",
-              fontSize: "1.8rem",
-              marginBottom: "16px",
-            }}
-          >
-            Team Stats
+      <main className="team-stats-main">
+        <header>
+          <h1 className="header-title">
+            {view === "team" ? `${selectedTeam} Overview` : `User: ${selectedUser}`}
           </h1>
+          <p className="header-subtitle">Lifetime Data</p>
+        </header>
 
-          {/* toggle */}
-          <div style={S.toggleRow}>
-            <button
-              style={S.toggleBtn(view === "team")}
-              onClick={() => setView("team")}
-            >
-              Whole Team View
-            </button>
-            <button
-              style={S.toggleBtn(view === "user")}
-              onClick={() => {
-                setView("user");
-              }}
-            >
-              Specific User View
-            </button>
+        <StatSummaryGrid closeData={closeData} mergeData={mergeData} volumeData={volumeData} />
+
+        <h2 className="section-heading">Time-based Metrics</h2>
+        <div className="charts-grid">
+          <div className="chart-card">
+            <TimeBased
+              data={closeData}
+              xKey="label"
+              yKey="value"
+              title="Avg Time to Close Issues (hrs)"
+              repos={view === "team" ? selectedTeam : selectedUserRepo}
+              user={view === "user" && selectedUser !== "all" ? selectedUser : null}
+            />
+            <p className="chart-sublabel">Avg Time to Close Issues</p>
           </div>
-
-          <p
-            style={{
-              color: C.muted,
-              marginBottom: "20px",
-              fontSize: "0.95rem",
-            }}
-          >
-            Showing: <strong style={{ color: C.navy }}>{viewLabel}</strong>
-            {" · "}Sprint{" "}
-            <strong style={{ color: C.navy }}>{selectedSprint}</strong>
-          </p>
-
-          {/* Summary of stats */}
-          <div style={S.statGrid}>
-            {[
-              { label: "Avg Close Time (hrs)", value: avgOf(closeData) },
-              { label: "Avg Merge Time (hrs)", value: avgOf(mergeData) },
-              { label: "Issues Opened", value: volumeData["Issues Opened"] },
-              { label: "PRs Opened", value: volumeData["PRs Opened"] },
-              { label: "Total Commits", value: volumeData["Commits"] },
-            ].map(({ label, value }) => (
-              <div key={label} style={S.statCard}>
-                <div style={S.statValue}>{value}</div>
-                <div style={S.statLabel}>{label}</div>
-              </div>
-            ))}
+          <div className="chart-card">
+            <TimeBased
+              data={mergeData}
+              xKey="label"
+              yKey="value"
+              title="Avg Time to Merge PRs (hrs)"
+              repos={view === "team" ? selectedTeam : selectedUserRepo}
+              user={view === "user" && selectedUser !== "all" ? selectedUser : null}
+            />
+            <p className="chart-sublabel">Avg Time to Merge PRs</p>
           </div>
+        </div>
 
-          {/*  Time-based charts  */}
-          <h2 style={S.sectionHeading}>Time-based Metrics</h2>
-          <div style={S.chartRow}>
-            <div style={S.chartCard}>
-              <TimeBased
-                data={closeData}
-                xKey="label"
-                yKey="value"
-                title="Avg Time to Close Issues (hrs)"
-                repos={
-                  view === "team" || selectedUser === "all"
-                    ? "All"
-                    : selectedUser
-                }
-                user={
-                  view === "user" && selectedUser !== "all"
-                    ? selectedUser
-                    : null
-                }
-              />
-              <p style={S.chartSubLabel}>Avg Time to Close Issues</p>
-            </div>
-            <div style={S.chartCard}>
-              <TimeBased
-                data={mergeData}
-                xKey="label"
-                yKey="value"
-                title="Avg Time to Merge PRs (hrs)"
-                repos={view === "team" ? "All" : selectedUser}
-                user={
-                  view === "user" && selectedUser !== "all"
-                    ? selectedUser
-                    : null
-                }
-              />
-              <p style={S.chartSubLabel}>Avg Time to Merge PRs</p>
-            </div>
+        <h2 className="section-heading">Volume-based Metrics</h2>
+        <div className="chart-card">
+          <div style={{ height: "350px", position: "relative" }}>
+            <VolumeCharts
+              data={volumeData}
+              repos={view === "team" || selectedUser === "all" ? "All" : selectedUser}
+              user={view === "user" && selectedUser !== "all" ? selectedUser : null}
+            />
           </div>
-
-          {/*  Volume-based charts  */}
-          <h2 style={S.sectionHeading}>Volume-based Metrics</h2>
-          <div style={S.chartCard}>
-            <div style={{ height: "350px", position: "relative" }}>
-              <VolumeCharts
-                data={volumeData}
-                repos={
-                  view === "team" || selectedUser === "all"
-                    ? "All"
-                    : selectedUser
-                }
-                user={
-                  view === "user" && selectedUser !== "all"
-                    ? selectedUser
-                    : null
-                }
-              />
-            </div>
-            <p style={S.chartSubLabel}>Activity Volume</p>
-          </div>
-        </main>
-      </div>
+          <p className="chart-sublabel">Activity Volume</p>
+        </div>
+      </main>
     </div>
   );
 };
-
-export default TeamStats;
