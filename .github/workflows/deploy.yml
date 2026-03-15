@@ -41,14 +41,6 @@ jobs:
       - name: Build the React project
         run: npm run build
 
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './frontend/dist'
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
@@ -57,4 +49,13 @@ jobs:
           echo "Current directory contents:"
           ls -la
           echo "Frontend folder contents:"
-          ls -la ./frontend # (Change 'frontend' to your actual folder name)
+          ls -la Frontend
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './frontend/dist'
+
