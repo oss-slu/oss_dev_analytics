@@ -39,7 +39,7 @@ export default function VolumeCharts({ data, repos = "All", user = null }) {
   plugins: {
     legend: {
       position: "top",
-      labels: { color: "#ffffff" },
+      labels: { color: "#0a0909" },
     },
     title: {
       display: false,
@@ -60,12 +60,12 @@ export default function VolumeCharts({ data, repos = "All", user = null }) {
   },
   scales: {
     x: {
-      ticks: { color: "#ffffff" },
+      ticks: { color: "#0e0d0d" },
       grid: { color: "rgba(255, 255, 255, 0.08)" },
     },
     y: {
       beginAtZero: true,
-      ticks: { color: "#ffffff" },
+      ticks: { color: "#0e0e0e" },
       grid: { color: "rgba(255, 255, 255, 0.08)" },
     },
   },

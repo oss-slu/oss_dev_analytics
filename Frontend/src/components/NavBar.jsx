@@ -27,9 +27,6 @@ export const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/other" style={styles.link}>
-              Other
-            </Link>
           </li>
         </ul>
       </nav>

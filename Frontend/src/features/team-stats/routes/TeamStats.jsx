@@ -1,12 +1,13 @@
 import { useState, useMemo } from "react";
-import TimeBased from "../../components/charts/TimeBased";
+import TimeBased from "../../../components/charts/TimeBased";
 import VolumeCharts from "../../../components/charts/VolumeBased";
-import lifetime from "../../../lifetime_data.json";
-import sprint from "../../../sprint_data.json";
+import lifetime from "../../../../../data/lifetime_data.json";
+import sprint from "../../../../../data/sprint_data.json";
 
-import { getUniqueUsers, getUniqueTeams, buildTimeData, buildVolumeData } from "../../utils/teamStatsHelpers";
-import TeamStatsSidebar from "./components/TeamStatsSidebar";
-import StatSummaryGrid from "./components/StatSummaryGrid";
+import { getUniqueUsers, getUniqueTeams, getUsersByRepo, buildTimeData, buildVolumeData } from "../utils/teamStatsHelper.js";
+import TeamStatsSidebar from "../components/teamStatsSidebar";
+import StatSummaryGrid from "../components/statSummaryGrid";
+import "./TeamStats.css";
 
 /* 
 Constants initialized outside the component to prevent re-creation on render 
@@ -20,84 +21,84 @@ const SPRINTS = [sprint.sprint];
     Returns:
         JSX.Element: The assembled TeamStats dashboard.
 */
-const TeamStats = () => {
+export const TeamStats = () => {
   const [view, setView] = useState("team"); 
   const [selectedTeam, setSelectedTeam] = useState(TEAMS[0]);
+  const [selectedUserRepo, setSelectedUserRepo] = useState(TEAMS[0]);
   const [selectedSprint, setSelectedSprint] = useState(SPRINTS[0] || "1");
   const [selectedUser, setSelectedUser] = useState("all");
 
+  const availableUsers = useMemo(() => getUsersByRepo(lifetime, selectedUserRepo), [selectedUserRepo]);
   const effectiveUser = view === "team" ? "all" : selectedUser;
 
-  /* 
-  Calculations that re-run only when the filtered user context changes 
-  */
-  const closeData = useMemo(() => buildTimeData(lifetime, "issues", "average_time_to_close", effectiveUser), [effectiveUser]);
-  const mergeData = useMemo(() => buildTimeData(lifetime, "pull_requests", "average_time_to_merge", effectiveUser), [effectiveUser]);
-  const volumeData = useMemo(() => buildVolumeData(lifetime, effectiveUser), [effectiveUser]);
+  const effectiveData = useMemo(() => {
+    const repoFilter = view === "team" ? selectedTeam : selectedUserRepo;
+    if (repoFilter === "All Teams") return lifetime;
+    return { [repoFilter]: lifetime[repoFilter] || {} };
+  }, [view, selectedTeam, selectedUserRepo]);
+
+  const closeData = useMemo(() => buildTimeData(effectiveData, "issues", "average_time_to_close", effectiveUser), [effectiveData, effectiveUser]);
+  const mergeData = useMemo(() => buildTimeData(effectiveData, "pull_requests", "average_time_to_merge", effectiveUser), [effectiveData, effectiveUser]);
+  const volumeData = useMemo(() => buildVolumeData(effectiveData, effectiveUser), [effectiveData, effectiveUser]);
 
   return (
-    <div className="flex h-screen bg-[#f4f6fb] font-sans">
+    <div className="team-stats-container">
       <TeamStatsSidebar 
         view={view} setView={setView}
         selectedTeam={selectedTeam} setSelectedTeam={setSelectedTeam} TEAMS={TEAMS}
         selectedSprint={selectedSprint} setSelectedSprint={setSelectedSprint} SPRINTS={SPRINTS}
-        selectedUser={selectedUser} setSelectedUser={setSelectedUser} USERS={USERS}
+        selectedUserRepo={selectedUserRepo} setSelectedUserRepo={setSelectedUserRepo} 
+        selectedUser={selectedUser} setSelectedUser={setSelectedUser} USERS={availableUsers}
       />
 
-      <main className="flex-1 p-8 overflow-y-auto">
-        <header className="mb-8">
-          <h1 className="text-2xl font-bold text-[#123f8b]">
+      <main className="team-stats-main">
+        <header>
+          <h1 className="header-title">
             {view === "team" ? `${selectedTeam} Overview` : `User: ${selectedUser}`}
           </h1>
-          <p className="text-gray-600">Sprint {selectedSprint} Analytics</p>
+          <p className="header-subtitle">Lifetime Data</p>
         </header>
 
         <StatSummaryGrid closeData={closeData} mergeData={mergeData} volumeData={volumeData} />
 
-        <h2 className="text-xl font-bold text-[#123f8b] mb-4 pb-2 border-b-2 border-[#123f8b] inline-block">
-          Time-based Metrics
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-8">
-          <div className="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+        <h2 className="section-heading">Time-based Metrics</h2>
+        <div className="charts-grid">
+          <div className="chart-card">
             <TimeBased
               data={closeData}
               xKey="label"
               yKey="value"
               title="Avg Time to Close Issues (hrs)"
-              repos={view === "team" ? "All" : selectedUser}
+              repos={view === "team" ? selectedTeam : selectedUserRepo}
               user={view === "user" && selectedUser !== "all" ? selectedUser : null}
             />
-            <p className="text-center text-sm text-gray-500 mt-2 font-semibold">Avg Time to Close Issues</p>
+            <p className="chart-sublabel">Avg Time to Close Issues</p>
           </div>
-          <div className="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+          <div className="chart-card">
             <TimeBased
               data={mergeData}
               xKey="label"
               yKey="value"
               title="Avg Time to Merge PRs (hrs)"
-              repos={view === "team" ? "All" : selectedUser}
+              repos={view === "team" ? selectedTeam : selectedUserRepo}
               user={view === "user" && selectedUser !== "all" ? selectedUser : null}
             />
-            <p className="text-center text-sm text-gray-500 mt-2 font-semibold">Avg Time to Merge PRs</p>
+            <p className="chart-sublabel">Avg Time to Merge PRs</p>
           </div>
         </div>
 
-        <h2 className="text-xl font-bold text-[#123f8b] mb-4 pb-2 border-b-2 border-[#123f8b] inline-block">
-          Volume-based Metrics
-        </h2>
-        <div className="bg-white p-5 rounded-lg shadow-sm border border-gray-200 mb-8">
-          <div className="h-[350px] relative">
+        <h2 className="section-heading">Volume-based Metrics</h2>
+        <div className="chart-card">
+          <div style={{ height: "350px", position: "relative" }}>
             <VolumeCharts
               data={volumeData}
               repos={view === "team" || selectedUser === "all" ? "All" : selectedUser}
               user={view === "user" && selectedUser !== "all" ? selectedUser : null}
             />
           </div>
-          <p className="text-center text-sm text-gray-500 mt-2 font-semibold">Activity Volume</p>
+          <p className="chart-sublabel">Activity Volume</p>
         </div>
       </main>
     </div>
   );
 };
-
-export default TeamStats;

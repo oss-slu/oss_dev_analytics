@@ -29,7 +29,31 @@ export const getUniqueUsers = (lifetimeData) => {
 export const getUniqueTeams = (lifetimeData) => {
   return ["All Teams", ...Object.keys(lifetimeData)];
 };
-
+/*
+    Extract unique users from a specific repository, or all if "All Teams".
+    Args:
+        lifetimeData (Object): The parsed JSON object of repository data.
+        repo (String): The specific repository name to filter by.
+    Returns:
+        Array: List of unique usernames for that repo, with "all" as the first element.
+*/
+export const getUsersByRepo = (lifetimeData, repo) => {
+  if (repo === "All Teams" || !repo) {
+    return getUniqueUsers(lifetimeData);
+  }
+  
+  const repoData = lifetimeData[repo] || {};
+  return [
+    "all",
+    ...Array.from(
+      new Set([
+        ...Object.keys(repoData.issues ?? {}),
+        ...Object.keys(repoData.pull_requests ?? {}),
+        ...Object.keys(repoData.commits ?? {})
+      ])
+    )
+  ];
+};
 /*
     Calculate time-based metrics (e.g., average time to close or merge) for a specific user or all users.
     Args:

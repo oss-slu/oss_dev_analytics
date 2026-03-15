@@ -1,121 +1,99 @@
-.homePage {
+.home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f4f6fb;
   padding: 32px;
+  font-family: sans-serif;
+  overflow-y: auto;
 }
 
-.homeTitle {
-  font-size: 48px;
-  font-weight: 700;
-  margin: 24px 0 8px;
+.home-header {
+  margin-bottom: 32px;
 }
 
-.homeSubtitle {
-  margin-bottom: 24px;
-  opacity: 0.85;
+.home-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #123f8b;
+  margin-top: 0;
+  margin-bottom: 4px;
 }
 
-.homeGrid {
+.home-subtitle {
+  font-size: 16px;
+  color: #4b5563;
+  margin: 0;
+}
+
+.home-grid {
   display: grid;
-  grid-template-columns: 2.2fr 1fr 1.6fr;
-  gap: 28px;
-  align-items: start;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 32px;
+  margin-bottom: 32px;
 }
 
-.card {
-  border-radius: 18px;
-  padding: 18px;
-}
-
-.cardBlue {
-  background: rgba(120, 150, 210, 0.35);
-  border-radius: 20px;
-  padding: 24px;
-  height: 420px;
+.card-blue {
+  background-color: #dde3ef;
+  padding: 20px;
+  border-radius: 8px;
   display: flex;
-  align-items: stretch;
+  flex-direction: column;
 }
 
-.cardTall {
-  min-height: 420px;
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #123f8b;
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #123f8b;
+  align-self: flex-start;
 }
 
-.cardPlaceholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: 420px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  opacity: 0.85;
-}
-
-.bottomGrid {
-  margin-top: 32px;
-  display: grid;
-  grid-template-columns: 2.2fr 1.6fr; /* match top grid proportions */
-  gap: 28px;
-}
-
-.handbookRow {
-  display: flex;
-  gap: 18px;
-}
-
-.handbookCard {
-  flex: 1;
-  border-radius: 18px;
-  padding: 18px;
-  background: rgba(255, 255, 255, 0.06);
-  text-align: center;
-}
-
-.handbookTitle {
-  margin-top: 12px;
-  font-weight: 700;
-}
-
-.chartWrapper .chart-container {
-  height: 100%;
+.chart-wrapper {
+  height: 350px;
+  position: relative;
   width: 100%;
-  background: transparent !important;
-  box-shadow: none !important;
-
-  padding-left: 20px;
-  padding-right: 20px;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.chartWrapper .chart-container canvas {
   flex: 1;
-  min-height: 0;
 }
 
-.contributorsCard {
-  padding: 24px;
+.contributors-wrapper {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.handbook-column {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 24px;
-  font-weight: 600;
+  justify-content: center;
 }
 
-.placeholderCard {
+.handbook-card {
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: left;
   padding: 24px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  opacity: 0.85;
+  background-color: #dde3ef;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
 }
 
-.chartWrapper {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  display: flex;
-  align-items: stretch;
+.handbook-card:hover {
+  background-color: #cdd5e8;
+}
+
+.handbook-icon {
+  font-size: 36px;
+  margin-right: 20px;
+}
+
+.handbook-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #123f8b;
+  letter-spacing: 0.05em;
 }
