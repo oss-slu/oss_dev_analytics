@@ -2,6 +2,8 @@ import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
+  base: '/oss_dev_analytics/',
+  
   plugins: [react()],
   test: {
     environment: 'jsdom',
@@ -16,5 +18,3 @@ export default defineConfig({
     },
   }
 });
-
-
