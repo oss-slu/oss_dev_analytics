@@ -1,6 +1,6 @@
 ---
-name: Issue Template
-about: For general use of issue creation
+name: Bug Template
+about: Reporting bugs to be fixed
 title: ''
 labels: ''
 assignees: ''
