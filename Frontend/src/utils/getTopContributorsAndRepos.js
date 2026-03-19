@@ -48,13 +48,6 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
       });
     }
 
-    // Tally Commits
-    if (repoData.commits) {
-      Object.entries(repoData.commits).forEach(([user, stats]) => {
-        addActivity(user, stats.total_commits);
-      });
-    }
-
     // Add total repo activity to our tracker
     if (repoTotalActivity > 0) {
       repoStats[repoName] = (repoStats[repoName] || 0) + repoTotalActivity;

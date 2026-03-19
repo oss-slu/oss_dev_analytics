@@ -1,10 +1,9 @@
 import { AppProvider } from './Provider';
 import { AppRouter } from './Router';
 import { Navbar } from '../components/NavBar';
-import { transformVolumeData } from '../utils/TransformVolumeData'; 
-import { transformTimeData } from '../utils/TransformTimeData';
-import VolumeCharts from '../components/charts/VolumeBased';
-import TimeBased from '../components/charts/TimeBased';
+
+
+
 
 function App() {
 

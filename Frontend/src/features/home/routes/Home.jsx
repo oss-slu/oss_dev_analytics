@@ -22,7 +22,7 @@ export const Home = () => {
   ];
 
   // 2. Call your utility function right here to get the top 5
-  const { topContributors, topRepos } = getTopContributorsAndRepos(lifetimeData, 5);
+  const { topContributors, topRepos } = getTopContributorsAndRepos(lifetimeData, 12);
 
   return (
     <div className="home-container">
@@ -40,7 +40,7 @@ export const Home = () => {
         </section>
 
         <section className="card-blue" style={{ height: "100%" }}>
-          <h2 className="card-title">Top Contributors</h2>
+          <h2 className="card-title">Top Contributors/Repos (Issues/PRs)</h2>
           <div className="contributors-wrapper" style={{ display: "flex", gap: "40px", marginTop: "8px" }}>
             
             {/* Top Contributors List */}
@@ -82,7 +82,12 @@ export const Home = () => {
           </div>
         </section>
       </div>
-
+      <div className="home-grid">
+        <div className="handbook-column">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdZF2zfa72ei0rg52cEIh0vpFiOKDmf27oF1DF2E3Oaf1Jhzg/viewform" target="_blank" rel="noreferrer" className="handbook-card">
+            <div className="handbook-icon">📄</div>
+            <div className="handbook-text">FEEDBACK FORM</div>
+          </a>
       <div className="home-grid">
         <div className="handbook-column">
           <a href="https://github.com/oss-slu/handbook_developer" target="_blank" rel="noreferrer" className="handbook-card">
@@ -95,6 +100,8 @@ export const Home = () => {
             <div className="handbook-text">TECH LEAD HANDBOOK</div>
           </a>
         </div>
+        </div>
+        </div>
 
         <section className="card-blue">
           <h2 className="card-title">Time-based Metrics</h2>
@@ -105,5 +112,6 @@ export const Home = () => {
       </div>
 
     </div>
+
   );
 };
