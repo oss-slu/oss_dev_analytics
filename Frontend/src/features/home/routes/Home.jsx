@@ -22,7 +22,7 @@ export const Home = () => {
   ];
 
   // 2. Call your utility function right here to get the top 5
-  const { topContributors, topRepos } = getTopContributorsAndRepos(lifetimeData, 5);
+  const { topContributors, topRepos } = getTopContributorsAndRepos(lifetimeData, 12);
 
   return (
     <div className="home-container">
@@ -40,7 +40,7 @@ export const Home = () => {
         </section>
 
         <section className="card-blue" style={{ height: "100%" }}>
-          <h2 className="card-title">Top Contributors</h2>
+          <h2 className="card-title">Top Contributors/Repos (Issues/PRs)</h2>
           <div className="contributors-wrapper" style={{ display: "flex", gap: "40px", marginTop: "8px" }}>
             
             {/* Top Contributors List */}
@@ -105,5 +105,6 @@ export const Home = () => {
       </div>
 
     </div>
+   
   );
 };
