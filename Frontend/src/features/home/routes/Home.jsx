@@ -82,7 +82,12 @@ export const Home = () => {
           </div>
         </section>
       </div>
-
+      <div className="home-grid">
+        <div className="handbook-column">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdZF2zfa72ei0rg52cEIh0vpFiOKDmf27oF1DF2E3Oaf1Jhzg/viewform" target="_blank" rel="noreferrer" className="handbook-card">
+            <div className="handbook-icon">📄</div>
+            <div className="handbook-text">FEEDBACK FORM</div>
+          </a>
       <div className="home-grid">
         <div className="handbook-column">
           <a href="https://github.com/oss-slu/handbook_developer" target="_blank" rel="noreferrer" className="handbook-card">
@@ -95,6 +100,8 @@ export const Home = () => {
             <div className="handbook-text">TECH LEAD HANDBOOK</div>
           </a>
         </div>
+        </div>
+        </div>
 
         <section className="card-blue">
           <h2 className="card-title">Time-based Metrics</h2>
@@ -105,6 +112,6 @@ export const Home = () => {
       </div>
 
     </div>
-   
+
   );
 };
