@@ -83,11 +83,11 @@ const styles = {
     margin: 0,
     padding: 0,
     fontSize: "1.2rem",
+    alignItems: "center", 
   },
   link: {
     color: "white",
     textDecoration: "none",
-
   },
   profileImg: {
     width: "40px",
