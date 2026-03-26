@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
+import loginProfile from "./loginprofile.png";
 
 export const Navbar = () => {
   return (
     <div style={styles.wrapper}>
       <nav style={styles.nav}>
-        <div style={styles.logoContainer}> {/* OSS logo*/}
+        <div style={styles.logoContainer}>
+          {" "}
+          {/* OSS logo*/}
           <div style={styles.logoSmall}>
             Open
             <br />
@@ -15,7 +18,9 @@ export const Navbar = () => {
           <div style={styles.logoBig}>SLU</div>
         </div>
 
-        <ul style={styles.navLinks}> {/*Navigation links to components*/}
+        <ul style={styles.navLinks}>
+          {" "}
+          {/*Navigation links to components*/}
           <li>
             <Link to="/" style={styles.link}>
               Home
@@ -27,14 +32,18 @@ export const Navbar = () => {
             </Link>
           </li>
           <li>
+            <Link to="/login" style={styles.link}>
+              <img src={loginProfile} alt="Profile" style={styles.profileImg} />
+            </Link>
           </li>
         </ul>
       </nav>
     </div>
   );
 };
-/* Nav bar styling and customization*/
-const styles = { 
+
+
+const styles = {
   wrapper: {
     width: "100%",
     display: "flex",
@@ -50,7 +59,7 @@ const styles = {
     backgroundColor: "#123f8b",
     color: "white",
     borderRadius: "18px",
-    fontFamily: '"Times New Roman", Times, serif', 
+    fontFamily: '"Times New Roman", Times, serif',
   },
   logoContainer: {
     display: "flex",
@@ -78,5 +87,13 @@ const styles = {
   link: {
     color: "white",
     textDecoration: "none",
+
+  },
+  profileImg: {
+    width: "40px",
+    height: "40px",
+    objectFit: "cover",
+    cursor: "pointer",
   },
 };
+
