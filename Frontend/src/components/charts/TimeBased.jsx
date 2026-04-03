@@ -27,7 +27,7 @@ export default function TimeBased({ data, repos = "All", user = null, titleCusto
 
   // Title logic (mirrors VolumeCharts structure)
   if (titleCustom) {
-    title = titleCustom;
+    let title = titleCustom;
   }
 
   if (repos === "All") {

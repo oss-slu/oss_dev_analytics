@@ -22,7 +22,7 @@ export default function VolumeCharts({ data, repos = "All", user = null, titleCu
     if (!data) return <div className="p-4 text-center">Loading Chart Data...</div>;
     
     if (titleCustom) {
-        title = titleCustom;
+        let title = titleCustom;
     }
 
     if (repos === "All"){
