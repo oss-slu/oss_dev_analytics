@@ -18,7 +18,7 @@ import {
  * @param {string|null} user - Optional user filter
  * @param {string} title - Optional custom title for the chart
  */
-export default function TimeBased({ data, repos = "All", user = null, title}) {
+export default function TimeBased({ data, repos = "All", user = null, titleCustom = null}) {
 
   // Loading state (same style as VolumeCharts)
   if (!data) {
@@ -26,7 +26,9 @@ export default function TimeBased({ data, repos = "All", user = null, title}) {
   }
 
   // Title logic (mirrors VolumeCharts structure)
-  let title = title; // Use provided title if available, otherwise generate based on repos/user
+  if (titleCustom) {
+    title = titleCustom;
+  }
 
   if (repos === "All") {
     title = "Time-Based Data";
