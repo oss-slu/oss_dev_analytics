@@ -21,7 +21,7 @@ export default function VolumeCharts({ data, repos = "All", user = null, title})
     //If no data is available yet, return a loading state or null
     if (!data) return <div className="p-4 text-center">Loading Chart Data...</div>;
     
-    let title;
+    let title = title; // Use provided title if available, otherwise generate based on repos/user
 
     if (repos === "All"){
         /*var*/ title = "Volume-Based Data";
