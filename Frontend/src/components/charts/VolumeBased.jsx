@@ -14,8 +14,10 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
  * VolumeCharts Component
  * @param {Object} data - The processed data for the specific view (User, Repo, or Org)
  * @param {string} repos - The repository name or "All" for all repositories (Default "All")
+ * @param {string|null} user - The username for user-level data (Default null)
+ * @param {string} title - Optional custom title for the chart
  */
-export default function VolumeCharts({ data, repos = "All", user = null }) {
+export default function VolumeCharts({ data, repos = "All", user = null, title: customTitle }) {
     //If no data is available yet, return a loading state or null
     if (!data) return <div className="p-4 text-center">Loading Chart Data...</div>;
     

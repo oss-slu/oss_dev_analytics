@@ -16,8 +16,9 @@ import {
  * @param {Array} data - Array of objects [{ label: string, value: number }]
  * @param {string} repos - Repository name or "All" (default "All")
  * @param {string|null} user - Optional user filter
+ * @param {string} title - Optional custom title for the chart
  */
-export default function TimeBased({ data, repos = "All", user = null }) {
+export default function TimeBased({ data, repos = "All", user = null, title: customTitle }) {
 
   // Loading state (same style as VolumeCharts)
   if (!data) {

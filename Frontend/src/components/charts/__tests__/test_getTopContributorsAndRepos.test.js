@@ -10,37 +10,36 @@ import { getTopContributorsAndRepos } from "../../../utils/getTopContributorsAnd
 import { describe, it, expect } from "vitest"; // to allow lint to pass
 
 describe("getTopContributorsAndRepos", () => {
+  // mock JSON data so that Lint passes
+const mockJSON = {
+    "repo1": {
+      issues: { "alice": { total_issues_opened: 2 }, "bob": { total_issues_opened: 1 } },
+      commits: { "alice": { total_commits: 3 } }
+    },
+    "repo2": {
+      pull_requests: { "charlie": { total_prs_opened: 4 } }
+    }
+  };
+
+  
   it("counts contributor activity and sorts correctly", () => {
-    const events = [
-      { author: "alice", repo: "repo1" },
-      { author: "bob", repo: "repo1" },
-      { author: "alice", repo: "repo2" },
-    ];
-
-    const { topContributors } =
-      getTopContributorsAndRepos(events, 5);
-
+    const {topContributors} = getTopContributorsAndRepos(mockJSON, 5);
     // alice should rank first since she appears twice
     expect(topContributors).toEqual([
-      { name: "alice", count: 2 },
+      { name: "alice", count: 5 },
+      {name: "charlie", count: 4 },
       { name: "bob", count: 1 },
     ]);
   });
 
   it("counts repository activity and sorts correctly", () => {
-    const events = [
-      { author: "alice", repo: "repo1" },
-      { author: "bob", repo: "repo1" },
-      { author: "charlie", repo: "repo2" },
-    ];
-
     const { topRepos } =
-      getTopContributorsAndRepos(events, 5);
+      getTopContributorsAndRepos(mockJSON, 5);
 
     // repo1 should rank higher since it appears more frequently
     expect(topRepos).toEqual([
-      { name: "repo1", count: 2 },
-      { name: "repo2", count: 1 },
+      { name: "repo1", count: 6 },
+      { name: "repo2", count: 4 },
     ]);
   });
 
