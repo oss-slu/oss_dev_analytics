@@ -15,7 +15,7 @@ import testData from "../test_data.json";
 
 const TOP_N = 5;
 
-const TopContributorsRepos = ({  }) => {
+const TopContributorsRepos = () => {
 
   // Converting repo JSON structure into event-like objects
   const eventData = [];

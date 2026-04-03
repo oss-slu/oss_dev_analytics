@@ -7,6 +7,7 @@
     and easy to maintain.
 */ 
 import { getTopContributorsAndRepos } from "../../../utils/getTopContributorsAndRepos";
+import { describe, it, expect } from "vitest"; // to allow lint to pass
 
 describe("getTopContributorsAndRepos", () => {
   it("counts contributor activity and sorts correctly", () => {
