@@ -31,7 +31,7 @@ jobs:
           pip install pytest responses
       - run: pytest tests/
         env:
-          GITHUB_TOKEN: "dummy_token_for_testing"
+          GIT_TOKEN: "dummy_token_for_testing"
 
   frontend-checks:
     name: React Lint & Test
