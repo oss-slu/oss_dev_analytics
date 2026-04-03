@@ -20,20 +20,21 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 export default function VolumeCharts({ data, repos = "All", user = null, titleCustom = null}) {
     //If no data is available yet, return a loading state or null
     if (!data) return <div className="p-4 text-center">Loading Chart Data...</div>;
-    
-    if (titleCustom) {
-        let title = titleCustom;
-    }
+  let title;
+  // Title logic (mirrors VolumeCharts structure)
+  if (titleCustom) {
+    title = titleCustom;
+  }
+  else{
+    if (repos === "All") {
+      title = "Time-Based Data";
+  } else if (user) {
+      title = `User Level Time-Based Data: ${repos} for ${user}`;
+  } else {
+      title = `Repository Level Time-Based Data: ${repos}`;
+  }
+  }
 
-    if (repos === "All"){
-        /*var*/ title = "Volume-Based Data";
-    }
-    else if(user != null){
-        /*var*/ title = `User Level Volume Data: ${repos} for ${user}`
-    }
-    else {
-        /*var*/ title = `Repository Level Volume Data: ${repos}`;
-    }
    const chartOptions = {
   responsive: true,
   maintainAspectRatio: false,
