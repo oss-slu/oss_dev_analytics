@@ -21,17 +21,17 @@ export default function VolumeCharts({ data, repos = "All", user = null, titleCu
     //If no data is available yet, return a loading state or null
     if (!data) return <div className="p-4 text-center">Loading Chart Data...</div>;
   let title;
-  // Title logic (mirrors VolumeCharts structure)
+
   if (titleCustom) {
     title = titleCustom;
   }
   else{
     if (repos === "All") {
-      title = "Time-Based Data";
+      title = "Organization Level Volume Data";
   } else if (user) {
-      title = `User Level Time-Based Data: ${repos} for ${user}`;
+      title = `User Level Volume Data: ${repos} for ${user}`;
   } else {
-      title = `Repository Level Time-Based Data: ${repos}`;
+      title = `Repository Level Volume Data: ${repos}`;
   }
   }
 

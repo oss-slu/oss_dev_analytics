@@ -41,7 +41,7 @@ export default function TimeBased({ data, repos = "All", user = null, titleCusto
 
 
   return (
-    <div className="chart-container"/*className="chart-container bg-white p-4 rounded-lg shadow"*/>
+    <div className="chart-container">
       <h3 className="text-center font-semibold mb-4">{title}</h3>
 
       <ResponsiveContainer width="100%" height={300}>
