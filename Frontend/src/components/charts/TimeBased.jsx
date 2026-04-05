@@ -31,7 +31,7 @@ export default function TimeBased({ data, repos = "All", user = null, titleCusto
   }
   else{
     if (repos === "All") {
-      title = "Time-Based Data";
+      title = "Organization Level Time-Based Data";
   } else if (user) {
       title = `User Level Time-Based Data: ${repos} for ${user}`;
   } else {
