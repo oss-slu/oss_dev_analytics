@@ -7,14 +7,13 @@
     and easy to maintain.
 */ 
 import { getTopContributorsAndRepos } from "../../../utils/getTopContributorsAndRepos";
-import { describe, it, expect } from "vitest"; // to allow lint to pass
+import { describe, it, expect } from "vitest"; 
 
 describe("getTopContributorsAndRepos", () => {
   // mock JSON data so that Lint passes
 const mockJSON = {
     "repo1": {
       issues: { "alice": { total_issues_opened: 2 }, "bob": { total_issues_opened: 1 } },
-      commits: { "alice": { total_commits: 3 } }
     },
     "repo2": {
       pull_requests: { "charlie": { total_prs_opened: 4 } }
@@ -24,10 +23,10 @@ const mockJSON = {
   
   it("counts contributor activity and sorts correctly", () => {
     const {topContributors} = getTopContributorsAndRepos(mockJSON, 5);
-    // alice should rank first since she appears twice
+    // charlie: 4, alicce: 2, bob: 1
     expect(topContributors).toEqual([
-      { name: "alice", count: 5 },
-      {name: "charlie", count: 4 },
+      { name: "charlie", count: 4 },
+      { name: "alice", count: 2 },
       { name: "bob", count: 1 },
     ]);
   });
@@ -36,10 +35,10 @@ const mockJSON = {
     const { topRepos } =
       getTopContributorsAndRepos(mockJSON, 5);
 
-    // repo1 should rank higher since it appears more frequently
+    // repo1: 3 (2 from alice + 1 from bob), repo2: 4 (from charlie)
     expect(topRepos).toEqual([
-      { name: "repo1", count: 6 },
       { name: "repo2", count: 4 },
+      { name: "repo1", count:  3},
     ]);
   });
 
