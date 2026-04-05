@@ -44,7 +44,7 @@ Health Score = (80×0.25 + 60×0.20) / (0.25 + 0.20)
 Currently, metric selection is simulated using a temporary in-memory configuration (fake database). 
 This will later be replaced with database/Okta-based user configurations.
 
-## 🤝 Getting Started
+## Getting Started
 Are you interested in contributing to our organization-wide analytics?
 1. Check out our [Onboarding Document](./Onboarding.md).
 2. Join the conversation in the **#oss-dev-analytics** Slack channel.

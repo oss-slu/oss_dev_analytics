@@ -10,52 +10,14 @@
 */
 
 import { getTopContributorsAndRepos } from "../utils/getTopContributorsAndRepos";
-import testData from "../test_data.json";
+import lifetimeData from "../../../lifetimeData.json";
 
 
 const TOP_N = 5;
 
-const TopContributorsRepos = ({ events }) => {
-
+const TopContributorsRepos = () => {
   // Converting repo JSON structure into event-like objects
-  const eventData = [];
-
-  Object.entries(testData)
-  .filter(([repoName]) => !repoName.includes("sprint"))
-  .forEach(([repoName, repo]) => {
-
-  const issues = repo?.issues || {};
-  const prs = repo?.pull_requests || {};
-  const commits = repo?.commits || {};
-
-  Object.entries(issues).forEach(([user, stats]) => {
-    const count = Number(stats.total_issues_opened) || 0;
-    for (let i = 0; i < count; i++) {
-      eventData.push({ author: user, repo: repoName });
-    }
-  });
-
-  Object.entries(prs).forEach(([user, stats]) => {
-    const count = Number(stats.total_prs_opened) || 0;
-    for (let i = 0; i < count; i++) {
-      eventData.push({ author: user, repo: repoName });
-    }
-  });
-
-  Object.entries(commits).forEach(([user, stats]) => {
-    const count = Number(stats.total_commits) || 0;
-    for (let i = 0; i < count; i++) {
-      eventData.push({ author: user, repo: repoName });
-    }
-  });
-
-});
-
-  console.log("eventData length:", eventData.length);
-  console.log(eventData.slice(0,5));  
-
-  const { topContributors, topRepos } =
-    getTopContributorsAndRepos(eventData, TOP_N);
+  const {topContributors, topRepos} = getTopContributorsAndRepos(lifetimeData, TOP_N);
 
   return (
     <div style={{ display: "flex", gap: "30px" }}>
