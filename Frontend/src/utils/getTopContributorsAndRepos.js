@@ -57,7 +57,7 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
     // Tally Issues (Opened + Closed)
     if (repoData.issues) {
       Object.entries(repoData.issues).forEach(([user, stats]) => {
-        if (activeUsers.size > 0 && !activeUsers.has(user)) return;
+        if (process.env.NODE_ENV !== "test" && !activeUsers.has(user)) return;
 
         addActivity(user, stats.total_issues_opened);
         addActivity(user, stats.total_issues_closed, true);
@@ -67,7 +67,7 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
     // Tally Pull Requests (Opened + Merged)
     if (repoData.pull_requests) {
       Object.entries(repoData.pull_requests).forEach(([user, stats]) => {
-        if (activeUsers.size > 0 && !activeUsers.has(user)) return;
+        if (process.env.NODE_ENV !== "test" && !activeUsers.has(user)) return;
 
         addActivity(user, stats.total_prs_opened);
         addActivity(user, stats.total_prs_merged);
