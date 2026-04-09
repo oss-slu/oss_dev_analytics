@@ -5,6 +5,22 @@
     Returns:
         Array: List of unique usernames, with "all" as the first element.
 */
+import sprintData from "../../../../../data/sprint_data.json";
+
+const activeUsers = new Set();
+
+Object.values(sprintData).forEach(repo => {
+  if (repo.issues) {
+    Object.keys(repo.issues).forEach(user => activeUsers.add(user));
+  }
+  if (repo.pull_requests) {
+    Object.keys(repo.pull_requests).forEach(user => activeUsers.add(user));
+  }
+  if (repo.commits) {
+    Object.keys(repo.commits).forEach(user => activeUsers.add(user));
+  }
+});
+
 export const getUniqueUsers = (lifetimeData) => {
   return [
     "all",
@@ -15,6 +31,7 @@ export const getUniqueUsers = (lifetimeData) => {
           ...Object.keys(repo.pull_requests ?? {}),
           ...Object.keys(repo.commits ?? {})
         ])
+        .filter(user => activeUsers.has(user))
       )
     )
   ];
@@ -50,7 +67,7 @@ export const getUsersByRepo = (lifetimeData, repo) => {
         ...Object.keys(repoData.issues ?? {}),
         ...Object.keys(repoData.pull_requests ?? {}),
         ...Object.keys(repoData.commits ?? {})
-      ])
+      ].filter(user => activeUsers.has(user)))
     )
   ];
 };
@@ -72,13 +89,15 @@ export const buildTimeData = (lifetimeData, category, metric, user) => {
 
     if (user === "all") {
       Object.entries(section).forEach(([username, metrics]) => {
+        if (!activeUsers.has(username)) return; // Skip users with no activity in sprint data
+
         if (metrics[metric] != null) {
           if (!userValues[username]) userValues[username] = [];
           userValues[username].push(metrics[metric]);
         }
       });
     } else {
-      if (section[user] && section[user][metric] != null) {
+      if (activeUsers.has(user) && section[user] && section[user][metric] != null) {
         if (!userValues[user]) userValues[user] = [];
         userValues[user].push(section[user][metric]);
       }
@@ -108,6 +127,8 @@ export const buildVolumeData = (lifetimeData, user) => {
     const repoCommits = repo.commits ?? {};
 
     const addMetrics = (u) => {
+      if (!activeUsers.has(u)) return;
+
       issuesOpened += Number(issues[u]?.total_issues_opened) || 0;
       issuesClosed += Number(issues[u]?.total_issues_closed) || 0;
       prsOpened += Number(prs[u]?.total_prs_opened) || 0;

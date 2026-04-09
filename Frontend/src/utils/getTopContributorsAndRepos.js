@@ -12,6 +12,23 @@
             - topRepos: Array of { name, count } objects
  */
 
+import sprintData from "../../../data/sprint_data.json";
+
+const activeUsers = new Set();
+
+Object.values(sprintData).forEach(repo => {
+  if (repo.issues) {
+    Object.keys(repo.issues).forEach(user => activeUsers.add(user));
+  }
+  if (repo.pull_requests) {
+    Object.keys(repo.pull_requests).forEach(user => activeUsers.add(user));
+  }
+  if (repo.commits) {
+    Object.keys(repo.commits).forEach(user => activeUsers.add(user));
+  }
+});
+
+
 export function getTopContributorsAndRepos(lifetimeData, topN) {
   const contributorStats = {};
   const repoStats = {};
@@ -40,6 +57,8 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
     // Tally Issues (Opened + Closed)
     if (repoData.issues) {
       Object.entries(repoData.issues).forEach(([user, stats]) => {
+        if (!activeUsers.has(user)) return;
+
         addActivity(user, stats.total_issues_opened);
         addActivity(user, stats.total_issues_closed, true);
       });
@@ -48,6 +67,8 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
     // Tally Pull Requests (Opened + Merged)
     if (repoData.pull_requests) {
       Object.entries(repoData.pull_requests).forEach(([user, stats]) => {
+        if (!activeUsers.has(user)) return;
+
         addActivity(user, stats.total_prs_opened);
         addActivity(user, stats.total_prs_merged);
       });
