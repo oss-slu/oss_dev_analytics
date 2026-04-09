@@ -1,0 +1,75 @@
+{
+  "velocity_low": {
+    "actions": [
+      "reduce scope",
+      "break tasks into smaller parts",
+      "remove blockers"
+    ],
+    "resources": [
+      "sprint planning documents",
+      "github issues"
+    ]
+  },
+  "goal_achievement_low": {
+    "actions": [
+      "re-evaluate the sprint",
+      "clarify requirements",
+      "adjust workload"
+    ],
+    "resources": [
+      "sprint tracking documentation"
+    ]
+  },
+  "blocked_work_high": {
+    "actions": [
+      "identify dependencies",
+      "escalate blockers",
+      "check in with the team"
+    ],
+    "resources": [
+      "slack or discord",
+      "github issues"
+    ]
+  },
+  "wip_high": {
+    "actions": [
+      "limit active tasks",
+      "focus on completing work before starting new tasks"
+    ],
+    "resources": [
+      "agile workflow guides"
+    ]
+  },
+  "defect_rate_high": {
+    "actions": [
+      "improve testing",
+      "prioritize bug fixes"
+    ],
+    "resources": [
+      "testing documentation",
+      "ci/cd pipelines"
+    ]
+  },
+  "team_satisfaction_low": {
+    "actions": [
+      "check in with team members",
+      "adjust workload",
+      "improve communication"
+    ],
+    "resources": [
+      "team guidelines",
+      "communication channels"
+    ]
+  },
+  "customer_satisfaction_low": {
+    "actions": [
+      "review deliverables",
+      "prioritize fixes",
+      "gather feedback"
+    ],
+    "resources": [
+      "client feedback tools",
+      "project documentation"
+    ]
+  }
+}
