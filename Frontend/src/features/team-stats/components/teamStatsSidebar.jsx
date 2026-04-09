@@ -66,7 +66,14 @@ const TeamStatsSidebar = ({
               }}
             >
               {[...TEAMS]
-                .sort((a, b) => a.localeCompare(b)) // Sort alphabetically
+                .sort((a, b) => {
+                  // Keeping "All Teams" at the top
+                  if (a === "All Teams") return -1;
+                  if (b === "All Teams") return 1;
+
+                  // Sort the rest alphabetically
+                  return a.localeCompare(b);
+                })
                 .map((t, index) => (
                   <option key={`repo-${index}`} value={t}>
                     {t}
