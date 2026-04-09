@@ -13,7 +13,7 @@ export default defineConfig({
   server: {
     fs: {
       allow: [
-        path.resolve(__dirname, ".."),
+        new URL('..', import.meta.url).pathname,
       ],
     },
   }
