@@ -15,6 +15,7 @@
 export function getTopContributorsAndRepos(lifetimeData, topN) {
   const contributorStats = {};
   const repoStats = {};
+  const contributorIssuesClosed = {};
 
   // Safely handle empty data
   if (!lifetimeData) return { topContributors: [], topRepos: [] };
@@ -24,11 +25,15 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
     let repoTotalActivity = 0;
 
     // Helper to safely add metrics to a user's total and the repo's total
-    const addActivity = (user, amount) => {
+    const addActivity = (user, amount, isClosedIssue = false) => {
       const val = Number(amount) || 0;
       if (val > 0) {
         contributorStats[user] = (contributorStats[user] || 0) + val;
         repoTotalActivity += val;
+
+        if (isClosedIssue) {
+          contributorIssuesClosed[user] = (contributorIssuesClosed[user] || 0) + val;
+        }
       }
     };
 
@@ -36,7 +41,7 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
     if (repoData.issues) {
       Object.entries(repoData.issues).forEach(([user, stats]) => {
         addActivity(user, stats.total_issues_opened);
-        addActivity(user, stats.total_issues_closed);
+        addActivity(user, stats.total_issues_closed, true);
       });
     }
 
@@ -54,10 +59,18 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
     }
   });
 
-  // Sort contributors by activity volume (descending), then alphabetically
+  // Sort contributors by streak first, then closed issues, then alphabetically
   const topContributors = Object.entries(contributorStats)
-    .map(([name, count]) => ({ name, count }))
-    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
+    .map(([name, count]) => ({ 
+      name, 
+      count,
+      totalIssuesClosed: contributorIssuesClosed[name] || 0,
+      currentStreak: 0 // Placeholder for now
+    }))
+    .sort((a, b) => 
+      b.currentStreak - a.currentStreak ||
+      b.totalIssuesClosed - a.totalIssuesClosed ||
+      a.name.localeCompare(b.name))
     .slice(0, topN);
 
   // Sort repositories by activity volume (descending), then alphabetically
