@@ -16,6 +16,7 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
   const contributorStats = {};
   const repoStats = {};
   const contributorIssuesClosed = {};
+  const contributorCurrentStreaks = {};
 
   // Safely handle empty data
   if (!lifetimeData) return { topContributors: [], topRepos: [] };
@@ -42,6 +43,11 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
       Object.entries(repoData.issues).forEach(([user, stats]) => {
         addActivity(user, stats.total_issues_opened);
         addActivity(user, stats.total_issues_closed, true);
+
+        contributorCurrentStreaks[user] = Math.max(
+          contributorCurrentStreaks[user] || 0,
+          Number(stats.currentStreak) || 0
+        );
       });
     }
 
@@ -65,12 +71,14 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
       name, 
       count,
       totalIssuesClosed: contributorIssuesClosed[name] || 0,
-      currentStreak: 0 // Placeholder for now
+      currentStreak: contributorCurrentStreaks[name] || 0
     }))
     .sort((a, b) => 
       b.currentStreak - a.currentStreak ||
       b.totalIssuesClosed - a.totalIssuesClosed ||
-      a.name.localeCompare(b.name))
+      b.count - a.count ||
+      a.name.localeCompare(b.name)
+    )
     .slice(0, topN);
 
   // Sort repositories by activity volume (descending), then alphabetically
