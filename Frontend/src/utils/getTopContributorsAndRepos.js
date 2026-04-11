@@ -17,6 +17,8 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
   const repoStats = {};
   const contributorIssuesClosed = {};
   const contributorCurrentStreaks = {};
+  const repoHighestStreaks = {};
+  const repoActiveStreakMembers = {};
 
   // Safely handle empty data
   if (!lifetimeData) return { topContributors: [], topRepos: [] };
@@ -24,6 +26,8 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
   // Iterate through every repository in the organization
   Object.entries(lifetimeData).forEach(([repoName, repoData]) => {
     let repoTotalActivity = 0;
+    let repoHighestStreak = 0;
+    let repoActiveMembers = 0;
 
     // Helper to safely add metrics to a user's total and the repo's total
     const addActivity = (user, amount, isClosedIssue = false) => {
@@ -48,6 +52,14 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
           contributorCurrentStreaks[user] || 0,
           Number(stats.currentStreak) || 0
         );
+
+        const userStreak = Number(stats.currentStreak) || 0;
+
+        if (userStreak > 0) {
+          repoActiveMembers += 1;
+        }
+
+        repoHighestStreak = Math.max(repoHighestStreak, userStreak);
       });
     }
 
@@ -63,6 +75,9 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
     if (repoTotalActivity > 0) {
       repoStats[repoName] = (repoStats[repoName] || 0) + repoTotalActivity;
     }
+
+    repoHighestStreaks[repoName] = repoHighestStreak;
+    repoActiveStreakMembers[repoName] = repoActiveMembers;
   });
 
   // Sort contributors by streak first, then closed issues, then alphabetically
@@ -75,17 +90,24 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
     }))
     .sort((a, b) => 
       b.currentStreak - a.currentStreak ||
-      b.totalIssuesClosed - a.totalIssuesClosed ||
-      b.count - a.count ||
       a.name.localeCompare(b.name)
     )
     .slice(0, topN);
 
-  // Sort repositories by activity volume (descending), then alphabetically
-  const topRepos = Object.entries(repoStats)
-    .map(([name, count]) => ({ name, count }))
-    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
+  // Sort repositories by highest streak first, then by how many members have a streak, then alphabetically
+  const topRepos = Object.keys(repoHighestStreaks)
+    .map((name) => ({
+      name,
+      streak: repoHighestStreaks[name] || 0,
+      activeMembers: repoActiveStreakMembers[name] || 0
+    }))
+    .filter((repo) => repo.streak > 0)
+    .sort((a, b) =>
+      b.streak - a.streak ||
+      b.activeMembers - a.activeMembers ||
+      a.name.localeCompare(b.name)
+    )
     .slice(0, topN);
-
-  return { topContributors, topRepos };
+  
+return { topContributors, topRepos };
 }

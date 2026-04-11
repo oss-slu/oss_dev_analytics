@@ -40,7 +40,7 @@ export const Home = () => {
         </section>
 
         <section className="card-blue" style={{ height: "100%" }}>
-          <h2 className="card-title">Top Contributors/Repos (Issues/PRs)</h2>
+          <h2 className="card-title">Leaderboard Streaks</h2>
           <div className="contributors-wrapper" style={{ display: "flex", gap: "40px", marginTop: "8px" }}>
             
             {/* Top Contributors List */}
@@ -50,7 +50,7 @@ export const Home = () => {
                 <span
                   tabIndex="0"
                   aria-label="Leaderboard streak info"
-                  title="A streak increases for every consecutive 7-day period where a user closes at least 3 issues. Streak resets if threshold is not met."
+                  title="A streak increases for every consecutive 7-day period where a user closes at least 1 issue. Streak resets if threshold is not met."
                   style={{
                     cursor: "pointer",
                     border: "1px solid black",
@@ -84,7 +84,7 @@ export const Home = () => {
                 {topRepos.length > 0 ? (
                   topRepos.map((repo, index) => (
                     <li key={`repo-${index}`} style={{ marginBottom: "4px" }}>
-                      {repo.name} ({repo.count})
+                      {repo.name} 🔥 {repo.streak} {repo.streak === 1 ? "week" : "weeks"} streak ({repo.activeMembers} {repo.activeMembers === 1 ? "member" : "members"})
                     </li>
                   ))
                 ) : (
