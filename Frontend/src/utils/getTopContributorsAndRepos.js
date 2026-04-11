@@ -14,7 +14,54 @@
 
 import sprintData from "../../../data/sprint_data.json";
 
-const activeUsers = new Set();
+const activeUsersByRepo = {};
+const latestSprintByRepo = {};
+
+// STEP 1: find latest sprint for each repo
+Object.entries(sprintData).forEach(([repoName]) => {
+  const match = repoName.match(/(.*)_sprint_(\d+)$/);
+  if (!match) return;
+
+  const baseRepo = match[1];
+  const sprintNum = parseInt(match[2]);
+
+  if (
+    !latestSprintByRepo[baseRepo] ||
+    sprintNum > latestSprintByRepo[baseRepo].sprint
+  ) {
+    latestSprintByRepo[baseRepo] = {
+      sprint: sprintNum,
+      fullKey: repoName,
+    };
+  }
+});
+
+// STEP 2: build active users ONLY from latest sprint
+Object.entries(latestSprintByRepo).forEach(([repoName, { fullKey }]) => {
+  const repoData = sprintData[fullKey];
+  const normalizedRepo = repoName.toLowerCase().trim();
+  activeUsersByRepo[normalizedRepo] = new Set();
+
+  if (repoData.issues) {
+    Object.keys(repoData.issues).forEach(user =>
+      activeUsersByRepo[normalizedRepo].add(user)
+    );
+  }
+
+  if (repoData.pull_requests) {
+    Object.keys(repoData.pull_requests).forEach(user =>
+      activeUsersByRepo[normalizedRepo].add(user)
+    );
+  }
+
+  if (repoData.commits) {
+    Object.keys(repoData.commits).forEach(user =>
+      activeUsersByRepo[normalizedRepo].add(user)
+    );
+  }
+});
+
+/*const activeUsers = new Set();
 
 Object.values(sprintData).forEach(repo => {
   if (repo.issues) {
@@ -26,10 +73,10 @@ Object.values(sprintData).forEach(repo => {
   if (repo.commits) {
     Object.keys(repo.commits).forEach(user => activeUsers.add(user));
   }
-});
+});*/
 
 
-export function getTopContributorsAndRepos(lifetimeData, topN) {
+export function getTopContributorsAndRepos(lifetimeData, topN, selectedRepo) {
   const contributorStats = {};
   const repoStats = {};
   const contributorIssuesClosed = {};
@@ -39,6 +86,8 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
 
   // Iterate through every repository in the organization
   Object.entries(lifetimeData).forEach(([repoName, repoData]) => {
+    if (selectedRepo && repoName !== selectedRepo) return;
+    
     let repoTotalActivity = 0;
 
     // Helper to safely add metrics to a user's total and the repo's total
@@ -54,10 +103,17 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
       }
     };
 
+    const cleanedRepoName = repoName.toLowerCase().trim();
+    const repoActiveUsers = activeUsersByRepo[cleanedRepoName];
+      
+
     // Tally Issues (Opened + Closed)
     if (repoData.issues) {
       Object.entries(repoData.issues).forEach(([user, stats]) => {
-        if (import.meta.env.MODE !== "test" && !activeUsers.has(user)) return;
+        if (
+          import.meta.env.MODE !== "test" &&
+          (!repoActiveUsers || !repoActiveUsers.has(user))
+        ) return;
 
         addActivity(user, stats.total_issues_opened);
         addActivity(user, stats.total_issues_closed, true);
@@ -67,7 +123,10 @@ export function getTopContributorsAndRepos(lifetimeData, topN) {
     // Tally Pull Requests (Opened + Merged)
     if (repoData.pull_requests) {
       Object.entries(repoData.pull_requests).forEach(([user, stats]) => {
-        if (import.meta.env.MODE !== "test" && !activeUsers.has(user)) return;
+        if (
+          import.meta.env.MODE !== "test" &&
+          (!repoActiveUsers || !repoActiveUsers.has(user))
+        ) return;
 
         addActivity(user, stats.total_prs_opened);
         addActivity(user, stats.total_prs_merged);

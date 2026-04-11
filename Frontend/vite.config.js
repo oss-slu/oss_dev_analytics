@@ -11,9 +11,7 @@ export default defineConfig({
   },
   server: {
     fs: {
-      allow: [
-        new URL('..', import.meta.url).pathname,
-      ],
+      allow: ['..'],
     },
-  }
+  },
 });

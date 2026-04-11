@@ -17,7 +17,8 @@ const TOP_N = 5;
 
 const TopContributorsRepos = () => {
   // Converting repo JSON structure into event-like objects
-  const {topContributors, topRepos} = getTopContributorsAndRepos(lifetimeData, TOP_N);
+  const selectedRepo = "core_desk";
+  const {topContributors, topRepos} = getTopContributorsAndRepos(lifetimeData, TOP_N, selectedRepo);
 
   return (
     <div style={{ display: "flex", gap: "30px" }}>

@@ -7,19 +7,55 @@
 */
 import sprintData from "../../../../../data/sprint_data.json";
 
-const activeUsers = new Set();
+const activeUsersByRepo = {};
+const latestSprintByRepo = {};
 
-Object.values(sprintData).forEach(repo => {
-  if (repo.issues) {
-    Object.keys(repo.issues).forEach(user => activeUsers.add(user));
-  }
-  if (repo.pull_requests) {
-    Object.keys(repo.pull_requests).forEach(user => activeUsers.add(user));
-  }
-  if (repo.commits) {
-    Object.keys(repo.commits).forEach(user => activeUsers.add(user));
+// This finds the latest sprint per repo
+Object.entries(sprintData).forEach(([repoName]) => {
+  const match = repoName.match(/(.*)_sprint_(\d+)$/);
+  if (!match) return;
+
+  const baseRepo = match[1];
+  const sprintNum = parseInt(match[2]);
+
+  if (
+    !latestSprintByRepo[baseRepo] ||
+    sprintNum > latestSprintByRepo[baseRepo].sprint
+  ) {
+    latestSprintByRepo[baseRepo] = {
+      sprint: sprintNum,
+      fullKey: repoName,
+    };
   }
 });
+
+// This builds active users per repo (latest sprint only)
+Object.entries(latestSprintByRepo).forEach(([repoName, { fullKey }]) => {
+  const repoData = sprintData[fullKey];
+  const normalizedRepo = repoName.toLowerCase().trim();
+
+  activeUsersByRepo[normalizedRepo] = new Set();
+
+  if (repoData.issues) {
+    Object.keys(repoData.issues).forEach(user =>
+      activeUsersByRepo[normalizedRepo].add(user)
+    );
+  }
+
+  if (repoData.pull_requests) {
+    Object.keys(repoData.pull_requests).forEach(user =>
+      activeUsersByRepo[normalizedRepo].add(user)
+    );
+  }
+
+  if (repoData.commits) {
+    Object.keys(repoData.commits).forEach(user =>
+      activeUsersByRepo[normalizedRepo].add(user)
+    );
+  }
+});
+
+// USERS 
 
 export const getUniqueUsers = (lifetimeData) => {
   return [
@@ -31,35 +67,26 @@ export const getUniqueUsers = (lifetimeData) => {
           ...Object.keys(repo.pull_requests ?? {}),
           ...Object.keys(repo.commits ?? {})
         ])
-        .filter(user => activeUsers.has(user))
+        .filter(user =>
+          Object.values(activeUsersByRepo).some(set => set.has(user))
+        )
       )
     )
   ];
 };
-/*
-    Extract unique team (repository) names from the lifetime data.
-    Args:
-        lifetimeData (Object): The parsed JSON object of repository data.
-    Returns:
-        Array: List of team names, with "All Teams" as the first element.
-*/
+
 export const getUniqueTeams = (lifetimeData) => {
   return ["All Teams", ...Object.keys(lifetimeData)];
 };
-/*
-    Extract unique users from a specific repository, or all if "All Teams".
-    Args:
-        lifetimeData (Object): The parsed JSON object of repository data.
-        repo (String): The specific repository name to filter by.
-    Returns:
-        Array: List of unique usernames for that repo, with "all" as the first element.
-*/
+
 export const getUsersByRepo = (lifetimeData, repo) => {
   if (repo === "All Teams" || !repo) {
     return getUniqueUsers(lifetimeData);
   }
-  
+
+  const normalizedRepo = repo.toLowerCase().trim();
   const repoData = lifetimeData[repo] || {};
+
   return [
     "all",
     ...Array.from(
@@ -67,29 +94,23 @@ export const getUsersByRepo = (lifetimeData, repo) => {
         ...Object.keys(repoData.issues ?? {}),
         ...Object.keys(repoData.pull_requests ?? {}),
         ...Object.keys(repoData.commits ?? {})
-      ].filter(user => activeUsers.has(user)))
+      ].filter(user => activeUsersByRepo[normalizedRepo]?.has(user)))
     )
   ];
 };
-/*
-    Calculate time-based metrics (e.g., average time to close or merge) for a specific user or all users.
-    Args:
-        lifetimeData (Object): The parsed JSON object of repository data.
-        category (String): The category to parse ('issues' or 'pull_requests').
-        metric (String): The specific metric key to retrieve.
-        user (String): The selected username, or "all".
-    Returns:
-        Array: A list of objects formatted as { label: username, value: average_metric }.
-*/
+
+//TIME DATA 
+
 export const buildTimeData = (lifetimeData, category, metric, user) => {
   const userValues = {};
 
-  Object.values(lifetimeData).forEach((repo) => {
+  Object.entries(lifetimeData).forEach(([repoName, repo]) => {
+    const normalizedRepo = repoName.toLowerCase().trim();
     const section = repo[category] ?? {};
 
     if (user === "all") {
       Object.entries(section).forEach(([username, metrics]) => {
-        if (!activeUsers.has(username)) return; // Skip users with no activity in sprint data
+        if (!activeUsersByRepo[normalizedRepo]?.has(username)) return;
 
         if (metrics[metric] != null) {
           if (!userValues[username]) userValues[username] = [];
@@ -97,7 +118,10 @@ export const buildTimeData = (lifetimeData, category, metric, user) => {
         }
       });
     } else {
-      if (activeUsers.has(user) && section[user] && section[user][metric] != null) {
+      if (
+        activeUsersByRepo[normalizedRepo]?.has(user) &&
+        section[user]?.[metric] != null
+      ) {
         if (!userValues[user]) userValues[user] = [];
         userValues[user].push(section[user][metric]);
       }
@@ -106,28 +130,26 @@ export const buildTimeData = (lifetimeData, category, metric, user) => {
 
   return Object.entries(userValues).map(([username, values]) => ({
     label: username,
-    value: parseFloat((values.reduce((a, b) => a + b, 0) / values.length).toFixed(2)),
+    value: parseFloat(
+      (values.reduce((a, b) => a + b, 0) / values.length).toFixed(2)
+    ),
   }));
 };
 
-/*
-    Aggregate volume metrics (opened, closed, merged, commits) for a specific user.
-    Args:
-        lifetimeData (Object): The parsed JSON object of repository data.
-        user (String): The selected username, or "all".
-    Returns:
-        Object: Key-value pairs of aggregated volume metrics.
-*/
+//VOLUME DATA 
+
 export const buildVolumeData = (lifetimeData, user) => {
   let issuesOpened = 0, issuesClosed = 0, prsOpened = 0, prsMerged = 0, commits = 0;
 
-  Object.values(lifetimeData).forEach((repo) => {
+  Object.entries(lifetimeData).forEach(([repoName, repo]) => {
+    const normalizedRepo = repoName.toLowerCase().trim();
+
     const issues = repo.issues ?? {};
     const prs = repo.pull_requests ?? {};
     const repoCommits = repo.commits ?? {};
 
     const addMetrics = (u) => {
-      if (!activeUsers.has(u)) return;
+      if (!activeUsersByRepo[normalizedRepo]?.has(u)) return;
 
       issuesOpened += Number(issues[u]?.total_issues_opened) || 0;
       issuesClosed += Number(issues[u]?.total_issues_closed) || 0;
@@ -155,4 +177,4 @@ export const buildVolumeData = (lifetimeData, user) => {
     "PRs Merged": prsMerged,
     Commits: commits,
   };
-}
+};
