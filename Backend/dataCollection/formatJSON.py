@@ -1,6 +1,7 @@
 
 import numpy as np
 import pandas as pd
+from Backend.streakCalculation import calculate_current_streak
 
 
 def format_json_data(raw_data, sprint = -1):
@@ -44,11 +45,17 @@ def format_json_data(raw_data, sprint = -1):
             avg_time_to_close = group['lead_time'].mean()
             total_issues_opened = len(group)
             total_issues_closed = group['state'].value_counts().get('closed', 0)
+            if 'closed_at' in group.columns:
+                closed_issue_dates = group[group['state'] == 'closed']['closed_at'].dropna().tolist()
+            else:
+                closed_issue_dates = []
+            current_streak = calculate_current_streak(closed_issue_dates)
 
             formatted_data['issues'][user] = {
                 "average_time_to_close": avg_time_to_close if not np.isnan(avg_time_to_close) else 0,
                 "total_issues_opened": total_issues_opened,
-                "total_issues_closed": total_issues_closed
+                "total_issues_closed": total_issues_closed,
+                "currentStreak": current_streak
             }
 
     #Process Pull Requests
