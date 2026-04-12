@@ -50,7 +50,7 @@ export const Home = () => {
                 <span
                   tabIndex="0"
                   aria-label="Leaderboard streak info"
-                  title="A streak increases for every consecutive 7-day period where a user closes at least 1 issue. Streak resets if threshold is not met."
+                  title="A streak increases for every consecutive 7-day period where a user closes at least 3 issues. Streak resets if threshold is not met."
                   style={{
                     cursor: "pointer",
                     border: "1px solid black",
