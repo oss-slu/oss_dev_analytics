@@ -66,7 +66,7 @@ export const Home = () => {
                 {topContributors.length > 0 ? (
                   topContributors.map((user, index) => (
                     <li key={`user-${index}`} style={{ marginBottom: "4px" }}>
-                      {user.name} 🔥 {user.currentStreak} {user.currentStreak === 1 ? "week" : "weeks"} streak ({user.count})
+                      {user.name} 🔥 {user.currentStreak} {user.currentStreak === 1 ? "week" : "weeks"} streak
                     </li>
                   ))
                 ) : (
@@ -78,7 +78,21 @@ export const Home = () => {
             {/* Top Repositories List */}
             <div style={{ flex: 1 }}>
               <h3 style={{ fontSize: "16px", fontWeight: "bold", color: "#123f8b", marginBottom: "12px", marginTop: 0 }}>
-                Top Repositories
+                Top Repositories{" "}
+                <span
+                  tabIndex="0"
+                  aria-label="Repository members info"
+                  title="Members indicate the number of active contributors contributing to that repository"
+                  style={{
+                    cursor: "pointer",
+                    border: "1px solid black",
+                    borderRadius: "50%",
+                    padding: "2px 6px",
+                    fontSize: "12px"
+                  }}
+                >
+                  i
+                </span>
               </h3>
               <ul style={{ margin: 0, paddingLeft: "20px", color: "#374151" }}>
                 {topRepos.length > 0 ? (
