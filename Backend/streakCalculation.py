@@ -1,10 +1,10 @@
 from datetime import datetime, timedelta
 
-ISSUE_THRESHOLD = 3
+ISSUE_THRESHOLD = 1
 
 def get_week_start(date_obj):
     """
-    Returns the Monday of the week for a given data
+    Returns the Monday of the week for a given date
     """
     return (date_obj - timedelta(days=date_obj.weekday())).date()
 
@@ -63,15 +63,16 @@ def calculate_current_streak(closed_issue_dates, threshold=ISSUE_THRESHOLD, refe
     Returns:
         int: current streak count
     """
-    if reference_date is None:
-        reference_date = datetime.now()
-
     weekly_counts = group_issues_by_week(closed_issue_dates)
 
     if not weekly_counts:
         return 0
     
-    current_week_start = get_week_start(reference_date)
+    if reference_date is None:
+        current_week_start = max(weekly_counts.keys())
+    else:
+        current_week_start = get_week_start(reference_date)
+
     streak = 0
     
     while weekly_counts.get(current_week_start, 0) >= threshold:

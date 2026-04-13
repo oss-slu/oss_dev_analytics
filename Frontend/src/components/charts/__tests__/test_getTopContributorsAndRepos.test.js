@@ -12,35 +12,40 @@ import { describe, it, expect } from "vitest";
 describe("getTopContributorsAndRepos", () => {
   // mock JSON data so that Lint passes
 const mockJSON = {
-    "repo1": {
-      issues: { "alice": { total_issues_opened: 2 }, "bob": { total_issues_opened: 1 } },
+  repo1: {
+    issues: {
+      alice: { currentStreak: 2, total_issues_closed: 2 },
+      bob: { currentStreak: 1, total_issues_closed: 1 }
     },
-    "repo2": {
-      pull_requests: { "charlie": { total_prs_opened: 4 } }
+  },
+  repo2: {
+    issues: {
+      charlie: { currentStreak: 3, total_issues_closed: 4 }
     }
-  };
+  }
+};
 
   
-  it("counts contributor activity and sorts correctly", () => {
+  it("sorts contributors based on streak correctly", () => {
     const {topContributors} = getTopContributorsAndRepos(mockJSON, 5);
-    // charlie: 4, alicce: 2, bob: 1
+    // charlie: 3, alice: 2, bob: 1 (based on streaks in mock data)
     expect(topContributors).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ name: "charlie", count: 4 }),
-        expect.objectContaining({ name: "alice", count: 2 }),
-        expect.objectContaining({ name: "bob", count: 1 }),
+        expect.objectContaining({ name: "charlie", currentStreak: 3 }),
+        expect.objectContaining({ name: "alice", currentStreak: 2 }),
+        expect.objectContaining({ name: "bob", currentStreak: 1 }),
       ])
     );
   });
 
-  it("counts repository activity and sorts correctly", () => {
+  it("sorts repositories based on streak and active members correctly", () => {
     const { topRepos } =
       getTopContributorsAndRepos(mockJSON, 5);
 
-    // repo1: 3 (2 from alice + 1 from bob), repo2: 4 (from charlie)
+    // repo2: streak 3 (1 member), repo1: streak 2 (2 members)
     expect(topRepos).toEqual([
-      { name: "repo2", count: 4 },
-      { name: "repo1", count:  3},
+      { name: "repo2", streak: 3, activeMembers: 1 },
+      { name: "repo1", streak: 2, activeMembers: 2 },
     ]);
   });
 
