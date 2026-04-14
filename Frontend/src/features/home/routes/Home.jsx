@@ -36,7 +36,7 @@ export const Home = () => {
     ],
     metrics: {
       issue_resolution: 80,
-      issue_responsivenss: 20,
+      issue_responsiveness: 20,
       pr_responsiveness: 80,
       contributor_activity: 100,
       commit_volume: 60,
@@ -166,6 +166,13 @@ export const Home = () => {
           <div className="chart-wrapper">
             <TimeBased data={orgTimeBasedData} repos="All" />
           </div>
+
+          {/* Temporary usage of isHealthy until UI component is added */}
+          {isHealthy && (
+            <p style={{ marginTop: "10px", color: "#374151" }}>
+              All metrics are currently healthy
+            </p>
+          )}
         </section>
       </div>
 
