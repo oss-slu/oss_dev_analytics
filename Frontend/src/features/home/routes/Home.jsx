@@ -5,14 +5,25 @@ import { calculateOrgAverage } from "../../../utils/TransformTimeData";
 import { getTopContributorsAndRepos } from "../../../utils/getTopContributorsAndRepos";
 import lifetimeData from "../../../../../data/lifetime_data.json";
 import "./Home.css";
+import ActionableInsightsPanel from "../../../components/ActionableInsightsPanel";
+
 /*
     Main Home dashboard view displaying high-level organization metrics.
     Returns:
         JSX.Element: The Home dashboard component.
 */
 export const Home = () => {
-  const orgVolumeData = transformVolumeData(lifetimeData, 'org', null, "All");
+  // TODO: replace with real data from backend 
+  const mockInsights = [
+    {
+      metric: "Defect Rate",
+      message: "High defect rate detected",
+      actions: ["Improve testing", "Review PR process"],
+      resources: ["QA Docs", "CI/CD Guide"]
+    }
+  ];
 
+  const orgVolumeData = transformVolumeData(lifetimeData, 'org', null, "All");
   const orgAvgClose = calculateOrgAverage(lifetimeData, "issues", "average_time_to_close");
   const orgAvgMerge = calculateOrgAverage(lifetimeData, "pull_requests", "average_time_to_merge");
 
@@ -30,6 +41,8 @@ export const Home = () => {
       <header className="home-header">
         <h1 className="home-title">OSS Analytics Dashboard</h1>
       </header>
+      
+      <ActionableInsightsPanel insights={mockInsights} />
 
       <div className="home-grid">
         <section className="card-blue">
