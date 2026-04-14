@@ -1,11 +1,11 @@
 import React from "react";
 
-const ActionableInsightsPanel = ({ insights }) => {
-  if (!insights || insights.length === 0) {
+const ActionableInsightsPanel = ({ insights, isHealthy }) => {
+  if (isHealthy) {
     return (
       <div className="card-blue" style={{ marginBottom: "20px" }}>
         <h2 className="card-title" style={{ marginBottom: "10px" }}>
-            Actionable Insights
+          Actionable Insights
         </h2>
         <p style={{ color: "#16a34a", fontWeight: "500" }}>
           Everything looks good 🎉
@@ -20,7 +20,7 @@ const ActionableInsightsPanel = ({ insights }) => {
             Actionable Insights
       </h2>
 
-      {insights.map((item, index) => (
+      {insights?.map((item, index) => (
         <div
           key={index}
           style={{
