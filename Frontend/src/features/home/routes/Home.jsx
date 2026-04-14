@@ -4,6 +4,7 @@ import TimeBased from "../../../components/charts/TimeBased";
 import { calculateOrgAverage } from "../../../utils/TransformTimeData";
 import { getTopContributorsAndRepos } from "../../../utils/getTopContributorsAndRepos";
 import lifetimeData from "../../../../../data/lifetime_data.json";
+import { getActionableInsights } from "../../../utils/getActionableInsights";
 import "./Home.css";
 /*
     Main Home dashboard view displaying high-level organization metrics.
@@ -20,6 +21,35 @@ export const Home = () => {
     { label: "Avg Time to Close (Issues)", value: orgAvgClose },
     { label: "Avg Time to Merge (PRs)", value: orgAvgMerge },
   ];
+
+  /*
+    Temporary mock backend health score data for testing
+    Later this will be replaced with real backend response
+  */
+  const mockHealthScoreData = {
+    selected_metrics: [
+      "issue_resolution",
+      "issue_responsiveness",
+      "pr_responsiveness",
+      "contributor_activity",
+      "commit_volume",
+    ],
+    metrics: {
+      issue_resolution: 80,
+      issue_responsivenss: 20,
+      pr_responsiveness: 80,
+      contributor_activity: 100,
+      commit_volume: 60,
+    },
+    final_score: 68,
+    status: "Needs Attention",
+  };
+
+  // Get insights from helper
+  const insights = getActionableInsights(mockHealthScoreData);
+
+  // Checking if everything is healthy
+  const isHealthy = insights.length === 0;
 
   // 2. Call your utility function right here to get the top 5
   const { topContributors, topRepos } = getTopContributorsAndRepos(lifetimeData, 12);
