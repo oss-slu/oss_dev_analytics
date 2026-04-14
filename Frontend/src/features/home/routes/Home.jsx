@@ -14,19 +14,19 @@ import ActionableInsightsPanel from "../../../components/ActionableInsightsPanel
         JSX.Element: The Home dashboard component.
 */
 export const Home = () => {
-  // TODO: replace with real data from backend 
-  const mockInsights = [
-    {
-      metric: "Defect Rate",
-      message: "High defect rate detected",
-      actions: ["Improve testing", "Review PR process"],
-      resources: ["QA Docs", "CI/CD Guide"]
-    }
-  ];
-
   const orgVolumeData = transformVolumeData(lifetimeData, 'org', null, "All");
-  const orgAvgClose = calculateOrgAverage(lifetimeData, "issues", "average_time_to_close");
-  const orgAvgMerge = calculateOrgAverage(lifetimeData, "pull_requests", "average_time_to_merge");
+  
+  const orgAvgClose = calculateOrgAverage(
+    lifetimeData, 
+    "issues", 
+    "average_time_to_close"
+  );
+
+  const orgAvgMerge = calculateOrgAverage(
+    lifetimeData, 
+    "pull_requests",
+    "average_time_to_merge"
+  );
 
   const orgTimeBasedData = [
     { label: "Avg Time to Close (Issues)", value: orgAvgClose },
@@ -62,8 +62,11 @@ export const Home = () => {
   // Checking if everything is healthy
   const isHealthy = insights.length === 0;
 
-  // 2. Call your utility function right here to get the top 5
-  const { topContributors, topRepos } = getTopContributorsAndRepos(lifetimeData, 12);
+  // Call your utility function right here to get the top 5
+  const { topContributors, topRepos } = getTopContributorsAndRepos(
+    lifetimeData, 
+    12
+  );
 
   return (
     <div className="home-container">
@@ -71,8 +74,6 @@ export const Home = () => {
       <header className="home-header">
         <h1 className="home-title">OSS Analytics Dashboard</h1>
       </header>
-      
-      <ActionableInsightsPanel insights={mockInsights} />
 
       <div className="home-grid">
         <section className="card-blue">
@@ -180,12 +181,7 @@ export const Home = () => {
             <TimeBased data={orgTimeBasedData} repos="All" />
           </div>
 
-          {/* Temporary usage of isHealthy until UI component is added */}
-          {isHealthy && (
-            <p style={{ marginTop: "10px", color: "#374151" }}>
-              All metrics are currently healthy
-            </p>
-          )}
+          <ActionableInsightsPanel insights={insights} isHealthy={isHealthy} />
         </section>
       </div>
 

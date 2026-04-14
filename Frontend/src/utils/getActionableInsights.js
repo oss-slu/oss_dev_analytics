@@ -48,9 +48,10 @@ export const getActionableInsights = (healthScoreData) => {
 
        if (isUnhealthy) {
         insights.push({
-            metric: metricKey,
-            value: metricValue,
-            ...metricConfig,
+            metric: metricConfig.metricLabel,
+            message: metricConfig.suggestion,
+            actions: [metricConfig.suggestion],
+            resources: [metricConfig.resourceLabel],
         });
        }
     });
