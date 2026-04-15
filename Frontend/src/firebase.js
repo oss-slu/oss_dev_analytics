@@ -29,18 +29,12 @@ getRedirectResult(auth)
     if (result) {
       const user = result.user;
       console.log("Redirect login success:", user);
-
-      const credential = GithubAuthProvider.credentialFromResult(result);
-      const token = credential?.accessToken;
-
-      console.log("Access Token:", token);
     }
   })
   .catch((error) => {
     console.error("Redirect error:", error);
   });
 
-// (you can keep this or remove it — not needed if using redirect)
 export const signInWithGitHub = async () => {
   try {
     const result = await signInWithPopup(auth, provider);

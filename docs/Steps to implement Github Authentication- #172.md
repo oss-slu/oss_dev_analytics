@@ -3,8 +3,7 @@ Steps to implement Github Authentication
 Goals: 
 - Authenticate users using Github
 - Link authenticated users to their GitHub account
-- manage sessions
-- support different access based on Tech lead versus Developer 
+- help support different access based on Tech lead versus Developer for future need
 
 
 Arcitechture:  
@@ -16,9 +15,6 @@ Arcitechture:
     - GitHub username  
 
 Backend (API Server)  
-- Validate tokens  
-- Manage GitHub calls  
-- Refresh github tokens if needed 
 - Store user data
 - What is being cached:
     {

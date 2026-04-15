@@ -1,18 +1,24 @@
 import { signInWithPopup, GithubAuthProvider } from "firebase/auth";
 import { auth } from "../../../firebase";
+import { useNavigate } from "react-router-dom";
 
 const provider = new GithubAuthProvider();
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const signInWithGitHub = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
 
       // User signed in successfully
       const user = result.user;
-      console.log("User:", user);
 
-      alert("Signed in successfully!");
+      // Safer logging
+      console.log("User ID:", user.uid);
+
+      // UPDATE: Redirects to Home 
+      navigate("/");
     } catch (error) {
       console.error("Error during sign-in:", error.message);
       alert("Failed to sign in. Please try again.");
