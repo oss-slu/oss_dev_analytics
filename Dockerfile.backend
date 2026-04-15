@@ -1,0 +1,12 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY docs/requirements.txt ./requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY Backend/ ./Backend/
+COPY data/ ./data/
+
+ENV DATA_PATH=/data/sprint_data.json
+ENV OUTPUT_PATH=/data/health.json
