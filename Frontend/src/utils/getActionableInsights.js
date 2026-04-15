@@ -49,9 +49,9 @@ export const getActionableInsights = (healthScoreData) => {
        if (isUnhealthy) {
         insights.push({
             metric: metricConfig.metricLabel,
-            message: metricConfig.suggestion,
-            actions: [metricConfig.suggestion],
-            resources: [metricConfig.resourceLabel],
+            problem: metricConfig.problem,
+            actions: metricConfig.actions,
+            resources: metricConfig.resources,
         });
        }
     });

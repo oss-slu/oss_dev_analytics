@@ -36,7 +36,7 @@ const ActionableInsightsPanel = ({ insights, isHealthy }) => {
           </h3>
 
           <p style={{ marginBottom: "8px", color: "#374151" }}>
-            {item.message}
+            <strong>Problem:</strong> {item.problem}
           </p>
 
           <div style={{ marginBottom: "6px" }}>
@@ -54,12 +54,12 @@ const ActionableInsightsPanel = ({ insights, isHealthy }) => {
               {item.resources?.map((res, i) => (
                 <li key={i}>
                   <a
-                    href="#"
+                    href={res.link}
                     target="_blank"
                     rel="noreferrer"
                     style={{ color: "#2563eb" }}
                   >
-                    {res}
+                    {res.label}
                   </a>
                 </li>
               ))}

@@ -1,54 +1,89 @@
 /*
-    Mapping each backend health metric to the text/resources
-    that should be shown in the Actionable Insights panel.
+    Mapping each backend health metric to the problem,
+    action steps, and resources shown in the Actionable Insights panel.
 
-    This is based on the tech lead mapping matric from #176.
+    This is based on the tech lead mapping matrix from #176.
     More metrics can be added here later if needed.
 */
 
 export const actionableInsightsMap = {
     issue_resolution: {
         metricLabel: "Issue Resolution",
-        title: "Issue Resolution Needed Attention",
-        suggestion:
-            "A lower issue resolution score usually means opened issues are not being closed fast enough. Focus on clearing older open issues and prioritizing smaller tasks",
-        resourceLabel: "Developer Handbook",
-        resourceLink: "https://github.com/oss-slu/handbook_developer",
+        problem:
+            "A lower issue resolution score means opened issues are not being closed fast enough.",
+        actions: [
+            "Review older open issues first.",
+            "Prioritize smaller issues that can be completed quickly.",
+        ],
+        resources: [
+            {
+                label: "Developer Handbook",
+                link: "https://github.com/oss-slu/handbook_developer",
+            },
+        ],
     },
 
     issue_responsiveness: {
         metricLabel: "Issue Responsiveness",
-        title: "Issue Responsiveness Needs Attention",
-        suggestion:
-            "Issues are taking too long to close. Breaking larger issues into smaller tasks and assigning clear ownership can help reduce delays",
-        resourceLabel: "Developer Handbook",
-        resourceLink: "https://github.com/oss-slu/handbook_developer",
+        problem:
+            "Issues are taking too long to close compared to a healthy threshold.",
+        actions: [
+            "Break larger issues into smaller tasks.",
+            "Assign ownership clearly so issues do not stay open too long.",
+        ],
+        resources: [
+            {
+                label: "Developer Handbook",
+                link: "https://github.com/oss-slu/handbook_developer",
+            },
+        ],
     },
 
     pr_responsiveness: {
         metricLabel: "PR Responsiveness",
-        title: "PR Responsiveness Needs Attention",
-        suggestion:
-            "Pull requests are taking too long to merge. Encourage smaller PRs and more frequent reviews to keep work moving",
-        resourceLabel: "Tech Lead Handbook",
-        resourceLink: "https://github.com/oss-slu/handbook_tech_lead",
+        problem:
+            "Pull requests are taking too long to merge, which slows down project progress.",
+        actions: [
+            "Encourage smaller pull requests.",
+            "Review pull requests more frequently.",
+        ],
+        resources: [
+            {
+                label: "Tech Lead Handbook",
+                link: "https://github.com/oss-slu/handbook_tech_lead",
+            },
+        ],
     },
 
     contributor_activity: {
         metricLabel: "Contributor Activity",
-        title: "Contributor Activity Needs Attention",
-        suggestion:
-            "Low contributor activity can slow project progress. Encourage more regular participation and distribute work more evenly across contributors",
-        resourceLabel: "Tech Lead Handbook",
-        resourceLink: "https://github.com/oss-slu/handbook_tech_lead",
+        problem:
+            "Low contributor activity can reduce momentum and delay project progress.",
+        actions: [
+            "Encourage more regular participation from team members.",
+            "Distribute work more evenly across contributors.",
+        ],
+        resources: [
+            {
+                label: "Tech Lead Handbook",
+                link: "https://github.com/oss-slu/handbook_tech_lead",
+            },
+        ],
     },
 
     commit_volume: {
         metricLabel: "Commit Volume",
-        title: "Commit Volume Needs Attention",
-        suggestion:
-            "Low commit activity may indicate stalled progress. Encourage smaller and more frequent commits so work is easier to track and review",
-        resourceLabel: "Developer Handbook",
-        resourceLink: "https://github.com/oss-slu/handbook_developer",
+        problem:
+            "Low commit volume may indicate stalled or inconsistent development activity.",
+        actions: [
+            "Encourage smaller, more frequent commits.",
+            "Push progress regularly so work is easier to track and review.",
+        ],
+        resources: [
+            {
+                label: "Developer Handbook",
+                link: "https://github.com/oss-slu/handbook_developer",
+            },
+        ],
     },
 };
