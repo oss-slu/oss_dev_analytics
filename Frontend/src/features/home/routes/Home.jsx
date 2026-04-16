@@ -5,6 +5,7 @@ import { calculateOrgAverage } from "../../../utils/TransformTimeData";
 import { getTopContributorsAndRepos } from "../../../utils/getTopContributorsAndRepos";
 import lifetimeData from "../../../../../data/lifetime_data.json";
 import "./Home.css";
+
 /*
     Main Home dashboard view displaying high-level organization metrics.
     Returns:
@@ -12,17 +13,29 @@ import "./Home.css";
 */
 export const Home = () => {
   const orgVolumeData = transformVolumeData(lifetimeData, 'org', null, "All");
+  
+  const orgAvgClose = calculateOrgAverage(
+    lifetimeData, 
+    "issues", 
+    "average_time_to_close"
+  );
 
-  const orgAvgClose = calculateOrgAverage(lifetimeData, "issues", "average_time_to_close");
-  const orgAvgMerge = calculateOrgAverage(lifetimeData, "pull_requests", "average_time_to_merge");
+  const orgAvgMerge = calculateOrgAverage(
+    lifetimeData, 
+    "pull_requests",
+    "average_time_to_merge"
+  );
 
   const orgTimeBasedData = [
     { label: "Avg Time to Close (Issues)", value: orgAvgClose },
     { label: "Avg Time to Merge (PRs)", value: orgAvgMerge },
   ];
 
-  // 2. Call your utility function right here to get the top 5
-  const { topContributors, topRepos } = getTopContributorsAndRepos(lifetimeData, 12);
+  // Call your utility function right here to get the top 5
+  const { topContributors, topRepos } = getTopContributorsAndRepos(
+    lifetimeData, 
+    12
+  );
 
   return (
     <div className="home-container">

@@ -8,6 +8,8 @@ import { getUniqueUsers, getUniqueTeams, getUsersByRepo, buildTimeData, buildVol
 import TeamStatsSidebar from "../components/teamStatsSidebar";
 import StatSummaryGrid from "../components/statSummaryGrid";
 import "./TeamStats.css";
+import ActionableInsightsPanel from "../../../components/ActionableInsightsPanel.jsx";
+import { getActionableInsights } from "../../../utils/getActionableInsights.js";
 
 /* 
 Constants initialized outside the component to prevent re-creation on render 
@@ -41,6 +43,33 @@ export const TeamStats = () => {
   const mergeData = useMemo(() => buildTimeData(effectiveData, "pull_requests", "average_time_to_merge", effectiveUser), [effectiveData, effectiveUser]);
   const volumeData = useMemo(() => buildVolumeData(effectiveData, effectiveUser), [effectiveData, effectiveUser]);
 
+    /*
+      Temporary mock backend health score data for testing.
+      Later this should be replaced with repo-specific backend data
+      based on the selected repository from the Team page.
+  */
+  const mockHealthScoreData = {
+    selected_metrics: [
+      "issue_resolution",
+      "issue_responsiveness",
+      "pr_responsiveness",
+      "contributor_activity",
+      "commit_volume",
+    ],
+    metrics: {
+      issue_resolution: 80,
+      issue_responsiveness: 20,
+      pr_responsiveness: 80,
+      contributor_activity: 100,
+      commit_volume: 60,
+    },
+    final_score: 68,
+    status: "Needs Attention",
+  };
+
+  const insights = getActionableInsights(mockHealthScoreData);
+  const isHealthy = insights.length === 0;
+
   return (
     <div className="team-stats-container">
       <TeamStatsSidebar 
@@ -58,6 +87,8 @@ export const TeamStats = () => {
           </h1>
           <p className="header-subtitle">Lifetime Data</p>
         </header>
+
+        <ActionableInsightsPanel insights={insights} isHealthy={isHealthy} />
 
         <StatSummaryGrid closeData={closeData} mergeData={mergeData} volumeData={volumeData} />
 
