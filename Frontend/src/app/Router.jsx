@@ -1,7 +1,7 @@
 import { useRoutes } from 'react-router-dom';
 import { Home } from '../features/home/routes/Home';
 import { TeamStats } from '../features/team-stats/routes/TeamStats';
-//Navigation routes for app
+import Login from "../features/login/routes/Login";
 /*
     Current Routes:
     - '/': Home Page
@@ -9,8 +9,9 @@ import { TeamStats } from '../features/team-stats/routes/TeamStats';
 */
 export const AppRouter = () => {
   const routes = [
-    { path: '/', element: <Home /> },
-    { path: '/team-stats', element: <TeamStats /> },
+    { path: "/", element: <Home /> },
+    { path: "/team-stats", element: <TeamStats /> },
+    { path: "/login", element: <Login /> },
   ];
 
   const element = useRoutes(routes);
