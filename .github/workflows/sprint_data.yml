@@ -36,6 +36,8 @@ jobs:
 
       # Run data collection in sprint mode
       - name: Run sprint data collection
+        env:
+           GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
         run: python -m Backend.dataCollection.collectData --mode sprint
       
       # Commit and push updated JSOn file
