@@ -31,12 +31,12 @@ jobs:
 
       # Install project dependencies
       - name: Install dependencies
-        run: pip install -r requirements.txt
-        working-directory: ./docs
+        run: pip install -r docs/requirements.txt
+
 
       # Run data collection in sprint mode
       - name: Run sprint data collection
-        run: python Backend/dataCollection/collectData.py --mode sprint
+        run: python Backend/dataCollection/collectData.py --mode sprint 
       
       # Commit and push updated JSOn file
       - name: Commit and push changes
