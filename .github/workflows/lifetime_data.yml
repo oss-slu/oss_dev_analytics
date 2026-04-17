@@ -30,11 +30,13 @@ jobs:
 
       # Install project dependencies
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r ./docsrequirements.txt
       
       # Run data collection in lifetime mode
       - name: Run lifetime data collection
-        run: python Backend/dataCollection/collectData.py --mode lifetime
+        env:
+           GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+        run: python -m Backend.dataCollection.collectData --mode lifetime
 
       # Commit and push updated JSON file
       - name: Commit and push changes
