@@ -30,7 +30,7 @@ jobs:
 
       # Install project dependencies
       - name: Install dependencies
-        run: pip install -r ./docsrequirements.txt
+        run: pip install -r ./docs/requirements.txt
       
       # Run data collection in lifetime mode
       - name: Run lifetime data collection
