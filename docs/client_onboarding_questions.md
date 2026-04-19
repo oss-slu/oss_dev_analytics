@@ -43,6 +43,14 @@ These questions are meant to help us understand what a team actually needs from 
 - Would you want to be notified if certain metrics drop or change?
 - If yes, how would you want to be notified? (Slack, email, etc.)
 
+## Stakeholder Perspective
+- Who is the main stakeholder for this project?
+- What are their main goals or expectations?
+- What kind of updates or reports do they usually expect?
+- How often do they check in on progress?
+- What metrics or outcomes matter most to them?
+- Are there any specific concerns or priorities they have?
+
 ## Additional Feedback
 - Is there anything else you’d want from a dashboard like this?
 - Have you seen any features elsewhere that you really liked?
