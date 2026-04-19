@@ -1,9 +1,9 @@
-import { doc, documentSnapshotFromJSON, getDoc, setDoc } from "firebase/firestore";
+import { doc, documentSnapshotFromJSON, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
 
 /**
  * Determines if user has logged in previously and has a document in the "users" collection of Firestore. If so, returns the user document data. If not, returns null.
- * @param {*} userId 
+ * @param {string} userId 
  * @returns: User document if it exists or NULL
  */
 
@@ -58,6 +58,23 @@ export const updateUserMetrics = async (userId, preferences) => {
     } catch (error) {  
       console.error("Error updating user metrics:", error);
       return false;
+    }
+};
+/**
+ * 
+ * @param {string} repoName 
+ * @param {string[]} metrics 
+ * @returns True if update was successful, else returns False
+ */
+
+export const updateRepoBaseMetrics = async (repoName, metrics) => {
+    try {
+        const repoRef = doc(db, "repos", repoName);
+        await updateDoc(repoRef, { baseMetrics: metrics });
+        return true;
+    } catch (error) {
+        console.error("Error updating repository base metrics:", error);
+        return false;
     }
 };
 
