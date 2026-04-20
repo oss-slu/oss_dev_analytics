@@ -1037,9 +1037,9 @@
     "DroneWorld_sprint_6": {
         "issues": {
             "CharlieWells13": {
-                "average_time_to_close": 302.77416666666664,
+                "average_time_to_close": 338.36944444444447,
                 "total_issues_opened": 3,
-                "total_issues_closed": "2",
+                "total_issues_closed": "3",
                 "currentStreak": 1
             }
         },
@@ -1528,19 +1528,19 @@
         "commits": {
             "GustavoLucca": {
                 "total_commits": 3,
-                "average_velocity": 5.5
+                "average_velocity": 6.0
             },
             "PGuffey": {
-                "total_commits": 4,
-                "average_velocity": 5.5
+                "total_commits": 5,
+                "average_velocity": 6.0
             },
             "pelumitegbe": {
                 "total_commits": 2,
-                "average_velocity": 5.5
+                "average_velocity": 6.0
             },
             "williamphoenix": {
                 "total_commits": 2,
-                "average_velocity": 5.5
+                "average_velocity": 6.0
             }
         }
     },
