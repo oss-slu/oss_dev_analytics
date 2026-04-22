@@ -2,6 +2,7 @@ import VolumeCharts from "../../../components/charts/VolumeBased";
 import { transformVolumeData } from "../../../utils/TransformVolumeData";
 import TimeBased from "../../../components/charts/TimeBased";
 import { calculateOrgAverage } from "../../../utils/TransformTimeData";
+import CollaborationChart from "../../../components/charts/CollaborationChart";
 import { getTopContributorsAndRepos } from "../../../utils/getTopContributorsAndRepos";
 import lifetimeData from "../../../../../data/lifetime_data.json";
 import "./Home.css";
@@ -20,6 +21,39 @@ export const Home = () => {
     { label: "Avg Time to Close (Issues)", value: orgAvgClose },
     { label: "Avg Time to Merge (PRs)", value: orgAvgMerge },
   ];
+
+  const collaborationData = Object.entries(lifetimeData)
+  .map(([repoName, repo]) => {
+    const totalIssuesClosed = Object.values(repo.issues || {}).reduce(
+      (sum, user) => sum + Number(user.total_issues_closed || 0),
+      0
+    );
+
+    const totalPrsOpened = Object.values(repo.pull_requests || {}).reduce(
+      (sum, user) => sum + Number(user.total_prs_opened || user.total_prcs_opened || 0),
+      0
+    );
+
+    const totalPrsMerged = Object.values(repo.pull_requests || {}).reduce(
+      (sum, user) => sum + Number(user.total_prs_merged || 0),
+      0
+    );
+
+    const collaborationScore =
+      totalPrsMerged * 3 +
+      totalIssuesClosed * 2 +
+      totalPrsOpened;
+
+    return {
+      name: repoName,
+      prReviews: totalPrsMerged,
+      issueComments: totalIssuesClosed,
+      prComments: totalPrsOpened,
+      collaborationScore,
+    };
+  })
+  .sort((a, b) => b.collaborationScore - a.collaborationScore)
+  .slice(0, 10);
 
   // 2. Call your utility function right here to get the top 5
   const { topContributors, topRepos } = getTopContributorsAndRepos(lifetimeData, 12);
@@ -135,6 +169,13 @@ export const Home = () => {
           <h2 className="card-title">Time-based Metrics</h2>
           <div className="chart-wrapper">
             <TimeBased data={orgTimeBasedData} repos="All" />
+          </div>
+        </section>
+
+        <section className="card-blue">
+          <h2 className="card-title">Collaboration Index</h2>
+          <div className="chart-wrapper">
+            <CollaborationChart data={collaborationData} />
           </div>
         </section>
       </div>
