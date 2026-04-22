@@ -1,8 +1,10 @@
 import { useState, useMemo } from "react";
 import TimeBased from "../../../components/charts/TimeBased";
 import VolumeCharts from "../../../components/charts/VolumeBased";
+import PRMergeSuccessRateChart from "../../../components/charts/PRMergeSuccessRateChart";
 import lifetime from "../../../../../data/lifetime_data.json";
 import sprint from "../../../../../data/sprint_data.json";
+
 
 import { getUniqueUsers, getUniqueTeams, getUsersByRepo, buildTimeData, buildVolumeData } from "../utils/teamStatsHelper.js";
 import TeamStatsSidebar from "../components/teamStatsSidebar";
@@ -128,6 +130,15 @@ export const TeamStats = () => {
             />
           </div>
           <p className="chart-sublabel">Activity Volume</p>
+        </div>
+        <h2 className="section-heading">PR Metrics</h2>
+        <div className="chart-card">
+          <PRMergeSuccessRateChart 
+            selectedTeam={view === "team" ? selectedTeam : selectedUserRepo}
+          />
+          <p className="chart-sublabel">
+            PR Merge Success Rate (Lifetime vs Sprint)
+            </p>
         </div>
       </main>
     </div>
