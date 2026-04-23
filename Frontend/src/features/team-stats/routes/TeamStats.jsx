@@ -3,6 +3,7 @@ import TimeBased from "../../../components/charts/TimeBased";
 import VolumeCharts from "../../../components/charts/VolumeBased";
 import lifetime from "../../../../../data/lifetime_data.json";
 import sprint from "../../../../../data/sprint_data.json";
+import CollaborationChart from "../../../components/charts/CollaborationChart.jsx";
 
 import { getUniqueUsers, getUniqueTeams, getUsersByRepo, buildTimeData, buildVolumeData } from "../utils/teamStatsHelper.js";
 import TeamStatsSidebar from "../components/teamStatsSidebar";
@@ -40,6 +41,35 @@ export const TeamStats = () => {
   const closeData = useMemo(() => buildTimeData(effectiveData, "issues", "average_time_to_close", effectiveUser), [effectiveData, effectiveUser]);
   const mergeData = useMemo(() => buildTimeData(effectiveData, "pull_requests", "average_time_to_merge", effectiveUser), [effectiveData, effectiveUser]);
   const volumeData = useMemo(() => buildVolumeData(effectiveData, effectiveUser), [effectiveData, effectiveUser]);
+
+    const selectedRepo = view === "team" ? selectedTeam : selectedUserRepo;
+
+  const teamRadarData = useMemo(() => {
+    if (!selectedRepo || selectedRepo === "All Teams" || !lifetime[selectedRepo]) return [];
+
+    const repoData = lifetime[selectedRepo];
+
+    const totalIssuesClosed = Object.values(repoData.issues || {}).reduce(
+      (sum, user) => sum + Number(user.total_issues_closed || 0),
+      0
+    );
+
+    const totalPrsOpened = Object.values(repoData.pull_requests || {}).reduce(
+      (sum, user) => sum + Number(user.total_prs_opened || user.total_prcs_opened || 0),
+      0
+    );
+
+    const totalPrsMerged = Object.values(repoData.pull_requests || {}).reduce(
+      (sum, user) => sum + Number(user.total_prs_merged || 0),
+      0
+    );
+
+    return [
+      { metric: "PR Reviews", value: totalPrsMerged },
+      { metric: "Issue Comments", value: totalIssuesClosed },
+      { metric: "PR Comments", value: totalPrsOpened },
+    ];
+  }, [selectedRepo]);
 
   return (
     <div className="team-stats-container">
@@ -98,6 +128,21 @@ export const TeamStats = () => {
           </div>
           <p className="chart-sublabel">Activity Volume</p>
         </div>
+
+                {selectedRepo !== "All Teams" && teamRadarData.length > 0 && (
+          <>
+            <h2 className="section-heading">Collaboration Index</h2>
+            <div className="chart-card" style={{ display: "flex", justifyContent: "center" }}>
+              <CollaborationChart
+                data={teamRadarData}
+                mode="team"
+                title={`${selectedRepo} Collaboration Radar`}
+              />
+              <p className="chart-sublabel">Repository Collaboration Profile</p>
+            </div>
+          </>
+        )}
+
       </main>
     </div>
   );

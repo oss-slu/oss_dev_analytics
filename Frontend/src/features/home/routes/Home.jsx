@@ -1,3 +1,4 @@
+import { useState } from "react";
 import VolumeCharts from "../../../components/charts/VolumeBased";
 import { transformVolumeData } from "../../../utils/TransformVolumeData";
 import TimeBased from "../../../components/charts/TimeBased";
@@ -12,6 +13,7 @@ import "./Home.css";
         JSX.Element: The Home dashboard component.
 */
 export const Home = () => {
+  const [repoLimit, setRepoLimit] = useState(5);
   const orgVolumeData = transformVolumeData(lifetimeData, 'org', null, "All");
 
   const orgAvgClose = calculateOrgAverage(lifetimeData, "issues", "average_time_to_close");
@@ -53,7 +55,7 @@ export const Home = () => {
     };
   })
   .sort((a, b) => b.collaborationScore - a.collaborationScore)
-  .slice(0, 10);
+  .slice(0, repoLimit);
 
   // 2. Call your utility function right here to get the top 5
   const { topContributors, topRepos } = getTopContributorsAndRepos(lifetimeData, 12);
@@ -173,11 +175,31 @@ export const Home = () => {
         </section>
 
         <section className="card-blue">
-          <h2 className="card-title">Collaboration Index</h2>
-          <div className="chart-wrapper">
-            <CollaborationChart data={collaborationData} />
-          </div>
-        </section>
+  <h2 className="card-title">Collaboration Index</h2>
+  <div className="chart-wrapper">
+    <div style={{ marginBottom: "12px" }}>
+      <label style={{ marginRight: "10px", fontWeight: "bold" }}>
+        Show top repos:
+      </label>
+      <select
+        value={repoLimit}
+        onChange={(e) => setRepoLimit(Number(e.target.value))}
+        style={{
+          padding: "6px 10px",
+          borderRadius: "8px",
+          border: "1px solid #ccc",
+        }}
+      >
+        <option value={3}>3</option>
+        <option value={5}>5</option>
+        <option value={7}>7</option>
+        <option value={10}>10</option>
+      </select>
+    </div>
+
+    <CollaborationChart data={collaborationData} />
+  </div>
+</section>
       </div>
 
     </div>

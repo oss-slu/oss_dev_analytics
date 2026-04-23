@@ -1,3 +1,5 @@
+// NOTE: currently not used, replaced by repo-based aggregation in Home and TeamStats
+
 /*
     This function prepares the data for the chart
 
