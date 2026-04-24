@@ -1,20 +1,30 @@
-import { doc, documentSnapshotFromJSON, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, documentSnapshotFromJSON, getDocs, setDoc, getDoc, updateDoc, collection } from "firebase/firestore";
 import { db } from "../../../firebase";
 
 /**
  * Determines if user has logged in previously and has a document in the "users" collection of Firestore. If so, returns the user document data. If not, returns null.
- * @param {string} userId 
+ * @param {Object} authUser - The authenticated user object returned from Firebase Authentication after a successful login. 
  * @returns: User document if it exists or NULL
  */
 
-export const getTeamStatsAccounts = async (userId) => {
+export const fetchOrCreateUserDocument = async (authUser) => {
   try {
-    const userRef = doc(db, "users", userId);
+    const userRef = doc(db, "users", authUser.uid);
     const userSnap = await getDoc(userRef);
 
     if (userSnap.exists()) {
       return userSnap.data();
     } 
+    const githubUsername = authUser.reloadUserInfo.screenName || "";
+    const newUserDoc = {
+        displayName: authUser.displayName || "Developer",
+        email: authUser.email || "",
+        githubUsername: githubUsername,
+        trackedRepos: [],
+        trackedMetrics: []
+    }
+    await setDoc(userRef, newUserDoc);
+    return newUserDoc;
   } 
    catch(error) {
       console.error("Error fetching user document:", error);
@@ -78,4 +88,21 @@ export const updateRepoBaseMetrics = async (repoName, metrics) => {
     }
 };
 
-
+/**
+ * 
+ * @returns List of available repositories in the "repos" collection of Firestore. If there's an error, returns an empty list.
+ * This is used to populate the dropdown of repositories a user can select from when setting up their dashboard.
+ */
+export const fetchAvailableRepos = async () => {
+    try {
+        const reposSnapshot = await getDocs(collection(db, "repos"));
+        const repos = [];
+        reposSnapshot.forEach((doc) => {
+            repos.push(doc.id);
+        });
+        return repos;
+    } catch (error) {
+        console.error("Error fetching available repositories:", error);
+        return [];
+    }
+};
