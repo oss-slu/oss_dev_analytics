@@ -6,13 +6,16 @@
   "scripts": {
     "dev": "vite",
     "test": "vitest --environment jsdom",
-    "build": "vite build"
+    "build": "vite build",
+    "lint": "eslint ."
   },
   "vitest": {
     "globals": true,
     "environment": "jsdom"
   },
   "dependencies": {
+    "@okta/okta-auth-js": "^8.0.0",
+    "@okta/okta-react": "^6.11.0",
     "chart.js": "^4.5.1",
     "firebase": "^12.12.0",
     "react": "^19.2.0",
@@ -36,7 +39,7 @@
     "jsdom": "^27.0.1",
     "postcss": "^8.5.8",
     "tailwindcss": "^3.4.19",
-    "vite": "^7.2.4",
+    "vite": "^7.3.2",
     "vitest": "^3.2.4"
   }
 }

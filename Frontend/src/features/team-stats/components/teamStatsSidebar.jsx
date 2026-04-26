@@ -42,7 +42,13 @@ const TeamStatsSidebar = ({
         <div className="sidebar-section">
           <label className="sidebar-label">Team</label>
           <select className="sidebar-select" value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)}>
-            {TEAMS.map((t, index) => <option key={`team-${index}`} value={t}>{t}</option>)}
+            {[...TEAMS]
+              .sort((a, b) => a.localeCompare(b)) // Sort alphabetically
+              .map((t, index) => (
+                <option key={`team-${index}`} value={t}>
+                  {t}
+                </option>
+              ))}
           </select>
         </div>
       )}
@@ -59,7 +65,20 @@ const TeamStatsSidebar = ({
                 setSelectedUser("all");
               }}
             >
-              {TEAMS.map((t, index) => <option key={`repo-${index}`} value={t}>{t}</option>)}
+              {[...TEAMS]
+                .sort((a, b) => {
+                  // Keeping "All Teams" at the top
+                  if (a === "All Teams") return -1;
+                  if (b === "All Teams") return 1;
+
+                  // Sort the rest alphabetically
+                  return a.localeCompare(b);
+                })
+                .map((t, index) => (
+                  <option key={`repo-${index}`} value={t}>
+                    {t}
+                  </option>
+                ))}
             </select>
           </div>
 

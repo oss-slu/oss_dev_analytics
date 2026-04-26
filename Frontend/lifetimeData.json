@@ -204,9 +204,9 @@
     "oss_dev_analytics": {
         "issues": {
             "hcaballero2": {
-                "average_time_to_close": 441.99492547425467,
+                "average_time_to_close": 434.38345607235146,
                 "total_issues_opened": 55,
-                "total_issues_closed": "41",
+                "total_issues_closed": "43",
                 "currentStreak": 6
             },
             "hollowtree11": {
@@ -229,14 +229,14 @@
                 "total_prs_merged": "1"
             },
             "dhyana6466": {
-                "average_time_to_merge": 184.64194444444442,
+                "average_time_to_merge": 173.9122222222222,
                 "total_prs_opened": 13,
-                "total_prs_merged": "8"
+                "total_prs_merged": "9"
             },
             "ggondela1419": {
-                "average_time_to_merge": 63.286006944444445,
+                "average_time_to_merge": 64.21367283950617,
                 "total_prs_opened": 9,
-                "total_prs_merged": "8"
+                "total_prs_merged": "9"
             },
             "hcaballero2": {
                 "average_time_to_merge": 17.168883333333337,
@@ -250,7 +250,7 @@
             },
             "kiaramathews": {
                 "average_time_to_merge": 46.06402777777778,
-                "total_prs_opened": 8,
+                "total_prs_opened": 10,
                 "total_prs_merged": "4"
             },
             "viswanathreddy1017": {
@@ -262,31 +262,31 @@
         "commits": {
             "SrinivasaVarmaP": {
                 "total_commits": 1,
-                "average_velocity": 4.301369863013699
+                "average_velocity": 4.36
             },
             "dhyana6466": {
-                "total_commits": 25,
-                "average_velocity": 4.301369863013699
+                "total_commits": 28,
+                "average_velocity": 4.36
             },
             "ggondela1419": {
-                "total_commits": 12,
-                "average_velocity": 4.301369863013698
+                "total_commits": 20,
+                "average_velocity": 4.36
             },
             "hcaballero2": {
-                "total_commits": 190,
-                "average_velocity": 4.301369863013698
+                "total_commits": 192,
+                "average_velocity": 4.36
             },
             "hollowtree11": {
                 "total_commits": 28,
-                "average_velocity": 4.3013698630137
+                "average_velocity": 4.36
             },
             "kiaramathews": {
                 "total_commits": 8,
-                "average_velocity": 4.301369863013699
+                "average_velocity": 4.36
             },
             "viswanathreddy1017": {
                 "total_commits": 43,
-                "average_velocity": 4.301369863013698
+                "average_velocity": 4.360000000000001
             }
         }
     },
@@ -753,7 +753,7 @@
             },
             "kungfuchicken": {
                 "average_time_to_merge": 348.0138482384824,
-                "total_prs_opened": 43,
+                "total_prs_opened": 46,
                 "total_prs_merged": "41"
             },
             "leandrumartin": {
@@ -1135,10 +1135,10 @@
                 "currentStreak": 1
             },
             "Jahnavidarisetti": {
-                "average_time_to_close": 861.22675,
-                "total_issues_opened": 36,
-                "total_issues_closed": "20",
-                "currentStreak": 1
+                "average_time_to_close": 768.0385300925924,
+                "total_issues_opened": 38,
+                "total_issues_closed": "24",
+                "currentStreak": 2
             },
             "PanickerAnsel": {
                 "average_time_to_close": 4.506388888888889,
@@ -1213,9 +1213,9 @@
                 "total_prs_merged": "3"
             },
             "Jahnavidarisetti": {
-                "average_time_to_merge": 70.63944444444444,
-                "total_prs_opened": 9,
-                "total_prs_merged": "8"
+                "average_time_to_merge": 56.552499999999995,
+                "total_prs_opened": 11,
+                "total_prs_merged": "10"
             },
             "Massi-Papi": {
                 "average_time_to_merge": 9.279444444444444,
@@ -1223,9 +1223,9 @@
                 "total_prs_merged": "1"
             },
             "Mathieu25900": {
-                "average_time_to_merge": 179.56583333333333,
+                "average_time_to_merge": 224.99055555555552,
                 "total_prs_opened": 10,
-                "total_prs_merged": "2"
+                "total_prs_merged": "3"
             },
             "Mehulantony": {
                 "average_time_to_merge": 0,
@@ -1238,9 +1238,9 @@
                 "total_prs_merged": "12"
             },
             "PanickerAnsel": {
-                "average_time_to_merge": 561.8683333333333,
+                "average_time_to_merge": 489.5803472222222,
                 "total_prs_opened": 9,
-                "total_prs_merged": "3"
+                "total_prs_merged": "4"
             },
             "SiriChandanaGarimella": {
                 "average_time_to_merge": 327.9058333333333,
@@ -1326,95 +1326,95 @@
         "commits": {
             "Ebruns4": {
                 "total_commits": 7,
-                "average_velocity": 4.281124497991968
+                "average_velocity": 4.283464566929134
             },
             "HalimaMalik": {
                 "total_commits": 1,
-                "average_velocity": 4.281124497991968
+                "average_velocity": 4.283464566929134
             },
             "Jahnavidarisetti": {
-                "total_commits": 30,
-                "average_velocity": 4.281124497991968
+                "total_commits": 43,
+                "average_velocity": 4.283464566929133
             },
             "Massi-Papi": {
                 "total_commits": 23,
-                "average_velocity": 4.281124497991968
+                "average_velocity": 4.283464566929136
             },
             "NNewbauer": {
                 "total_commits": 35,
-                "average_velocity": 4.281124497991969
+                "average_velocity": 4.283464566929133
             },
             "PanickerAnsel": {
-                "total_commits": 11,
-                "average_velocity": 4.281124497991968
+                "total_commits": 15,
+                "average_velocity": 4.283464566929134
             },
             "SiriChandanaGarimella": {
                 "total_commits": 1,
-                "average_velocity": 4.281124497991968
+                "average_velocity": 4.283464566929134
             },
             "TeresaZhang11": {
                 "total_commits": 1,
-                "average_velocity": 4.281124497991968
+                "average_velocity": 4.283464566929134
             },
             "aithaprasad": {
                 "total_commits": 52,
-                "average_velocity": 4.281124497991969
+                "average_velocity": 4.283464566929133
             },
             "amalladi017": {
                 "total_commits": 53,
-                "average_velocity": 4.28112449799197
+                "average_velocity": 4.283464566929133
             },
             "aobermiller": {
                 "total_commits": 25,
-                "average_velocity": 4.281124497991968
+                "average_velocity": 4.283464566929135
             },
             "coridiaz": {
                 "total_commits": 165,
-                "average_velocity": 4.281124497991968
+                "average_velocity": 4.283464566929134
             },
             "dennisshey": {
                 "total_commits": 5,
-                "average_velocity": 4.281124497991968
+                "average_velocity": 4.283464566929134
             },
             "ikardasevic": {
                 "total_commits": 24,
-                "average_velocity": 4.281124497991968
+                "average_velocity": 4.283464566929134
             },
             "jackbelyeu": {
                 "total_commits": 137,
-                "average_velocity": 4.281124497991968
+                "average_velocity": 4.283464566929134
             },
             "kungfuchicken": {
                 "total_commits": 1,
-                "average_velocity": 4.281124497991968
+                "average_velocity": 4.283464566929134
             },
             "loganwyas": {
                 "total_commits": 100,
-                "average_velocity": 4.281124497991969
+                "average_velocity": 4.283464566929133
             },
             "moshernoah": {
                 "total_commits": 124,
-                "average_velocity": 4.281124497991969
+                "average_velocity": 4.283464566929135
             },
             "premkiran2": {
                 "total_commits": 7,
-                "average_velocity": 4.281124497991968
+                "average_velocity": 4.283464566929134
             },
             "rc10283": {
                 "total_commits": 38,
-                "average_velocity": 4.2811244979919705
+                "average_velocity": 4.283464566929133
             },
             "stanley-yang-2001": {
                 "total_commits": 51,
-                "average_velocity": 4.281124497991969
+                "average_velocity": 4.283464566929133
             },
             "stanleyyang2001": {
                 "total_commits": 9,
-                "average_velocity": 4.281124497991968
+                "average_velocity": 4.283464566929134
             },
             "tbush03": {
                 "total_commits": 49,
-                "average_velocity": 4.281124497991968
+                "average_velocity": 4.283464566929133
             }
         }
     },
@@ -2522,6 +2522,11 @@
                 "average_time_to_merge": 64.28138194444445,
                 "total_prs_opened": 51,
                 "total_prs_merged": "40"
+            },
+            "sakshar2303": {
+                "average_time_to_merge": 0,
+                "total_prs_opened": 6,
+                "total_prs_merged": "0"
             },
             "satyamyadav979": {
                 "average_time_to_merge": 134.70472222222222,
@@ -3798,9 +3803,9 @@
                 "total_prs_merged": "4"
             },
             "InfinityBowman": {
-                "average_time_to_merge": 23.40202777777778,
-                "total_prs_opened": 23,
-                "total_prs_merged": "20"
+                "average_time_to_merge": 22.287751322751326,
+                "total_prs_opened": 24,
+                "total_prs_merged": "21"
             },
             "Josh-Hogan-87": {
                 "average_time_to_merge": 274.6106565656565,
@@ -5189,110 +5194,92 @@
             "9LogM": {
                 "average_time_to_close": 2535.4280555555556,
                 "total_issues_opened": 1,
-                "total_issues_closed": "1",
-                "currentStreak": 1
+                "total_issues_closed": "1"
             },
             "AjithAkuthota23": {
                 "average_time_to_close": 22.990833333333335,
                 "total_issues_opened": 1,
-                "total_issues_closed": "1",
-                "currentStreak": 1
+                "total_issues_closed": "1"
             },
             "Anjali0407-git": {
                 "average_time_to_close": 0,
                 "total_issues_opened": 1,
-                "total_issues_closed": 0,
-                "currentStreak": 0
+                "total_issues_closed": 0
             },
             "BaloneyBoy97": {
                 "average_time_to_close": 0,
                 "total_issues_opened": 1,
-                "total_issues_closed": 0,
-                "currentStreak": 0
+                "total_issues_closed": 0
             },
             "BollepalliPranitha": {
                 "average_time_to_close": 0,
                 "total_issues_opened": 1,
-                "total_issues_closed": 0,
-                "currentStreak": 0
+                "total_issues_closed": 0
             },
             "DeviPriya-Kolla": {
                 "average_time_to_close": 0,
                 "total_issues_opened": 1,
-                "total_issues_closed": 0,
-                "currentStreak": 0
+                "total_issues_closed": 0
             },
             "MutyaSowmya123": {
                 "average_time_to_close": 0,
                 "total_issues_opened": 1,
-                "total_issues_closed": 0,
-                "currentStreak": 0
+                "total_issues_closed": 0
             },
             "Rakesh-Ranga-Buram": {
                 "average_time_to_close": 0,
                 "total_issues_opened": 1,
-                "total_issues_closed": 0,
-                "currentStreak": 0
+                "total_issues_closed": 0
             },
             "SiriChandanaGarimella": {
                 "average_time_to_close": 0,
                 "total_issues_opened": 1,
-                "total_issues_closed": 0,
-                "currentStreak": 0
+                "total_issues_closed": 0
             },
             "alar12": {
                 "average_time_to_close": 1.3430555555555554,
                 "total_issues_opened": 1,
-                "total_issues_closed": "1",
-                "currentStreak": 1
+                "total_issues_closed": "1"
             },
             "git-voo": {
                 "average_time_to_close": 0,
                 "total_issues_opened": 1,
-                "total_issues_closed": 0,
-                "currentStreak": 0
+                "total_issues_closed": 0
             },
             "jackbelyeu": {
                 "average_time_to_close": 0,
                 "total_issues_opened": 1,
-                "total_issues_closed": 0,
-                "currentStreak": 0
+                "total_issues_closed": 0
             },
             "jacksayshi": {
                 "average_time_to_close": 0,
                 "total_issues_opened": 1,
-                "total_issues_closed": 0,
-                "currentStreak": 0
+                "total_issues_closed": 0
             },
             "kungfuchicken": {
                 "average_time_to_close": 0,
                 "total_issues_opened": 4,
-                "total_issues_closed": 0,
-                "currentStreak": 0
+                "total_issues_closed": 0
             },
             "rcAsironman": {
                 "average_time_to_close": 0,
                 "total_issues_opened": 1,
-                "total_issues_closed": 0,
-                "currentStreak": 0
+                "total_issues_closed": 0
             },
             "suprajamannava17": {
                 "average_time_to_close": 0,
                 "total_issues_opened": 1,
-                "total_issues_closed": 0,
-                "currentStreak": 0
+                "total_issues_closed": 0
             },
             "yashcoded": {
                 "average_time_to_close": 0.5033333333333333,
                 "total_issues_opened": 1,
-                "total_issues_closed": "1",
-                "currentStreak": 1
+                "total_issues_closed": "1"
             },
             "yrlmanoharreddy": {
                 "average_time_to_close": 0,
                 "total_issues_opened": 1,
-                "total_issues_closed": 0,
-                "currentStreak": 0
+                "total_issues_closed": 0
             }
         },
         "pull_requests": {
@@ -5418,6 +5405,12 @@
                 "total_issues_closed": "4",
                 "currentStreak": 1
             },
+            "Joishee05": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 1,
+                "total_issues_closed": 0,
+                "currentStreak": 0
+            },
             "JoshBudzynski": {
                 "average_time_to_close": 5202.103055555555,
                 "total_issues_opened": 1,
@@ -5480,7 +5473,7 @@
             },
             "Brehana-Naidu": {
                 "average_time_to_merge": 527.6127777777778,
-                "total_prs_opened": 6,
+                "total_prs_opened": 7,
                 "total_prs_merged": "1"
             },
             "Deadpool2000": {
@@ -5712,10 +5705,10 @@
                 "currentStreak": 1
             },
             "vbramhadevi": {
-                "average_time_to_close": 747.4742592592593,
+                "average_time_to_close": 819.264236111111,
                 "total_issues_opened": 15,
-                "total_issues_closed": "9",
-                "currentStreak": 3
+                "total_issues_closed": "12",
+                "currentStreak": 4
             }
         },
         "pull_requests": {
@@ -5725,9 +5718,9 @@
                 "total_prs_merged": "0"
             },
             "Nyla-Hughes": {
-                "average_time_to_merge": 250.80836419753086,
+                "average_time_to_merge": 255.10555555555555,
                 "total_prs_opened": 14,
-                "total_prs_merged": "9"
+                "total_prs_merged": "11"
             },
             "aelnourSLU": {
                 "average_time_to_merge": 133.92593253968252,
@@ -5750,9 +5743,9 @@
                 "total_prs_merged": "12"
             },
             "jthomas39": {
-                "average_time_to_merge": 125.20839506172842,
+                "average_time_to_merge": 118.27091666666668,
                 "total_prs_opened": 11,
-                "total_prs_merged": "9"
+                "total_prs_merged": "10"
             },
             "vbramhadevi": {
                 "average_time_to_merge": 0.16916666666666666,
@@ -5763,51 +5756,51 @@
         "commits": {
             "DeviPriya-Kolla": {
                 "total_commits": 51,
-                "average_velocity": 3.9083333333333328
+                "average_velocity": 3.950819672131148
             },
             "Nyla12": {
-                "total_commits": 7,
-                "average_velocity": 3.9083333333333323
+                "total_commits": 9,
+                "average_velocity": 3.950819672131148
             },
             "ScorpionSG": {
                 "total_commits": 34,
-                "average_velocity": 3.908333333333333
+                "average_velocity": 3.950819672131148
             },
             "aelnourSLU": {
                 "total_commits": 46,
-                "average_velocity": 3.9083333333333328
+                "average_velocity": 3.9508196721311495
             },
             "bramhadevivamsi": {
                 "total_commits": 5,
-                "average_velocity": 3.9083333333333328
+                "average_velocity": 3.9508196721311477
             },
             "carlyhoover": {
                 "total_commits": 15,
-                "average_velocity": 3.9083333333333323
+                "average_velocity": 3.9508196721311473
             },
             "carlyrhoover": {
                 "total_commits": 20,
-                "average_velocity": 3.9083333333333328
+                "average_velocity": 3.9508196721311477
             },
             "harshitha-thota": {
                 "total_commits": 33,
-                "average_velocity": 3.908333333333333
+                "average_velocity": 3.9508196721311477
             },
             "hrmeiners": {
                 "total_commits": 161,
-                "average_velocity": 3.9083333333333328
+                "average_velocity": 3.9508196721311473
             },
             "jthomas39": {
-                "total_commits": 39,
-                "average_velocity": 3.9083333333333328
+                "total_commits": 46,
+                "average_velocity": 3.9508196721311495
             },
             "kate-holdener": {
                 "total_commits": 1,
-                "average_velocity": 3.908333333333333
+                "average_velocity": 3.9508196721311477
             },
             "vbramhadevi": {
-                "total_commits": 20,
-                "average_velocity": 3.9083333333333328
+                "total_commits": 24,
+                "average_velocity": 3.9508196721311477
             }
         }
     },
@@ -5888,7 +5881,7 @@
             },
             "LuisPalmejar21": {
                 "average_time_to_merge": 336.2215277777778,
-                "total_prs_opened": 2,
+                "total_prs_opened": 3,
                 "total_prs_merged": "2"
             },
             "MikeManzi": {
@@ -5907,8 +5900,8 @@
                 "total_prs_merged": "6"
             },
             "TommySailami": {
-                "average_time_to_merge": 47.84490740740742,
-                "total_prs_opened": 9,
+                "average_time_to_merge": 47.844907407407405,
+                "total_prs_opened": 10,
                 "total_prs_merged": "9"
             },
             "dracpak": {
@@ -5917,9 +5910,9 @@
                 "total_prs_merged": "1"
             },
             "mainuddinMains": {
-                "average_time_to_merge": 10.20397435897436,
-                "total_prs_opened": 34,
-                "total_prs_merged": "26"
+                "average_time_to_merge": 9.828888888888889,
+                "total_prs_opened": 35,
+                "total_prs_merged": "27"
             },
             "mgaikwad129": {
                 "average_time_to_merge": 81.39666666666666,
@@ -5950,55 +5943,55 @@
         "commits": {
             "AjithAkuthota23": {
                 "total_commits": 40,
-                "average_velocity": 4.150442477876106
+                "average_velocity": 4.219298245614035
             },
             "LuisPalmejar21": {
                 "total_commits": 17,
-                "average_velocity": 4.150442477876106
+                "average_velocity": 4.219298245614035
             },
             "Omp06": {
                 "total_commits": 49,
-                "average_velocity": 4.150442477876106
+                "average_velocity": 4.219298245614034
             },
             "PranaviKolouju": {
                 "total_commits": 1,
-                "average_velocity": 4.150442477876106
+                "average_velocity": 4.219298245614035
             },
             "TommySailami": {
-                "total_commits": 32,
-                "average_velocity": 4.150442477876106
+                "total_commits": 37,
+                "average_velocity": 4.219298245614034
             },
             "dracpak": {
                 "total_commits": 1,
-                "average_velocity": 4.150442477876106
+                "average_velocity": 4.219298245614035
             },
             "mainuddinMains": {
-                "total_commits": 134,
-                "average_velocity": 4.150442477876105
+                "total_commits": 141,
+                "average_velocity": 4.219298245614035
             },
             "mgaikwad129": {
                 "total_commits": 7,
-                "average_velocity": 4.150442477876106
+                "average_velocity": 4.219298245614035
             },
             "mhashm1": {
                 "total_commits": 25,
-                "average_velocity": 4.150442477876107
+                "average_velocity": 4.219298245614036
             },
             "oam67": {
                 "total_commits": 2,
-                "average_velocity": 4.150442477876106
+                "average_velocity": 4.219298245614035
             },
             "sahanagujja": {
                 "total_commits": 1,
-                "average_velocity": 4.150442477876106
+                "average_velocity": 4.219298245614035
             },
             "tanzim10": {
                 "total_commits": 19,
-                "average_velocity": 4.150442477876107
+                "average_velocity": 4.219298245614036
             },
             "vrinda0115": {
                 "total_commits": 5,
-                "average_velocity": 4.150442477876106
+                "average_velocity": 4.219298245614035
             }
         }
     },
@@ -6991,9 +6984,9 @@
                 "total_prs_merged": "14"
             },
             "AyoAwodeyi": {
-                "average_time_to_merge": 0.07722222222222222,
-                "total_prs_opened": 7,
-                "total_prs_merged": "7"
+                "average_time_to_merge": 0.36725694444444446,
+                "total_prs_opened": 9,
+                "total_prs_merged": "8"
             },
             "CodeAndCurry-sk": {
                 "average_time_to_merge": 0,
@@ -7144,127 +7137,127 @@
         "commits": {
             "Abhi-Stephen": {
                 "total_commits": 5,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "Anjali0407-git": {
                 "total_commits": 33,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "AyoAwodeyi": {
-                "total_commits": 8,
-                "average_velocity": 5.0625
+                "total_commits": 12,
+                "average_velocity": 5.067357512953367
             },
             "Brijitha1609": {
                 "total_commits": 2,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "Chirag2x": {
                 "total_commits": 2,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "Gayatrinj": {
                 "total_commits": 26,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "MATHEW-SHERENI": {
-                "total_commits": 65,
-                "average_velocity": 5.0625
+                "total_commits": 66,
+                "average_velocity": 5.067357512953368
             },
             "Moshrefi": {
                 "total_commits": 5,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "Ravali-Maddela": {
                 "total_commits": 5,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "SaiKiran0407": {
                 "total_commits": 51,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953369
             },
             "Sarvesh-7777": {
                 "total_commits": 16,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "Sharath-Devadiga": {
                 "total_commits": 4,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "SiriChandanaGarimella": {
                 "total_commits": 24,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "Walking2hell": {
                 "total_commits": 2,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "adhampton110": {
                 "total_commits": 22,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953367
             },
             "alar12": {
                 "total_commits": 54,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953369
             },
             "ayushranaut": {
                 "total_commits": 1,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "bkkanth": {
                 "total_commits": 5,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "colepatrick": {
                 "total_commits": 42,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953369
             },
             "deepak-pvsn": {
                 "total_commits": 8,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "dracpak": {
                 "total_commits": 16,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "jackcrane": {
                 "total_commits": 1,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "kungfuchicken": {
                 "total_commits": 6,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "miabu-pashh": {
                 "total_commits": 46,
-                "average_velocity": 5.0625
+                "average_velocity": 5.06735751295337
             },
             "michael-020": {
                 "total_commits": 4,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "saidugyala": {
                 "total_commits": 33,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "truffer11": {
                 "total_commits": 139,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "twillis8": {
                 "total_commits": 19,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953367
             },
             "vinay-billa-slu": {
                 "total_commits": 134,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953369
             },
             "yashgurav": {
                 "total_commits": 2,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             },
             "yrlmanoharreddy": {
                 "total_commits": 3,
-                "average_velocity": 5.0625
+                "average_velocity": 5.067357512953368
             }
         }
     },
@@ -7818,6 +7811,11 @@
                 "total_prs_opened": 2,
                 "total_prs_merged": "1"
             },
+            "sakshar2303": {
+                "average_time_to_merge": 0,
+                "total_prs_opened": 2,
+                "total_prs_merged": "0"
+            },
             "sriram1302": {
                 "average_time_to_merge": 7.098076923076922,
                 "total_prs_opened": 13,
@@ -8053,12 +8051,12 @@
         "pull_requests": {
             "GustavoLucca": {
                 "average_time_to_merge": 113.42093434343434,
-                "total_prs_opened": 12,
+                "total_prs_opened": 13,
                 "total_prs_merged": "11"
             },
             "PGuffey": {
-                "average_time_to_merge": 64.31118686868686,
-                "total_prs_opened": 11,
+                "average_time_to_merge": 64.31118686868687,
+                "total_prs_opened": 12,
                 "total_prs_merged": "11"
             },
             "pelumitegbe": {
@@ -8264,16 +8262,14 @@
     "oss_infra_ops": {
         "issues": {
             "AyoAwodeyi": {
-                "average_time_to_close": 250.446875,
-                "total_issues_opened": 11,
-                "total_issues_closed": "8",
-                "currentStreak": 1
+                "average_time_to_close": 216.39708333333334,
+                "total_issues_opened": 7,
+                "total_issues_closed": "4"
             },
             "kungfuchicken": {
                 "average_time_to_close": 2757.2741319444444,
                 "total_issues_opened": 16,
-                "total_issues_closed": "16",
-                "currentStreak": 1
+                "total_issues_closed": "16"
             }
         },
         "pull_requests": {
@@ -8283,14 +8279,14 @@
                 "total_prs_merged": "9"
             },
             "HuntC19": {
-                "average_time_to_merge": 128.16666666666666,
-                "total_prs_opened": 4,
-                "total_prs_merged": "4"
+                "average_time_to_merge": 61.04875,
+                "total_prs_opened": 3,
+                "total_prs_merged": "2"
             },
             "j-heitz": {
-                "average_time_to_merge": 133.78048611111112,
-                "total_prs_opened": 4,
-                "total_prs_merged": "4"
+                "average_time_to_merge": 61.27055555555556,
+                "total_prs_opened": 3,
+                "total_prs_merged": "2"
             },
             "kungfuchicken": {
                 "average_time_to_merge": 470.99916666666667,
@@ -8305,24 +8301,24 @@
         },
         "commits": {
             "AyoAwodeyi": {
-                "total_commits": 26,
-                "average_velocity": 3.724137931034482
+                "total_commits": 23,
+                "average_velocity": 4.0
             },
             "HuntC19": {
-                "total_commits": 8,
-                "average_velocity": 3.7241379310344827
+                "total_commits": 5,
+                "average_velocity": 4.0
             },
             "j-heitz": {
-                "total_commits": 6,
-                "average_velocity": 3.7241379310344827
+                "total_commits": 4,
+                "average_velocity": 4.0
             },
             "kungfuchicken": {
                 "total_commits": 3,
-                "average_velocity": 3.7241379310344827
+                "average_velocity": 4.0
             },
             "sudoava": {
                 "total_commits": 65,
-                "average_velocity": 3.724137931034483
+                "average_velocity": 4.0
             }
         }
     },
@@ -8455,7 +8451,7 @@
             },
             "Mehulantony": {
                 "average_time_to_merge": 191.6297222222222,
-                "total_prs_opened": 11,
+                "total_prs_opened": 13,
                 "total_prs_merged": "3"
             },
             "allenbakki": {
@@ -8585,8 +8581,8 @@
                 "total_prs_merged": "1"
             },
             "LeahBragg": {
-                "average_time_to_merge": 63.7469212962963,
-                "total_prs_opened": 12,
+                "average_time_to_merge": 63.74692129629631,
+                "total_prs_opened": 13,
                 "total_prs_merged": "12"
             },
             "bhuelsman": {
@@ -8616,7 +8612,11 @@
         "commits": {
             "Devayani1612": {
                 "total_commits": 1,
-                "average_velocity": 1.0
+                "average_velocity": 4.333333333333333
+            },
+            "kungfuchicken": {
+                "total_commits": 12,
+                "average_velocity": 4.333333333333334
             }
         }
     },
@@ -8637,7 +8637,7 @@
             },
             "leandrumartin": {
                 "average_time_to_merge": 391.73407407407404,
-                "total_prs_opened": 4,
+                "total_prs_opened": 5,
                 "total_prs_merged": "3"
             }
         },
@@ -9223,10 +9223,9 @@
     "GradEval360": {
         "issues": {
             "premkiran2": {
-                "average_time_to_close": 171.17704678362577,
-                "total_issues_opened": 22,
-                "total_issues_closed": "19",
-                "currentStreak": 2
+                "average_time_to_close": 164.45180555555555,
+                "total_issues_opened": 10,
+                "total_issues_closed": "8"
             }
         },
         "pull_requests": {
@@ -9236,37 +9235,37 @@
                 "total_prs_merged": "1"
             },
             "LilLizDog": {
-                "average_time_to_merge": 128.7213888888889,
-                "total_prs_opened": 6,
-                "total_prs_merged": "4"
+                "average_time_to_merge": 38.93333333333334,
+                "total_prs_opened": 3,
+                "total_prs_merged": "2"
             },
             "dmupenda": {
-                "average_time_to_merge": 82.17236111111112,
-                "total_prs_opened": 5,
-                "total_prs_merged": "4"
+                "average_time_to_merge": 32.73777777777778,
+                "total_prs_opened": 2,
+                "total_prs_merged": "2"
             },
             "premkiran2": {
-                "average_time_to_merge": 0.08366161616161616,
-                "total_prs_opened": 11,
-                "total_prs_merged": "11"
+                "average_time_to_merge": 0.22527777777777777,
+                "total_prs_opened": 3,
+                "total_prs_merged": "3"
             }
         },
         "commits": {
             "Jahnavidarisetti": {
                 "total_commits": 2,
-                "average_velocity": 3.2
+                "average_velocity": 3.6363636363636362
             },
             "LilLizDog": {
-                "total_commits": 8,
-                "average_velocity": 3.2
+                "total_commits": 6,
+                "average_velocity": 3.6363636363636362
             },
             "dmupenda": {
-                "total_commits": 8,
-                "average_velocity": 3.2
+                "total_commits": 2,
+                "average_velocity": 3.6363636363636362
             },
             "premkiran2": {
-                "total_commits": 62,
-                "average_velocity": 3.199999999999999
+                "total_commits": 30,
+                "average_velocity": 3.636363636363637
             }
         }
     },
@@ -9287,6 +9286,27 @@
             "jacksayshi": {
                 "total_commits": 2,
                 "average_velocity": 1.0
+            },
+            "kungfuchicken": {
+                "total_commits": 1,
+                "average_velocity": 1.0
+            }
+        }
+    },
+    "workshop_bolt": {
+        "issues": {
+            "kungfuchicken": {
+                "average_time_to_close": 19.89238888888889,
+                "total_issues_opened": 77,
+                "total_issues_closed": "20",
+                "currentStreak": 1
+            }
+        },
+        "pull_requests": {},
+        "commits": {
+            "kungfuchicken": {
+                "total_commits": 4,
+                "average_velocity": 1.3333333333333333
             }
         }
     },
@@ -9299,47 +9319,54 @@
                 "currentStreak": 1
             }
         },
-        "pull_requests": {},
+        "pull_requests": {
+            "kungfuchicken": {
+                "average_time_to_merge": 0.4127777777777778,
+                "total_prs_opened": 3,
+                "total_prs_merged": "1"
+            }
+        },
         "commits": {
             "kungfuchicken": {
-                "total_commits": 11,
-                "average_velocity": 2.1999999999999997
+                "total_commits": 13,
+                "average_velocity": 2.166666666666667
             }
         }
     },
-    "k8s-manifests": {
+    "handbook_industry_fellows": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {
+            "jacksayshi": {
+                "total_commits": 1,
+                "average_velocity": 1.0
+            },
+            "kungfuchicken": {
+                "total_commits": 1,
+                "average_velocity": 1.0
+            }
+        }
+    },
+    "course_capstone": {
         "issues": {
-            "AyoAwodeyi": {
-                "average_time_to_close": 0.5030555555555556,
-                "total_issues_opened": 2,
-                "total_issues_closed": "2",
-                "currentStreak": 1
+            "kungfuchicken": {
+                "average_time_to_close": 0,
+                "total_issues_opened": 151,
+                "total_issues_closed": 0,
+                "currentStreak": 0
             }
         },
         "pull_requests": {
-            "HuntC19": {
-                "average_time_to_merge": 0.29555555555555557,
-                "total_prs_opened": 1,
-                "total_prs_merged": "1"
-            },
-            "j-heitz": {
-                "average_time_to_merge": 0.1436111111111111,
-                "total_prs_opened": 1,
+            "kungfuchicken": {
+                "average_time_to_merge": 0.3047222222222222,
+                "total_prs_opened": 3,
                 "total_prs_merged": "1"
             }
         },
         "commits": {
-            "AyoAwodeyi": {
-                "total_commits": 18,
-                "average_velocity": 3.0
-            },
-            "HuntC19": {
-                "total_commits": 2,
-                "average_velocity": 3.0
-            },
-            "j-heitz": {
-                "total_commits": 1,
-                "average_velocity": 3.0
+            "kungfuchicken": {
+                "total_commits": 8,
+                "average_velocity": 1.6
             }
         }
     },
@@ -9376,6 +9403,16 @@
             "j-heitz": {
                 "total_commits": 1,
                 "average_velocity": 3.3333333333333335
+            }
+        }
+    },
+    "guidebook_tech_debt": {
+        "issues": {},
+        "pull_requests": {},
+        "commits": {
+            "kungfuchicken": {
+                "total_commits": 1,
+                "average_velocity": 1.0
             }
         }
     }
