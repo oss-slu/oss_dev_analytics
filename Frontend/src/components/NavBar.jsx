@@ -15,15 +15,6 @@ export const Navbar = () => {
     return () => unsubscribe(); 
   }, []);
 
-  const githubData = user?.providerData?.[0];
-// to collect and return their github username and picture
-  const displayName =
-    githubData?.displayName ||
-    user?.reloadUserInfo?.screenName ||
-    "GitHub User";
-
-  const photoURL = githubData?.photoURL || loginProfile;
-
   return (
     <div style={styles.wrapper}>
       <nav style={styles.nav}>
@@ -50,17 +41,14 @@ export const Navbar = () => {
               Team
             </Link>
           </li>
-        
+
           <li style={{ textAlign: "center" }}>
-            <Link to={user ? "/" : "/login"} style={styles.link}> 
-              <img src={photoURL} alt="Profile" style={styles.profileImg} />
+            <Link to="/login" style={styles.link}>
+              <img src={loginProfile} alt="Profile" style={styles.profileImg} />
             </Link>
 
-            {user && (
-              <div style={styles.userInfo}>
-                <div style={styles.username}>{displayName}</div>
-              </div>
-            )}
+            {/* text to say signed in */}
+            {user && <div style={styles.signedInText}>Signed in!</div>}
           </li>
         </ul>
       </nav>
@@ -119,20 +107,11 @@ const styles = {
     height: "40px",
     objectFit: "cover",
     cursor: "pointer",
-    borderRadius: "50%",
   },
   signedInText: {
     fontSize: "12px",
     marginTop: "5px",
     color: "#A8D0FF",
-  },
-  username: {
-    fontSize: "12px",
-    color: "#A8D0FF",
-    maxWidth: "80px",
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    whiteSpace: "nowrap",
   },
 };
 
