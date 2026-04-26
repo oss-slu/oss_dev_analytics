@@ -58,9 +58,9 @@ export const TeamStats = () => {
         const data = await fetchOrCreateUserDocument(user);
         setUserDoc(data);
     
-      if (data && data.savedRepos && data.savedRepos.length > 0) {
-        setSelectedUserRepo(data.savedRepos[0]);
-        setSelectedTeam(data.savedRepos[0]);
+      if (data && data.trackedRepos && data.trackedRepos.length > 0) {
+        setSelectedUserRepo(data.trackedRepos[0]);
+        setSelectedTeam(data.trackedRepos[0]);
       }
     }
      setLoadingUserDoc(false);
@@ -95,18 +95,22 @@ export const TeamStats = () => {
   if (loadingUserDoc) {
     <div className="flex justify-center items-center h-[60vh] text-xl text-gray-600 font-bold">Loading...</div>
   }
-  const needsSetup = authUser && (!userDoc || !userDoc.savedRepos || userDoc.savedRepos.length === 0); // checking if user needs to go through setup
+  const needsSetup = authUser && (!userDoc || !userDoc.trackedRepos || userDoc.trackedRepos.length === 0); 
+  
   if (needsSetup) {
-    const assignableRepos = TEAMS.filter(team => team !== "All Teams"); // Exclude "All Teams" from options
     return (
       <UserSetup 
-        user={authUser} 
+        userId={authUser.uid} 
         userDoc={userDoc}
-        repos={assignableRepos}
+        availableRepos={availableRepos}
         onComplete={(selectedPreferences) => {
-          setUserDoc({...userDoc, savedRepos: selectedPreferences.selectedRepos });
-          setSelectedTeam(selectedPreferences.selectedRepos[0]);
-          setSelectedUserRepo(selectedPreferences.selectedRepos[0]);
+          setUserDoc({
+            ...userDoc, 
+            trackedRepos: selectedPreferences.trackedRepos,
+            trackedMetrics: selectedPreferences.trackedMetrics 
+          });
+          setSelectedTeam(selectedPreferences.trackedRepos[0]);
+          setSelectedUserRepo(selectedPreferences.trackedRepos[0]);
         }}
       />
     );
