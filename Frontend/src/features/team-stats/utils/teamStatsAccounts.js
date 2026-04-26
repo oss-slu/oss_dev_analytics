@@ -1,4 +1,4 @@
-import { doc, documentSnapshotFromJSON, getDocs, setDoc, getDoc, updateDoc, collection } from "firebase/firestore";
+import { doc, getDocs, setDoc, getDoc, updateDoc, collection } from "firebase/firestore";
 import { db } from "../../../firebase";
 
 /**

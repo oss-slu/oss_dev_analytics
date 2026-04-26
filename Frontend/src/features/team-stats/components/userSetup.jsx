@@ -21,7 +21,13 @@ export default function UserSetup({ userId, availableRepos = [], onComplete, use
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        let isMounted = true; 
         const getBaseMetrics = async () => {
+            if (selectedRepos.length === 0) {
+                if (isMounted) setInheritedMetrics([]);
+                return;
+            }
+
             let combined = new Set();
             for (const repo of selectedRepos) {
                 const metrics = await fetchRepoBaseMetrics(repo);
@@ -29,14 +35,16 @@ export default function UserSetup({ userId, availableRepos = [], onComplete, use
                     metrics.forEach((m) => combined.add(m));
                 }
             }
-            setInheritedMetrics(Array.from(combined));
+            
+            if (isMounted) {
+                setInheritedMetrics(Array.from(combined));
+            }
         };
         
-        if (selectedRepos.length > 0) {
-            getBaseMetrics();
-        } else {
-            setInheritedMetrics([]);
-        }
+        getBaseMetrics();
+        return () => {
+            isMounted = false;
+        };
     }, [selectedRepos]);
 
     const toggleSelection = (item, selectedItems, setSelectedItems) => {
