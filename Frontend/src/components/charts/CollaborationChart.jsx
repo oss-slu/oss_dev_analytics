@@ -49,13 +49,16 @@ const CollaborationChart = ({
 }) => {
     return (
         <div style={{ width: "100%", height: 500 }}>
-            <h3 style={{ textAlign: "center", marginBottom: "16px" }}>
+            <h3 style={{ textAlign: "center", marginBottom: "8px" }}>
                 {title}
             </h3>
 
             <ResponsiveContainer width="100%" height="100%">
                 {mode === "team" ? (
-                    <RadarChart data={data}>
+                    <RadarChart 
+                        data={data}
+                        margin={{ top: 20, right: 150, bottom: 20, left: 20 }}
+                    >
                         <PolarGrid stroke="#9ca3af" />
                         <PolarAngleAxis
                             dataKey="metric"
@@ -80,12 +83,17 @@ const CollaborationChart = ({
                         />
                         <PolarRadiusAxis tick={{ fill: "#111827" }} />
                         <Tooltip content={<CustomTooltip />} />
-                        <Legend />
+                        <Legend 
+                            layout="vertical"
+                            align="right"
+                            verticalAlign="middle"
+                            wrapperStyle={{ paddingLeft: "10px" }}
+                        />
                         <Radar
                             name="PR Reviews"
                             dataKey="prReviews"
-                            stroke="#3b82f6"
-                            fill="#3b82f6"
+                            stroke="#f59e0b"
+                            fill="#f59e0b"
                             fillOpacity={0.35}
                         />
                         <Radar
@@ -98,8 +106,8 @@ const CollaborationChart = ({
                         <Radar
                             name="PR Comments"
                             dataKey="prComments"
-                            stroke="#60a5fa"
-                            fill="#60a5fa"
+                            stroke="#16a34a"
+                            fill="#16a34a"
                             fillOpacity={0.2}
                         />
                     </RadarChart>

@@ -10,7 +10,7 @@
 */
 
 import { getTopContributorsAndRepos } from "../utils/getTopContributorsAndRepos";
-import lifetimeData from "../../../lifetimeData.json";
+import lifetimeData from "../../../data/lifetime_data.json";
 
 
 const TOP_N = 5;
