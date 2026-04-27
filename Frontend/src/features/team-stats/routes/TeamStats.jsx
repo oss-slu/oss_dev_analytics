@@ -3,7 +3,7 @@ import VolumeCharts from "../../../components/charts/VolumeBased";
 import lifetime from "../../../../../data/lifetime_data.json";
 import sprint from "../../../../../data/sprint_data.json";
 import { calculateHealthScore } from "../utils/calculateHealth.js";
-import userSetup from "../components/userSetup.jsx";
+import UserSetup from "../components/UserSetup.jsx";
 
 import { getUniqueUsers, getUniqueTeams, getUsersByRepo, buildTimeData, buildVolumeData } from "../utils/teamStatsHelper.js";
 import TeamStatsSidebar from "../components/teamStatsSidebar";
@@ -99,7 +99,7 @@ export const TeamStats = () => {
   
   if (needsSetup) {
     return (
-      <userSetup 
+      <UserSetup 
         userId={authUser.uid} 
         userDoc={userDoc}
         availableRepos={availableRepos}
