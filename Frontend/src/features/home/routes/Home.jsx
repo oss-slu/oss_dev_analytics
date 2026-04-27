@@ -3,9 +3,9 @@ import VolumeCharts from "../../../components/charts/VolumeBased";
 import { transformVolumeData } from "../../../utils/TransformVolumeData";
 import CollaborationChart from "../../../components/charts/CollaborationChart";
 import { getTopContributorsAndRepos } from "../../../utils/getTopContributorsAndRepos";
-import TopContributorsRepos from "../../../components/TopContributorsRepos";
 import lifetimeData from "../../../../../data/lifetime_data.json";
 import "./Home.css";
+
 /*
     Main Home dashboard view displaying high-level organization metrics.
     Returns:
@@ -14,7 +14,7 @@ import "./Home.css";
 export const Home = () => {
   const [repoLimit, setRepoLimit] = useState(5);
   const orgVolumeData = transformVolumeData(lifetimeData, 'org', null, "All");
-
+  
   const collaborationData = Object.entries(lifetimeData)
   .map(([repoName, repo]) => {
     const totalIssuesClosed = Object.values(repo.issues || {}).reduce(

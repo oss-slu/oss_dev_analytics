@@ -1,15 +1,22 @@
-import { useState, useMemo } from "react";
 import TimeBased from "../../../components/charts/TimeBased";
 import VolumeCharts from "../../../components/charts/VolumeBased";
 import lifetime from "../../../../../data/lifetime_data.json";
 import sprint from "../../../../../data/sprint_data.json";
 import CollaborationChart from "../../../components/charts/CollaborationChart.jsx";
+import { calculateHealthScore } from "../utils/calculateHealth.js";
+import UserSetup from "../components/UserSetup.jsx";
 
 import { getUniqueUsers, getUniqueTeams, getUsersByRepo, buildTimeData, buildVolumeData } from "../utils/teamStatsHelper.js";
 import TeamStatsSidebar from "../components/teamStatsSidebar";
 import StatSummaryGrid from "../components/statSummaryGrid";
 import "./TeamStats.css";
+import ActionableInsightsPanel from "../../../components/ActionableInsightsPanel.jsx";
+import { getActionableInsights } from "../../../utils/getActionableInsights.js";
 
+import { useState, useMemo, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../../firebase";
+import { fetchAvailableRepos, fetchOrCreateUserDocument } from "../utils/teamStatsAccounts.js";
 /* 
 Constants initialized outside the component to prevent re-creation on render 
 */
@@ -29,6 +36,40 @@ export const TeamStats = () => {
   const [selectedSprint, setSelectedSprint] = useState(SPRINTS[0] || "1");
   const [selectedUser, setSelectedUser] = useState("all");
 
+  const [authUser, setAuthUser] = useState(null);
+  const [userDoc, setUserDoc] = useState(null);
+  const [loadingUserDoc, setLoadingUserDoc] = useState(true);
+  const [availableRepos, setAvailableRepos] = useState([]);
+
+  // Listen for repo request from setup and fetch available repos for user
+  useEffect(() => {
+    const loadRepos = async () => {
+      const fetchedRepos = await fetchAvailableRepos();
+      setAvailableRepos(fetchedRepos);
+    };
+    
+    loadRepos();
+  }, []);
+  
+  // Listen for Firebase auth state changes to manage user session and data fetching
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setAuthUser(user);
+      if (user) {
+        const data = await fetchOrCreateUserDocument(user);
+        setUserDoc(data);
+    
+      if (data && data.trackedRepos && data.trackedRepos.length > 0) {
+        setSelectedUserRepo(data.trackedRepos[0]);
+        setSelectedTeam(data.trackedRepos[0]);
+      }
+    }
+     setLoadingUserDoc(false);
+  });
+
+    return () => unsubscribe(); // stop listener
+  }, []);
+
   const availableUsers = useMemo(() => getUsersByRepo(lifetime, selectedUserRepo), [selectedUserRepo]);
   const effectiveUser = view === "team" ? "all" : selectedUser;
 
@@ -38,15 +79,24 @@ export const TeamStats = () => {
     return { [repoFilter]: lifetime[repoFilter] || {} };
   }, [view, selectedTeam, selectedUserRepo]);
 
+  const healthScoreData = useMemo(() => {
+    const activeMetrics = userDoc ?.trackedMetrics?.length > 0
+      ? userDoc.trackedMetrics
+      : [];
+    return calculateHealthScore(effectiveData, activeMetrics);
+  }, [effectiveData, userDoc]);
+
+  const insights = getActionableInsights(healthScoreData);
+  const isHealthy = insights.length === 0;
+
   const closeData = useMemo(() => buildTimeData(effectiveData, "issues", "average_time_to_close", effectiveUser), [effectiveData, effectiveUser]);
   const mergeData = useMemo(() => buildTimeData(effectiveData, "pull_requests", "average_time_to_merge", effectiveUser), [effectiveData, effectiveUser]);
   const volumeData = useMemo(() => buildVolumeData(effectiveData, effectiveUser), [effectiveData, effectiveUser]);
 
-    const selectedRepo = view === "team" ? selectedTeam : selectedUserRepo;
+  const selectedRepo = view === "team" ? selectedTeam : selectedUserRepo;
 
   const teamRadarData = useMemo(() => {
     if (!selectedRepo || selectedRepo === "All Teams" || !lifetime[selectedRepo]) return [];
-
     const repoData = lifetime[selectedRepo];
 
     const totalIssuesClosed = Object.values(repoData.issues || {}).reduce(
@@ -71,6 +121,36 @@ export const TeamStats = () => {
     ];
   }, [selectedRepo]);
 
+      if (loadingUserDoc) {
+      return (
+        <div className="flex justify-center items-center h-[60vh] text-xl text-gray-600 font-bold">
+          Loading...
+        </div>
+      );
+    }
+
+    const needsSetup = 
+      authUser && (!userDoc || !userDoc.trackedRepos || userDoc.trackedRepos.length === 0);
+    
+    if (needsSetup) {
+      return (
+        <UserSetup
+          userId={authUser.uid}
+          userDoc={userDoc}
+          availableRepos={availableRepos}
+          onComplete={(selectedPreferences) => {
+            setUserDoc({
+              ...userDoc,
+              trackedRepos: selectedPreferences.trackedRepos,
+              trackedMetrics: selectedPreferences.trackedMetrics,
+            });
+            setSelectedTeam(selectedPreferences.trackedRepos[0]);
+            setSelectedUserRepo(selectedPreferences.trackedRepos[0]);
+          }}
+          />
+      );
+    }
+
   return (
     <div className="team-stats-container">
       <TeamStatsSidebar 
@@ -88,6 +168,8 @@ export const TeamStats = () => {
           </h1>
           <p className="header-subtitle">Lifetime Data</p>
         </header>
+
+        <ActionableInsightsPanel insights={insights} isHealthy={isHealthy} />
 
         <StatSummaryGrid closeData={closeData} mergeData={mergeData} volumeData={volumeData} />
 
@@ -132,6 +214,11 @@ export const TeamStats = () => {
                 {selectedRepo !== "All Teams" && teamRadarData.length > 0 && (
           <>
             <h2 className="section-heading">Collaboration Index</h2>
+            
+            <div className="chart-info-box">
+              <strong>What this chart shows:</strong> This chart shows the selected repository's
+              collaboration activity using pull requests merged, pull requests opened, and issues closed.
+            </div>
             <div className="chart-card" style={{ display: "flex", justifyContent: "center" }}>
               <CollaborationChart
                 data={teamRadarData}
