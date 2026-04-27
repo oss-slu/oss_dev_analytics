@@ -1194,19 +1194,23 @@
             }
         },
         "commits": {
+            "BreNaidu": {
+                "total_commits": 1,
+                "average_velocity": 2.6666666666666665
+            },
             "leandrumartin": {
                 "total_commits": 5,
-                "average_velocity": 2.3333333333333335
+                "average_velocity": 2.6666666666666665
             }
         }
     },
     "PilotDataSynchronization_sprint_6": {
         "issues": {
             "vbramhadevi": {
-                "average_time_to_close": 404.75805555555553,
+                "average_time_to_close": 482.51152777777776,
                 "total_issues_opened": 2,
-                "total_issues_closed": "1",
-                "currentStreak": 1
+                "total_issues_closed": "2",
+                "currentStreak": 2
             }
         },
         "pull_requests": {
@@ -1243,10 +1247,10 @@
     "baio_sprint_6": {
         "issues": {
             "TommySailami": {
-                "average_time_to_close": 0,
+                "average_time_to_close": 599.3602777777778,
                 "total_issues_opened": 1,
-                "total_issues_closed": 0,
-                "currentStreak": 0
+                "total_issues_closed": "1",
+                "currentStreak": 1
             },
             "mainuddinMains": {
                 "average_time_to_close": 270.5849074074074,
@@ -1682,9 +1686,9 @@
         },
         "pull_requests": {
             "Mehulantony": {
-                "average_time_to_merge": 53.38305555555556,
+                "average_time_to_merge": 209.755,
                 "total_prs_opened": 3,
-                "total_prs_merged": "1"
+                "total_prs_merged": "2"
             },
             "joeljoby02": {
                 "average_time_to_merge": 0,
@@ -1694,20 +1698,20 @@
         },
         "commits": {
             "Mehulantony": {
-                "total_commits": 1,
-                "average_velocity": 2.0
+                "total_commits": 2,
+                "average_velocity": 1.75
             },
             "allenbakki": {
                 "total_commits": 2,
-                "average_velocity": 2.0
+                "average_velocity": 1.75
             },
             "joeljoby02": {
                 "total_commits": 1,
-                "average_velocity": 2.0
+                "average_velocity": 1.75
             },
             "thehabes": {
                 "total_commits": 2,
-                "average_velocity": 2.0
+                "average_velocity": 1.75
             }
         }
     },
