@@ -4,7 +4,7 @@ import lifetime from "../../../../../data/lifetime_data.json";
 import sprint from "../../../../../data/sprint_data.json";
 import CollaborationChart from "../../../components/charts/CollaborationChart.jsx";
 import { calculateHealthScore } from "../utils/calculateHealth.js";
-import UserSetup from "../components/UserSetup.jsx";
+import UserSetup from "../components/userSetup.jsx";
 
 import { getUniqueUsers, getUniqueTeams, getUsersByRepo, buildTimeData, buildVolumeData } from "../utils/teamStatsHelper.js";
 import TeamStatsSidebar from "../components/teamStatsSidebar";
