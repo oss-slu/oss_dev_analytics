@@ -11,7 +11,6 @@ const MetricsPanel = ({ selectedMetrics = [] }) => {
   // TEMPORARY split (until backend supports assigned vs custom)
   const assignedMetrics = selectedMetrics.slice(0, 2);
   const [myMetrics, setMyMetrics] = useState(selectedMetrics.slice(2));
-  const [errorMessage, setErrorMessage] = useState("");
 
   // Remove metric (only for "My Metrics")
   const handleRemoveMetric = (metricToRemove) => {
@@ -20,34 +19,9 @@ const MetricsPanel = ({ selectedMetrics = [] }) => {
     );
   };
 
-  // Add metric (basic duplicate + assigned check)
-  const handleAddMetric = (metricToAdd) => {
-    const alreadyAssigned = assignedMetrics.includes(metricToAdd);
-    const alreadyCustom = myMetrics.includes(metricToAdd);
-
-    if (alreadyAssigned) {
-      setErrorMessage("This metric is already assigned by your tech lead.");
-      return;
-    }
-
-    if (alreadyCustom) {
-      setErrorMessage("This metric is already in My Metrics.");
-      return;
-    }
-
-    setMyMetrics((prev) => [...prev, metricToAdd]);
-    setErrorMessage("");
-  };
-
   return (
     <section style={{ marginTop: "20px" }}>
       <h2 className="section-heading">Developer Metrics</h2>
-
-      {errorMessage && (
-        <p style={{ color: "red", marginBottom: "10px" }}>
-          {errorMessage}
-        </p>
-      )}
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
 
