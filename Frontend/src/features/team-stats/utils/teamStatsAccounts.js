@@ -97,12 +97,21 @@ export const fetchAvailableRepos = async () => {
     try {
         const reposSnapshot = await getDocs(collection(db, "repos"));
         const repos = [];
+
         reposSnapshot.forEach((doc) => {
             repos.push(doc.id);
         });
+
+        // Fallback so setup still works if Firestore repos collection is empty
+        if (repos.length === 0) {
+            return ["oss_dev_analytics"];
+        }
+
         return repos;
     } catch (error) {
         console.error("Error fetching available repositories:", error);
-        return [];
+
+        // Fallback for local testing
+        return ["oss_dev_analytics"];
     }
 };
