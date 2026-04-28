@@ -93,8 +93,8 @@ export const TeamStats = () => {
 
         <ActionableInsightsPanel insights={insights} isHealthy={isHealthy} />
         
-        <MetricsPanel selectedMetrics={mockHealthScoreData.selected_metrics} />
-
+        <MetricsPanel selectedMetrics={mockHealthScoreData.selected_metrics || []} /> 
+        
         <StatSummaryGrid closeData={closeData} mergeData={mergeData} volumeData={volumeData} />
 
         <h2 className="section-heading">Time-based Metrics</h2>
