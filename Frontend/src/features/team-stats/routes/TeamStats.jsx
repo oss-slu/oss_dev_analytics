@@ -70,6 +70,8 @@ export const TeamStats = () => {
     status: "Needs Attention",
   };
 
+  const { selected_metrics } = mockHealthScoreData;
+
   const insights = getActionableInsights(mockHealthScoreData);
   const isHealthy = insights.length === 0;
 
@@ -93,8 +95,8 @@ export const TeamStats = () => {
 
         <ActionableInsightsPanel insights={insights} isHealthy={isHealthy} />
         
-        <MetricsPanel selectedMetrics={mockHealthScoreData.selected_metrics} />
-
+        <MetricsPanel selectedMetrics={selected_metrics} /> 
+        
         <StatSummaryGrid closeData={closeData} mergeData={mergeData} volumeData={volumeData} />
 
         <h2 className="section-heading">Time-based Metrics</h2>
