@@ -155,7 +155,7 @@ export const TeamStats = () => {
 
               <button
                 onClick={() => setShowSettings(true)}
-                className="p-2 rounded-lg hover:bg-gray-100 transition"
+                className="p-3 text-2xl bg-gray-100 rounded-full hover:bg-gray-200 transition shadow-sm"
                 title="Update user settings"
               >
                 ⚙️
