@@ -5,7 +5,7 @@ from Backend.streakCalculation import calculate_current_streak
 
 
 def format_json_data(raw_data, sprint = -1):
-    """
+    """ 
     Formats the raw data collected from GitHub into a structured JSON format suitable for analytics.
 
     Parameters:
@@ -53,9 +53,9 @@ def format_json_data(raw_data, sprint = -1):
 
             formatted_data['issues'][user] = {
                 "average_time_to_close": avg_time_to_close if not np.isnan(avg_time_to_close) else 0,
-                "total_issues_opened": total_issues_opened,
-                "total_issues_closed": total_issues_closed,
-                "currentStreak": current_streak
+                "total_issues_opened": int(total_issues_opened),
+                "total_issues_closed": int(total_issues_closed),
+                "currentStreak": int(current_streak)
             }
 
     #Process Pull Requests
@@ -71,8 +71,8 @@ def format_json_data(raw_data, sprint = -1):
 
             formatted_data['pull_requests'][user] = {
                 "average_time_to_merge": avg_time_to_merge if not np.isnan(avg_time_to_merge) else 0,
-                "total_prs_opened": total_prs_opened,
-                "total_prs_merged": total_prs_merged
+                "total_prs_opened": int(total_prs_opened),
+                "total_prs_merged": int(total_prs_merged)
             }
 
     #Process Commits
@@ -86,8 +86,8 @@ def format_json_data(raw_data, sprint = -1):
             avg_velocity = group['velocity'].mean()
 
             formatted_data['commits'][user] = {
-                "total_commits": total_commits,
-                "average_velocity": avg_velocity
+                "total_commits": int(total_commits),
+                "average_velocity": float(avg_velocity)
             }
 
     return formatted_data
