@@ -12,6 +12,7 @@ import StatSummaryGrid from "../components/statSummaryGrid";
 import "./TeamStats.css";
 import ActionableInsightsPanel from "../../../components/ActionableInsightsPanel.jsx";
 import { getActionableInsights } from "../../../utils/getActionableInsights.js";
+import MetricsPanel from "../../../components/MetricsPanel.jsx";
 
 /* 
 Constants initialized outside the component to prevent re-creation on render 
@@ -91,6 +92,8 @@ export const TeamStats = () => {
         </header>
 
         <ActionableInsightsPanel insights={insights} isHealthy={isHealthy} />
+        
+        <MetricsPanel selectedMetrics={mockHealthScoreData.selected_metrics} />
 
         <StatSummaryGrid closeData={closeData} mergeData={mergeData} volumeData={volumeData} />
 
