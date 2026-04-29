@@ -4,7 +4,6 @@ import VolumeCharts from "../../../components/charts/VolumeBased";
 import PRMergeSuccessRateChart from "../../../components/charts/PRMergeSuccessRateChart";
 import lifetime from "../../../../../data/lifetime_data.json";
 import sprint from "../../../../../data/sprint_data.json";
-
 import {
   getUniqueUsers,
   getUniqueTeams,
@@ -249,9 +248,17 @@ export const TeamStats = () => {
             />
           </div>
         </div>
+        <h2 className="section-heading">PR Metrics</h2>
+        <div className="chart-card">
+          <PRMergeSuccessRateChart 
+            selectedTeam={view === "team" ? selectedTeam : selectedUserRepo}
+          />
+          <p className="chart-sublabel">
+            PR Merge Success Rate (Lifetime vs Sprint)
+            </p>
+           </div>
 
         <h2 className="section-heading">PR Metrics</h2>
-
         <div className="chart-card">
           <PRMergeSuccessRateChart
             selectedTeam={view === "team" ? selectedTeam : selectedUserRepo}
@@ -259,5 +266,5 @@ export const TeamStats = () => {
         </div>
       </main>
     </div>
-  );
-};
+    
+  )};
