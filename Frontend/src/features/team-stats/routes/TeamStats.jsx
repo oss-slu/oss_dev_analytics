@@ -4,9 +4,6 @@ import VolumeCharts from "../../../components/charts/VolumeBased";
 import PRMergeSuccessRateChart from "../../../components/charts/PRMergeSuccessRateChart";
 import lifetime from "../../../../../data/lifetime_data.json";
 import sprint from "../../../../../data/sprint_data.json";
-
-
-import { getUniqueUsers, getUniqueTeams, getUsersByRepo, buildTimeData, buildVolumeData } from "../utils/teamStatsHelper.js";
 import {
   getUniqueUsers,
   getUniqueTeams,
