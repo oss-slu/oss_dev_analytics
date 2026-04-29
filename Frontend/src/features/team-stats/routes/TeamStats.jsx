@@ -256,9 +256,9 @@ export const TeamStats = () => {
           <p className="chart-sublabel">
             PR Merge Success Rate (Lifetime vs Sprint)
             </p>
+           </div>
 
         <h2 className="section-heading">PR Metrics</h2>
-
         <div className="chart-card">
           <PRMergeSuccessRateChart
             selectedTeam={view === "team" ? selectedTeam : selectedUserRepo}
@@ -266,5 +266,5 @@ export const TeamStats = () => {
         </div>
       </main>
     </div>
-  );
-};
+    
+  )};
