@@ -4,6 +4,7 @@ import VolumeCharts from "../../../components/charts/VolumeBased";
 import PRMergeSuccessRateChart from "../../../components/charts/PRMergeSuccessRateChart";
 import lifetime from "../../../../../data/lifetime_data.json";
 import sprint from "../../../../../data/sprint_data.json";
+import CollaborationChart from "../../../components/charts/CollaborationChart";
 import {
   getUniqueUsers,
   getUniqueTeams,
@@ -42,6 +43,7 @@ export const TeamStats = () => {
   const [selectedUserRepo, setSelectedUserRepo] = useState(TEAMS[0]);
   const [selectedSprint, setSelectedSprint] = useState(SPRINTS[0] || "1");
   const [selectedUser, setSelectedUser] = useState("all");
+  const [showSettings, setShowSettings] = useState(false);
 
   const [authUser, setAuthUser] = useState(null);
   const [userDoc, setUserDoc] = useState(null);
@@ -132,11 +134,21 @@ export const TeamStats = () => {
     const totalPrsMerged = Object.values(repoData.pull_requests || {}).reduce(
       (sum, user) => sum + Number(user.total_prs_merged || 0),
       0
+    );
+    return [
+      { metric: "PR Reviews", value: totalPrsMerged },
+      { metric: "Issue Comments", value: totalIssuesClosed },
+      { metric: "PR Comments", value: totalPrsOpened },
+    ];
+  }, [selectedRepo]);
+      
   // Show only repos saved in user's setup, but always keep All Teams
   const filteredTeams = useMemo(() => {
     if (!userDoc?.trackedRepos || userDoc.trackedRepos.length === 0) {
       return ["All Teams"];
     }
+      return ["All Teams", ...userDoc.trackedRepos];
+    }, [userDoc]);
   // Real-time actionable insights logic
   const healthScoreData = {
     selected_metrics: userDoc?.trackedMetrics || [],
@@ -157,8 +169,6 @@ export const TeamStats = () => {
       !userDoc.trackedRepos ||
       userDoc.trackedRepos.length === 0);
 
-
-
   if (needsSetup) {
     return (
       <UserSetup
@@ -177,45 +187,8 @@ export const TeamStats = () => {
           setSelectedUserRepo(selectedPreferences.trackedRepos[0]);
         }}
       />
-    );
-
-    return [
-      { metric: "PR Reviews", value: totalPrsMerged },
-      { metric: "Issue Comments", value: totalIssuesClosed },
-      { metric: "PR Comments", value: totalPrsOpened },
-    ];
-  }, [selectedRepo]);
-
-      if (loadingUserDoc) {
-      return (
-        <div className="flex justify-center items-center h-[60vh] text-xl text-gray-600 font-bold">
-          Loading...
-        </div>
-      );
-    }
-
-    const needsSetup = 
-      authUser && (!userDoc || !userDoc.trackedRepos || userDoc.trackedRepos.length === 0);
-    
-    if (needsSetup) {
-      return (
-        <UserSetup
-          userId={authUser.uid}
-          userDoc={userDoc}
-          availableRepos={availableRepos}
-          onComplete={(selectedPreferences) => {
-            setUserDoc({
-              ...userDoc,
-              trackedRepos: selectedPreferences.trackedRepos,
-              trackedMetrics: selectedPreferences.trackedMetrics,
-            });
-            setSelectedTeam(selectedPreferences.trackedRepos[0]);
-            setSelectedUserRepo(selectedPreferences.trackedRepos[0]);
-          }}
-          />
-      );
-    }
-
+  );
+}
   return (
     <div className="team-stats-container">
       <TeamStatsSidebar
@@ -223,7 +196,7 @@ export const TeamStats = () => {
         setView={setView}
         selectedTeam={selectedTeam}
         setSelectedTeam={setSelectedTeam}
-        TEAMS={TEAMS}
+        TEAMS={filteredTeams}
         selectedSprint={selectedSprint}
         setSelectedSprint={setSelectedSprint}
         SPRINTS={SPRINTS}
