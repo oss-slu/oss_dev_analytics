@@ -1,9 +1,10 @@
-import { useState, useMemo } from "react";
 import TimeBased from "../../../components/charts/TimeBased";
 import VolumeCharts from "../../../components/charts/VolumeBased";
 import PRMergeSuccessRateChart from "../../../components/charts/PRMergeSuccessRateChart";
 import lifetime from "../../../../../data/lifetime_data.json";
 import sprint from "../../../../../data/sprint_data.json";
+import { calculateHealthScore } from "../utils/calculateHealth.js";
+import UserSetup from "../components/UserSetup.jsx";
 
 
 import { getUniqueUsers, getUniqueTeams, getUsersByRepo, buildTimeData, buildVolumeData } from "../utils/teamStatsHelper.js";
@@ -13,6 +14,10 @@ import "./TeamStats.css";
 import ActionableInsightsPanel from "../../../components/ActionableInsightsPanel.jsx";
 import { getActionableInsights } from "../../../utils/getActionableInsights.js";
 
+import { useState, useMemo, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../../firebase";
+import { fetchAvailableRepos, fetchOrCreateUserDocument } from "../utils/teamStatsAccounts.js";
 /* 
 Constants initialized outside the component to prevent re-creation on render 
 */
@@ -32,6 +37,41 @@ export const TeamStats = () => {
   const [selectedSprint, setSelectedSprint] = useState(SPRINTS[0] || "1");
   const [selectedUser, setSelectedUser] = useState("all");
 
+  const [authUser, setAuthUser] = useState(null);
+  const [userDoc, setUserDoc] = useState(null);
+  const [loadingUserDoc, setLoadingUserDoc] = useState(true);
+  const [availableRepos, setAvailableRepos] = useState([]);
+  const [showSettings, setShowSettings] = useState(false); // Opens setup modal from settings
+
+  // Listen for repo request from setup and fetch available repos for user
+  useEffect(() => {
+    const loadRepos = async () => {
+      const fetchedRepos = await fetchAvailableRepos();
+      setAvailableRepos(fetchedRepos);
+    };
+    
+    loadRepos();
+  }, []);
+  
+  // Listen for Firebase auth state changes to manage user session and data fetching
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setAuthUser(user);
+      if (user) {
+        const data = await fetchOrCreateUserDocument(user);
+        setUserDoc(data);
+    
+      if (data && data.trackedRepos && data.trackedRepos.length > 0) {
+        setSelectedUserRepo(data.trackedRepos[0]);
+        setSelectedTeam(data.trackedRepos[0]);
+      }
+    }
+     setLoadingUserDoc(false);
+  });
+
+    return () => unsubscribe(); // stop listener
+  }, []);
+
   const availableUsers = useMemo(() => getUsersByRepo(lifetime, selectedUserRepo), [selectedUserRepo]);
   const effectiveUser = view === "team" ? "all" : selectedUser;
 
@@ -41,42 +81,65 @@ export const TeamStats = () => {
     return { [repoFilter]: lifetime[repoFilter] || {} };
   }, [view, selectedTeam, selectedUserRepo]);
 
+  const healthScoreData = useMemo(() => {
+    const activeMetrics = userDoc?.trackedMetrics?.length > 0
+      ? userDoc.trackedMetrics
+      : [];
+    return calculateHealthScore(effectiveData, activeMetrics);
+  }, [effectiveData, userDoc]);
+
+  const insights = getActionableInsights(healthScoreData);
+  const isHealthy = insights.length === 0;
+
   const closeData = useMemo(() => buildTimeData(effectiveData, "issues", "average_time_to_close", effectiveUser), [effectiveData, effectiveUser]);
   const mergeData = useMemo(() => buildTimeData(effectiveData, "pull_requests", "average_time_to_merge", effectiveUser), [effectiveData, effectiveUser]);
   const volumeData = useMemo(() => buildVolumeData(effectiveData, effectiveUser), [effectiveData, effectiveUser]);
 
-    /*
-      Temporary mock backend health score data for testing.
-      Later this should be replaced with repo-specific backend data
-      based on the selected repository from the Team page.
-  */
-  const mockHealthScoreData = {
-    selected_metrics: [
-      "issue_resolution",
-      "issue_responsiveness",
-      "pr_responsiveness",
-      "contributor_activity",
-      "commit_volume",
-    ],
-    metrics: {
-      issue_resolution: 80,
-      issue_responsiveness: 20,
-      pr_responsiveness: 80,
-      contributor_activity: 100,
-      commit_volume: 60,
-    },
-    final_score: 68,
-    status: "Needs Attention",
-  };
+  // Show only repos saved in user's setup, but always keep All Teams
+  const filteredTeams = useMemo(() => {
+    if (!userDoc?.trackedRepos || userDoc.trackedRepos.length === 0) {
+      return ["All Teams"];
+    }
 
-  const insights = getActionableInsights(mockHealthScoreData);
-  const isHealthy = insights.length === 0;
+    return [
+      "All Teams",
+      ...TEAMS.filter((team) => userDoc.trackedRepos.includes(team)),
+    ];
+  }, [userDoc]);
 
+  if (loadingUserDoc) {
+    return (
+      <div className="flex justify-center items-center h-[60vh] text-xl text-gray-600 font-bold">
+        Loading...
+      </div>
+    );
+  }
+  const needsSetup = authUser && (!userDoc || !userDoc.trackedRepos || userDoc.trackedRepos.length === 0); 
+  
+  if (needsSetup) {
+    return (
+      <UserSetup 
+        userId={authUser?.uid} 
+        userDoc={userDoc}
+        availableRepos={availableRepos}
+        onComplete={(selectedPreferences) => {
+          setUserDoc({
+            ...userDoc, 
+            trackedRepos: selectedPreferences.trackedRepos,
+            trackedMetrics: selectedPreferences.trackedMetrics 
+          });
+          setSelectedTeam(selectedPreferences.trackedRepos[0]);
+          setSelectedUserRepo(selectedPreferences.trackedRepos[0]);
+        }}
+      />
+    );
+  }
+    
   return (
     <div className="team-stats-container">
       <TeamStatsSidebar 
         view={view} setView={setView}
-        selectedTeam={selectedTeam} setSelectedTeam={setSelectedTeam} TEAMS={TEAMS}
+        selectedTeam={selectedTeam} setSelectedTeam={setSelectedTeam} TEAMS={filteredTeams}
         selectedSprint={selectedSprint} setSelectedSprint={setSelectedSprint} SPRINTS={SPRINTS}
         selectedUserRepo={selectedUserRepo} setSelectedUserRepo={setSelectedUserRepo} 
         selectedUser={selectedUser} setSelectedUser={setSelectedUser} USERS={availableUsers}
@@ -84,10 +147,22 @@ export const TeamStats = () => {
 
       <main className="team-stats-main">
         <header>
-          <h1 className="header-title">
-            {view === "team" ? `${selectedTeam} Overview` : `User: ${selectedUser}`}
-          </h1>
-          <p className="header-subtitle">Lifetime Data</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="header-title">
+                {view === "team" ? `${selectedTeam} Overview`: `User: ${selectedUser}`}
+              </h1>
+              <p className="header-subtitle">Lifetime Data</p>
+            </div>
+
+              <button
+                onClick={() => setShowSettings(true)}
+                className="p-3 text-2xl bg-gray-100 rounded-full hover:bg-gray-200 transition shadow-sm"
+                title="Update user settings"
+              >
+                ⚙️
+              </button>
+          </div>
         </header>
 
         <ActionableInsightsPanel insights={insights} isHealthy={isHealthy} />
