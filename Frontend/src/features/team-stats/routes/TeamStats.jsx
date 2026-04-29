@@ -1,35 +1,44 @@
+import { useState, useMemo, useEffect } from "react";
 import TimeBased from "../../../components/charts/TimeBased";
 import VolumeCharts from "../../../components/charts/VolumeBased";
+import PRMergeSuccessRateChart from "../../../components/charts/PRMergeSuccessRateChart";
 import lifetime from "../../../../../data/lifetime_data.json";
 import sprint from "../../../../../data/sprint_data.json";
-import { calculateHealthScore } from "../utils/calculateHealth.js";
-import UserSetup from "../components/UserSetup.jsx";
 
-import { getUniqueUsers, getUniqueTeams, getUsersByRepo, buildTimeData, buildVolumeData } from "../utils/teamStatsHelper.js";
+import {
+  getUniqueUsers,
+  getUniqueTeams,
+  getUsersByRepo,
+  buildTimeData,
+  buildVolumeData,
+} from "../utils/teamStatsHelper.js";
+
 import TeamStatsSidebar from "../components/teamStatsSidebar";
 import StatSummaryGrid from "../components/statSummaryGrid";
 import "./TeamStats.css";
+
 import ActionableInsightsPanel from "../../../components/ActionableInsightsPanel.jsx";
 import { getActionableInsights } from "../../../utils/getActionableInsights.js";
+import MetricsPanel from "../../../components/MetricsPanel.jsx";
 
-import { useState, useMemo, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../../firebase";
-import { fetchAvailableRepos, fetchOrCreateUserDocument } from "../utils/teamStatsAccounts.js";
-/* 
-Constants initialized outside the component to prevent re-creation on render 
+import UserSetup from "../components/UserSetup.jsx";
+
+import {
+  fetchAvailableRepos,
+  fetchOrCreateUserDocument,
+} from "../utils/teamStatsAccounts.js";
+
+/*
+Constants
 */
 const USERS = getUniqueUsers(lifetime);
 const TEAMS = getUniqueTeams(lifetime);
-const SPRINTS = [sprint.sprint]; 
+const SPRINTS = [sprint.sprint];
 
-/*
-    Main dashboard view for Team and User statistics.
-    Returns:
-        JSX.Element: The assembled TeamStats dashboard.
-*/
 export const TeamStats = () => {
-  const [view, setView] = useState("team"); 
+  const [view, setView] = useState("team");
   const [selectedTeam, setSelectedTeam] = useState(TEAMS[0]);
   const [selectedUserRepo, setSelectedUserRepo] = useState(TEAMS[0]);
   const [selectedSprint, setSelectedSprint] = useState(SPRINTS[0] || "1");
@@ -39,38 +48,12 @@ export const TeamStats = () => {
   const [userDoc, setUserDoc] = useState(null);
   const [loadingUserDoc, setLoadingUserDoc] = useState(true);
   const [availableRepos, setAvailableRepos] = useState([]);
-  const [showSettings, setShowSettings] = useState(false); // Opens setup modal from settings
 
-  // Listen for repo request from setup and fetch available repos for user
-  useEffect(() => {
-    const loadRepos = async () => {
-      const fetchedRepos = await fetchAvailableRepos();
-      setAvailableRepos(fetchedRepos);
-    };
-    
-    loadRepos();
-  }, []);
-  
-  // Listen for Firebase auth state changes to manage user session and data fetching
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      setAuthUser(user);
-      if (user) {
-        const data = await fetchOrCreateUserDocument(user);
-        setUserDoc(data);
-    
-      if (data && data.trackedRepos && data.trackedRepos.length > 0) {
-        setSelectedUserRepo(data.trackedRepos[0]);
-        setSelectedTeam(data.trackedRepos[0]);
-      }
-    }
-     setLoadingUserDoc(false);
-  });
+  const availableUsers = useMemo(
+    () => getUsersByRepo(lifetime, selectedUserRepo),
+    [selectedUserRepo]
+  );
 
-    return () => unsubscribe(); // stop listener
-  }, []);
-
-  const availableUsers = useMemo(() => getUsersByRepo(lifetime, selectedUserRepo), [selectedUserRepo]);
   const effectiveUser = view === "team" ? "all" : selectedUser;
 
   const effectiveData = useMemo(() => {
@@ -79,95 +62,142 @@ export const TeamStats = () => {
     return { [repoFilter]: lifetime[repoFilter] || {} };
   }, [view, selectedTeam, selectedUserRepo]);
 
-  const healthScoreData = useMemo(() => {
-    const activeMetrics = userDoc?.trackedMetrics?.length > 0
-      ? userDoc.trackedMetrics
-      : [];
-    return calculateHealthScore(effectiveData, activeMetrics);
-  }, [effectiveData, userDoc]);
+  const closeData = useMemo(
+    () =>
+      buildTimeData(
+        effectiveData,
+        "issues",
+        "average_time_to_close",
+        effectiveUser
+      ),
+    [effectiveData, effectiveUser]
+  );
+
+  const mergeData = useMemo(
+    () =>
+      buildTimeData(
+        effectiveData,
+        "pull_requests",
+        "average_time_to_merge",
+        effectiveUser
+      ),
+    [effectiveData, effectiveUser]
+  );
+
+  const volumeData = useMemo(
+    () => buildVolumeData(effectiveData, effectiveUser),
+    [effectiveData, effectiveUser]
+  );
+
+  // Auth and User Doc Effects
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setAuthUser(user);
+
+      if (user) {
+        const userDocData = await fetchOrCreateUserDocument(user);
+        setUserDoc(userDocData);
+      }
+
+      setLoadingUserDoc(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // Fetch available repos for onboarding setup
+  useEffect(() => {
+    const loadRepos = async () => {
+      const repos = await fetchAvailableRepos();
+      setAvailableRepos(repos);
+    };
+    loadRepos();
+  }, []);
+
+  // Real-time actionable insights logic
+  const healthScoreData = {
+    selected_metrics: userDoc?.trackedMetrics || [],
+  };
 
   const insights = getActionableInsights(healthScoreData);
   const isHealthy = insights.length === 0;
 
-  const closeData = useMemo(() => buildTimeData(effectiveData, "issues", "average_time_to_close", effectiveUser), [effectiveData, effectiveUser]);
-  const mergeData = useMemo(() => buildTimeData(effectiveData, "pull_requests", "average_time_to_merge", effectiveUser), [effectiveData, effectiveUser]);
-  const volumeData = useMemo(() => buildVolumeData(effectiveData, effectiveUser), [effectiveData, effectiveUser]);
-
-  // Show only repos saved in user's setup, but always keep All Teams
-  const filteredTeams = useMemo(() => {
-    if (!userDoc?.trackedRepos || userDoc.trackedRepos.length === 0) {
-      return ["All Teams"];
-    }
-
-    return [
-      "All Teams",
-      ...TEAMS.filter((team) => userDoc.trackedRepos.includes(team)),
-    ];
-  }, [userDoc]);
-
+  // Loadng state for user doc
   if (loadingUserDoc) {
-    return (
-      <div className="flex justify-center items-center h-[60vh] text-xl text-gray-600 font-bold">
-        Loading...
-      </div>
-    );
+    return <div>Loading...</div>;
   }
-  const needsSetup = authUser && (!userDoc || !userDoc.trackedRepos || userDoc.trackedRepos.length === 0); 
-  
+
+  // Onboarding check
+  const needsSetup =
+    authUser &&
+    (!userDoc ||
+      !userDoc.trackedRepos ||
+      userDoc.trackedRepos.length === 0);
+
+
+
   if (needsSetup) {
     return (
-      <UserSetup 
-        userId={authUser?.uid} 
+      <UserSetup
+        userId={authUser?.uid}
         userDoc={userDoc}
         availableRepos={availableRepos}
         onComplete={(selectedPreferences) => {
-          setUserDoc({
-            ...userDoc, 
+          const updatedUserDoc = {
+            ...userDoc,
             trackedRepos: selectedPreferences.trackedRepos,
-            trackedMetrics: selectedPreferences.trackedMetrics 
-          });
+            trackedMetrics: selectedPreferences.trackedMetrics,
+          };
+
+          setUserDoc(updatedUserDoc);
           setSelectedTeam(selectedPreferences.trackedRepos[0]);
           setSelectedUserRepo(selectedPreferences.trackedRepos[0]);
         }}
       />
     );
   }
-    
+
   return (
     <div className="team-stats-container">
-      <TeamStatsSidebar 
-        view={view} setView={setView}
-        selectedTeam={selectedTeam} setSelectedTeam={setSelectedTeam} TEAMS={filteredTeams}
-        selectedSprint={selectedSprint} setSelectedSprint={setSelectedSprint} SPRINTS={SPRINTS}
-        selectedUserRepo={selectedUserRepo} setSelectedUserRepo={setSelectedUserRepo} 
-        selectedUser={selectedUser} setSelectedUser={setSelectedUser} USERS={availableUsers}
+      <TeamStatsSidebar
+        view={view}
+        setView={setView}
+        selectedTeam={selectedTeam}
+        setSelectedTeam={setSelectedTeam}
+        TEAMS={TEAMS}
+        selectedSprint={selectedSprint}
+        setSelectedSprint={setSelectedSprint}
+        SPRINTS={SPRINTS}
+        selectedUserRepo={selectedUserRepo}
+        setSelectedUserRepo={setSelectedUserRepo}
+        selectedUser={selectedUser}
+        setSelectedUser={setSelectedUser}
+        USERS={availableUsers}
       />
 
       <main className="team-stats-main">
         <header>
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="header-title">
-                {view === "team" ? `${selectedTeam} Overview`: `User: ${selectedUser}`}
-              </h1>
-              <p className="header-subtitle">Lifetime Data</p>
-            </div>
-
-              <button
-                onClick={() => setShowSettings(true)}
-                className="p-3 text-2xl bg-gray-100 rounded-full hover:bg-gray-200 transition shadow-sm"
-                title="Update user settings"
-              >
-                ⚙️
-              </button>
-          </div>
+          <h1 className="header-title">
+            {view === "team"
+              ? `${selectedTeam} Overview`
+              : `User: ${selectedUser}`}
+          </h1>
+          <p className="header-subtitle">Lifetime Data</p>
         </header>
 
         <ActionableInsightsPanel insights={insights} isHealthy={isHealthy} />
 
-        <StatSummaryGrid closeData={closeData} mergeData={mergeData} volumeData={volumeData} />
+        {/* Real user metrics */}
+        <MetricsPanel selectedMetrics={userDoc?.trackedMetrics || []} />
+
+        <StatSummaryGrid
+          closeData={closeData}
+          mergeData={mergeData}
+          volumeData={volumeData}
+        />
 
         <h2 className="section-heading">Time-based Metrics</h2>
+
         <div className="charts-grid">
           <div className="chart-card">
             <TimeBased
@@ -176,10 +206,14 @@ export const TeamStats = () => {
               yKey="value"
               title="Avg Time to Close Issues (hrs)"
               repos={view === "team" ? selectedTeam : selectedUserRepo}
-              user={view === "user" && selectedUser !== "all" ? selectedUser : null}
+              user={
+                view === "user" && selectedUser !== "all"
+                  ? selectedUser
+                  : null
+              }
             />
-            <p className="chart-sublabel">Avg Time to Close Issues</p>
           </div>
+
           <div className="chart-card">
             <TimeBased
               data={mergeData}
@@ -187,49 +221,42 @@ export const TeamStats = () => {
               yKey="value"
               title="Avg Time to Merge PRs (hrs)"
               repos={view === "team" ? selectedTeam : selectedUserRepo}
-              user={view === "user" && selectedUser !== "all" ? selectedUser : null}
+              user={
+                view === "user" && selectedUser !== "all"
+                  ? selectedUser
+                  : null
+              }
             />
-            <p className="chart-sublabel">Avg Time to Merge PRs</p>
           </div>
         </div>
 
         <h2 className="section-heading">Volume-based Metrics</h2>
+
         <div className="chart-card">
           <div style={{ height: "350px", position: "relative" }}>
             <VolumeCharts
               data={volumeData}
-              repos={view === "team" || selectedUser === "all" ? "All" : selectedUser}
-              user={view === "user" && selectedUser !== "all" ? selectedUser : null}
+              repos={
+                view === "team" || selectedUser === "all"
+                  ? "All"
+                  : selectedUser
+              }
+              user={
+                view === "user" && selectedUser !== "all"
+                  ? selectedUser
+                  : null
+              }
             />
           </div>
-          <p className="chart-sublabel">Activity Volume</p>
         </div>
-      
-      {showSettings && (
-        <UserSetup
-          userId={authUser?.uid}
-          userDoc={userDoc}
-          availableRepos={availableRepos}
-          isSettingsMode={true}
-          onClose={() => setShowSettings(false)}
-          onComplete={(selectedPreferences) => {
-            // Update dashboard right after saving settings
-            const updatedUserDoc = {
-              ...userDoc,
-              trackedRepos: selectedPreferences.trackedRepos,
-              trackedMetrics: selectedPreferences.trackedMetrics,
-            };
 
-            setUserDoc(updatedUserDoc);
-            setShowSettings(false);
+        <h2 className="section-heading">PR Metrics</h2>
 
-            if (selectedPreferences.trackedRepos.length > 0) {
-              setSelectedTeam(selectedPreferences.trackedRepos[0]);
-              setSelectedUserRepo(selectedPreferences.trackedRepos[0]);
-            }
-          }}
-        />
-      )}
+        <div className="chart-card">
+          <PRMergeSuccessRateChart
+            selectedTeam={view === "team" ? selectedTeam : selectedUserRepo}
+          />
+        </div>
       </main>
     </div>
   );

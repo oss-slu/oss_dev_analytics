@@ -80,6 +80,8 @@ export default function UserSetup({
         try {
             await updateUserMetrics(userId, preferences);
             onComplete(preferences);
+            setIsSubmitting(false);
+            
         } catch (err) {
             console.error("Error updating preferences:", err);
             setError("An error occurred while saving. Please try again.");
