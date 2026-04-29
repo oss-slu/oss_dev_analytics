@@ -12,10 +12,19 @@ const AVAILABLE_METRICS = [
   { id: "total_prs_merged", label: "Total PRs Merged", desc: "Total number of pull requests merged in the repository." }
 ];
 
-export default function UserSetup({ userId, availableRepos = [], onComplete, userDoc }) { 
-    const [step, setStep] = useState(0);
-    const [selectedRepos, setSelectedRepos] = useState([]);
-    const [selectedMetrics, setSelectedMetrics] = useState([]);
+export default function UserSetup({ 
+  userId, 
+  availableRepos = [], 
+  onComplete, 
+  userDoc,
+  isSettingsMode = false,
+  onClose
+ }) { 
+
+    // In settings mode, skip welcome and load saved choices
+    const [step, setStep] = useState(isSettingsMode ? 1 : 0);
+    const [selectedRepos, setSelectedRepos] = useState(userDoc?.trackedRepos || []);
+    const [selectedMetrics, setSelectedMetrics] = useState(userDoc?.trackedMetrics || []);
     const [inheritedMetrics, setInheritedMetrics] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState(null);
@@ -87,6 +96,17 @@ export default function UserSetup({ userId, availableRepos = [], onComplete, use
         
         {/* --- DYNAMIC HEADER --- */}
         <div className="pt-8 px-10 pb-4">
+          {isSettingsMode && (
+            <div className="flex justify-end">
+              <button
+                onClick={onClose}
+                className="text-gray-500 hover:text-gray-800 font-bold"
+                title="Close settings"
+              >
+                ✕
+              </button>
+            </div>
+          )}
           {step === 0 && (
             <>
               <h2 className="text-2xl font-bold text-[#003da5]">STEP 1: Welcome to OSS Analytics</h2>
@@ -95,13 +115,17 @@ export default function UserSetup({ userId, availableRepos = [], onComplete, use
           )}
           {step === 1 && (
             <>
-              <h2 className="text-2xl font-bold text-[#003da5]">STEP 2: Select Your Actively Contributing Repositories</h2>
+              <h2 className="text-2xl font-bold text-[#003da5]">
+                {isSettingsMode ? "Update Your Repositories": "STEP 2: Select Your Actively Contributing Repositories"}
+              </h2>
               <p className="text-gray-600 mt-1">Identify the specific projects you directly work on for customized analytics.</p>
             </>
           )}
           {step === 2 && (
             <>
-              <h2 className="text-2xl font-bold text-[#003da5]">STEP 3: Select Personal Metrics</h2>
+              <h2 className="text-2xl font-bold text-[#003da5]">
+                {isSettingsMode ? "Update Your Personal Metrics" : "STEP 3: Select Personal Metrics"}
+              </h2>
               <p className="text-gray-600 mt-1">Choose the metrics you care about. Base metrics are inherited from your projects.</p>
             </>
           )}
@@ -201,7 +225,7 @@ export default function UserSetup({ userId, availableRepos = [], onComplete, use
           
           <div className="flex justify-between items-center">
             {/* Previous Button */}
-            {step > 0 ? (
+            {step > (isSettingsMode ? 1 : 0) ? (
               <button 
                 onClick={() => { setStep(step - 1); setError(null); }}
                 className="px-6 py-2 rounded-lg font-bold text-gray-600 border-2 border-gray-200 hover:bg-gray-50 transition-colors"
@@ -212,7 +236,9 @@ export default function UserSetup({ userId, availableRepos = [], onComplete, use
 
             {/* Pagination Dots */}
             <div className="flex flex-col items-center gap-2">
-              <span className="text-xs font-bold text-gray-500 tracking-wider">PAGE {step + 1} OF 3</span>
+              <span className="text-xs font-bold text-gray-500 tracking-wider">
+                {isSettingsMode ? `PAGE ${step} OF 2` : `PAGE ${step + 1} OF 3`}
+              </span>
               <div className="flex gap-2">
                 {[0, 1, 2].map((idx) => (
                   <div 
@@ -248,7 +274,7 @@ export default function UserSetup({ userId, availableRepos = [], onComplete, use
                   isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-[#005570] hover:bg-[#003d52]"
                 }`}
               >
-                {isSubmitting ? "SAVING..." : "FINISH SETUP"}
+                {isSubmitting ? "SAVING..." : isSettingsMode ? "SAVE CHANGES" : "FINISH SETUP"}
               </button>
             )}
           </div>

@@ -40,6 +40,7 @@ export const TeamStats = () => {
   const [userDoc, setUserDoc] = useState(null);
   const [loadingUserDoc, setLoadingUserDoc] = useState(true);
   const [availableRepos, setAvailableRepos] = useState([]);
+  const [showSettings, setShowSettings] = useState(false); // Opens setup modal from settings
 
   // Listen for repo request from setup and fetch available repos for user
   useEffect(() => {
@@ -80,7 +81,7 @@ export const TeamStats = () => {
   }, [view, selectedTeam, selectedUserRepo]);
 
   const healthScoreData = useMemo(() => {
-    const activeMetrics = userDoc ?.trackedMetrics?.length > 0
+    const activeMetrics = userDoc?.trackedMetrics?.length > 0
       ? userDoc.trackedMetrics
       : [];
     return calculateHealthScore(effectiveData, activeMetrics);
@@ -112,6 +113,43 @@ export const TeamStats = () => {
     const totalPrsMerged = Object.values(repoData.pull_requests || {}).reduce(
       (sum, user) => sum + Number(user.total_prs_merged || 0),
       0
+  // Show only repos saved in user's setup, but always keep All Teams
+  const filteredTeams = useMemo(() => {
+    if (!userDoc?.trackedRepos || userDoc.trackedRepos.length === 0) {
+      return ["All Teams"];
+    }
+
+    return [
+      "All Teams",
+      ...TEAMS.filter((team) => userDoc.trackedRepos.includes(team)),
+    ];
+  }, [userDoc]);
+
+  if (loadingUserDoc) {
+    return (
+      <div className="flex justify-center items-center h-[60vh] text-xl text-gray-600 font-bold">
+        Loading...
+      </div>
+    );
+  }
+  const needsSetup = authUser && (!userDoc || !userDoc.trackedRepos || userDoc.trackedRepos.length === 0); 
+  
+  if (needsSetup) {
+    return (
+      <UserSetup 
+        userId={authUser?.uid} 
+        userDoc={userDoc}
+        availableRepos={availableRepos}
+        onComplete={(selectedPreferences) => {
+          setUserDoc({
+            ...userDoc, 
+            trackedRepos: selectedPreferences.trackedRepos,
+            trackedMetrics: selectedPreferences.trackedMetrics 
+          });
+          setSelectedTeam(selectedPreferences.trackedRepos[0]);
+          setSelectedUserRepo(selectedPreferences.trackedRepos[0]);
+        }}
+      />
     );
 
     return [
@@ -155,7 +193,7 @@ export const TeamStats = () => {
     <div className="team-stats-container">
       <TeamStatsSidebar 
         view={view} setView={setView}
-        selectedTeam={selectedTeam} setSelectedTeam={setSelectedTeam} TEAMS={TEAMS}
+        selectedTeam={selectedTeam} setSelectedTeam={setSelectedTeam} TEAMS={filteredTeams}
         selectedSprint={selectedSprint} setSelectedSprint={setSelectedSprint} SPRINTS={SPRINTS}
         selectedUserRepo={selectedUserRepo} setSelectedUserRepo={setSelectedUserRepo} 
         selectedUser={selectedUser} setSelectedUser={setSelectedUser} USERS={availableUsers}
@@ -163,10 +201,22 @@ export const TeamStats = () => {
 
       <main className="team-stats-main">
         <header>
-          <h1 className="header-title">
-            {view === "team" ? `${selectedTeam} Overview` : `User: ${selectedUser}`}
-          </h1>
-          <p className="header-subtitle">Lifetime Data</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="header-title">
+                {view === "team" ? `${selectedTeam} Overview`: `User: ${selectedUser}`}
+              </h1>
+              <p className="header-subtitle">Lifetime Data</p>
+            </div>
+
+              <button
+                onClick={() => setShowSettings(true)}
+                className="p-3 text-2xl bg-gray-100 rounded-full hover:bg-gray-200 transition shadow-sm"
+                title="Update user settings"
+              >
+                ⚙️
+              </button>
+          </div>
         </header>
 
         <ActionableInsightsPanel insights={insights} isHealthy={isHealthy} />
@@ -230,6 +280,32 @@ export const TeamStats = () => {
           </>
         )}
 
+      
+      {showSettings && (
+        <UserSetup
+          userId={authUser?.uid}
+          userDoc={userDoc}
+          availableRepos={availableRepos}
+          isSettingsMode={true}
+          onClose={() => setShowSettings(false)}
+          onComplete={(selectedPreferences) => {
+            // Update dashboard right after saving settings
+            const updatedUserDoc = {
+              ...userDoc,
+              trackedRepos: selectedPreferences.trackedRepos,
+              trackedMetrics: selectedPreferences.trackedMetrics,
+            };
+
+            setUserDoc(updatedUserDoc);
+            setShowSettings(false);
+
+            if (selectedPreferences.trackedRepos.length > 0) {
+              setSelectedTeam(selectedPreferences.trackedRepos[0]);
+              setSelectedUserRepo(selectedPreferences.trackedRepos[0]);
+            }
+          }}
+        />
+      )}
       </main>
     </div>
   );
