@@ -4,6 +4,7 @@ import VolumeCharts from "../../../components/charts/VolumeBased";
 import PRMergeSuccessRateChart from "../../../components/charts/PRMergeSuccessRateChart";
 import lifetime from "../../../../../data/lifetime_data.json";
 import sprint from "../../../../../data/sprint_data.json";
+import CollaborationChart from "../../../components/charts/CollaborationChart";
 import {
   getUniqueUsers,
   getUniqueTeams,
@@ -42,6 +43,7 @@ export const TeamStats = () => {
   const [selectedUserRepo, setSelectedUserRepo] = useState(TEAMS[0]);
   const [selectedSprint, setSelectedSprint] = useState(SPRINTS[0] || "1");
   const [selectedUser, setSelectedUser] = useState("all");
+  const [showSettings, setShowSettings] = useState(false);
 
   const [authUser, setAuthUser] = useState(null);
   const [userDoc, setUserDoc] = useState(null);
@@ -113,6 +115,40 @@ export const TeamStats = () => {
     loadRepos();
   }, []);
 
+  const selectedRepo = view === "team" ? selectedTeam : selectedUserRepo;
+
+  const teamRadarData = useMemo(() => {
+    if (!selectedRepo || selectedRepo === "All Teams" || !lifetime[selectedRepo]) return [];
+    const repoData = lifetime[selectedRepo];
+
+    const totalIssuesClosed = Object.values(repoData.issues || {}).reduce(
+      (sum, user) => sum + Number(user.total_issues_closed || 0),
+      0
+    );
+
+    const totalPrsOpened = Object.values(repoData.pull_requests || {}).reduce(
+      (sum, user) => sum + Number(user.total_prs_opened || user.total_prcs_opened || 0),
+      0
+    );
+
+    const totalPrsMerged = Object.values(repoData.pull_requests || {}).reduce(
+      (sum, user) => sum + Number(user.total_prs_merged || 0),
+      0
+    );
+    return [
+      { metric: "PR Reviews", value: totalPrsMerged },
+      { metric: "Issue Comments", value: totalIssuesClosed },
+      { metric: "PR Comments", value: totalPrsOpened },
+    ];
+  }, [selectedRepo]);
+      
+  // Show only repos saved in user's setup, but always keep All Teams
+  const filteredTeams = useMemo(() => {
+    if (!userDoc?.trackedRepos || userDoc.trackedRepos.length === 0) {
+      return ["All Teams"];
+    }
+      return ["All Teams", ...userDoc.trackedRepos];
+    }, [userDoc]);
   // Real-time actionable insights logic
   const healthScoreData = {
     selected_metrics: userDoc?.trackedMetrics || [],
@@ -133,8 +169,6 @@ export const TeamStats = () => {
       !userDoc.trackedRepos ||
       userDoc.trackedRepos.length === 0);
 
-
-
   if (needsSetup) {
     return (
       <UserSetup
@@ -153,9 +187,8 @@ export const TeamStats = () => {
           setSelectedUserRepo(selectedPreferences.trackedRepos[0]);
         }}
       />
-    );
-  }
-
+  );
+}
   return (
     <div className="team-stats-container">
       <TeamStatsSidebar
@@ -163,7 +196,7 @@ export const TeamStats = () => {
         setView={setView}
         selectedTeam={selectedTeam}
         setSelectedTeam={setSelectedTeam}
-        TEAMS={TEAMS}
+        TEAMS={filteredTeams}
         selectedSprint={selectedSprint}
         setSelectedSprint={setSelectedSprint}
         SPRINTS={SPRINTS}
@@ -248,6 +281,52 @@ export const TeamStats = () => {
             />
           </div>
         </div>
+
+                {selectedRepo !== "All Teams" && teamRadarData.length > 0 && (
+          <>
+            <h2 className="section-heading">Collaboration Index</h2>
+            
+            <div className="chart-info-box">
+              <strong>What this chart shows:</strong> This chart shows the selected repository's
+              collaboration activity using pull requests merged, pull requests opened, and issues closed.
+            </div>
+            <div className="chart-card" style={{ display: "flex", justifyContent: "center" }}>
+              <CollaborationChart
+                data={teamRadarData}
+                mode="team"
+                title={`${selectedRepo} Collaboration Radar`}
+              />
+              <p className="chart-sublabel">Repository Collaboration Profile</p>
+            </div>
+          </>
+        )}
+
+      
+      {showSettings && (
+        <UserSetup
+          userId={authUser?.uid}
+          userDoc={userDoc}
+          availableRepos={availableRepos}
+          isSettingsMode={true}
+          onClose={() => setShowSettings(false)}
+          onComplete={(selectedPreferences) => {
+            // Update dashboard right after saving settings
+            const updatedUserDoc = {
+              ...userDoc,
+              trackedRepos: selectedPreferences.trackedRepos,
+              trackedMetrics: selectedPreferences.trackedMetrics,
+            };
+
+            setUserDoc(updatedUserDoc);
+            setShowSettings(false);
+
+            if (selectedPreferences.trackedRepos.length > 0) {
+              setSelectedTeam(selectedPreferences.trackedRepos[0]);
+              setSelectedUserRepo(selectedPreferences.trackedRepos[0]);
+            }
+          }}
+        />
+      )}
         <h2 className="section-heading">PR Metrics</h2>
         <div className="chart-card">
           <PRMergeSuccessRateChart 

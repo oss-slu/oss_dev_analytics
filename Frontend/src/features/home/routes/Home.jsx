@@ -1,7 +1,7 @@
+import { useState } from "react";
 import VolumeCharts from "../../../components/charts/VolumeBased";
 import { transformVolumeData } from "../../../utils/TransformVolumeData";
-import TimeBased from "../../../components/charts/TimeBased";
-import { calculateOrgAverage } from "../../../utils/TransformTimeData";
+import CollaborationChart from "../../../components/charts/CollaborationChart";
 import { getTopContributorsAndRepos } from "../../../utils/getTopContributorsAndRepos";
 import lifetimeData from "../../../../../data/lifetime_data.json";
 import "./Home.css";
@@ -12,30 +12,44 @@ import "./Home.css";
         JSX.Element: The Home dashboard component.
 */
 export const Home = () => {
+  const [repoLimit, setRepoLimit] = useState(5);
   const orgVolumeData = transformVolumeData(lifetimeData, 'org', null, "All");
   
-  const orgAvgClose = calculateOrgAverage(
-    lifetimeData, 
-    "issues", 
-    "average_time_to_close"
-  );
+  const collaborationData = Object.entries(lifetimeData)
+  .map(([repoName, repo]) => {
+    const totalIssuesClosed = Object.values(repo.issues || {}).reduce(
+      (sum, user) => sum + Number(user.total_issues_closed || 0),
+      0
+    );
 
-  const orgAvgMerge = calculateOrgAverage(
-    lifetimeData, 
-    "pull_requests",
-    "average_time_to_merge"
-  );
+    const totalPrsOpened = Object.values(repo.pull_requests || {}).reduce(
+      (sum, user) => sum + Number(user.total_prs_opened || user.total_prcs_opened || 0),
+      0
+    );
 
-  const orgTimeBasedData = [
-    { label: "Avg Time to Close (Issues)", value: orgAvgClose },
-    { label: "Avg Time to Merge (PRs)", value: orgAvgMerge },
-  ];
+    const totalPrsMerged = Object.values(repo.pull_requests || {}).reduce(
+      (sum, user) => sum + Number(user.total_prs_merged || 0),
+      0
+    );
 
-  // Call your utility function right here to get the top 5
-  const { topContributors, topRepos } = getTopContributorsAndRepos(
-    lifetimeData, 
-    12
-  );
+    const collaborationScore =
+      totalPrsMerged * 3 +
+      totalIssuesClosed * 2 +
+      totalPrsOpened;
+
+    return {
+      name: repoName,
+      prReviews: totalPrsMerged,
+      issueComments: totalIssuesClosed,
+      prComments: totalPrsOpened,
+      collaborationScore,
+    };
+  })
+  .sort((a, b) => b.collaborationScore - a.collaborationScore)
+  .slice(0, repoLimit);
+
+  // 2. Call your utility function right here to get the top 5
+  const { topContributors, topRepos } = getTopContributorsAndRepos(lifetimeData, 12, null);
 
   return (
     <div className="home-container">
@@ -108,7 +122,7 @@ export const Home = () => {
                 </span>
               </h3>
               <ul style={{ margin: 0, paddingLeft: "20px", color: "#374151" }}>
-                {topRepos.length > 0 ? (
+                {topRepos && topRepos.length > 0 ? (
                   topRepos.map((repo, index) => (
                     <li key={`repo-${index}`} style={{ marginBottom: "4px" }}>
                       {repo.name} 🔥 {repo.streak} {repo.streak === 1 ? "week" : "weeks"} streak ({repo.activeMembers} {repo.activeMembers === 1 ? "member" : "members"})
@@ -129,8 +143,7 @@ export const Home = () => {
             <div className="handbook-icon">📄</div>
             <div className="handbook-text">FEEDBACK FORM</div>
           </a>
-      <div className="home-grid">
-        <div className="handbook-column">
+
           <a href="https://github.com/oss-slu/handbook_developer" target="_blank" rel="noreferrer" className="handbook-card">
             <div className="handbook-icon">📄</div>
             <div className="handbook-text">DEVELOPER HANDBOOK</div>
@@ -141,15 +154,40 @@ export const Home = () => {
             <div className="handbook-text">TECH LEAD HANDBOOK</div>
           </a>
         </div>
-        </div>
-        </div>
 
         <section className="card-blue">
-          <h2 className="card-title">Time-based Metrics</h2>
-          <div className="chart-wrapper">
-            <TimeBased data={orgTimeBasedData} repos="All" />
+          <h2 className="card-title">Collaboration Index</h2>
+
+          <div className="chart-info-box">
+            <strong>What this chart shows:</strong> This chart gives a quick view of
+            repository collaboration using pull requests merged, pull requests opened,
+            and issues closed.
           </div>
-        </section>
+
+          <div className="chart-wrapper">
+            <div style={{ marginBottom: "12px" }}>
+              <label style={{ marginRight: "10px", fontWeight: "bold" }}>
+                Show top repos:
+              </label>
+              <select
+              value={repoLimit}
+        onChange={(e) => setRepoLimit(Number(e.target.value))}
+        style={{
+          padding: "6px 10px",
+          borderRadius: "8px",
+          border: "1px solid #ccc",
+        }}
+      >
+        <option value={3}>3</option>
+        <option value={5}>5</option>
+        <option value={7}>7</option>
+        <option value={10}>10</option>
+      </select>
+    </div>
+
+    <CollaborationChart data={collaborationData} />
+  </div>
+</section>
       </div>
 
     </div>
