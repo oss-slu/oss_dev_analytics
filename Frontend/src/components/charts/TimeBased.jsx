@@ -25,19 +25,14 @@ export default function TimeBased({ data, repos = "All", user = null, title = nu
     return <div className="p-4 text-center">Loading Chart Data...</div>;
   }
   // Title logic (mirrors VolumeCharts structure)
-  let displayTitle;
-  if (title) {
-    displayTitle = title;
-  }
-  else{
-    if (repos === "All") {
+  if (repos === "All") {
       title = "Organization Level Time-Based Data";
   } else if (user) {
       title = `User Level Time-Based Data: ${repos} for ${user}`;
   } else {
       title ? title: `Repository Level Time-Based Data: ${repos}`;
   }
-  }
+  
 
 
   return (
