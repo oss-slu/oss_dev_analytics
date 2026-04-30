@@ -227,25 +227,26 @@ export const TeamStats = () => {
           mergeData={mergeData}
           volumeData={volumeData}
         />
+        <h2 className="section-heading">PR Metrics</h2>
+        <div className="chart-card">
+          <PRMergeSuccessRateChart 
+            selectedTeam={view === "team" ? selectedTeam : selectedUserRepo}
+          />
+          <p className="chart-sublabel">
+            PR Merge Success Rate (Lifetime vs Sprint)
+            </p>
+           </div>
 
-        <h2 className="section-heading">Time-based Metrics</h2>
+        {selectedRepo !== "All Teams" && teamRadarData.length > 0 && (
+          <>
+            <h2 className="section-heading">Collaboration Metrics</h2>
+            <div className="chart-card">
+              <CollaborationChart data={teamRadarData} mode = "team"/>
+            </div>
 
-        <div className="charts-grid">
-          <div className="chart-card">
-            <TimeBased
-              data={closeData}
-              xKey="label"
-              yKey="value"
-              title="Avg Time to Close Issues (hrs)"
-              repos={view === "team" ? selectedTeam : selectedUserRepo}
-              user={
-                view === "user" && selectedUser !== "all"
-                  ? selectedUser
-                  : null
-              }
-            />
-          </div>
-
+          </>
+        )}    
+        <h2 className="section-heading">Time-Based Metrics</h2>
           <div className="chart-card">
             <TimeBased
               data={mergeData}
@@ -260,7 +261,7 @@ export const TeamStats = () => {
               }
             />
           </div>
-        </div>
+
 
         <h2 className="section-heading">Volume-based Metrics</h2>
 
@@ -281,25 +282,6 @@ export const TeamStats = () => {
             />
           </div>
         </div>
-
-                {selectedRepo !== "All Teams" && teamRadarData.length > 0 && (
-          <>
-            <h2 className="section-heading">Collaboration Index</h2>
-            
-            <div className="chart-info-box">
-              <strong>What this chart shows:</strong> This chart shows the selected repository's
-              collaboration activity using pull requests merged, pull requests opened, and issues closed.
-            </div>
-            <div className="chart-card" style={{ display: "flex", justifyContent: "center" }}>
-              <CollaborationChart
-                data={teamRadarData}
-                mode="team"
-                title={`${selectedRepo} Collaboration Radar`}
-              />
-              <p className="chart-sublabel">Repository Collaboration Profile</p>
-            </div>
-          </>
-        )}
 
       
       {showSettings && (
@@ -327,22 +309,6 @@ export const TeamStats = () => {
           }}
         />
       )}
-        <h2 className="section-heading">PR Metrics</h2>
-        <div className="chart-card">
-          <PRMergeSuccessRateChart 
-            selectedTeam={view === "team" ? selectedTeam : selectedUserRepo}
-          />
-          <p className="chart-sublabel">
-            PR Merge Success Rate (Lifetime vs Sprint)
-            </p>
-           </div>
-
-        <h2 className="section-heading">PR Metrics</h2>
-        <div className="chart-card">
-          <PRMergeSuccessRateChart
-            selectedTeam={view === "team" ? selectedTeam : selectedUserRepo}
-          />
-        </div>
       </main>
     </div>
     
