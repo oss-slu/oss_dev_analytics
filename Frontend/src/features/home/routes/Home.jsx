@@ -57,15 +57,51 @@ export const Home = () => {
       <header className="home-header">
         <h1 className="home-title">OSS Analytics Dashboard</h1>
       </header>
-
       <div className="home-grid">
-        <section className="card-blue">
-          <h2 className="card-title">Organization Volume</h2>
-          <div className="chart-wrapper">
-            <VolumeCharts data={orgVolumeData} repos="All" />
-          </div>
-        </section>
+          <section className="card-blue">
+          <h2 className="card-title">Collaboration Index
+            <span
+              tabIndex="0"
+              aria-label="Collaboration chart info"
+              title="What this chart shows: This chart gives a quick view of repository collaboration using pull requests merged, pull requests opened, and issues closed."
+              style={{
+                cursor: "pointer",
+                border: "1px solid black",
+                borderRadius: "50%",
+                padding: "2px 6px",
+                fontSize: "12px",
+                fontWeight: "normal"
+              }}
+            >
+               i
+            </span>
 
+          </h2>
+
+          <div className="chart-wrapper">
+            <div style={{ marginBottom: "12px" }}>
+              <label style={{ marginRight: "10px", fontWeight: "bold" }}>
+                Show top repos:
+              </label>
+              <select
+              value={repoLimit}
+        onChange={(e) => setRepoLimit(Number(e.target.value))}
+        style={{
+          padding: "6px 10px",
+          borderRadius: "8px",
+          border: "1px solid #ccc",
+        }}
+      >
+        <option value={3}>3</option>
+        <option value={5}>5</option>
+        <option value={7}>7</option>
+        <option value={10}>10</option>
+      </select>
+    </div>
+
+    <CollaborationChart data={collaborationData} />
+  </div>
+    </section>
         <section className="card-blue" style={{ height: "100%" }}>
           <h2 className="card-title">Leaderboard Streaks</h2>
           <div className="contributors-wrapper" style={{ display: "flex", gap: "40px", marginTop: "8px" }}>
@@ -154,42 +190,13 @@ export const Home = () => {
             <div className="handbook-text">TECH LEAD HANDBOOK</div>
           </a>
         </div>
-
         <section className="card-blue">
-          <h2 className="card-title">Collaboration Index</h2>
-
-          <div className="chart-info-box">
-            <strong>What this chart shows:</strong> This chart gives a quick view of
-            repository collaboration using pull requests merged, pull requests opened,
-            and issues closed.
-          </div>
-
+          <h2 className="card-title">Organization Volume</h2>
           <div className="chart-wrapper">
-            <div style={{ marginBottom: "12px" }}>
-              <label style={{ marginRight: "10px", fontWeight: "bold" }}>
-                Show top repos:
-              </label>
-              <select
-              value={repoLimit}
-        onChange={(e) => setRepoLimit(Number(e.target.value))}
-        style={{
-          padding: "6px 10px",
-          borderRadius: "8px",
-          border: "1px solid #ccc",
-        }}
-      >
-        <option value={3}>3</option>
-        <option value={5}>5</option>
-        <option value={7}>7</option>
-        <option value={10}>10</option>
-      </select>
-    </div>
-
-    <CollaborationChart data={collaborationData} />
-  </div>
-</section>
+            <VolumeCharts data={orgVolumeData} repos="All" />
+          </div>
+        </section>
       </div>
-
     </div>
 
   );
