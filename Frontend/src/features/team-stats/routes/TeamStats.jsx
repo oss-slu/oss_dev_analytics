@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import TimeBased from "../../../components/charts/TimeBased";
+import VolumeCharts from "../../../components/charts/VolumeBased";
 import PRMergeSuccessRateChart from "../../../components/charts/PRMergeSuccessRateChart";
 import lifetime from "../../../../../data/lifetime_data.json";
 import sprint from "../../../../../data/sprint_data.json";
@@ -28,9 +29,6 @@ import {
   fetchAvailableRepos,
   fetchOrCreateUserDocument,
 } from "../utils/teamStatsAccounts.js";
-
-import { buildBubbleData } from "../../../utils/transformContributorData";
-import { ContributorImpactChart } from "../../../components/charts/ContributorImpactChart";
 
 /*
 Constants
@@ -90,10 +88,6 @@ export const TeamStats = () => {
   const volumeData = useMemo(
     () => buildVolumeData(effectiveData, effectiveUser),
     [effectiveData, effectiveUser]
-  );
-  const contributorImpactData = useMemo(
-    () => buildBubbleData(effectiveData),
-    [effectiveData]
   );
 
   // Auth and User Doc Effects
@@ -235,72 +229,87 @@ export const TeamStats = () => {
         />
         <h2 className="section-heading">PR Metrics</h2>
         <div className="chart-card">
-          <PRMergeSuccessRateChart
+          <PRMergeSuccessRateChart 
             selectedTeam={view === "team" ? selectedTeam : selectedUserRepo}
           />
           <p className="chart-sublabel">
             PR Merge Success Rate (Lifetime vs Sprint)
-          </p>
-        </div>
+            </p>
+           </div>
 
         {selectedRepo !== "All Teams" && teamRadarData.length > 0 && (
           <>
             <h2 className="section-heading">Collaboration Metrics</h2>
             <div className="chart-card">
-              <CollaborationChart data={teamRadarData} mode="team" />
+              <CollaborationChart data={teamRadarData} mode = "team"/>
             </div>
-          </>
-        )}
-        <h2 className="section-heading">Time-Based Metrics</h2>
-        <div className="chart-card">
-          <TimeBased
-            data={mergeData}
-            xKey="label"
-            yKey="value"
-            title="Avg Time to Merge PRs (hrs)"
-            repos={view === "team" ? selectedTeam : selectedUserRepo}
-            user={
-              view === "user" && selectedUser !== "all" ? selectedUser : null
-            }
-          />
-        </div>
 
-        <h2 className="section-heading">
-          Contributor Impact Map{" "}
-          {selectedRepo !== "All Teams" ? `(${selectedRepo})` : "(All Teams)"}
-        </h2>
+          </>
+        )}    
+        <h2 className="section-heading">Time-Based Metrics</h2>
+          <div className="chart-card">
+            <TimeBased
+              data={mergeData}
+              xKey="label"
+              yKey="value"
+              title="Avg Time to Merge PRs (hrs)"
+              repos={view === "team" ? selectedTeam : selectedUserRepo}
+              user={
+                view === "user" && selectedUser !== "all"
+                  ? selectedUser
+                  : null
+              }
+            />
+          </div>
+
+
+        <h2 className="section-heading">Volume-based Metrics</h2>
 
         <div className="chart-card">
           <div style={{ height: "350px", position: "relative" }}>
-            <ContributorImpactChart data={contributorImpactData} />
+            <VolumeCharts
+              data={volumeData}
+              repos={
+                view === "team" || selectedUser === "all"
+                  ? "All"
+                  : selectedUser
+              }
+              user={
+                view === "user" && selectedUser !== "all"
+                  ? selectedUser
+                  : null
+              }
+            />
           </div>
         </div>
 
-        {showSettings && (
-          <UserSetup
-            userId={authUser?.uid}
-            userDoc={userDoc}
-            availableRepos={availableRepos}
-            isSettingsMode={true}
-            onClose={() => setShowSettings(false)}
-            onComplete={(selectedPreferences) => {
-              // Update dashboard right after saving settings
-              const updatedUserDoc = {
-                ...userDoc,
-                trackedRepos: selectedPreferences.trackedRepos,
-                trackedMetrics: selectedPreferences.trackedMetrics,
-              };
+      
+      {showSettings && (
+        <UserSetup
+          userId={authUser?.uid}
+          userDoc={userDoc}
+          availableRepos={availableRepos}
+          isSettingsMode={true}
+          onClose={() => setShowSettings(false)}
+          onComplete={(selectedPreferences) => {
+            // Update dashboard right after saving settings
+            const updatedUserDoc = {
+              ...userDoc,
+              trackedRepos: selectedPreferences.trackedRepos,
+              trackedMetrics: selectedPreferences.trackedMetrics,
+            };
 
-              setUserDoc(updatedUserDoc);
-              setShowSettings(false);
+            setUserDoc(updatedUserDoc);
+            setShowSettings(false);
 
-              if (selectedPreferences.trackedRepos.length > 0) {
-                setSelectedTeam(selectedPreferences.trackedRepos[0]);
-                setSelectedUserRepo(selectedPreferences.trackedRepos[0]);
-              }
-            }}
-          />
-        )}
+            if (selectedPreferences.trackedRepos.length > 0) {
+              setSelectedTeam(selectedPreferences.trackedRepos[0]);
+              setSelectedUserRepo(selectedPreferences.trackedRepos[0]);
+            }
+          }}
+        />
+      )}
       </main>
     </div>
-  );};
+    
+  )};
