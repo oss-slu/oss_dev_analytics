@@ -57,7 +57,7 @@ const CollaborationChart = ({
                 {mode === "team" ? (
                     <RadarChart 
                         data={data}
-                        margin={{ top: 20, right: 150, bottom: 20, left: 20 }}
+                        margin={{ top: 20, right: 20, bottom: 40, left: 20 }}
                     >
                         <PolarGrid stroke="#9ca3af" />
                         <PolarAngleAxis
@@ -83,32 +83,34 @@ const CollaborationChart = ({
                         />
                         <PolarRadiusAxis tick={{ fill: "#111827" }} />
                         <Tooltip content={<CustomTooltip />} />
-                        <Legend 
-                            layout="vertical"
-                            align="right"
-                            verticalAlign="middle"
-                            wrapperStyle={{ paddingLeft: "10px" }}
+                        <Legend
+                            verticalAlign="bottom" 
+                            wrapperStyle={{ paddingBottom: "20px"}}
                         />
+                        
                         <Radar
                             name="PR Reviews"
                             dataKey="prReviews"
                             stroke="#f59e0b"
                             fill="#f59e0b"
-                            fillOpacity={0.35}
+                            fillOpacity={0.5} // changed opacity for PR Reviews
+                            strokeWidth={2} // added stroke width for better visibility
                         />
                         <Radar
                             name="Issue Comments"
                             dataKey="issueComments"
                             stroke="#1d4ed8"
                             fill="#1d4ed8"
-                            fillOpacity={0.25}
+                            fillOpacity={0.3} // changed opacity for Issue Comments
+                            strokeWidth={2} // added stroke width for better visibility
                         />
                         <Radar
                             name="PR Comments"
                             dataKey="prComments"
                             stroke="#16a34a"
                             fill="#16a34a"
-                            fillOpacity={0.2}
+                            fillOpacity={0.15} // changed opacity for PR Comments
+                            strokeWidth={2} // added stroke width for better visibility
                         />
                     </RadarChart>
                 )}
