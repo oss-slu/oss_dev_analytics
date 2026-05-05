@@ -3,12 +3,12 @@
 Helping open-source contributors understand the health and efficiency of their communities through data-driven insights.
 
 ## Overview
-OSS_Dev_Analytics provides a centralized dashboard for the **Open Source with SLU** community. We transform raw GitHub activity into actionable metrics, helping maintainers and contributors identify bottlenecks and celebrate progress.
+OSS_Dev_Analytics provides a centralized dashboard for the **Open Source with SLU** community. We transform raw GitHub activity into actionable metrics, helping maintainers and contributors identify bottlenecks and track progress.
 
 ## Tech Stack
-* **Backend:** Python 3.x, Pandas (Data processing), PyGithub (GitHub API Wrapper).
-* **Frontend:** React.js, Vite, Tailwind CSS.
-* **Data Pipeline:** Sprint-based filtering and JSON-structured analytics.
+* **Backend:** Python 3.x, Pandas (data processing), PyGithub (GitHub API wrapper)
+* **Frontend:** React.js, Vite, Tailwind CSS
+* **Data Pipeline:** Sprint-based filtering and JSON-structured analytics
 
 ## Project Architecture
 - **Data Acquisition:** Python scripts fetch data from GitHub via the REST API.
@@ -32,8 +32,9 @@ Health Score = Σ(metric × weight) / Σ(weights)
 If a repository selects:
 - issue_resolution = 80
 - commit_volume = 60
+
 Then:
-Health Score = (80×0.25 + 60×0.20) / (0.25 + 0.20)
+Health Score = (80 × 0.25 + 60 × 0.20) / (0.25 + 0.20)
 
 ### Edge Cases
 - If no metrics are selected -> an error is returned
@@ -50,12 +51,8 @@ Are you interested in contributing to our organization-wide analytics?
 2. Join the conversation in the **#oss-dev-analytics** Slack channel.
 3. Look for "Good First Issues" in our repository!
 
-### Communication:
+## Communication
 
-All communication is held via the 
-
-OSS_Dev_Analytics Slack group chat: https://oss-slu.slack.com/archives/C09C1AQ181L
-
- and 
-
-OS SLU Slack: 
+All communication is held via Slack: 
+- OSS_Dev_Analytics Slack channel: https://oss-slu.slack.com/archives/C09C1AQ181L
+- Open Source with SLU Slack workspace
