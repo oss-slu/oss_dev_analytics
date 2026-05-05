@@ -31,7 +31,7 @@ export const ContributorImpactChart = ({ data }) => {
               name="Time Contributing"
               tick={{ fill: "#6B7280", fontSize: 12 }}
               label={{
-                value: "Time Contributing (Experience)",
+                value: "Contributor Activity Level",
                 position: "insideBottom",
                 offset: -5,
                 fill: "#6B7280",
@@ -66,6 +66,7 @@ export const ContributorImpactChart = ({ data }) => {
                 border: "1px solid #E5E7EB",
                 borderRadius: "8px",
                 fontSize: "12px",
+                boxShadow: "0px 2px 8px rgba(0,0,0,0.1)"
               }}
               formatter={(value, name) => {
                 if (name === "timeContributing") 
@@ -81,7 +82,13 @@ export const ContributorImpactChart = ({ data }) => {
               } 
             />
 
-            <Scatter data={data} fill="#3B82F6" fillOpacity={0.65} />
+            <Scatter 
+                data={data} 
+                fill="#3B82F6" 
+                fillOpacity={0.65}
+                stroke="#2563EB"
+                strokeWidth={0.5} 
+            />
           </ScatterChart>
         </ResponsiveContainer>
       </div>
