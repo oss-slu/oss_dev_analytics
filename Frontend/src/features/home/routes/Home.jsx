@@ -1,11 +1,9 @@
 import { useState } from "react";
+import VolumeCharts from "../../../components/charts/VolumeBased";
+import { transformVolumeData } from "../../../utils/TransformVolumeData";
 import CollaborationChart from "../../../components/charts/CollaborationChart";
 import { getTopContributorsAndRepos } from "../../../utils/getTopContributorsAndRepos";
 import lifetimeData from "../../../../../data/lifetime_data.json";
-import sprintData from "../../../../../data/sprint_data.json";
-import { buildBubbleData } from "../../../utils/transformContributorData";
-import { ContributorImpactChart } from "../../../components/charts/ContributorImpactChart";
-
 import "./Home.css";
 
 /*
@@ -14,7 +12,9 @@ import "./Home.css";
         JSX.Element: The Home dashboard component.
 */
 export const Home = () => {
-  const [repoLimit, setRepoLimit] = useState(5);  
+  const [repoLimit, setRepoLimit] = useState(5);
+  const orgVolumeData = transformVolumeData(lifetimeData, 'org', null, "All");
+  
   const collaborationData = Object.entries(lifetimeData)
   .map(([repoName, repo]) => {
     const totalIssuesClosed = Object.values(repo.issues || {}).reduce(
@@ -48,20 +48,18 @@ export const Home = () => {
   .sort((a, b) => b.collaborationScore - a.collaborationScore)
   .slice(0, repoLimit);
 
-
   // 2. Call your utility function right here to get the top 5
   const { topContributors, topRepos } = getTopContributorsAndRepos(lifetimeData, 12, null);
-  const contributorImpactData = buildBubbleData(sprintData);
-  
+
   return (
     <div className="home-container">
+      
       <header className="home-header">
         <h1 className="home-title">OSS Analytics Dashboard</h1>
       </header>
       <div className="home-grid">
-        <section className="card-blue">
-          <h2 className="card-title">
-            Collaboration Index
+          <section className="card-blue">
+          <h2 className="card-title">Collaboration Index
             <span
               tabIndex="0"
               aria-label="Collaboration chart info"
@@ -72,11 +70,12 @@ export const Home = () => {
                 borderRadius: "50%",
                 padding: "2px 6px",
                 fontSize: "12px",
-                fontWeight: "normal",
+                fontWeight: "normal"
               }}
             >
-              i
+               i
             </span>
+
           </h2>
 
           <div className="chart-wrapper">
@@ -85,41 +84,31 @@ export const Home = () => {
                 Show top repos:
               </label>
               <select
-                value={repoLimit}
-                onChange={(e) => setRepoLimit(Number(e.target.value))}
-                style={{
-                  padding: "6px 10px",
-                  borderRadius: "8px",
-                  border: "1px solid #ccc",
-                }}
-              >
-                <option value={3}>3</option>
-                <option value={5}>5</option>
-                <option value={7}>7</option>
-                <option value={10}>10</option>
-              </select>
-            </div>
+              value={repoLimit}
+        onChange={(e) => setRepoLimit(Number(e.target.value))}
+        style={{
+          padding: "6px 10px",
+          borderRadius: "8px",
+          border: "1px solid #ccc",
+        }}
+      >
+        <option value={3}>3</option>
+        <option value={5}>5</option>
+        <option value={7}>7</option>
+        <option value={10}>10</option>
+      </select>
+    </div>
 
-            <CollaborationChart data={collaborationData} />
-          </div>
-        </section>
+    <CollaborationChart data={collaborationData} />
+  </div>
+    </section>
         <section className="card-blue" style={{ height: "100%" }}>
           <h2 className="card-title">Leaderboard Streaks</h2>
-          <div
-            className="contributors-wrapper"
-            style={{ display: "flex", gap: "40px", marginTop: "8px" }}
-          >
+          <div className="contributors-wrapper" style={{ display: "flex", gap: "40px", marginTop: "8px" }}>
+            
             {/* Top Contributors List */}
             <div style={{ flex: 1 }}>
-              <h3
-                style={{
-                  fontSize: "16px",
-                  fontWeight: "bold",
-                  color: "#123f8b",
-                  marginBottom: "12px",
-                  marginTop: 0,
-                }}
-              >
+              <h3 style={{ fontSize: "16px", fontWeight: "bold", color: "#123f8b", marginBottom: "12px", marginTop: 0 }}>
                 Top Contributors{" "}
                 <span
                   tabIndex="0"
@@ -130,7 +119,7 @@ export const Home = () => {
                     border: "1px solid black",
                     borderRadius: "50%",
                     padding: "2px 6px",
-                    fontSize: "12px",
+                    fontSize: "12px"
                   }}
                 >
                   i
@@ -140,8 +129,7 @@ export const Home = () => {
                 {topContributors.length > 0 ? (
                   topContributors.map((user, index) => (
                     <li key={`user-${index}`} style={{ marginBottom: "4px" }}>
-                      {user.name} 🔥 {user.currentStreak}{" "}
-                      {user.currentStreak === 1 ? "week" : "weeks"} streak
+                      {user.name} 🔥 {user.currentStreak} {user.currentStreak === 1 ? "week" : "weeks"} streak
                     </li>
                   ))
                 ) : (
@@ -152,15 +140,7 @@ export const Home = () => {
 
             {/* Top Repositories List */}
             <div style={{ flex: 1 }}>
-              <h3
-                style={{
-                  fontSize: "16px",
-                  fontWeight: "bold",
-                  color: "#123f8b",
-                  marginBottom: "12px",
-                  marginTop: 0,
-                }}
-              >
+              <h3 style={{ fontSize: "16px", fontWeight: "bold", color: "#123f8b", marginBottom: "12px", marginTop: 0 }}>
                 Top Repositories{" "}
                 <span
                   tabIndex="0"
@@ -171,7 +151,7 @@ export const Home = () => {
                     border: "1px solid black",
                     borderRadius: "50%",
                     padding: "2px 6px",
-                    fontSize: "12px",
+                    fontSize: "12px"
                   }}
                 >
                   i
@@ -181,10 +161,7 @@ export const Home = () => {
                 {topRepos && topRepos.length > 0 ? (
                   topRepos.map((repo, index) => (
                     <li key={`repo-${index}`} style={{ marginBottom: "4px" }}>
-                      {repo.name} 🔥 {repo.streak}{" "}
-                      {repo.streak === 1 ? "week" : "weeks"} streak (
-                      {repo.activeMembers}{" "}
-                      {repo.activeMembers === 1 ? "member" : "members"})
+                      {repo.name} 🔥 {repo.streak} {repo.streak === 1 ? "week" : "weeks"} streak ({repo.activeMembers} {repo.activeMembers === 1 ? "member" : "members"})
                     </li>
                   ))
                 ) : (
@@ -192,68 +169,35 @@ export const Home = () => {
                 )}
               </ul>
             </div>
+
           </div>
         </section>
       </div>
-
       <div className="home-grid">
         <div className="handbook-column">
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSdZF2zfa72ei0rg52cEIh0vpFiOKDmf27oF1DF2E3Oaf1Jhzg/viewform"
-            target="_blank"
-            rel="noreferrer"
-            className="handbook-card"
-          >
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdZF2zfa72ei0rg52cEIh0vpFiOKDmf27oF1DF2E3Oaf1Jhzg/viewform" target="_blank" rel="noreferrer" className="handbook-card">
             <div className="handbook-icon">📄</div>
             <div className="handbook-text">FEEDBACK FORM</div>
           </a>
 
-          <a
-            href="https://github.com/oss-slu/handbook_developer"
-            target="_blank"
-            rel="noreferrer"
-            className="handbook-card"
-          >
+          <a href="https://github.com/oss-slu/handbook_developer" target="_blank" rel="noreferrer" className="handbook-card">
             <div className="handbook-icon">📄</div>
             <div className="handbook-text">DEVELOPER HANDBOOK</div>
           </a>
 
-          <a
-            href="https://github.com/oss-slu/handbook_tech_lead"
-            target="_blank"
-            rel="noreferrer"
-            className="handbook-card"
-          >
+          <a href="https://github.com/oss-slu/handbook_tech_lead" target="_blank" rel="noreferrer" className="handbook-card">
             <div className="handbook-icon">📄</div>
             <div className="handbook-text">TECH LEAD HANDBOOK</div>
           </a>
         </div>
-
-        {/* contributor impact bubble chart  */}
         <section className="card-blue">
-          <h2 className="card-title">
-            Contributor Impact Map
-            <span
-              tabIndex="0"
-              title="Shows contributor impact using commits (experience), issues closed (impact), and PR activity."
-              style={{
-                cursor: "pointer",
-                border: "1px solid black",
-                borderRadius: "50%",
-                padding: "2px 6px",
-                fontSize: "12px",
-                marginLeft: "6px",
-              }}
-            >
-              i
-            </span>
-          </h2>
-
+          <h2 className="card-title">Organization Volume</h2>
           <div className="chart-wrapper">
-            <ContributorImpactChart data={contributorImpactData} />
+            <VolumeCharts data={orgVolumeData} repos="All" />
           </div>
         </section>
       </div>
     </div>
+
   );
 };
