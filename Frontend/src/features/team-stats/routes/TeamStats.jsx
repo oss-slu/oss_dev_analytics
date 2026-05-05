@@ -5,6 +5,8 @@ import PRMergeSuccessRateChart from "../../../components/charts/PRMergeSuccessRa
 import lifetime from "../../../../../data/lifetime_data.json";
 import sprint from "../../../../../data/sprint_data.json";
 import CollaborationChart from "../../../components/charts/CollaborationChart";
+import { ContributorImpactChart } from "../../../components/charts/ContributorImpactChart";
+import { buildBubbleData } from "../../../utils/transformContributorData";
 import {
   getUniqueUsers,
   getUniqueTeams,
@@ -88,6 +90,11 @@ export const TeamStats = () => {
   const volumeData = useMemo(
     () => buildVolumeData(effectiveData, effectiveUser),
     [effectiveData, effectiveUser]
+  );
+
+  const bubbleData = useMemo(
+    () => buildBubbleData(effectiveData),
+    [effectiveData]
   );
 
   // Auth and User Doc Effects
@@ -227,6 +234,12 @@ export const TeamStats = () => {
           mergeData={mergeData}
           volumeData={volumeData}
         />
+
+        <h2 className="section-heading">Contributor Impact</h2>
+        <div className="chart-card">
+          <ContributorImpactChart data={bubbleData} />
+        </div>
+        
         <h2 className="section-heading">PR Metrics</h2>
         <div className="chart-card">
           <PRMergeSuccessRateChart 
