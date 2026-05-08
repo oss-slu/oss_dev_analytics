@@ -45,6 +45,7 @@ const PRMergeSuccessRateChart = ({ selectedTeam }) => {
             // trigger the tooltip
             onFocus={() => setTooltipVisible(true)}
             onBlur={() => setTooltipVisible(false)}
+            onClick={() => setTooltipVisible((v) => !v)}
           >
             i
           </span>
@@ -56,7 +57,7 @@ const PRMergeSuccessRateChart = ({ selectedTeam }) => {
               // production app replace with Floating UI for true boundary checks.
               // Changed visibility, now driven by tooltipVisible
               visibility: tooltipVisible ? "visible" : "hidden",
-              opacity: 0,
+              opacity: tooltipVisible ? 1 : 0,
               transition: "opacity 0.2s ease",
               position: "absolute",
               top: "28px",
