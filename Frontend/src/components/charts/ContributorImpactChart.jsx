@@ -27,11 +27,11 @@ export const ContributorImpactChart = ({ data }) => {
 
             <XAxis
               type="number"
-              dataKey="commits"
+              dataKey="timeContributing"
               name="Commits"
               tick={{ fill: "#6B7280", fontSize: 12 }}
               label={{
-                value: "Commits (Experience)",
+                value: "Time Contributing",
                 position: "insideBottom",
                 offset: -5,
                 fill: "#6B7280",

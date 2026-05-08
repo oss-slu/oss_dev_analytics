@@ -18,6 +18,8 @@ export const buildBubbleData = (data) => {
     Object.entries(repo.commits || {}).forEach(([user, stats]) => {
       if (!contributors[user]) contributors[user] = initUser(user);
       contributors[user].commits += stats.total_commits || 0;
+      contributors[user].timeContributing += Number(stats.average_velocity) || 0;
+
     });
   });
 
@@ -29,4 +31,5 @@ const initUser = (name) => ({
   commits: 0,
   issuesClosed: 0,
   prsOpened: 0,
+  timeContributing: 0,
 });
