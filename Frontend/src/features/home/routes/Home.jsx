@@ -1,9 +1,9 @@
 import { useState } from "react";
-import VolumeCharts from "../../../components/charts/VolumeBased";
-import { transformVolumeData } from "../../../utils/TransformVolumeData";
 import CollaborationChart from "../../../components/charts/CollaborationChart";
 import { getTopContributorsAndRepos } from "../../../utils/getTopContributorsAndRepos";
 import lifetimeData from "../../../../../data/lifetime_data.json";
+import { ContributorImpactChart } from "../../../components/charts/ContributorImpactChart";
+import { buildBubbleData } from "../../../utils/transformContributorData";
 import "./Home.css";
 
 /*
@@ -13,7 +13,8 @@ import "./Home.css";
 */
 export const Home = () => {
   const [repoLimit, setRepoLimit] = useState(5);
-  const orgVolumeData = transformVolumeData(lifetimeData, 'org', null, "All");
+
+  const bubbleData = buildBubbleData(lifetimeData);
   
   const collaborationData = Object.entries(lifetimeData)
   .map(([repoName, repo]) => {
@@ -191,9 +192,9 @@ export const Home = () => {
           </a>
         </div>
         <section className="card-blue">
-          <h2 className="card-title">Organization Volume</h2>
+          <h2 className="card-title">Contributor Impact</h2>
           <div className="chart-wrapper">
-            <VolumeCharts data={orgVolumeData} repos="All" />
+            <ContributorImpactChart data={bubbleData} />
           </div>
         </section>
       </div>
