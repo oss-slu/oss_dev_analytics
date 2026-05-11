@@ -3,7 +3,7 @@
 Welcome to the team! This project is dedicated to helping contributors understand the health and efficiency of open-source communities, specifically the Open Source with SLU (OSS-SLU) community. We transform raw GitHub data—issues, pull requests, and commits—into actionable insights.
 
 ## Project Architecture
-The project is currently being refactored to use a React frontend site with Vite. The backend remains a Python-based pipeline that processes data for visualization.
+The project is currently uses a React frontend site with Vite. The backend is a Python-based pipeline that processes data for visualization.
 
 1. Data Collection & Preprocessing
 
