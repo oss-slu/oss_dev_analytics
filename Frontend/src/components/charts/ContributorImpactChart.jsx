@@ -23,7 +23,7 @@ export const ContributorImpactChart = ({ data }) => {
       <div className="bg-white rounded-lg p-4">
         <ResponsiveContainer width="100%" height={320}>
           <ScatterChart>
-            <CartesianGrid stroke="#E5E7EB" />
+            <CartesianGrid stroke="#E5E7EB" strokeOpacity={0.6} />
 
             <XAxis
               type="number"
@@ -32,6 +32,10 @@ export const ContributorImpactChart = ({ data }) => {
               tick={{ fill: "#6B7280", fontSize: 12 }}
               label={{
                 value: "Time Contributing",
+              name="Time Contributing"
+              tick={{ fill: "#6B7280", fontSize: 12 }}
+              label={{
+                value: "Contributor Activity Level",
                 position: "insideBottom",
                 offset: -5,
                 fill: "#6B7280",
@@ -56,7 +60,7 @@ export const ContributorImpactChart = ({ data }) => {
             <ZAxis
               type="number"
               dataKey="prsOpened"
-              range={[40, 300]}
+              range={[30, 180]}
               name="PRs Opened"
             />
 
@@ -66,22 +70,37 @@ export const ContributorImpactChart = ({ data }) => {
                 border: "1px solid #E5E7EB",
                 borderRadius: "8px",
                 fontSize: "12px",
+                boxShadow: "0px 2px 8px rgba(0,0,0,0.1)"
               }}
-              formatter={(value, name) => [value, name]}
+              formatter={(value, name) => {
+                if (name === "timeContributing") 
+                    return [value, "Time Contributing"];
+                if (name === "issuesClosed") 
+                    return [value, "Issues Closed"];
+                if (name === "prsOpened") 
+                    return [value, "PRs Opened"];
+                return [value, name];
+              }}
               labelFormatter={(label, payload) =>
-                payload?.[0]?.payload?.name || ""
-              }
+                payload?.[0]?.payload?.name || "Contributor"
+              } 
             />
 
-            <Scatter data={data} fill="#3B82F6" />
+            <Scatter 
+                data={data} 
+                fill="#3B82F6" 
+                fillOpacity={0.65}
+                stroke="#2563EB"
+                strokeWidth={0.5} 
+            />
           </ScatterChart>
         </ResponsiveContainer>
       </div>
 
       <div className="mt-3 text-xs text-gray-500">
-        Each bubble represents a contributor. Larger bubbles indicate more pull
-        requests opened, while position reflects experience (commits) and impact
-        (issues closed).
+        Each bubble represents a contributor. The X-axis shows time contributing,
+        the Y-axis shows issues closed, and larger bubbles indicate more pull
+        requests opened.
       </div>
     </div>
   );
