@@ -20,7 +20,7 @@ const MetricsPanel = ({ selectedMetrics = [] }) => {
   };
 
   return (
-    <section style={{ marginTop: "20px" }}>
+    <section style={{ margin: "20px 0" }}>
       <h2 className="section-heading">Developer Metrics</h2>
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
