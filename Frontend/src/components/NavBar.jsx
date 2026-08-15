@@ -74,6 +74,7 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     marginTop: "20px",
+    padding: "0 1rem"
   },
   nav: {
     display: "flex",
