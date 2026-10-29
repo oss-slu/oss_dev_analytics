@@ -6,24 +6,26 @@ on:
     paths:
       - 'Backend/**'
       - 'Dockerfile.backend'
+  workflow_dispatch: {}
 
 env:
-  IMAGE_NAME: ghcr.io/oss-slu/oss_dev_analytics/backend
+  IMAGE_NAME: registry.oss-slu.online/oss-dev-analytics/backend
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
+    outputs:
+      digest: ${{ steps.push.outputs.digest }}
     steps:
       - uses: actions/checkout@v4
 
       - uses: docker/login-action@v3
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: registry.oss-slu.online
+          username: ${{ secrets.HARBOR_USERNAME }}
+          password: ${{ secrets.HARBOR_PASSWORD }}
 
       - id: meta
         uses: docker/metadata-action@v5
@@ -33,9 +35,13 @@ jobs:
             type=sha,prefix=,format=short
             type=raw,value=latest,enable={{is_default_branch}}
 
-      - uses: docker/build-push-action@v5
+      - id: push
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: Dockerfile.backend
           push: true
           tags: ${{ steps.meta.outputs.tags }}
+
+      - name: Summarize pushed digest
+        run: echo "Pushed ${{ env.IMAGE_NAME }}@${{ steps.push.outputs.digest }}" >> "$GITHUB_STEP_SUMMARY"
