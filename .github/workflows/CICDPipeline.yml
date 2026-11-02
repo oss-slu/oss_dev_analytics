@@ -14,8 +14,13 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  security-events: write
 
 jobs:
+  code-futures:
+    uses: oss-slu/code-futures/.github/workflows/code-futures.yml@v1.0.0
+    secrets: inherit
+    
   backend-tests:
     name: Python Backend Tests
     runs-on: ubuntu-latest
