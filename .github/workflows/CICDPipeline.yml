@@ -15,6 +15,8 @@ permissions:
   pages: write
   id-token: write
   security-events: write
+  attestations: write
+  artifact-metadata: write
 
 jobs:
   code-futures:
@@ -72,7 +74,34 @@ jobs:
           cache-dependency-path: ./Frontend/package-lock.json
       - run: npm ci
       - run: npm run build -- --base=/oss_dev_analytics/
-      
+
+      - name: Generate Frontend SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          path: ./Frontend/dist
+          format: spdx-json
+          output-file: ./Frontend/oss-dev-analytics-frontend-sbom.spdx.json
+
+      - name: Upload Frontend SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: oss-dev-analytics-frontend-sbom
+          path: ./Frontend/oss-dev-analytics-frontend-sbom.spdx.json
+          if-no-files-found: error
+
+      - name: Attest Frontend SBOM Provenance
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/attest@v4
+        with:
+          subject-path: ./Frontend/oss-dev-analytics-frontend-sbom.spdx.json
+
+      - name: Verify Frontend SBOM Attestation
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        working-directory: ${{ github.workspace }}
+        run: gh attestation verify ./Frontend/oss-dev-analytics-frontend-sbom.spdx.json --owner oss-slu
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
