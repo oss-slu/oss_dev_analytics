@@ -15,8 +15,6 @@ permissions:
   pages: write
   id-token: write
   security-events: write
-  attestations: write
-  artifact-metadata: write
 
 jobs:
   code-futures:
@@ -62,6 +60,12 @@ jobs:
     name: Build React App
     runs-on: ubuntu-latest
     needs: frontend-checks
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+      attestations: write
+      artifact-metadata: write
     defaults:
         run:
           working-directory: ./Frontend
@@ -76,7 +80,7 @@ jobs:
       - run: npm run build -- --base=/oss_dev_analytics/
 
       - name: Generate Frontend SBOM
-        uses: anchore/sbom-action@v0
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610
         with:
           path: ./Frontend/dist
           format: spdx-json
