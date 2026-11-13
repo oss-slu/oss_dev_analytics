@@ -27,10 +27,12 @@ jobs:
     uses: oss-slu/oss_cicd_automation/.github/workflows/slsa-build-attest.yml@main
     with:
       image-name: ghcr.io/oss-slu/oss_dev_analytics/frontend
+      harbor-image: registry.oss-slu.online/oss-dev-analytics/frontend
       context: .
       file: Dockerfile.frontend
       sbom-artifact-name: oss_dev_analytics-frontend-sbom
       push: true
+      report-harbor-scan: true
     secrets: inherit
 
   build-backend:
@@ -38,8 +40,10 @@ jobs:
     uses: oss-slu/oss_cicd_automation/.github/workflows/slsa-build-attest.yml@main
     with:
       image-name: ghcr.io/oss-slu/oss_dev_analytics/backend
+      harbor-image: registry.oss-slu.online/oss-dev-analytics/backend
       context: .
       file: Dockerfile.backend
       sbom-artifact-name: oss_dev_analytics-backend-sbom
       push: true
+      report-harbor-scan: true
     secrets: inherit
