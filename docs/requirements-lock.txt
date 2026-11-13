@@ -1,0 +1,5 @@
+# Pinned dependencies for SLSA Build Level 3 deterministic builds
+PyGithub==2.3.0
+pandas==2.2.2
+python-dotenv==1.0.1
+numpy==2.0.0

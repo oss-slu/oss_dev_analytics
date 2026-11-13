@@ -1,0 +1,45 @@
+name: Build, Attest & Publish (SLSA Level 3)
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+    paths:
+      - 'Frontend/**'
+      - 'Backend/**'
+      - 'Dockerfile.frontend'
+      - 'Dockerfile.backend'
+      - 'nginx.conf'
+      - 'docs/requirements*.txt'
+      - '.github/workflows/build-attest.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+  attestations: write
+
+jobs:
+  build-frontend:
+    name: Frontend SLSA L3 Build & Attestation
+    uses: oss-slu/oss_cicd_automation/.github/workflows/slsa-build-attest.yml@main
+    with:
+      image-name: ghcr.io/oss-slu/oss_dev_analytics/frontend
+      context: .
+      file: Dockerfile.frontend
+      sbom-artifact-name: oss_dev_analytics-frontend-sbom
+      push: true
+    secrets: inherit
+
+  build-backend:
+    name: Backend SLSA L3 Build & Attestation
+    uses: oss-slu/oss_cicd_automation/.github/workflows/slsa-build-attest.yml@main
+    with:
+      image-name: ghcr.io/oss-slu/oss_dev_analytics/backend
+      context: .
+      file: Dockerfile.backend
+      sbom-artifact-name: oss_dev_analytics-backend-sbom
+      push: true
+    secrets: inherit
